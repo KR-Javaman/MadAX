@@ -1,0 +1,144 @@
+:root {
+  font-size: 62.5%;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+header {
+  border-bottom: 1px solid black;
+  position: sticky;
+  top: 0;
+  background-color: slategray;
+}
+.header {
+  width: 128rem;
+  height: 7.2rem;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+}
+a {
+  color: black;
+}
+
+.cls-section:nth-child(1),
+.cls-section:nth-child(3) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+}
+.cls-section:nth-child(2) {
+  /* display: flex; */
+  /* align-items: center; */
+  margin-left: 1rem;
+}
+.nav {
+  font-size: 1.6rem;
+}
+.nav-a {
+  font-weight: bold;
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+  transition-duration: 0.1s;
+  text-decoration: none;
+  overflow: hidden;
+}
+nav > ul > li {
+  /* height: 7.2rem; */
+  float: left;
+  position: relative;
+}
+nav > ul {
+  width: 100%;
+  list-style-type: none;
+}
+nav > ul > li > a {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  height: 7.2rem;
+}
+nav ul a {
+  margin: 0 1rem;
+  text-decoration: none;
+}
+
+nav ul li ul a {
+  /* display: flex;
+  justify-content: center; */
+  text-align: center;
+  padding: 0.5rem 0;
+  width: 100%;
+}
+nav > ul > li:hover {
+  background-color: green;
+  color: white;
+}
+nav > ul > li:hover > ul {
+  display: block;
+}
+nav ul ul a:hover {
+  background-color: blue;
+  color: white;
+}
+nav ul > li > ul {
+  background-color: aqua;
+  list-style-type: none;
+  position: absolute;
+  width: 100%;
+}
+nav ul > li > ul > li {
+  border: 0.1rem solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cls-section:nth-child(1) {
+  width: 15%;
+}
+.cls-section:nth-child(2) {
+  width: 50%;
+}
+.cls-section:nth-child(3) {
+  width: 35%;
+}
+.cls-search {
+  width: 30rem;
+  height: 3.2rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  display: flex;
+}
+.search-btn {
+  width: 90%;
+  padding: 0.5rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+  border: none;
+}
+.section-form {
+  width: 30rem;
+}
+.btn-search {
+  width: 10%;
+  background-color: white;
+  border-radius: 0 0.5rem 0.5rem 0;
+  border: none;
+  cursor: pointer;
+}
+.search-login {
+  display: flex;
+}
+.cls-login {
+  margin-left: 2rem;
+}
+.cls-login > a {
+  text-decoration: none;
+}
+#img-search {
+  width: 100%;
+  border-radius: 0.5rem;
+}
