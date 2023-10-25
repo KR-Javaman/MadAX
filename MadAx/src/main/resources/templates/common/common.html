@@ -1,19 +1,6 @@
 <link rel="stylesheet" th:href="@{/css/header.css}" />
 
 <!-- font awesome 라이브러리 추가 + key 등록 -->
-<script
-  src="https://kit.fontawesome.com/f7459b8054.js"
-  crossorigin="anonymous"
-></script>
-<script src="/js/header.js"></script>
+<script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script>
-  $("nav li").hover(
-    function () {
-      $("ul", this).stop().slideDown(200);
-    },
-    function () {
-      $("ul", this).stop().slideUp(200);
-    }
-  );
-</script>
+<script src="/js/header.js"></script>
