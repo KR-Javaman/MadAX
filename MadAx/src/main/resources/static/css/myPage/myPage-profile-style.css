@@ -1,0 +1,251 @@
+/* 회원 페이지 전체를 감싸고 있는 요소 */
+* {
+  background-color: rgb(29, 29, 29);
+  padding: 0;
+  margin: 0;
+  box-sizing : border-box;
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+/* myPage - 상단 부분 */
+
+.myPage-wallpaper {
+  width: 100%;
+  height: 28rem;
+  margin-top:7.2rem;
+}
+
+#wallpaper {
+  width: 100%;
+  height: 45rem;
+}
+
+.myPage-middle {
+  height: 25rem;
+}
+
+.myPage-middle-profile {
+  display : flex;
+  margin-left: 42rem ;
+  margin-top : 5rem;
+  align-items: center;
+  color: white;
+}
+
+hr {
+  width: 100%;
+  border-style: dashed;
+}
+
+
+#memberProfile {
+  width : 14rem;
+  height : 14rem;
+}
+
+#nickName {
+  margin-top : 15rem;
+  margin-left : 2rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+
+  height : 7rem;
+}
+
+#email {
+  margin-top : 17rem;
+  margin-left : 1rem;
+  width: 8rem;
+  height: 7rem;
+  font-size : 1.5rem;
+  font-style: italic;
+}
+
+/* ------------------------------------------------ */
+
+/* myPage 메인 화면 */
+.myPage-content {
+  width: 128rem;
+  min-height: 100rem;
+  margin: 50px auto;
+  display: flex;
+}
+
+/* 사이드메뉴 */
+.left-side{
+  width: 15%;
+}
+
+label {
+  font-size : 2rem;
+  font-weight: bold;
+  color: white;
+}
+
+.list-group{
+ 
+  list-style: none;
+  border-radius: 2rem;
+  padding: 1rem;
+  background-color: white;
+
+}
+
+.list-group > li{
+  height: 5rem;
+  font-size: 1.6rem;
+}
+
+.list-group > li > a{
+  color:black;
+  text-decoration: none;
+
+  display: flex;
+  height: 100%;
+
+  justify-content: center;
+  align-items: center;
+
+  background-color: white;
+}
+
+.list-group > li > a:hover{
+  transition-duration: 0.2s;
+  color: rgb(147, 251, 1);
+  
+}
+
+/* ======================================= */
+
+.myPage-profile-main{
+  width: 80%;
+  height: 90rem;
+  padding-left : 7rem;
+  font-size: 1.8rem;
+ 
+}
+
+
+
+.myPage-profile-total{
+  width: 100%;
+  height: 100%;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 1.2rem;
+ 
+}
+
+.myPage-profile-upper {
+
+  width: 100%;
+  height : 40%;
+  display: flex;
+
+  
+}
+
+.myPage-profile-upper > .profile-content {
+  width: 50%;
+  height : 100%;
+  padding-left: 4rem;
+  padding-top : 2rem;
+  background-color: white;
+  border-top-left-radius: 1.2rem;
+  
+}
+
+.myPage-profile-upper > .myPage-profile-img{
+  width: 50%;
+  height: 100%;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+ 
+
+}
+.profile-image-area{
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-top-right-radius: 1.2rem;
+}
+
+.myPage-profile-mid {
+  width :100%;
+  height: 40%;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  padding:  4rem;
+}
+
+.background-img {
+  background-color: white;
+  width: 80%;
+  height: 80%;
+  padding: 2rem;
+  margin-top: 2rem;
+  border: 1px solid black;
+
+}
+
+#backgroundPic{
+ justify-content: center;
+}
+
+
+input { background-color: white;}
+
+
+.profile-content > form {
+  color:black; 
+  background-color: white;
+  padding-top: 3rem;
+  font-weight: bold;
+}
+
+#editButton {
+  background-color: white;
+  border: 0rem;
+  color:rgb(22, 255, 1)
+
+}
+
+.myPage-profile-lower {
+  background-color: white;
+  justify-content: center;
+  align-content: center;
+  display: flex;
+}
+
+#homeButton {
+ border-radius: 0.5rem;
+  border : 0.1rem solid rgb(22, 255, 1);
+  background-color:rgb(22, 255, 1);
+  color: white;
+  width: 10rem;
+  height : 5rem;
+
+}
+
+.myPage-profile-lower > form {
+  background-color: white;
+}
+
+#secessionButton {
+  color: black;
+  background-color: white;
+  border: 0.05rem solid black;
+  border-radius: 0.5rem;
+  width: 10rem;
+  height : 5rem;
+ 
+}
