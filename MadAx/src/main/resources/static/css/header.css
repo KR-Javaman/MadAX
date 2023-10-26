@@ -10,7 +10,7 @@ header {
   border-bottom: 1px solid black;
   position: sticky;
   top: 0;
-  background-color: slategray;
+  background-color: #1e1e20;
 }
 .header {
   width: 128rem;
@@ -20,7 +20,7 @@ header {
   margin: auto;
 }
 a {
-  color: black;
+  color: white;
 }
 
 .cls-section:nth-child(1),
@@ -106,7 +106,21 @@ nav ul > li > ul > li {
 .cls-section:nth-child(3) {
   width: 35%;
 }
-.cls-search {
+
+.section-form {
+  width: 30rem;
+}
+
+.search-login {
+  display: flex;
+}
+.cls-login {
+  margin-left: 2rem;
+}
+.cls-login > a {
+  text-decoration: none;
+}
+/* .cls-search {
   width: 30rem;
   height: 3.2rem;
   border: 1px solid black;
@@ -118,27 +132,15 @@ nav ul > li > ul > li {
   padding: 0.5rem;
   border-radius: 0.5rem 0 0 0.5rem;
   border: none;
-}
-.section-form {
-  width: 30rem;
-}
-.btn-search {
+} */
+/* .btn-search {
   width: 10%;
   background-color: white;
   border-radius: 0 0.5rem 0.5rem 0;
   border: none;
   cursor: pointer;
-}
-.search-login {
-  display: flex;
-}
-.cls-login {
-  margin-left: 2rem;
-}
-.cls-login > a {
-  text-decoration: none;
-}
-#img-search {
+} */
+/* #img-search {
   width: 100%;
   border-radius: 0.5rem;
-}
+} */
