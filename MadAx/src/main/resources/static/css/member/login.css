@@ -1,0 +1,146 @@
+* {
+    box-sizing: border-box;
+    margin : 0;
+    padding : 0;
+    background-color: #282828;
+    color: white
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+main {
+    padding: 20px 40px;
+    border-radius: 10px;
+}
+
+main .logo-area {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo-area img{
+    width: 300px;
+}
+
+
+
+
+.input-box {
+    position: relative;
+    margin: 30px 0 30px;
+    width: 400px;
+   
+}
+
+.input-box input {
+    border: 0;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: block;
+    width: 100%;
+    padding: 17px;
+    font-size: 17px;
+   
+}
+
+.input-box input:focus{
+    outline: 0;
+    border-color: rgb(217, 255, 163);
+    color: white;
+}
+
+.login-btn {
+    cursor: pointer;
+    display: inline-block;
+    width: 100%;
+    background: rgb(147, 251, 1);
+    color : #282828;
+    padding: 15px;
+    font-size: 18px;
+    border: 0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.login-btn:focus {
+    outline: 0;
+}
+
+.login-btn:hover {
+    font-weight: bold;
+}
+
+.login-btn:active {
+    transform: scale(0.98);
+    font-weight: bold;
+}
+
+
+.saveId-area{
+    margin-top: 10px;
+    padding: 10px 0;
+    border-bottom: 2px solid white;
+    display: flex;
+    align-items: center;
+   
+}        
+
+.saveId-area > input{
+    display: none;
+}
+
+#saveId+label{
+    display: flex;
+    cursor: pointer;
+}
+
+#saveId+label > i{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 24px;
+    height: 24px;
+    border: 1px solid white; 
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-bottom : 20px;
+    color : white;;
+    font-size: 1.0em;
+}
+
+.saveId-area > input:checked + label > i{
+    background-color: rgb(147, 251, 1);
+    border-color: rgb(147, 251, 1);
+    color: white !important;
+}
+.saveId-area > input:hover + label{
+    color: rgb(147, 251, 1);
+    transition-duration: 0.2s;
+}
+
+.text-area {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.text-area a{
+    text-decoration: none;
+    color: white;
+    margin : 20px;
+}
+
+.text-area a:hover{
+    text-decoration: none;
+    color: rgb(147, 251, 1);
+    margin : 0 20px;
+    transition-duration: 0.2s ;
+}
