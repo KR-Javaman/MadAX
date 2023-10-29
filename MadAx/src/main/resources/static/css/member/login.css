@@ -3,7 +3,8 @@
     margin : 0;
     padding : 0;
     background-color: #282828;
-    color: white
+    color: white;
+    font-size: 1.8rem;
 }
 
 body {
@@ -29,8 +30,6 @@ main .logo-area {
 .logo-area img{
     width: 300px;
 }
-
-
 
 
 .input-box {
@@ -85,11 +84,9 @@ main .logo-area {
 
 
 .saveId-area{
-    margin-top: 10px;
-    padding: 10px 0;
+    margin-top: 8px;
+    padding: 7px 0;
     border-bottom: 2px solid white;
-    display: flex;
-    align-items: center;
    
 }        
 
@@ -100,6 +97,7 @@ main .logo-area {
 #saveId+label{
     display: flex;
     cursor: pointer;
+
 }
 
 #saveId+label > i{

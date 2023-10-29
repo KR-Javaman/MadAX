@@ -8,13 +8,14 @@
 
     <th:block th:replace="~{common/common}"></th:block>
   
-    <link rel="stylesheet" href="/css/myPage/myPage-profile-style.css">
+    <link rel="stylesheet" href="/css/myPage/myPage-profile.css">
     <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/myPage/myPage-main.css">
 </head>
 <body>
     <main>
         <th:block th:replace="~{common/header}"></th:block>
-              
+        
         <div class="myPage-wallpaper">
             <img src="../images/wallpaper.png" id="wallpaper" >
         </div>
@@ -23,20 +24,24 @@
         
             <div class="myPage-middle-profile">
         
-                <img src="../images/logo.jpg" id="memberProfile">
-                <span id="nickName" th:text="*{memberNickname}">닉네임</span>
-                <p id="email" th:text="*{memberEmail}">이메일</p>
+                <img src="../images/user.png" id="memberProfile">
+                <span id="nickName" >닉네임</span>
+                <p id="email">이메일</p>
 
             </div>    
 
         <hr>
         </section>
-			<th:block th:replace="~{myPage/sideMenu}"></th:block>
+			
         
         <section class="myPage-content">
-            <section class="myPage-profile-main">
-                <label id="myProfile">내 프로필</label>
-             <section class="myPage-profile-total">
+            <th:block th:replace="~{myPage/sideMenu}"></th:block>
+    
+            <section class="myPage-main">
+        
+                 <section class="myPage-profile-main">
+                  <label id="myProfile">내 프로필</label>
+                 <section class="myPage-profile-total">
                    
                         <div class="myPage-profile-upper">
                             <div class="profile-content">
@@ -57,12 +62,14 @@
                                 </form>
                             </div> 
                             <div class="myPage-profile-img">
-                                <form action="profile" method="POST" name="myPageChangeImg">
-                                    <div class="profile-image-area">
-                                        <img th:src="#{user.default.image}" id="memberProfile">
+                                <form action="profile" method="POST" name="myPageChangeImg" id="editMemberProfile">
+                                    
+                                        <img th:src="#{user.default.image}" id="editMemberProfile">
                                         <input type="file" id="memberProfile" name="imageInput" accpet="image/">
-                                    </div>
+
                                 </form> 
+                            </div>
+                               
                             </div>
                         </div> 
                         
@@ -81,14 +88,13 @@
                         </span>   
                         
                     </section>  
-               
-                    
 
             </section>
         </section>
 
+    </section>
     </main>    
-    <th:block th:replace="~{common/footer}"></th:block>
+    <!-- <th:block th:replace="~{common/footer}"></th:block> -->
 
     <script src="/js/myPage/myPage.js"></script>
 </body>

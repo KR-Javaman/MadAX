@@ -1,0 +1,137 @@
+
+.myPage-main{
+  width: 85%;
+  padding-left : 7rem;
+}
+
+.myPage-profile-main{
+  height: 90rem;
+  font-size: 1.8rem;
+ 
+}
+
+.myPage-profile-total{
+  width: 100%;
+  height: 100%;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 1.2rem;
+ 
+}
+
+.myPage-profile-upper {
+
+  width: 100%;
+  height : 40%;
+  display: flex;
+}
+
+.myPage-profile-upper > .profile-content {
+  width: 50%;
+  height : 100%;
+  padding-left: 4rem;
+  padding-top : 2rem;
+  background-color: white;
+  border-top-left-radius: 1.2rem;
+  
+}
+
+.myPage-profile-upper > .myPage-profile-img{
+  width: 50%;
+  height: 100%;
+  background-color: white;
+ 
+}
+
+#editMemberProfile {
+  width : 20rem;
+  height: 20rem;
+}
+
+
+
+
+.myPage-profile-mid {
+  width :100%;
+  height: 40%;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  padding:  1rem 4rem;
+}
+
+.background-img {
+  background-color: white;
+  width: 100%;
+  height: 80%;
+  padding: 2rem;
+  margin-top: 2rem;
+  border: 1px solid black;
+
+}
+
+#backgroundPic{
+ justify-content: center;
+ width: 100%;
+}
+
+
+input { 
+  background-color: white;
+  margin-left : 3rem;
+  height: 2.5rem;
+
+}
+
+
+.profile-content > form {
+  color:black; 
+  background-color: white;
+  padding-top: 3.2rem;
+  font-weight: bold;
+}
+
+#editButton {
+  background-color: white;
+  border: 0rem;
+  color:rgb(22, 255, 1)
+
+}
+
+.myPage-profile-lower {
+  background-color: white;
+  justify-content: center;
+  align-content: center;
+  display: flex;
+}
+
+.myPage-profile-lower > form {
+  background-color: white;
+}
+
+#homeButton {
+ border-radius: 0.5rem;
+  border : 0.1rem solid rgb(22, 255, 1);
+  background-color:rgb(22, 255, 1);
+  color: white;
+  width: 10rem;
+  height : 5rem;
+  margin-top: 3rem;
+
+}
+
+.myPage-profile-lower > form {
+  background-color: white;
+}
+
+#secessionButton {
+  color: black;
+  background-color: white;
+  border: 0.05rem solid black;
+  border-radius: 0.5rem;
+  width: 10rem;
+  height : 5rem;
+ 
+}

@@ -16,7 +16,16 @@
 </head>
 <body>
     <main>
-        <th:block th:replace="~{common/header}"></th:block>
+
+        <section class="logo-area">
+            <a href="/">
+                <img src="/images/logo.png">
+            </a>
+        </section>
+
+        <h1>회원 가입</h1>
+
+        <h3>*는 필수로 입력해주셔야 합니다.</h3>
 
         <section class="signUp-content">
   
@@ -36,7 +45,6 @@
                 <span class="signUp-message" id="emailMessage">메일을 받을 수 있는 이메일을 입력해주세요.</span>
 
 
-
                 <!-- 인증번호 입력 -->
                 <label for="emailCheck">
                     <span class="required">*</span> 인증번호
@@ -47,7 +55,8 @@
                     
                     <button id="checkAuthKeyBtn" type="button">인증하기</button>
                 </div>
-                <span class="signUp-message" id="authKeyMessage"></span>
+                <span class="signUp-message" id="authKeyMessage">입력한 이메일 주소로 인증번호가 발송되오니, 가급적 자주 쓰는 이메일 주소를 입력해 주세요.
+                    </span>
                                 <!-- 인증번호가 일치하지 않습니다 -->
                 
 
@@ -80,19 +89,6 @@
                 <span class="signUp-message" id="nickMessage">한글,영어,숫자로만 2~10글자</span>
 
 
-                <!-- 전화번호 입력 -->
-                <label for="memberTel">
-                    <span class="required">*</span> 전화번호
-                </label>
-
-                <div class="signUp-input-area">
-                    <input type="text" name="memberTel" id="memberTel" placeholder="(- 없이 숫자만 입력)" maxlength="11">
-                </div>
-
-                <span class="signUp-message" id="telMessage">전화번호를 입력해주세요.(- 제외)</span>
-
-
-
                 <!-- 주소 입력 -->
                 <label for="memberAddress">주소</label>
 
@@ -117,11 +113,11 @@
 
     </main>
 
-    <th:block th:replace="~{common/footer}"></th:block>
+    <!-- <th:block th:replace="~{common/footer}"></th:block> -->
 
     <!-- 다음 주소 API -->
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <!-- <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     
-    <script src="/js/member/signup.js"></script>
+    <script src="/js/member/signup.js"></script> -->
 </body>
 </html>

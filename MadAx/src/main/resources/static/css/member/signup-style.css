@@ -1,0 +1,155 @@
+* {
+    box-sizing: border-box;
+    margin : 0;
+    padding : 0;
+    background-color: #282828;
+    color: white;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+main { 
+    padding: 90px;
+    
+}
+
+main .logo-area {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.logo-area img{
+    width: 270px;
+}
+
+h1 {
+    align-items: center;
+    font-size: 32px;
+    text-align: center;
+    margin: 50px;
+}
+
+h3 {
+    color: rgb(147, 251, 1);
+    font-style: italic;
+}
+
+#signupFrm {
+    margin-top: 60px;
+}
+
+.signUp-content{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: auto;
+}
+
+
+#signUpFrm > label{
+    display: block;
+    margin-top: 37px;
+    font-size: 18px;
+}
+
+#signUpFrm > span{
+    display: block;
+    height: 24px;
+}
+
+/* 필수 작성 */
+.required{
+    color: rgb(147, 251, 1);
+    padding: 5px;
+}
+
+/* input 태그를 감싸고 있는 div 태그 */
+.signUp-input-area{
+    width: 500px;
+    height: 60px;
+
+    margin-top : 12px;
+    margin-bottom: 12px;
+
+    border: 2.5px solid black;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+}
+
+.signUp-input-area > input{
+    width: 74%;
+    height: 100%;
+
+    padding : 12px;
+    font-size: 16px;
+    font-weight: bold;
+
+    border : none;
+    outline: none;
+    border-radius: 100px;
+}
+
+.signUp-input-area > button{
+    width: 24%;
+    height: 70%;
+    background-color: white;
+    border-radius: 7px;
+    color: black;
+    border: 1px solid gray;
+    cursor: pointer;
+    font-size: 14px;
+
+}
+
+.signUp-input-area > button:hover{
+    transition-duration: 0.2s;
+    background-color: rgb(147, 251, 1);
+    color: white;
+}
+
+/* :focus-within : 내부 input 요소에 포커스가 맞춰졌을 때 */
+.signUp-input-area:focus-within{
+    border-color: rgb(217, 255, 163);
+}
+
+
+/* 입력 관련 메세지 */
+.signUp-message{
+    font-size: 12px;
+    letter-spacing: -1px;
+    margin-left: 5px;
+  
+}
+
+/* 메세지 색상 지정 */
+.confirm{ color : rgb(147, 251, 1); }
+.error{ color : red; }
+
+
+/* 회원가입 버튼 */
+#signUpBtn{
+    width: 100%;
+    padding: 20px;
+    margin: 60px 0;
+    border: none;
+    border-radius: 10px;
+
+    font-size: 18px;
+    
+    background-color: rgb(147, 251, 1);
+    color : black;
+    cursor: pointer;
+}
+
+
+#signUpBtn:active{
+    transform: scale(0.95);
+}
