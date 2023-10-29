@@ -21,5 +21,19 @@ public class MyPageController {
 		// templates/myPage/myPage-profile.html로 forward하겠다라는 뜻
 		return "myPage/myPage-profile";
 	}
+	
+	@GetMapping("myPage-community") // /myPage/info (이런 모양의 요청이 왔을 때!)
+	public String myPageCommunity() {
+		
+		// templates/myPage/myPage-profile.html로 forward하겠다라는 뜻
+		return "myPage/myPage-community";
+	}
+	
+	@GetMapping("myPage-secession") // /myPage/info (이런 모양의 요청이 왔을 때!)
+	public String myPageSecession() {
+		
+		// templates/myPage/myPage-profile.html로 forward하겠다라는 뜻
+		return "myPage/myPage-secession";
+	}
 
 }

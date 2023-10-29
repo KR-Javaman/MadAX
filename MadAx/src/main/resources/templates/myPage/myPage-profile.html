@@ -46,45 +46,46 @@
                         <div class="myPage-profile-upper">
                             <div class="profile-content">
                                 <form action="changeNickname" method="POST">
-                                    닉네임 <input type="text" id="nickname"> <button id="editButton">수정하기</button>
+                                    닉네임 <input type="text" name="nickname" id="editProfile"> <button id="editButton">수정하기</button>
                                 </form>
                                 <br>
                                 <form action="changePw">
-                                    비밀번호 <input type="password" id="pw"> <button id="editButton">수정하기</button>
+                                    비밀번호 <input type="password" name="pw" id="editProfile"> <button id="editButton">수정하기</button>
                                 </form>
                                 <br>
                                 <form action="changePw2">
-                                    비밀번호 확인 <input type="password" id="pwCheck"> 
+                                    비밀번호 확인 <input type="password" name="pwCheck" id="editProfile" > 
                                 </form>
                                 <br>
                                 <form action="changeEmail">
-                                    이메일 <input type="email" id="profileEmail"> <button id="editButton">수정하기</button>
+                                    이메일 <input type="email" name="profileEmail" id="editProfile"> <button id="editButton">수정하기</button>
                                 </form>
                             </div> 
-                            <div class="myPage-profile-img">
-                                <form action="profile" method="POST" name="myPageChangeImg" id="editMemberProfile">
-                                    
+                            
+                                <form action="profile" method="POST" name="myPageChangeImg" id="editMemberProfile" enctype="multipart/form-data">
+                                    <div class="myPage-image-area">
                                         <img th:src="#{user.default.image}" id="editMemberProfile">
-                                        <input type="file" id="memberProfile" name="imageInput" accpet="image/">
+                                    </div>
+                                    <div class="profile-btn-area">
+                                        <input type="file" id="editMemberProfile2" name="imageInput" accpet="image/">
+                                        <button>변경하기</button>
+                                    </div>
 
                                 </form> 
-                            </div>
-                               
-                            </div>
-                        </div> 
+                        </div>
                         
-                         <div class="myPage-profile-mid">
+                        <div class="myPage-profile-mid">
                              배경화면 
                              <br>
                              <div class="background-img">
                                  <input type="file" id="backgroundPic">
+                                 <button>+</button>
                              </div>
-                         </div>
+                        </div>
 
-                         <span class="myPage-profile-lower"><a href="../html/myPage-home.html"><button id="homeButton">홈으로</button> </a> 
-                            <form action="secession" method="POST"> 
-                                <button id="secessionButton">회원 탈퇴</button>
-                            </form>
+                        <span class="myPage-profile-lower">
+                            <a href="/myPage/myPage-home"><button id="homeButton">홈으로</button> </a> 
+                            <a href="/myPage/myPage-secession"><button id="secessionButton">회원 탈퇴</button></a>
                         </span>   
                         
                     </section>  

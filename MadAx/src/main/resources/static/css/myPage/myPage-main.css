@@ -18,7 +18,7 @@
 .myPage-wallpaper {
   width: 100%;
   height: 28rem;
-  margin-top:7.2rem;
+  /* margin-top:5rem; */
 }
 
 #wallpaper {
@@ -121,4 +121,10 @@ label {
   transition-duration: 0.2s;
   color: rgb(147, 251, 1);
   
+}
+
+
+.myPage-main{
+  width: 85%;
+  padding-left : 7rem;
 }

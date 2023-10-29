@@ -1,0 +1,12 @@
+/* **********회원 탈퇴 약관********** */
+.secession-terms{
+  width: 500px;
+  height: 300px;
+  border: 1px solid black;
+  
+  overflow: auto;
+  /* 내용이 요소를 벗어나는 경우 방향에 맞춰서 자동으로 스크롤 추가 */
+
+  font-family: sans-serif; /* 돋움체 */
+  font-size: 14px;
+}
