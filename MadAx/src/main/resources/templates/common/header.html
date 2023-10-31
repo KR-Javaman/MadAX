@@ -2,7 +2,9 @@
   <div class="header">
     <section class="cls-section">
       <div class="nav">
-        <a href="#" class="nav-a" id="nav-logo">로고</a>
+        <a href="/" class="nav-a" id="nav-logo">
+          <img src="/images/logo.png" alt="" />
+        </a>
       </div>
     </section>
     <section class="cls-section">
@@ -27,16 +29,16 @@
       </div>
     </section>
     <section class="cls-section">
-      <!-- <form action="#">
-        <div class="cls-search">
-          <input type="text" class="search-btn" />
-          <button class="btn-search">
-            <img src="../../static/images/search_icon.png" id="img-search" />
-          </button>
-        </div>
-      </form> -->
       <div class="cls-login">
-        <a href="#">로그인</a>
+        <th:block th:if="${session.loginMember == null}">
+          <a href="#">로그인</a> | <a href="#">회원가입</a>
+        </th:block>
+        <th:block th:unless="${session.loginMember == null}">
+          <a href="#">
+            <img src="/images/user.png" alt="" />
+            [[${member}]]
+          </a>
+        </th:block>
       </div>
     </section>
   </div>
