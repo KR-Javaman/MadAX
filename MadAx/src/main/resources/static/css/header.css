@@ -3,8 +3,7 @@
 }
 @font-face {
   font-family: "SUITE-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2")
-    format("woff2");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
 }
@@ -16,14 +15,14 @@
   font-family: "SUITE-Regular";
 }
 header {
-  border-bottom: 1px solid black;
   position: sticky;
   top: 0;
   background-color: #1e1e20;
+  z-index: 500;
 }
 .header {
   width: 128rem;
-  height: 8.4rem;
+  height: 8.45rem;
   display: flex;
   flex-direction: row;
   margin: auto;
@@ -50,7 +49,6 @@ a {
 .nav-a {
   font-weight: bold;
   padding: 0 1rem;
-  border-radius: 0.5rem;
   transition-duration: 0.1s;
   text-decoration: none;
   overflow: hidden;
@@ -72,7 +70,7 @@ nav > ul > li > a {
   display: flex;
   align-items: center;
   text-align: center;
-  height: 8.4rem;
+  height: 8.45rem;
 }
 nav ul a {
   margin: 0 1rem;
@@ -112,7 +110,7 @@ nav ul > li > ul {
   width: 100%;
 }
 nav ul > li > ul > li {
-  border: 0.1rem solid black;
+  /* border: 0.1rem solid black; */
   display: flex;
   flex-direction: column;
   align-items: center;
