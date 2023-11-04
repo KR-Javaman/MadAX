@@ -1,0 +1,28 @@
+package com.javaman.madax.shorts.service;
+
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+@Service
+public class BasicService {
+
+	public void saveFile(MultipartFile shortsVideo) {
+
+		if(!shortsVideo.isEmpty()) {
+			Path filePath = Paths.get("video", shortsVideo.getOriginalFilename());
+			
+			try(OutputStream os = Files.newOutputStream(filePath)) {
+				os.write(shortsVideo.getBytes());
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+		
+	}
+
+}

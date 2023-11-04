@@ -1,0 +1,16 @@
+package com.javaman.madax.shorts.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.javaman.madax.shorts.service.BasicService;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequiredArgsConstructor
+@RequestMapping("shorts")
+public class BasicController {
+
+	private final BasicService service;
+}

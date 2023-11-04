@@ -1,0 +1,45 @@
+<header>
+  <div class="header">
+    <section class="cls-section">
+      <div class="nav">
+        <a href="/" class="nav-a" id="nav-logo">
+          <img src="/images/logo.png" alt="로고" />
+        </a>
+      </div>
+    </section>
+    <section class="cls-section">
+      <div class="nav">
+        <nav>
+          <ul>
+            <li id="nav-li">
+              <a href="#" class="nav-a" id="nav-1">커뮤니티</a>
+              <ul id="nav-li-ul">
+                <li>
+                  <a href="#" id="long">긴 글</a>
+                </li>
+                <li>
+                  <a href="#" id="short">짧은 글</a>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#" class="nav-a" id="nav-2">지식in</a></li>
+            <li><a href="/shorts/main" class="nav-a" id="nav-3">쇼츠</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+    <section class="cls-section">
+      <div class="cls-login">
+        <th:block th:if="${session.loginMember == null}">
+          <a href="#">로그인</a> <a href="#">회원가입</a>
+        </th:block>
+        <th:block th:unless="${session.loginMember == null}">
+          <a href="#">
+            <img src="/images/user.png" alt="" />
+            [[${member}]]
+          </a>
+        </th:block>
+      </div>
+    </section>
+  </div>
+</header>

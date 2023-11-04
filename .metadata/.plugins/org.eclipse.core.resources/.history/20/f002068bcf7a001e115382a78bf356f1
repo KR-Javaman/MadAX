@@ -1,0 +1,11 @@
+package com.javaman.madax.shorts.controller;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class VodController {
+	
+	@Value("${my.video.location}")
+	private String folderPath;
+}
