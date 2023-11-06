@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/headerList.css}">
-    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/boardList.css}">
     <link rel="stylesheet" th:href="@{/css/footer.css}">
 
 
@@ -81,7 +81,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr th:each=" board: ${boardList}" th:object="${board}">
+              <tr  th:each=" board: ${boardList}" th:object="${board}">
                 <td th:text="*{boardNo}">게시글 번호</td>
                 <td th:text="*{boardTitle}">게시글 제목</td>
                 <td th:text="*{memberNickname}">작성자</td>
