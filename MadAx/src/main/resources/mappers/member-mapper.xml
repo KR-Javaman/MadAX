@@ -3,7 +3,7 @@
 <!-- 연결할 인터페이스의 패키지명.인터페이스명으로 작성 -->
 <mapper namespace="com.javaman.madax.member.model.mapper.MemberMapper">
 	
-	 <!-- 로그인 + 빠른 로그인 -->
+	 <!-- 로그인 -->
    <select id="login" resultType="Member">
       SELECT MEMBER_NO, MEMBER_EMAIL,MEMBER_PW, MEMBER_NICKNAME , 
         PROFILE_IMG , TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') AS ENROLL_DATE, AUTHORITY
@@ -16,8 +16,7 @@
  	<!-- 회원 가입 -->
    <insert id="signup"  parameterType="Member" >
       INSERT INTO "MEMBER"
-      VALUES(SEQ_MEMBER_NO.NEXTVAL, #{memberEmail}, #{memberPw}, #{memberNickname}, DEFAULT,DEFAULT, 
-      DEFAULT
+      VALUES(SEQ_MEMBER_NO.NEXTVAL, #{memberEmail}, #{memberPw}, #{memberNickname}, NULL,DEFAULT, DEFAULT,DEFAULT
       )
    </insert>
    

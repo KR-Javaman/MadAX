@@ -30,9 +30,10 @@ main .logo-area {
 
 h1 {
     align-items: center;
-    font-size: 32px;
+    font-size: 35px;
+    font-weight: bold;
     text-align: center;
-    margin: 50px;
+    margin: 60px;
 }
 
 h3 {
@@ -123,7 +124,7 @@ h3 {
 
 /* 입력 관련 메세지 */
 .signUp-message{
-    font-size: 12px;
+    font-size: 12.5px;
     letter-spacing: -1px;
     margin-left: 5px;
   
@@ -143,7 +144,6 @@ h3 {
     border-radius: 10px;
 
     font-size: 18px;
-    
     background-color: rgb(147, 251, 1);
     color : black;
     cursor: pointer;

@@ -25,20 +25,6 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
-	@GetMapping("logout")
-	public String logout(SessionStatus status) {
-		status.setComplete(); //
-		return "redirect:/";
-	}
-	
-	/** 로그인 전용 페이지 forward
-	 * @return "member/login"
-	 */
-	@GetMapping("login")
-	public String login() {
-		return "member/login";
-	}
-	
 	
 	/** 로그인
 	 * @param inputMember : 아이디, 비밀번호 파라미터
@@ -69,7 +55,7 @@ public class MemberController {
 				cookie.setMaxAge(0);
 			}
 			
-			cookie.setPath("/"); // 최상위 주소 이하 모든 요청
+			cookie.setPath("/"); 
 			
 			resp.addCookie(cookie);
 			
@@ -87,6 +73,21 @@ public class MemberController {
 		model.addAttribute("loginMember", loginMember);
 		
 		return "redirect:/";
+	}
+	
+	
+	@GetMapping("logout")
+	public String logout(SessionStatus status) {
+		status.setComplete(); //
+		return "redirect:/";
+	}
+	
+	/** 로그인 전용 페이지 forward
+	 * @return "member/login"
+	 */
+	@GetMapping("login")
+	public String login() {
+		return "member/login";
 	}
 	
 	

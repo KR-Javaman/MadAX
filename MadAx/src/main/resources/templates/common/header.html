@@ -31,11 +31,19 @@
     <section class="cls-section">
       <div class="cls-login">
         <th:block th:if="${session.loginMember == null}"> <a href="/member/login">로그인</a> <a href="/member/signup">회원가입</a> </th:block>
+       
         <th:block th:unless="${session.loginMember == null}">
-          <a href="#">
-            <img src="/images/user.png" alt="" />
-            [[${member}]]
-          </a>
+          <article class="login-area">
+              <img th:if="${session.loginMember.profileImg} == null" src="/images/user.png" id="memberHeaderProfile" />
+              <ul id="nav-li-ul">
+                <li>
+                  <a href="/myPage/myPage-home">마이페이지</a>
+                  <a href="/member/logout" id="logoutBtn">로그아웃</a>
+                </li>
+              </ul>
+          
+          </article>
+
         </th:block>
       </div>
     </section>

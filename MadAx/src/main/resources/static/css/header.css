@@ -140,3 +140,9 @@ nav ul > li > ul > li {
   text-decoration: none;
   margin: 0 2rem;
 }
+
+#memberHeaderProfile {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
