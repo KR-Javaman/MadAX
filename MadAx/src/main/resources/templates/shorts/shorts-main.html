@@ -21,7 +21,7 @@
         <div class="vdvd">
           <a href="index3.html" class="video-a">
             <video
-              src="IMG_5988.MOV.mp4"
+              src="http://localhost/vod/IMG_5988.MOV.mp4"
               width="220px"
               height="320px"
               controls
@@ -30,9 +30,9 @@
               (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅁㄹㄴㅁ
             </div>
           </a>
-          <a href="index3.html" class="video-a">
+          <a href="#" class="video-a">
             <video
-              src="IMG_5988.MOV.mp4"
+              src="http://localhost/vod/hqqxzd.mp4"
               width="220px"
               height="320px"
               controls
@@ -43,7 +43,7 @@
           </a>
           <a href="index3.html" class="video-a">
             <video
-              src="IMG_5988.MOV.mp4"
+              src="http://localhost/vod/deer 2023-11-04 05-09-47-291.mp4"
               width="220px"
               height="320px"
               controls
@@ -54,7 +54,7 @@
           </a>
           <a href="index3.html" class="video-a">
             <video
-              src="IMG_5988.MOV.mp4"
+              src="http://localhost/vod/cff39d23-fe59-4c98-8e73-f1d6e3171627.mp4"
               width="220px"
               height="320px"
               controls
@@ -63,7 +63,7 @@
           </a>
           <a href="index3.html" class="video-a">
             <video
-              src="IMG_5988.MOV.mp4"
+              src="http://localhost/vod/4c516c1f-3f9e-4155-a10b-520401b61d5c.mp4"
               width="220px"
               height="320px"
               controls
@@ -72,55 +72,30 @@
           </a>
         </div>
         <div class="vdvd">
-          <a href="index3.html" class="video-a">
-            <video
-              src="IMG_5988.MOV.mp4"
-              width="220px"
-              height="320px"
-              controls
-            ></video>
+          <a href="#" class="video-a">
+            <video src="#" width="220px" height="320px" controls></video>
             <div id="video-kdb">
               (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅁㄹㄴㅁ
             </div>
           </a>
           <a href="index3.html" class="video-a">
-            <video
-              src="IMG_5988.MOV.mp4"
-              width="220px"
-              height="320px"
-              controls
-            ></video>
+            <video src="#" width="220px" height="320px" controls></video>
             <div id="video-kdb">
               (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅂㅈㄷㅊㅌ
             </div>
           </a>
           <a href="index3.html" class="video-a">
-            <video
-              src="IMG_5988.MOV.mp4"
-              width="220px"
-              height="320px"
-              controls
-            ></video>
+            <video src="#" width="220px" height="320px" controls></video>
             <div id="video-kdb">
               (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅂㅈㄷㅊㅌ
             </div>
           </a>
           <a href="index3.html" class="video-a">
-            <video
-              src="IMG_5988.MOV.mp4"
-              width="220px"
-              height="320px"
-              controls
-            ></video>
+            <video src="#" width="220px" height="320px" controls></video>
             <div id="video-kdb">(오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴ</div>
           </a>
           <a href="index3.html" class="video-a">
-            <video
-              src="IMG_5988.MOV.mp4"
-              width="220px"
-              height="320px"
-              controls
-            ></video>
+            <video src="#" width="220px" height="320px" controls></video>
             <div id="video-kdb">(오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴ</div>
           </a>
         </div>
@@ -200,11 +175,22 @@
           </div>
           <button>검색</button>
         </form>
-        <form action="video" method="post" enctype="multipart/form-data">
-          <input type="file" />
-        </form>
+        <!-- <form
+          action="video"
+          method="post"
+          enctype="multipart/form-data"
+          id="formTest"
+        > -->
+        <input type="file" name="shortsVideo" id="upload-file" />
+
+        <button onclick="sendVideoChunks()">업로드</button>
+        <!-- <input type="submit" value="" /> -->
+        <!-- <button type="submit">전송</button> -->
+        <!-- </form> -->
+        <div class="result"></div>
       </section>
     </main>
     <th:block th:replace="~{common/common}"></th:block>
+    <script src="/js/video/video.js"></script>
   </body>
 </html>
