@@ -1,4 +1,0 @@
-INDEX VERSION 1.134+/Users/ko/Desktop/데스크탑 - 고재모의 MacBook Air/team-workspace/MadAx/.metadata/.plugins/org.eclipse.jdt.core
-2627993192.index
-1865797976.index
-3468314333.index
