@@ -26,30 +26,30 @@ public class UploadServiceImpl implements UploadService{
 	@Override
 	public boolean chunkUpload(MultipartFile shortsVideo, int chunkNumber, int totalChunks) throws IOException {
 		
-//        File dir = new File(folderPath);
-//        if (!dir.exists()) {
-//            dir.mkdirs();
-//        }
+        File dir = new File(folderPath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
 
-		// 임시 저장 파일 이름
+		
         String filename = shortsVideo.getOriginalFilename() + ".part" + chunkNumber;
 
-        Path filePath = Paths.get(folderPath, filename);
-        // 임시 저장
-        Files.write(filePath, shortsVideo.getBytes());
+        Path path = Paths.get(folderPath, filename);
+        
+        Files.write(path, shortsVideo.getBytes());
 
-		// 마지막 조각이 전송 됐을 경우
+		
         if (chunkNumber == totalChunks-1) {
             String[] split = shortsVideo.getOriginalFilename().split("\\.");
             String outputFilename = UUID.randomUUID() + "." + split[split.length-1];
             Path outputFile = Paths.get(folderPath, outputFilename);
             Files.createFile(outputFile);
             
-            // 임시 파일들을 하나로 합침
+            
             for (int i = 0; i < totalChunks; i++) {
                 Path chunkFile = Paths.get(folderPath, shortsVideo.getOriginalFilename() + ".part" + i);
                 Files.write(outputFile, Files.readAllBytes(chunkFile), StandardOpenOption.APPEND);
-                // 합친 후 삭제
+                
                 Files.delete(chunkFile);
             }
             log.info("File uploaded successfully");
