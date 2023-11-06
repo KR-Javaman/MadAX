@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+/.metadata/
+=======
 .classpath
 .project
 .metadata/
@@ -29,3 +32,4 @@ MANIFEST.MF
 settings.json
 
 config.properties
+>>>>>>> parent of 00b3566 (쇼츠부분 업로드, 스트리밍 (청크 사용) + 헤더 로고 위치변경)
