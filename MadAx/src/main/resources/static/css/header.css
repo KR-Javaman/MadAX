@@ -1,34 +1,28 @@
 :root {
   font-size: 62.5%;
 }
+@font-face {
+  font-family: "SUITE-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: "SUITE-Regular";
 }
-/* 로고 */
-header>section:first-child {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#homeLogo {
-  width: 120px;
-  height: auto;
-}
-
-
 header {
-  border-bottom: 1px solid white;
   position: sticky;
-  width: 100%;
   top: 0;
   background-color: #1e1e20;
+  z-index: 500;
 }
 .header {
   width: 128rem;
-  height: 7.2rem;
+  height: 8.45rem;
   display: flex;
   flex-direction: row;
   margin: auto;
@@ -55,16 +49,19 @@ a {
 .nav-a {
   font-weight: bold;
   padding: 0 1rem;
-  border-radius: 0.5rem;
   transition-duration: 0.1s;
   text-decoration: none;
   overflow: hidden;
+}
+.nav-a > img {
+  width: 100%;
 }
 nav > ul > li {
   /* height: 7.2rem; */
   float: left;
   position: relative;
 }
+
 nav > ul {
   width: 100%;
   list-style-type: none;
@@ -73,23 +70,30 @@ nav > ul > li > a {
   display: flex;
   align-items: center;
   text-align: center;
-  height: 7.2rem;
+  height: 8.45rem;
 }
 nav ul a {
   margin: 0 1rem;
   text-decoration: none;
 }
-
-nav ul li ul a {
-  /* display: flex;
-  justify-content: center; */
+nav ul ul li {
+  height: 5rem;
+}
+nav ul ul a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 0.5rem 0;
   width: 100%;
+  height: 5rem;
+  color: black;
+  margin: auto 0;
 }
 nav > ul > li:hover {
-  background-color: green;
-  color: white;
+  background-color: rgb(147, 251, 1);
+}
+nav > ul > li > a:hover {
+  color: black;
 }
 nav > ul > li:hover > ul {
   display: block;
@@ -99,13 +103,14 @@ nav ul ul a:hover {
   color: white;
 }
 nav ul > li > ul {
-  background-color: aqua;
+  background-color: rgb(147, 251, 1);
+  color: black;
   list-style-type: none;
   position: absolute;
   width: 100%;
 }
 nav ul > li > ul > li {
-  border: 0.1rem solid black;
+  /* border: 0.1rem solid black; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,46 +125,18 @@ nav ul > li > ul > li {
 .cls-section:nth-child(3) {
   width: 35%;
 }
-.cls-search {
-  width: 30rem;
-  height: 3.2rem;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  display: flex;
-  
-}
-.search-btn {
-  width: 90%;
-  padding: 0.5rem;
-  border-radius: 0.5rem 0 0 0.5rem;
-  border: none;
-  background-color: white;
-}
+
 .section-form {
   width: 30rem;
 }
-.btn-search {
-  width: 10%;
-  background-color: white;
-  border-radius: 0 0.5rem 0.5rem 0;
-  border: none;
-  cursor: pointer;
-}
+
 .search-login {
   display: flex;
 }
 .cls-login {
-  margin-left: 2rem;
+  margin: 0 2rem;
 }
 .cls-login > a {
   text-decoration: none;
-}
-#img-search {
-  width: 100%;
-  border-radius: 0.5rem;
-}
-
-button {
-  border: 1px solid black;
-
+  margin: 0 2rem;
 }

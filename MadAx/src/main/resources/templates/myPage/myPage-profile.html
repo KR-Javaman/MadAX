@@ -46,25 +46,31 @@
                         <div class="myPage-profile-upper">
                             <div class="profile-content">
                                 <form action="changeNickname" method="POST">
-                                    닉네임 <input type="text" name="nickname" id="editProfile"> <button id="editButton">수정하기</button>
-                                </form>
-                                <br>
-                                <form action="changePw">
-                                    비밀번호 <input type="password" name="pw" id="editProfile"> <button id="editButton">수정하기</button>
-                                </form>
-                                <br>
-                                <form action="changePw2">
-                                    비밀번호 확인 <input type="password" name="pwCheck" id="editProfile" > 
+                                    닉네임 <input type="text" name="nickname" id="editProfile"  th:value="*{memberNickname}"> <button id="editButton">수정하기</button>
                                 </form>
                                 <br>
                                 <form action="changeEmail">
-                                    이메일 <input type="email" name="profileEmail" id="editProfile"> <button id="editButton">수정하기</button>
+                                    이메일 <input type="email" name="profileEmail" id="editProfile" th:value="*{memberNickname}"> 
                                 </form>
+                                <br>
+                                <form action="changePw">
+                                    현재 비밀번호 <input type="password" name="pw" id="editProfile"> 
+                                </form>
+                                <br>
+                                <form action="changePw2">
+                                    새 비밀번호 <input type="password" name="newPw" id="editProfile" > <button id="editButton">수정하기</button>
+                                </form>
+                                <br>
+                                
                             </div> 
                             
-                                <form action="profile" method="POST" name="myPageChangeImg" id="editMemberProfile" enctype="multipart/form-data">
+                                <form action="profile" method="POST" name="myPageFrm" id="profileFrm" enctype="multipart/form-data">
                                     <div class="myPage-image-area">
-                                        <img th:src="#{user.default.image}" id="editMemberProfile">
+                                        <!-- 프로필 이미지가 없을 경우 -->
+                                      <img th:if="${session.loginMember.profileImg == null}" th:src="#{user.default.image}" id="profileImg">
+                        
+                                         <!-- 프로필 이미지가 있을 경우 -->
+                                       <img th:unless="${session.loginMember.profileImg == null}" th:src="${session.loginMember.profileImg}" id="profileImg">
                                     </div>
                                     <div class="profile-btn-area">
                                         <input type="file" id="editMemberProfile2" name="imageInput" accpet="image/">
@@ -96,6 +102,20 @@
     </section>
     </main>    
     <!-- <th:block th:replace="~{common/footer}"></th:block> -->
+
+    <script th:inline="javascript">
+        //th:inline="javascript"
+        // - script 태그 내부에 타임리프 쓸거다
+        // -> 타임리프로 출력되는 값을 JS에 맞는 자료형으로 변경해줘
+
+        // messages.properties의 값을 얻어와 전역 변수로 선언
+        const defaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
+
+        // 로그인한 회원의 프로필 이미지 얻어오기 (없으면 null)
+        const loginMemberProfileImg = /*[[${session.loginMember.profileImg}]]*/ "프로필 이미지";
+        
+
+    </script>
 
     <script src="/js/myPage/myPage.js"></script>
 </body>
