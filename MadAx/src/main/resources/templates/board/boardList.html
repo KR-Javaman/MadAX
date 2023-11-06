@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>메인페이지</title>
+
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/headerList.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+
+
+   
+    <link rel="stylesheet" href="../../static/css/boardList.css">
+
+
+    <header>
+      <th:block th:replace="~{common/header}"></th:block>
+    </header>
+
+   
+  </head> 
+
+  <body>
+
+    <main>
+
+      <div class="image">
+        <img src="/images/토트넘2.jpeg">
+      </div>
+
+
+      
+ 
+      <th:block th:replace="~{common/headerList}"></th:block>
+
+      <div class="sortation">
+        <h1>커뮤니티</h1>
+      </div>
+
+      
+
+        <div class="search">
+          <form action="#" method="get" id="list-search">
+            <div>
+              <input type="text" class="search-input"  placeholder="검색어를 입력해주세요.">
+              <button>검색</button>
+            </div>
+          </form>
+        </div>
+
+
+    
+      <div class="selectBox">
+        <button class="btn-select">전체</button>
+        <button class="btn-select">긴글</button>
+        <button class="btn-select">짧은글</button>
+        <select name="key" id="selectKey">
+          <option value="t">작성일순</option>
+          <option value="c">조회순</option>
+          <option value="tc">추천순</option>
+        </select>
+      </div>
+
+
+      
+      <div class="community">
+        <div class="com-left"></div>
+        <div class="com-center">
+          <table class="list-table" border="1">
+                      
+            <thead>
+              <tr>
+                  <th>글번호</th>
+                  <th>제목</th>
+                  <th>작성자</th>
+                  <th>작성일</th>
+                  <th>조회수</th>
+                  <th>좋아요</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each=" board: ${boardList}" th:object="${board}">
+                <td th:text="*{boardNo}">게시글 번호</td>
+                <td th:text="*{boardTitle}">게시글 제목</td>
+                <td th:text="*{memberNickname}">작성자</td>
+                <td th:text="*{writeDate}">작성일</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="com-right">
+          <div>
+            <ul>
+              <li class="shortkey">바로가기</li>
+              <br>
+              <hr>
+              <li><a href="#"> 전체</a></li>
+              <li><a href="#"> 축구</a></li>
+              <li><a href="#"> 야구</a></li>
+              <li><a href="#"> 농구</a></li>
+              <li><a href="#"> 헬스</a></li>
+              <li><a href="#"> 기타</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+    </main>
+
+    <footer>
+      <th:block th:replace="~{common/footer}"></th:block>
+    </footer>
+
+    
+  
+
+    <th:block th:replace = "~{common/common}"></th:block>
+  </body>
+
+
+
+
+
+</html>

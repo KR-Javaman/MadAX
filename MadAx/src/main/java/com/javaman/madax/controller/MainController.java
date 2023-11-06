@@ -1,14 +1,24 @@
-package com.javaman.madax.main.controller;
+package com.javaman.madax.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import lombok.RequiredArgsConstructor;
+
+
 @Controller
+@RequiredArgsConstructor
 public class MainController {
 
+	
+	
 	@RequestMapping("/")
 	public String MainPage() {
+		
+		
 		return "common/main";
+		
 	}
+	
 	
 }
