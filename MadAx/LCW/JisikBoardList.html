@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../지식인/게시판 글 여러개.css">
+    <script src="https://kit.fontawesome.com/d6c32512de.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 이름</title>
+
+
+    <link rel="stylesheet" href="/css/board/boardDetail-style.css">
+    <link rel="stylesheet" href="/css/board/comment-style.css">
+
+</head>
+<body>
+    <main>
+        <!-- 헤더 -->
+        <!-- <th:block th:replace="~{common/header}"></th:block> -->
+
+        <div id="left"></div>
+        <div id="main-content">
+
+            <header>
+                <div class="header">
+                  <section class="cls-section">
+                    <div class="nav">
+                      <a href="#" class="nav-a" id="nav-logo">로고</a>
+                    </div>
+                  </section>
+                  <section class="cls-section">
+                    <div class="nav">
+                      <nav>
+                        <ul>
+                          <li id="nav-li">
+                            <a href="#" class="nav-a" id="nav-1">커뮤니티</a>
+                            <ul id="nav-li-ul">
+                              <li>
+                                <a href="#" id="long">긴 글</a>
+                              </li>
+                              <li>
+                                <a href="#" id="short">짧은 글</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><a href="#" class="nav-a" id="nav-2">지식in</a>
+                            <ul id="nav-li-ul">
+                              <li>
+                                <a href="#" id="Soccer">축구</a>
+                              </li>
+
+                              <li>
+                                <a href="#" id="BB">농구</a>
+                              </li>
+
+
+
+                            </ul>
+                          
+                          
+                          </li>
+
+                          <li><a href="#" class="nav-a" id="nav-3">쇼츠</a></li>
+                        </ul>
+                      </nav>
+                    </div>
+                  </section>
+                  <section class="cls-section">
+                    <!-- <form action="#">
+                      <div class="cls-search">
+                        <input type="text" class="search-btn" />
+                        <button class="btn-search">
+                          <img src="../../static/images/search_icon.png" id="img-search" />
+                        </button>
+                      </div>
+                    </form> -->
+                    <div class="cls-login">
+                      <a href="#">로그인</a>
+                    </div>
+                  </section>
+                </div>
+              </header>
+        
+        
+        
+    <div class="btn-area">
+      <!-- 로그인 상태일 때만 글쓰기 버튼 노출 -->
+      <button id="insertBtn">글쓰기</button>                     
+    </div>
+        
+
+
+
+
+
+       <div class="left"></div> 
+       <div>
+        <section class="board-detail" id="content2">  
+           
+          <div class="board-header">
+
+              <div class="board-writer">
+
+                  <!-- 프로필 이미지 -->
+              
+                  <!-- 프로필 이미지가 있을 경우 출력 -->
+                  <i class="fa-solid fa-user"></i>
+
+                  <span>닉네임 : asd122</span> <span> /카테고리 : 런닝 </span>
+
+
+
+              </div>
+          </div>
+
+          <div class="board-content">
+            CSS 테스트 ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁCSS 테스트 ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁCSS 테스트
+             ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁCSS 
+            테스트 ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁCSS 
+            테스트 ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁCSS 테스트 ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
+            
+          </div>
+          
+          <pre i class="fa-solid fa-heart" style="color: #ff2600;"></i> : <b>8</b></pre>
+
+          <pre i class="fa-regular fa-comment" style="color: #000000;"></i> : <b>3</b> </pre>
+            
+            
+
+      </section>
+
+
+
+
+
+        <section class="board-detail" id="content2">  
+           
+          <div class="board-header">
+
+              <div class="board-writer">
+
+                  <!-- 프로필 이미지 -->
+              
+                  <!-- 프로필 이미지가 있을 경우 출력 -->
+                  <i class="fa-solid fa-user"></i>
+
+                  <span>닉네임 : asd122</span> <span> /카테고리 : 헬스 </span>
+
+
+
+              </div>
+          </div>
+
+          <div class="board-content">
+            테스트 111
+
+            
+            
+          </div>
+          
+          <pre i class="fa-solid fa-heart" style="color: #ff2600;"></i> : <b>8</b></pre>
+
+          <pre i class="fa-regular fa-comment" style="color: #000000;"></i> : <b>3</b> </pre>
+            
+            
+
+      </section>
+
+
+      <section class="board-detail" id="content2">  
+           
+        <div class="board-header">
+
+            <div class="board-writer">
+
+                <!-- 프로필 이미지 -->
+            
+                <!-- 프로필 이미지가 있을 경우 출력 -->
+                <i class="fa-solid fa-user"></i>
+
+                <span>닉네임 : asd122</span> <span> /카테고리 : </span>
+
+            </div>
+        </div>
+
+
+        <div class="board-content">
+          
+
+          
+          
+        </div>
+        
+        <pre i class="fa-solid fa-heart" style="color: #ff2600;"></i> : <b>8</b></pre>
+
+        <pre i class="fa-regular fa-comment" style="color: #000000;"></i> : <b>3</b> </pre>
+          
+    </section>
+
+       <!-- 게시글이 있을 때만 페이지네이션이 보이게 함 -->
+       <div class="pagination-area" th:if="${#lists.size(boardList) > 0}">
+
+
+    <ul class="pagination">
+                
+      <!-- 첫 페이지로 이동 -->
+      <li>
+          <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=1)}">&lt;&lt;</a>
+      </li>
+
+      <!-- 이전 목록 마지막 번호로 이동 -->
+      <li>
+          <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${pagination.prevPage})}">&lt;</a>
+      </li>
+
+      <!-- 특정 페이지로 이동 -->
+
+      <!-- 타임리프에서 특정 범위 만큼 반복하기!! (1~10) -->
+      <!-- #numbers.sequence(1,10,1)  :  1~10까지 1씩 증가하며 차례대로 추가한 리스트 생성 -->
+      <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+          
+          <!-- 현재 보고있는 페이지 -->
+          <li>
+              <a class="current" th:text="${i}">1</a>
+              
+          </li>
+
+          <!-- 보고있지 않은 페이지 -->                    
+          <li> 
+              <a>2</a> 
+              <a>3</a> 
+              <a>4</a> 
+          </li>
+
+      </th:block>
+
+      <li>
+        <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${pagination.nextPage})}">&gt;</a>
+    </li>
+
+    <!-- 끝 페이지로 이동 -->
+    <li>
+        <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${pagination.maxPage})}">&gt;&gt;</a>
+    </li>
+
+
+</ul>
+</div>
+
+<div class="right"></div>
+    </main>
+
+
+    <!-- <th:block th:replace="~{common/footer}"></th:block> -->
+
+
+    
+</body>
+</html>
+</body>
+</html>
