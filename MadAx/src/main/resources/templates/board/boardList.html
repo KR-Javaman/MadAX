@@ -10,11 +10,6 @@
     <link rel="stylesheet" th:href="@{/css/boardList.css}">
     <link rel="stylesheet" th:href="@{/css/footer.css}">
 
-
-   
-    <link rel="stylesheet" href="../../static/css/boardList.css">
-
-
     <header>
       <th:block th:replace="~{common/header}"></th:block>
     </header>
@@ -24,7 +19,7 @@
 
   <body>
 
-    <main>
+    <main th:with="boardList=${map.boardList}">
 
       <div class="image">
         <img src="/images/토트넘2.jpeg">
@@ -89,6 +84,8 @@
                 <td>0</td>
                 <td>0</td>
               </tr>
+              
+              <button id="writeBtn">글쓰기</button>
             </tbody>
           </table>
         </div>
@@ -124,6 +121,11 @@
 
 
 
+  
+  <script src="/js/boardList.js"></script>
 
+  <script th:inline ="javascript">
+    const boardCode = /*[[${boardCode}]]*/"게시판코드";
+  </script>
 
 </html>
