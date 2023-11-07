@@ -15,23 +15,10 @@
 <body>
     <main>
         <th:block th:replace="~{common/header}"></th:block>
-              
-        <div class="myPage-wallpaper">
-            <img src="../images/wallpaper.png" id="wallpaper" >
-        </div>
-
-        <section class="myPage-middle">
-        
-            <div class="myPage-middle-profile">
-        
-                <img src="../images/logo.jpg" id="memberProfile">
-                <span id="nickName" th:text="*{memberNickname}">닉네임</span>
-                <p id="email" th:text="*{memberEmail}">이메일</p>
-
-            </div>    
+          
+        <th:block th:replace="~{common/myPage-common}"></th:block>
 
         <hr>
-        </section>
 			<th:block th:replace="~{myPage/sideMenu}"></th:block>
         
         <section class="myPage-content">

@@ -7,6 +7,16 @@ $("nav li").hover(
   }
 );
 
+
+$(".memberHeaderProfile").hover(
+  function () {
+    $("ul", this).stop().slideDown(200);
+  },
+  function () {
+    $("ul", this).stop().slideUp(200);
+  }
+);
+
 // const li = document.querySelector("#nav-li");
 // const ul = document.querySelector("#nav-li-ul");
 

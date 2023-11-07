@@ -45,7 +45,7 @@ public class EmailServiceImpl implements EmailService{
 	            mimeMessageHelper.setText(loadHtml(authKey, htmlName), true); 
 	            
 	        
-	            mimeMessageHelper.addInline("logo", new ClassPathResource("static/images/logo.jpg"));
+	            mimeMessageHelper.addInline("logo", new ClassPathResource("static/images/logo.png"));
 	           
 	            mailSender.send(mimeMessage);
 	            

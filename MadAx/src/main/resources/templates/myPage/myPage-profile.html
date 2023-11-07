@@ -16,22 +16,10 @@
     <main>
         <th:block th:replace="~{common/header}"></th:block>
         
-        <div class="myPage-wallpaper">
-            <img src="../images/wallpaper.png" id="wallpaper" >
-        </div>
-
-        <section class="myPage-middle">
-        
-            <div class="myPage-middle-profile">
-        
-                <img src="../images/user.png" id="memberProfile">
-                <span id="nickName" >닉네임</span>
-                <p id="email">이메일</p>
-
-            </div>    
+        <th:block th:replace="~{common/myPage-common}"></th:block>
 
         <hr>
-        </section>
+
 			
         
         <section class="myPage-content">
@@ -44,13 +32,13 @@
                  <section class="myPage-profile-total">
                    
                         <div class="myPage-profile-upper">
-                            <div class="profile-content">
-                                <form action="changeNickname" method="POST">
+                            <div class="profile-content" th:object="${loginMember}">
+                                <form action="changeNickname" method="POST" >
                                     닉네임 <input type="text" name="nickname" id="editProfile"  th:value="*{memberNickname}"> <button id="editButton">수정하기</button>
                                 </form>
                                 <br>
                                 <form action="changeEmail">
-                                    이메일 <input type="email" name="profileEmail" id="editProfile" th:value="*{memberNickname}"> 
+                                    이메일 <input type="email" name="profileEmail" id="editProfile" th:value="*{memberEmail}"> 
                                 </form>
                                 <br>
                                 <form action="changePw">
@@ -102,6 +90,8 @@
     </section>
     </main>    
     <!-- <th:block th:replace="~{common/footer}"></th:block> -->
+   
+    <th:block th:replace="~{common/common}"></th:block>
 
     <script th:inline="javascript">
         //th:inline="javascript"

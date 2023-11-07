@@ -1,8 +1,10 @@
 /* **********회원 탈퇴 약관********** */
 .secession-terms{
-  width: 500px;
-  height: 300px;
-  border: 1px solid black;
+  width: 600px;
+  height: 600px;
+  border: 1px solid white;
+  background-color: white;
+  color: black;
   
   overflow: auto;
   /* 내용이 요소를 벗어나는 경우 방향에 맞춰서 자동으로 스크롤 추가 */

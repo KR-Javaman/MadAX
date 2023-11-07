@@ -19,23 +19,9 @@
     <main>
         <th:block th:replace="~{common/header}"></th:block>
         
-        <div class="myPage-wallpaper">
-            <img src="../images/wallpaper.png" id="wallpaper" >
-        </div>
-
-        <section class="myPage-middle">
-        
-            <div class="myPage-middle-profile">
-        
-                <img src="../images/user.png" id="memberProfile">
-                <span id="nickName" >닉네임</span>
-                <p id="email">이메일</p>
-
-            </div>    
-
+        <th:block th:replace="~{common/myPage-common}"></th:block>
+       
         <hr>
-        </section>
-			
         
         <section class="myPage-content">
             <th:block th:replace="~{myPage/sideMenu}"></th:block>
@@ -76,7 +62,7 @@
         </section>
 
     </main>
-
+    <th:block th:replace="~{common/common}"></th:block>
 	<!-- <th:block th:replace="~{common/footer}"></th:block> -->
 
     <script src="/js/myPage/myPage.js"></script>
