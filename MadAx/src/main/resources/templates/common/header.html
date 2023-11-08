@@ -34,7 +34,11 @@
        
         <th:block th:unless="${session.loginMember == null}">
           <a href="#" class="login-area">
-            <img th:if="${session.loginMember.profileImg} == null" src="/images/member/user.png" id="memberHeaderProfile" />
+              <!-- 프로필 이미지가 없을 경우 -->
+              <img th:if="${session.loginMember.profileImg == null}" th:src="#{user.default.image}" id="memberHeaderProfile">
+                                
+              <!-- 프로필 이미지가 있을 경우 -->
+              <img th:unless="${session.loginMember.profileImg == null}" th:src="${session.loginMember.profileImg}" id="memberHeaderProfile" >
           </a>    
             <!-- <input type="checkbox" id="memberHeaderProfile"> -->
             <div class="header-menu">
