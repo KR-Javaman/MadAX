@@ -6,9 +6,9 @@
     <title>메인페이지</title>
 
     <link rel="stylesheet" th:href="@{/css/header.css}">
-    <link rel="stylesheet" th:href="@{/css/headerList.css}">
-    <link rel="stylesheet" th:href="@{/css/boardList.css}">
-    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/board/headerList.css}">
+    <link rel="stylesheet" th:href="@{/css/board/boardList.css}">
+    <link rel="stylesheet" th:href="@{/css/board/footer.css}">
 
     <header>
       <th:block th:replace="~{common/header}"></th:block>
@@ -28,7 +28,7 @@
 
       
  
-      <th:block th:replace="~{common/headerList}"></th:block>
+      <th:block th:replace="~{board/headerList}"></th:block>
 
       <div class="sortation">
         <h1>커뮤니티</h1>
@@ -110,7 +110,7 @@
     </main>
 
     <footer>
-      <th:block th:replace="~{common/footer}"></th:block>
+      <th:block th:replace="~{board/boardFooter}"></th:block>
     </footer>
 
     
@@ -122,7 +122,7 @@
 
 
   
-  <script src="/js/boardList.js"></script>
+  <script src="/js/board/boardList.js"></script>
 
   <script th:inline ="javascript">
     const boardCode = /*[[${boardCode}]]*/"게시판코드";
