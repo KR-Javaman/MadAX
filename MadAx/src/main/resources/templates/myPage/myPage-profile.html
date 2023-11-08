@@ -16,7 +16,7 @@
     <main>
         <th:block th:replace="~{common/header}"></th:block>
         
-        <th:block th:replace="~{common/myPage-common}"></th:block>
+        <th:block th:replace="~{myPage/myPage-common}"></th:block>
 
         <hr>
 
@@ -63,14 +63,17 @@
                            
                                 <form action="profile" method="POST" name="myPageFrm" id="profileFrm" enctype="multipart/form-data">
                                     <div class="myPage-image-area">
-                                        <!-- 프로필 이미지가 없을 경우 -->
-                                      <img th:if="${session.loginMember.profileImg == null}" th:src="#{user.default.image}" id="profileImg">
-                        
-                                         <!-- 프로필 이미지가 있을 경우 -->
-                                       <img th:unless="${session.loginMember.profileImg == null}" th:src="${session.loginMember.profileImg}" id="profileImg">
+                                        <label for="imageInput" class="myPage-image">
+                                                <!-- 프로필 이미지가 없을 경우 -->
+                                            <img th:if="${session.loginMember.profileImg == null}" th:src="#{user.default.image}" id="profileImg">
+                                
+                                                <!-- 프로필 이미지가 있을 경우 -->
+                                            <img th:unless="${session.loginMember.profileImg == null}" th:src="${session.loginMember.profileImg}" id="profileImg" >
+                                        </label>
                                     </div>
+
                                     <div class="profile-btn-area">
-                                        <input type="file" id="editMemberProfile2" name="imageInput" accpet="image/">
+                                        <input type="file" id="imageInput" name="profileImg" accpet="image/*">
                                         <button>변경하기</button>
                                     </div>
 
@@ -80,10 +83,15 @@
                         <div class="myPage-profile-mid">
                              배경화면 
                              <br>
-                             <div class="background-img">
-                                 <input type="file" id="backgroundPic">
-                                 <button>+</button>
-                             </div>
+                             <form action="background" method="POST" name="myPageBackground" id="myPageBackground" enctype="multipart/form-data"></form>
+                             <label for="backgroundInput" class="background-img">
+
+                                <img th:if="${session.loginMember.backgroundImg == null}" th:src="#{background.default.image}" id="backgroundImg">
+                                <img th:unless="${session.loginMember.backgroundImg == null}" th:src="${session.loginMember.backgroundImg}" id="backgroundImg" >
+                                
+                                <input type="file" id="backgroundInput" name="backgroundImg" accept="image/*">
+                                 <h1>+</h1>
+                             </label>
                         </div>
 
                         <span class="myPage-profile-lower">
