@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.javaman.madax.admin.model.MadAdminService;
 
 @Controller
-@RequestMapping("/admin")
+
 public class MadAdminController {
 	
 	@Autowired
 	private MadAdminService service;
 	
-	@GetMapping("/main")
+	@GetMapping("/admin/main")
 	public String adminMain() {
 		
-		return "null";
+		return null;
 	}
 			
 			
