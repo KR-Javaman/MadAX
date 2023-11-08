@@ -48,19 +48,24 @@
   width: 50%;
 }
 
-.myPage-image-area > #profileImg {
+.myPage-image > #profileImg {
   width: 18rem;
   height: 18rem;
   border-radius: 50%;
   margin-left : 16rem;
   margin-top: 8rem ;
   background-color: white;
+  cursor: pointer;
+}
+
+.myPage-image > #profileImg:hover {
+  border : 5px solid rgb(22, 255, 1);
 }
 
 
 
-#editMemberProfile2 {
- 
+#imageInput {
+ display: none;
 }
 
 
@@ -180,10 +185,13 @@
 
 }
 
-#backgroundPic {
+#backgroundInput {
   display: none;
 }
 
+.background-img > h1 {
+  font-size: 70px;
+}
 
 #secessionButton {
   color: black;
