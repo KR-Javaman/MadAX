@@ -1,6 +1,6 @@
-package com.javaman.madax.model.service;
+package com.javaman.madax.board.model.service;
 
-import com.javaman.madax.model.dto.Board;
+import com.javaman.madax.board.model.dto.Board;
 
 public interface EditBoardService {
 

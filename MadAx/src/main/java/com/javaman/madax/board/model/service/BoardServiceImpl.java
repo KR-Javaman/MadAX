@@ -1,4 +1,4 @@
-package com.javaman.madax.model.service;
+package com.javaman.madax.board.model.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.javaman.madax.model.dto.Board;
-import com.javaman.madax.model.mapper.BoardMapper;
+import com.javaman.madax.board.model.dto.Board;
+import com.javaman.madax.board.model.mapper.BoardMapper;
 
 import lombok.RequiredArgsConstructor;
 
