@@ -20,6 +20,11 @@ public class Board {
     private String boardDelFl;
     private int memberNo;
     private int boardCode;
+    private int categoryCode;
+    private int category2Code;
+    
+    
+    
     
     // 목록 조회, 상세 조회 시 매핑되는 필드
     private int commentCount; // 댓글 수
