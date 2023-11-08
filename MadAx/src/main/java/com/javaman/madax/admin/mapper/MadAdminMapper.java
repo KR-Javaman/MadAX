@@ -9,7 +9,10 @@ import com.javaman.madax.member.model.dto.Member;
 @Mapper
 public interface MadAdminMapper {
 
+	Member selectMember(String inputEmail);
+	
 	List<Member> selectAll();
+
 
 }
 
