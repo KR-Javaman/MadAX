@@ -62,7 +62,7 @@
 const uploadFile = document.querySelector("#upload-file");
 const button = document.querySelector("button");
 
-const Upload = () => {
+const upload = () => {
   var fileCheck = uploadFile.value;
   if (!fileCheck) {
     alert("파일을 확인 해주세요");
@@ -71,8 +71,9 @@ const Upload = () => {
 
   var checkSize = "N";
   if (uploadFile.files[0].size > 10485760) {
-    if (confirm("파일의 용량이 너무 큽니다. 최적하 하시겠습니까?"))
+    if (confirm("파일의 용량이 너무 큽니다. 최적하 하시겠습니까?")) {
       checkSize = "Y";
+    }
   }
 
   var formData = new FormData();
@@ -80,19 +81,19 @@ const Upload = () => {
   formData.append("checkSize", checkSize);
 
   $.ajax({
-    type: "post",
+    type: "POST",
     url: "upload",
     async: false,
     enctype: "multipart/form-data",
     contentType: false,
     processData: false,
-    dataType: "json",
+    dataType: "JSON",
     data: formData,
     success: function (result) {
       console.log(result);
     },
-    error: function (result) {
-      console.log(result);
+    error: function (error) {
+      console.log(error);
     },
   });
 };

@@ -8,6 +8,7 @@
     <th:block th:replace="~{common/common}"></th:block>
   </head>
   <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <main>
       <th:block th:replace="~{common/header}"></th:block>
       <section>
@@ -179,9 +180,9 @@
           enctype="multipart/form-data"
           id="formTest"
         > -->
-        <input type="file" name="shortsVideo" id="upload-file" />
+        <input type="file" name="shortsVideo" id="upload-file" accept=".mp4" />
 
-        <button onclick="Upload()" type="button">업로드</button>
+        <button onclick="upload()" type="button">업로드</button>
         <!-- <input type="submit" value="" /> -->
         <!-- <button type="submit">전송</button> -->
         <!-- </form> -->
