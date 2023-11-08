@@ -1,0 +1,85 @@
+
+  /***************************리스트**************************** */
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+
+  
+  .list{
+    
+    width: 128.2rem;
+    height: 70px;
+    /* border: 1px solid black; */
+
+    margin: auto;
+   
+  }
+
+  
+.menu {
+    width: 100%;
+    overflow: hidden;
+    margin:  auto;
+
+}
+
+li{
+  list-style:none;
+  
+}
+
+a{
+  text-decoration:none;
+  font-size:14px;
+  
+}
+
+.menu > li {
+  width: 21.2rem; /*메뉴가 5개 */
+  float: left;
+  text-align: center; 
+  line-height: 70px;  /*menu바 높이*/
+  background-color: #000000;
+  z-index: 1000;
+  
+}
+
+.menu a {
+  font-weight: bold;
+  font-size: 20px;
+  display: block;
+  color: #ffffff;
+ 
+}
+
+.submenu > li {
+  line-height: 60px;
+  background-color: #dddddd;
+  z-index: 1000;
+ 
+}
+
+.submenu {
+  height: 0; /*ul의 높이를 안보이게 처리*/
+  overflow: hidden;
+  z-index: 1000;
+  position: absolute;
+  width:  21.2rem;
+ 
+}
+
+.menu > li:hover {
+  background-color: rgb(147, 251, 1);
+  transition-duration: 0.1s;
+  
+}
+
+.menu > li:hover .submenu {
+  height: 110px; /*서브메뉴 li한개의 높이*/
+  transition-duration: 0.5s;
+ 
+}
+  
