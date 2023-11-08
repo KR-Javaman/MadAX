@@ -6,6 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface VIdeoService {
 
-	void fileUpload(MultipartFile video, String checkSize) throws IllegalStateException, IOException;
+	void fileUpload(MultipartFile video, String checkSize) throws Exception;
 
 }
