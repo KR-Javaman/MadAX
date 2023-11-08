@@ -12,7 +12,7 @@
         <nav>
           <ul>
             <li id="nav-li">
-              <a href="#" class="nav-a" id="nav-1">커뮤니티</a>
+              <a href="/board/1" class="nav-a" id="nav-1">커뮤니티</a>
               <ul id="nav-li-ul">
                 <li>
                   <a href="#" id="long">긴 글</a>
@@ -33,8 +33,9 @@
         <th:block th:if="${session.loginMember == null}"> <a href="/member/login">로그인</a> <a href="/member/signup">회원가입</a> </th:block>
        
         <th:block th:unless="${session.loginMember == null}">
-          <article class="login-area">
+          <a href="#" class="login-area">
               <img th:if="${session.loginMember.profileImg} == null" src="/images/user.png" id="memberHeaderProfile" />
+          </a>    
               <!-- <input type="checkbox" id="memberHeaderProfile"> -->
               <div class="header-menu">
                   <a href="/myPage/myPage-home">마이페이지</a>
@@ -43,7 +44,7 @@
              
              
           
-          </article>
+          
 
         </th:block>
       </div>

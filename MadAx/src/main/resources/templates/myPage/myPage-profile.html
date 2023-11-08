@@ -34,24 +34,33 @@
                         <div class="myPage-profile-upper">
                             <div class="profile-content" th:object="${loginMember}">
                                 <form action="changeNickname" method="POST" >
-                                    닉네임 <input type="text" name="nickname" id="editProfile"  th:value="*{memberNickname}"> <button id="editButton">수정하기</button>
+                                    <span class="profile-row">
+                                     닉네임 <input type="text" name="memberNickname" id="editProfile"  th:value="*{memberNickname}"> <button id="editButton" >수정하기</button>
+                                    </span>
                                 </form>
-                                <br>
-                                <form action="changeEmail">
-                                    이메일 <input type="email" name="profileEmail" id="editProfile" th:value="*{memberEmail}"> 
-                                </form>
-                                <br>
-                                <form action="changePw">
-                                    현재 비밀번호 <input type="password" name="pw" id="editProfile"> 
-                                </form>
-                                <br>
-                                <form action="changePw2">
-                                    새 비밀번호 <input type="password" name="newPw" id="editProfile" > <button id="editButton">수정하기</button>
-                                </form>
-                                <br>
                                 
+                                <form action="changeEmail">
+                                    <span class="profile-row">
+                                     이메일 <input type="email" name="memberEmail" id="editProfile" th:value="*{memberEmail}"> 
+                                    </span>
+                                </form>
+                                
+                                <form action="changePw" method="POST" name="myPageFrm" id="changePwFrm">
+                                    <span class="profile-row">
+                                        현재 비밀번호 <input type="password" name="currentPw" id="editProfile"> 
+                                    </span>
+                                
+                                    <span class="profile-row">
+                                        새 비밀번호 <input type="password" name="newPw" id="editProfile"> 
+                                    </span>
+                                
+                                    <span class="profile-row">
+                                        새 비밀번호 확인 <input type="password" name="newPwConfirm" id="editProfile" > <button id="editButton">수정하기</button>
+                                    </span>
+                                </form>   
                             </div> 
-                            
+                                <br>
+                           
                                 <form action="profile" method="POST" name="myPageFrm" id="profileFrm" enctype="multipart/form-data">
                                     <div class="myPage-image-area">
                                         <!-- 프로필 이미지가 없을 경우 -->

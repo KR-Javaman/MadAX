@@ -43,20 +43,19 @@ hr {
 }
 
 #nickName {
-  margin-top : 15rem;
-  margin-left : 2rem;
+  margin-top : 14rem;
+  margin-left : 1rem;
   font-size: 2.5rem;
-  font-weight: bold;
-
+  font-weight: 900;
   height : 7rem;
 }
 
 #email {
-  margin-top : 17rem;
+  margin-top : 16.5rem;
   margin-left : 1rem;
   width: 8rem;
   height: 7rem;
-  font-size : 1.5rem;
+  font-size : 1.3rem;
   font-style: italic;
 }
 

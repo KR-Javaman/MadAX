@@ -33,16 +33,19 @@
 .myPage-profile-upper > .profile-content {
   width: 50%;
   height : 100%;
-  padding-left: 4rem;
-  padding-top : 2rem;
+  padding-left: 5rem;
+  padding-top : 1.5rem;
   background-color: white;
   border-radius: 1.2rem;
   
 }
+
+
 .myPage-image-area {
   background-color: white;
   justify-content: center;
   align-items: center;
+  width: 50%;
 }
 
 .myPage-image-area > #profileImg {
@@ -57,7 +60,7 @@
 
 
 #editMemberProfile2 {
-  display: none;
+ 
 }
 
 
@@ -111,9 +114,9 @@
 
 #editProfile {
   background-color: white;
-  margin-left : 2rem;
+  margin-left : 5rem;
   height: 3.5rem;
-  width: 60%;
+  width: 50%;
   border: 1px solid black;
   border-radius: 0.8rem;
   color: black;
@@ -126,14 +129,18 @@
   border-color: rgb(22, 255, 1);
 }
 
-.profile-content > form {
+
+.profile-row {
   color:black; 
   background-color: white;
-  padding-top: 2.5rem;
+  padding-top: 3rem;
   font-weight: bold;
-  display: flex;
   align-items: center;
+  display: flex;
+  width: 100%;
+
 }
+
 
 #editButton {
   background-color: white;
