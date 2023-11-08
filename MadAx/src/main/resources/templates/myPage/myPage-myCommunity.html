@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+
+    <th:block th:replace="~{common/common}"></th:block>
+
+    <link rel="stylesheet" href="../css/myPage-style.css">
+
+
+</head>
+<body>
+    <main>
+        <th:block th:replace="~{common/header}"></th:block>
+          
+        <th:block th:replace="~{common/myPage-common}"></th:block>
+
+        <hr>
+			<th:block th:replace="~{myPage/sideMenu}"></th:block>
+        
+        <section class="myPage-content">
+            <section class="myPage-profile-main">
+                <label id="myProfile">내가 작성한글 ></label> <label id="myProfile2">커뮤니티</label>
+             <section class="myPage-profile-total">
+                   
+                        <div class="myPage-profile-upper">
+                            <div class="profile-content">
+                                <form action="changeNickname" method="POST">
+                                    닉네임 <input type="text" id="nickname"> <button id="editButton">수정하기</button>
+                                </form>
+                                <br>
+                                <form action="changePw">
+                                    비밀번호 <input type="password" id="pw"> <button id="editButton">수정하기</button>
+                                </form>
+                                <br>
+                                <form action="changePw2">
+                                    비밀번호 확인 <input type="password" id="pwCheck"> 
+                                </form>
+                                <br>
+                                <form action="changeEmail">
+                                    이메일 <input type="email" id="profileEmail"> <button id="editButton">수정하기</button>
+                                </form>
+                            </div> 
+                            <div class="myPage-profile-img">
+                                <form action="profile" method="POST" name="myPageChangeImg">
+                                    <div class="profile-image-area">
+                                        <img th:src="#{user.default.image}" id="memberProfile">
+                                        <input type="file" id="memberProfile" name="imageInput" accpet="image/">
+                                    </div>
+                                </form> 
+                            </div>
+                        </div> 
+                        
+                         <div class="myPage-profile-mid">
+                             배경화면 
+                             <br>
+                             <div class="background-img">
+                                 <input type="file" id="backgroundPic">
+                             </div>
+                         </div>
+
+                         <span class="myPage-profile-lower"><a href="../html/myPage-home.html"><button id="homeButton">홈으로</button> </a> 
+                            <form action="secession" method="POST"> 
+                                <button id="secessionButton">회원 탈퇴</button>
+                            </form>
+                        </span>   
+                        
+                    </section>  
+               
+                    
+
+            </section>
+        </section>
+
+    </main>    
+    <th:block th:replace="~{common/footer}"></th:block>
+
+    <script src="/js/myPage/myPage.js"></script>
+</body>
+</html>
