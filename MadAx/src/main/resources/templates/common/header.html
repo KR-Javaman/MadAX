@@ -36,19 +36,13 @@
     <section class="cls-section">
       <div class="cls-login">
 
-<<<<<<< HEAD
-
-        <th:block th:if="${session.loginMember == null}"> <a href="#">로그인</a> <a href="#">회원가입</a>
         
       </th:block>
 
         <th:block th:if="${session.loginMember == null}"> <a href="/member/login">로그인</a> <a href="/member/signup">회원가입</a> </th:block>
        
 
-=======
-        <th:block th:if="${session.loginMember == null}"> <a href="/member/login">로그인</a> <a href="/member/signup">회원가입</a> </th:block>
-       
->>>>>>> 2e3b7608071f6b730b8d39794a41271ea6197ed7
+
         <th:block th:unless="${session.loginMember == null}">
           <a href="#" class="login-area">
               <!-- 프로필 이미지가 없을 경우 -->
@@ -61,10 +55,9 @@
             <div class="header-menu">
               <a href="/myPage/myPage-home">마이페이지</a>
               <a href="/member/logout" id="logoutBtn">로그아웃</a>
-<<<<<<< HEAD
-=======
+
             </div>
->>>>>>> 2e3b7608071f6b730b8d39794a41271ea6197ed7
+
           </div>
 
         </th:block>
