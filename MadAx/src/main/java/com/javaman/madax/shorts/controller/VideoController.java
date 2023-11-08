@@ -1,5 +1,7 @@
 package com.javaman.madax.shorts.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
@@ -15,9 +17,9 @@ import com.javaman.madax.shorts.model.service.VIdeoService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("shorts")
 @RequiredArgsConstructor
-@PropertySource("classpath:/config.properties")
+@RequestMapping("shorts")
+//@PropertySource("classpath:/config.properties")
 public class VideoController {
 	private final VIdeoService service;
 	
@@ -37,6 +39,6 @@ public class VideoController {
 				return new ResponseEntity<>("fail",HttpStatus.NOT_IMPLEMENTED);
 			}
 		}
-		return null;
+		return new ResponseEntity<>("success",HttpStatus.OK);
 	}
 }

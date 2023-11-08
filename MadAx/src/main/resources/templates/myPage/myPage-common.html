@@ -1,0 +1,27 @@
+<div class="myPage-wallpaper" >
+  <img th:if="${session.loginMember.backgroundImg == null}" th:src="#{background.default.image}" id="backgroundImg">
+  <img th:unless="${session.loginMember.backgroundImg == null}" th:src="${session.loginMember.backgroundImg}" id="backgroundImg" >
+</div>
+
+<section class="myPage-middle">
+
+  <div class="myPage-middle-profile" th:object="${session.loginMember}">
+
+      <!-- 프로필 이미지가 없을 경우 -->
+      <img th:if="${session.loginMember.profileImg == null}" th:src="#{user.default.image}" id="memberProfile">
+                                
+      <!-- 프로필 이미지가 있을 경우 -->
+      <img th:unless="${session.loginMember.profileImg == null}" th:src="${session.loginMember.profileImg}" id="memberProfile" >
+
+      <span id="nickName" th:text="*{memberNickname}" >닉네임</span>
+      <p id="email" th:text="*{memberEmail}">이메일</p>
+
+      <span id="my">내가 쓴 글</span>
+      <span></span>
+      <span>내 쇼츠</span>
+      <span>개</span>
+      <span>개</span>
+
+  </div>    
+
+</section>
