@@ -1,8 +1,8 @@
-package com.javaman.madax.model.mapper;
+package com.javaman.madax.board.model.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.javaman.madax.model.dto.Board;
+import com.javaman.madax.board.model.dto.Board;
 
 @Mapper
 public interface EditBoardMapper {

@@ -1,4 +1,4 @@
-package com.javaman.madax.model.dto;
+package com.javaman.madax.board.model.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

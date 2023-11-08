@@ -1,9 +1,9 @@
-package com.javaman.madax.model.service;
+package com.javaman.madax.board.model.service;
 
 import org.springframework.stereotype.Service;
 
-import com.javaman.madax.model.dto.Board;
-import com.javaman.madax.model.mapper.EditBoardMapper;
+import com.javaman.madax.board.model.dto.Board;
+import com.javaman.madax.board.model.mapper.EditBoardMapper;
 
 import lombok.RequiredArgsConstructor;
 
