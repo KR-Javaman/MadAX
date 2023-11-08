@@ -1,6 +1,6 @@
 package com.javaman.madax.admin.mapper;
 
-import java.util.List;
+import java.util.List; 
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -10,8 +10,6 @@ import com.javaman.madax.member.model.dto.Member;
 public interface MadAdminMapper {
 
 	List<Member> selectAll();
-
-
 
 }
 

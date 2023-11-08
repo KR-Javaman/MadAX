@@ -1,6 +1,6 @@
 package com.javaman.madax.member.model.dto;
 
-import lombok.Getter;
+import lombok.Getter; 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
