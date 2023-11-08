@@ -23,13 +23,13 @@
       
       <h2>게시판 글쓰기</h2>
 
-      <form action="boardWrite" method="post">
+      <form action="insert" method="post" id="writeSubmit">
 
         <div class="form-group">
           <label for="title">제목</label>
           <input type="text" class="form-control" id="title"
             placeholder="제목 입력(4-100)" name="title"
-            maxlength="100" required="required"
+            maxlength="100" required="required"  
             pattern=".{4,100}">
         </div>
 
@@ -65,6 +65,14 @@
 
   <script th:inline ="javascript">
     const boardCode = /*[[${boardCode}]]*/"게시판코드";
+
+    const message = /*[[${message}]]*/ "전달받은 message";
+    
+    //             message가 없다면 null
+    if(message != null) alert(message);
   </script>
+  
+
+  <script src="/js/boardWrite.js"></script>
 
 </html>

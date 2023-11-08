@@ -13,17 +13,20 @@ public class EditBoardServiceImpl implements EditBoardService{
 
 	private final EditBoardMapper mapper;
 	
+	
+	//게시글 작성
 	@Override
 	public int insertBoard(Board board) {
 		
 	
 		int result = mapper.insertBoard(board);
 		
-		if(result == 0) {
+		if(result == 0) { //삽입 실패
+			
 			return 0;
 		}
 		
-		int boardNo = board.getBoardNo();
+		int boardNo = board.getBoardNo();  //삽입 성공
 		
 		return boardNo;
 	}
