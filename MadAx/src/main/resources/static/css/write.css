@@ -1,0 +1,62 @@
+/* 게시판 글쓰기 */
+*{
+    background-color: rgb(214, 214, 214);
+}
+
+.img{  
+ 
+    width: 100%;
+    height: 180px;
+    background-color: #00025d;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.write {
+    width: 700px; 
+    margin: 0 auto;
+    border-top: 3px solid rgb(0, 0, 0); 
+    border-bottom: 3px solid rgb(36, 20, 20);
+    
+}
+
+.write input {
+    border: 1px solid black;
+    width: 676px; 
+    padding: 10px; 
+    margin: 12px auto 0;
+}
+
+input::placeholder{
+    color: black;
+}
+
+.write .text {
+    border: 1px solid black;
+    color: black;
+    table-layout: fixed;
+    height: 300px; 
+    white-space: pre-line; 
+    word-break: break-all;
+}
+
+
+.write .button a {
+    border: 1px solid black; 
+    background: rgb(255, 255, 255);
+    margin: 10px; 
+    padding: 5px;
+    text-decoration: none; 
+    color: black;
+}
+
+.write .button a:hover {
+    background-color: black;
+    color: rgb(255, 255, 255);
+}
+
+
+.write p {
+    text-align: center;
+}

@@ -1,0 +1,198 @@
+
+.myPage-main{
+  width: 85%;
+  padding-left : 7rem;
+}
+
+.myPage-profile-main{
+  height: 90rem;
+  font-size: 1.8rem;
+ 
+}
+
+.myPage-profile-total{
+  width: 100%;
+  height: 100%;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 1.2rem;
+ 
+}
+
+.myPage-profile-upper {
+
+  width: 100%;
+  height : 40%;
+  display: flex;
+  background-color: white;
+  border-radius: 1.2rem;
+}
+
+.myPage-profile-upper > .profile-content {
+  width: 50%;
+  height : 100%;
+  padding-left: 5rem;
+  padding-top : 1.5rem;
+  background-color: white;
+  border-radius: 1.2rem;
+  
+}
+
+
+.myPage-image-area {
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.myPage-image-area > #profileImg {
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  margin-left : 16rem;
+  margin-top: 8rem ;
+  background-color: white;
+}
+
+
+
+#editMemberProfile2 {
+ 
+}
+
+
+.profile-btn-area{
+  width: 23rem;
+  background-color: white;
+}
+
+.profile-btn-area > button{
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  width: 11rem;
+  height: 3.4rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: 19rem;
+  margin-top : 3rem;
+  border-radius: 0.3rem;
+}
+
+
+.myPage-profile-mid {
+  width :100%;
+  height: 40%;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  padding:  2rem 4rem;
+}
+
+.background-img {
+  background-color: white;
+  height: 80%;
+  margin-top: 2rem;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background-img > button {
+  background-color: white;
+  font-size: 5rem;
+  border: none;
+  color: black;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+
+#editProfile {
+  background-color: white;
+  margin-left : 5rem;
+  height: 3.5rem;
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 0.8rem;
+  color: black;
+  padding: 1rem;
+
+}
+
+
+#editProfile:focus-within {
+  border-color: rgb(22, 255, 1);
+}
+
+
+.profile-row {
+  color:black; 
+  background-color: white;
+  padding-top: 3rem;
+  font-weight: bold;
+  align-items: center;
+  display: flex;
+  width: 100%;
+
+}
+
+
+#editButton {
+  background-color: white;
+  border: 0rem;
+  color:rgb(22, 255, 1);
+  margin-left: 4px;
+  padding: 5px;
+  
+
+}
+
+.myPage-profile-lower {
+  background-color: white;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.myPage-profile-lower > a {
+  background-color: white;
+}
+
+.myPage-profile-lower >form {
+  background-color: white;
+}
+
+#homeButton {
+ border-radius: 1.5rem;
+  border : 0.1rem solid rgb(22, 255, 1);
+  background-color:rgb(22, 255, 1);
+  color: white;
+  width: 12rem;
+  height : 6rem;
+  margin-top: 3rem;
+  margin-right : 5rem;
+  font-size: 1.7rem;
+
+}
+
+#backgroundPic {
+  display: none;
+}
+
+
+#secessionButton {
+  color: black;
+  background-color: white;
+  border: 0.05rem solid black;
+  border-radius: 1.5rem;
+  width: 12rem;
+  height : 6rem;
+  font-size: 1.7rem;
+ 
+}
+

@@ -5,3 +5,15 @@
 <script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="/js/header.js"></script>
+
+<script th:inline="javascript">
+  // const testMember = /*[[${testMember}]]*/"테스트 멤버입니다";
+  // console.log(testMember.memberNo);
+  // console.log(testMember.memberNickname);
+
+  // RedirectAttributes를 통해 전달된 message 출력
+  const message = /*[[${message}]]*/ "전달 받은 message";
+                  // message가 없다면 null
+
+  if(message != null) alert(message);
+</script>
