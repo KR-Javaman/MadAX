@@ -1,4 +1,4 @@
-package com.javaman.madax.controller;
+package com.javaman.madax.board.controller;
 
 
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.javaman.madax.model.dto.Board;
-import com.javaman.madax.model.service.EditBoardService;
+import com.javaman.madax.board.model.dto.Board;
+import com.javaman.madax.board.model.service.EditBoardService;
 
 import lombok.RequiredArgsConstructor;
 
