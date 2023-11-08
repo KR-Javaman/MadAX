@@ -3,7 +3,7 @@
     <section class="cls-section">
       <div class="nav">
         <a href="/" class="nav-a" id="nav-logo">
-          <img src="/images/logo.png" alt="" />
+          <img src="/images/logo_header.png" alt="" />
         </a>
       </div>
     </section>
@@ -12,7 +12,7 @@
         <nav>
           <ul>
             <li id="nav-li">
-              <a href="#" class="nav-a" id="nav-1">커뮤니티</a>
+              <a href="/board/1" class="nav-a" id="nav-1">커뮤니티</a>
               <ul id="nav-li-ul">
                 <li>
                   <a href="#" id="long">긴 글</a>
@@ -30,16 +30,34 @@
     </section>
     <section class="cls-section">
       <div class="cls-login">
+<<<<<<< HEAD
         <th:block th:if="${session.loginMember == null}"> <a href="#">로그인</a> <a href="#">회원가입</a>
         <a href="#">관리자 페이지</a>
       </th:block>
+=======
+        <th:block th:if="${session.loginMember == null}"> <a href="/member/login">로그인</a> <a href="/member/signup">회원가입</a> </th:block>
+       
+>>>>>>> b25145d50f7cebc0f5b5a30d926cc9572c951d45
         <th:block th:unless="${session.loginMember == null}">
-          <a href="#">
-            <img src="/images/user.png" alt="" />
-            [[${member}]]
-          </a>
+          <a href="#" class="login-area">
+            <img th:if="${session.loginMember.profileImg} == null" src="/images/user.png" id="memberHeaderProfile" />
+          </a>    
+            <!-- <input type="checkbox" id="memberHeaderProfile"> -->
+            <div class="header-menu">
+              <a href="/myPage/myPage-home">마이페이지</a>
+              <a href="/member/logout" id="logoutBtn">로그아웃</a>
+
+            <div th:if="${ session.loginMember != null && session.loginMember.authority == 2}">
+              <a href="/admin/main">관리자 페이지</a>
+            </div>
+          </div>
+
         </th:block>
       </div>
     </section>
   </div>
 </header>
+
+<script src="/js/header.js">
+
+</script>

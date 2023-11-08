@@ -1,0 +1,25 @@
+/*댓글*/
+.comment-write-area {
+	display: flex;
+	min-height: 85px;
+	justify-content: center;
+	
+	margin: 30px 0;
+}
+
+.comment-write-area > textarea{
+	flex-basis: 72%;
+    margin-right: 10px;
+	resize: none;
+}
+
+.comment-write-area > button{
+	flex-basis: 7%;
+    height: 85px;
+
+	font-weight: bold;
+    border: 0;
+    background-color: #000000;
+    color: white;
+    cursor: pointer;
+}

@@ -1,0 +1,212 @@
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+   
+  }
+
+.image{
+  width: 100%;
+  height: 280px;
+  /* border: 1px solid black; */
+  
+}
+
+.image img{
+  width: 100%;
+  height: 100%;
+}
+
+
+.sortation{
+  width: 100%;
+  height: 60px;
+}
+
+.sortation h1{
+  font-size: 60px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-top: 50px;
+  letter-spacing: 3px;
+  
+}
+
+
+
+
+
+body{
+  /* z-index: 990; */
+  background-color: #282828;
+ 
+}
+
+  /* .all{
+    border:  1px solid black;
+    width: 100%;
+    
+  } */
+
+  
+/********************************중간 검색, 선택 바*****************************************/
+
+
+.search{
+  
+  width: 1280px;
+  height: 70px;
+  margin: 0 auto;
+}
+
+.search div{
+  float: right;
+}
+
+.search-input{
+  width: 300px; 
+  height: 30px; 
+  margin-top: 20px;
+  border: 2px solid rgb(147, 251, 1);
+  padding-left: 10px;
+  font-size: 13px; 
+}
+
+.selectBox{
+  /* border: 1px solid black; */
+  width: 1280px;
+  height: 40px;
+  margin: 0 auto;
+  
+  
+}
+
+.selectBox > button{
+  width: 50px; 
+  height: 100%; 
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.selectBox > button:hover{
+  background-color: rgb(147, 251, 1);
+  color: rgb(255, 255, 255);
+}
+
+#selectKey{
+  float: right;
+}
+
+
+#list-search button{
+  
+  width: 50px;
+  height: 30px;
+  font-weight: bold;
+  background-color: #000000;
+  border: none;
+  color: rgb(255, 255, 255);
+
+  cursor: pointer;
+}
+
+/**********************************게시판************************* */
+
+
+.community{
+  border: 1px solid black;
+  display: flex;
+  width: 1850px;
+  min-height: 800px;
+  margin: 0 auto;
+  
+}
+
+.com-left{
+  width: 285px;
+  border: 1px solid black;
+}
+.com-center{
+  width: 1280px;
+  border: 1px solid black;
+}
+
+#writeBtn{
+  float: right;
+ }
+ 
+.com-right{
+  width: 140px;
+  height: 250px;
+  margin-left: 1650px;
+  margin-top: -200px;
+  border: 2px solid rgb(147, 251, 1);;
+  background-color: black;
+  border-radius: 15px;
+  position: fixed;
+} 
+
+.shortkey{
+  color: azure;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.com-right a{
+  color: white;
+  font-weight: bold;
+}
+
+.com-right a:hover{
+  color: rgb(147, 251, 1);
+}
+
+.com-right ul{
+  /* padding-left: 45px; */
+  text-align: center;
+  
+}
+
+.com-right ul li{
+  
+  padding-top: 13px;
+  
+}
+
+.shortkey{
+  font-weight: bolder;
+  font-size: 17px;
+}
+
+
+.list-table{
+  width: 100%;
+  padding: 20px;
+  border-collapse: collapse;
+  
+}
+
+.list-table > thead{ background-color: #a3a3a3; color: rgb(0, 0, 0);}
+
+thead tr{
+  height: 50px;
+}
+tbody tr{
+  height: 30px;
+}
+
+
+
+.list-table tr th{
+  font-size: 16px;
+}
+.list-table tr td{
+  font-size: 13px;
+}
+
+.list-table tr > *{ text-align: center; }
+.list-table tr > *:nth-of-type(1){ width: 10%; }
+
+
