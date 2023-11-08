@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../지식인/게시판 글 상세 조회.css">
+    <script src="https://kit.fontawesome.com/d6c32512de.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 이름</title>
+
+
+    <link rel="stylesheet" href="/css/board/boardDetail-style.css">
+    <link rel="stylesheet" href="/css/board/comment-style.css">
+
+</head>
+<body>
+    <main>
+        <!-- 헤더 -->
+        <!-- <th:block th:replace="~{common/header}"></th:block> -->
+
+        <div id="left"></div>
+        <div id="main-content">
+
+            <header>
+                <div class="header">
+                  <section class="cls-section">
+                    <div class="nav">
+                      <a href="#" class="nav-a" id="nav-logo">로고</a>
+                    </div>
+                  </section>
+                  <section class="cls-section">
+                    <div class="nav">
+                      <nav>
+                        <ul>
+                          <li id="nav-li">
+                            <a href="#" class="nav-a" id="nav-1">커뮤니티</a>
+                            
+                          <li><a href="#" class="nav-a" id="nav-2">지식in</a></li>
+                          <li><a href="#" class="nav-a" id="nav-3">쇼츠</a></li>
+                        </ul>
+                      </nav>
+                    </div>
+                  </section>
+                  <section class="cls-section">
+                    <!-- <form action="#">
+                      <div class="cls-search">
+                        <input type="text" class="search-btn" />
+                        <button class="btn-search">
+                          <img src="../../static/images/search_icon.png" id="img-search" />
+                        </button>
+                      </div>
+                    </form> -->
+                    <div class="cls-login">
+                      <a href="#">로그인</a>
+                    </div>
+                  </section>
+                </div>
+              </header>
+        
+
+        <section class="board-detail">  
+
+            <!-- 프로필 + 닉네임 + 조회수 -->
+            <div class="board-header">
+
+                <div class="board-writer">
+
+                    <!-- 프로필 이미지 -->
+                    <i class="fa-solid fa-user"></i>
+                    <!-- 프로필 이미지가 있을 경우 출력 -->
+                   
+
+                    <span>woo10</span>
+
+                    <!-- 좋아요 하트 -->
+                    <span class="like-area">
+
+
+                    </span>
+
+                </div>
+
+                <div class="board-info">
+                    <p> <span>작성일:</span></p>   
+                    <p> <span>조회수:</span></p>                    
+                    <p><i class="fa-solid fa-heart" style="color: #ff2600;"></i> :  </p>                    
+                </div>
+            </div>
+
+
+
+
+
+            <div class="board-content">1. 달리기의 중요성
+                달리기는 신체적, 정신적 건강에 매우 중요한 운동 활동입니다. 여기에는 여러 가지 중요한 이유가 있습니다
+                
+                - 체력 향상: 달리기는 심폐 지구력을 향상시키고, 근육을 강화시켜 전반적인 체력을 향상시킵니다. 꾸준한 달리기는 순발력을 키우고, 신체의 유연성과 근력을 향상시킵니다.
+                
+                - 체중 관리: 달리기는 칼로리 소모량이 높기 때문에 체중을 조절하거나 유지하는데 도움이 됩니다. 꾸준한 달리기는 신체 지방률을 줄이고 근육량을 늘릴 수 있습니다.
+                
+                - 건강한 심혈관 시스템: 달리기는 심장과 혈관 건강을 향상시키는 데 도움이 됩니다. 정기적인 유산소 운동은 고혈압, 심장병 및 다른 심혈관 질환의 위험을 줄여줍니다.
+                
+                - 스트레스 감소: 운동은 스트레스 호르몬인 코르티솔의 수준을 낮추고, 쾌적한 느낌을 유발합니다. 달리기는 뇌에서 엔도르핀을 분비시켜 기분을 개선하고 스트레스를 완화시킵니다.
+                
+                - 정신적 안정감: 달리기는 명상과 비슷한 효과를 줄 수 있습니다. 명상적인 상태에 진입하면 마음이 평화롭고 집중력이 높아지는 경향이 있습니다.
+                </div>
+
+
+
+            <!-- 버튼 영역-->
+            <div class="board-btn-area">
+
+                <!-- 로그인한 회원과 게시글 작성자 번호가 같은 경우-->
+                
+                    <button id="updateBtn">수정</button>
+                    <button id="deleteBtn">삭제</button>
+                
+
+                <button id="goToListBtn">목록으로</button>
+            </div>
+
+
+
+        <div class="comment-write-area">
+            <textarea id="commentContent"></textarea>
+            <button id="addComment"> 
+                등록
+            </button>
+        </div>
+
+    
+
+        </section>
+
+    </div>
+
+        <div id="right"></div>
+        <!-- 댓글 영역-->
+        <!-- <th:block th:replace="~{board/comment}"></th:block> -->
+
+    </main>
+
+
+    <!-- <th:block th:replace="~{common/footer}"></th:block> -->
+
+
+    
+</body>
+</html>
+</body>
+</html>

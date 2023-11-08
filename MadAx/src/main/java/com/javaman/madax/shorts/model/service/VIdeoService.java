@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public interface UploadService {
+public interface VIdeoService {
 
-	boolean chunkUpload(MultipartFile shortsVideo, int chunkNumber, int totalChunks) throws IOException;
+	void fileUpload(MultipartFile video, String checkSize) throws IllegalStateException, IOException;
 
 }
