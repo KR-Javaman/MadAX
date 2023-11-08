@@ -30,7 +30,9 @@
     </section>
     <section class="cls-section">
       <div class="cls-login">
-        <th:block th:if="${session.loginMember == null}"> <a href="#">로그인</a> <a href="#">회원가입</a> </th:block>
+        <th:block th:if="${session.loginMember == null}"> <a href="#">로그인</a> <a href="#">회원가입</a>
+        <a href="#">관리자 페이지</a>
+      </th:block>
         <th:block th:unless="${session.loginMember == null}">
           <a href="#">
             <img src="/images/user.png" alt="" />
