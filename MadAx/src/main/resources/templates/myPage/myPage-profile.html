@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+
+    <th:block th:replace="~{common/common}"></th:block>
+  
+    <link rel="stylesheet" href="/css/myPage/myPage-profile.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/myPage/myPage-main.css">
+</head>
+<body>
+    <main>
+        <th:block th:replace="~{common/header}"></th:block>
+        
+        <th:block th:replace="~{common/myPage-common}"></th:block>
+
+        <hr>
+
+			
+        
+        <section class="myPage-content">
+            <th:block th:replace="~{myPage/sideMenu}"></th:block>
+    
+            <section class="myPage-main">
+        
+                 <section class="myPage-profile-main">
+                  <label id="myProfile">내 프로필</label>
+                 <section class="myPage-profile-total">
+                   
+                        <div class="myPage-profile-upper">
+                            <div class="profile-content" th:object="${loginMember}">
+                                <form action="changeNickname" method="POST" >
+                                    <span class="profile-row">
+                                     닉네임 <input type="text" name="memberNickname" id="editProfile"  th:value="*{memberNickname}"> <button id="editButton" >수정하기</button>
+                                    </span>
+                                </form>
+                                
+                                <form action="changeEmail">
+                                    <span class="profile-row">
+                                     이메일 <input type="email" name="memberEmail" id="editProfile" th:value="*{memberEmail}"> 
+                                    </span>
+                                </form>
+                                
+                                <form action="changePw" method="POST" name="myPageFrm" id="changePwFrm">
+                                    <span class="profile-row">
+                                        현재 비밀번호 <input type="password" name="currentPw" id="editProfile"> 
+                                    </span>
+                                
+                                    <span class="profile-row">
+                                        새 비밀번호 <input type="password" name="newPw" id="editProfile"> 
+                                    </span>
+                                
+                                    <span class="profile-row">
+                                        새 비밀번호 확인 <input type="password" name="newPwConfirm" id="editProfile" > <button id="editButton">수정하기</button>
+                                    </span>
+                                </form>   
+                            </div> 
+                                <br>
+                           
+                                <form action="profile" method="POST" name="myPageFrm" id="profileFrm" enctype="multipart/form-data">
+                                    <div class="myPage-image-area">
+                                        <!-- 프로필 이미지가 없을 경우 -->
+                                      <img th:if="${session.loginMember.profileImg == null}" th:src="#{user.default.image}" id="profileImg">
+                        
+                                         <!-- 프로필 이미지가 있을 경우 -->
+                                       <img th:unless="${session.loginMember.profileImg == null}" th:src="${session.loginMember.profileImg}" id="profileImg">
+                                    </div>
+                                    <div class="profile-btn-area">
+                                        <input type="file" id="editMemberProfile2" name="imageInput" accpet="image/">
+                                        <button>변경하기</button>
+                                    </div>
+
+                                </form> 
+                        </div>
+                        
+                        <div class="myPage-profile-mid">
+                             배경화면 
+                             <br>
+                             <div class="background-img">
+                                 <input type="file" id="backgroundPic">
+                                 <button>+</button>
+                             </div>
+                        </div>
+
+                        <span class="myPage-profile-lower">
+                            <a href="/myPage/myPage-home"><button id="homeButton">홈으로</button> </a> 
+                            <a href="/myPage/myPage-secession"><button id="secessionButton">회원 탈퇴</button></a>
+                        </span>   
+                        
+                    </section>  
+
+            </section>
+        </section>
+
+    </section>
+    </main>    
+    <!-- <th:block th:replace="~{common/footer}"></th:block> -->
+   
+    <th:block th:replace="~{common/common}"></th:block>
+
+    <script th:inline="javascript">
+        //th:inline="javascript"
+        // - script 태그 내부에 타임리프 쓸거다
+        // -> 타임리프로 출력되는 값을 JS에 맞는 자료형으로 변경해줘
+
+        // messages.properties의 값을 얻어와 전역 변수로 선언
+        const defaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
+
+        // 로그인한 회원의 프로필 이미지 얻어오기 (없으면 null)
+        const loginMemberProfileImg = /*[[${session.loginMember.profileImg}]]*/ "프로필 이미지";
+        
+
+    </script>
+
+    <script src="/js/myPage/myPage.js"></script>
+</body>
+</html>
