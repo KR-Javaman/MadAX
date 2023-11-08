@@ -1,4 +1,4 @@
-package com.javaman.madax.model.service;
+package com.javaman.madax.board.model.service;
 
 import java.util.Map;
 
