@@ -16,11 +16,12 @@ import net.bramp.ffmpeg.FFmpegExecutor;
 import net.bramp.ffmpeg.FFmpegUtils;
 import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.builder.FFmpegBuilder;
+import net.bramp.ffmpeg.probe.FFmpegProbeResult;
 import net.bramp.ffmpeg.progress.Progress;
 import net.bramp.ffmpeg.progress.ProgressListener;
 
 @Service
-@PropertySource("classpath:/config.properties")
+//@PropertySource("classpath:/config.properties")
 public class VideoServiceImpl implements VIdeoService{
 
 	@Value("${my.video.location}")
@@ -75,39 +76,41 @@ public class VideoServiceImpl implements VIdeoService{
 		}else {
 			file.transferTo(saveFile);
 		}
-//		if(checkSize.equals("Y")) {
-//			videoEffect(fileName);
-//		}
+		if(checkSize.equals("Y")) {
+			videoEffect(fileName);
+		}
 		
 	}
 
-//	private void videoEffect(String fileName) throws IOException {
-//		FFmpeg ffmpeg = new FFmpeg(ffmpegPath);
-//		FFprobe ffprobe = new FFprobe(ffprobePath);
-//		
-//		FFmpegBuilder builder = new FFmpegBuilder()
-//				.setInput(uploadPath+fileName)
-//				.overrideOutputFiles(true)
-//				.addOutput(uploadPath + fileName + "(format).mp4")
-//				.setFormat("mp4")
-////				.setTargetSize(1000_000)
-//				
-//				.disableSubtitle()
-//				
-//				.setAudioChannels(1)
-//				.setAudioCodec("aac")
-//				.setAudioSampleRate(48_000) 
-//				.setAudioBitRate(32768) // 32kbit
-//				
-//				.setVideoCodec("libx264")
-//				.setVideoFrameRate(24, 1) // 24frame
-//				.setVideoResolution(640, 480)
-//				
-//				.setStrict(FFmpegBuilder.Strict.EXPERIMENTAL)
-//				.done();
-//		
-//		FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
-//		
+	private void videoEffect(String fileName) throws IOException {
+		FFmpeg ffmpeg = new FFmpeg(ffmpegPath);
+		FFprobe ffprobe = new FFprobe(ffprobePath);
+		
+		FFmpegProbeResult probeResult = ffprobe.probe(uploadPath);
+		double second = probeResult.getFormat().duration;  
+		
+		FFmpegBuilder builder = new FFmpegBuilder()
+				.setInput(uploadPath+fileName)
+				.overrideOutputFiles(true)
+				.addOutput(uploadPath + fileName)
+				.setFormat("mp4")
+				.disableSubtitle()
+				
+				.setAudioChannels(1)
+				.setAudioCodec("aac")
+				.setAudioSampleRate(48_000) 
+				.setAudioBitRate(32768) // 32kbit
+				
+				.setVideoCodec("libx264")
+				.setVideoBitRate(921600)
+				.setVideoResolution(1280, 720)
+				.setDuration((long)(second*1000/5),TimeUnit.MILLISECONDS)
+				.setStrict(FFmpegBuilder.Strict.EXPERIMENTAL)
+				.done();
+		
+		FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
+		executor.createJob(builder).run();
+		
 //		executor.createJob(builder ,new ProgressListener() {
 //			
 //		    // Using the FFmpegProbeResult determine the duration of the input
@@ -126,9 +129,9 @@ public class VideoServiceImpl implements VIdeoService{
 //		                      progress.speed));
 //		    }
 //		  }).run();
-//		
-//			 // Or run a two-pass encode (which is better quality at the cost of being slower)
+		
+			 // Or run a two-pass encode (which is better quality at the cost of being slower)
 //			 executor.createTwoPassJob(builder).run();
-//				
-//	}
+				
+	}
 }

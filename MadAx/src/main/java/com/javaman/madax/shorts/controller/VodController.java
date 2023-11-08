@@ -63,4 +63,7 @@ public class VodController {
 		long end = httpRange.getRangeEnd(videoLength);
 		return Long.min(chunkSize, end-start+1);
 	}
+	
+	
+	
 }

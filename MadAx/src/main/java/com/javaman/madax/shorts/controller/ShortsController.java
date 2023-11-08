@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,10 +22,12 @@ public class ShortsController {
 	private final ShortsService service;
 	
 	@GetMapping("main")
-	public String main(Model model,
+	public String main(@PathVariable("boardCode") int boardCode,Model model,
 				@RequestParam(value="cp", required = false, defaultValue = "1") int cp) {
-		Map<String, Object> map = service.main(cp);
+		Map<String, Object> map = service.main(boardCode,cp);
 		
 		return "shorts/shorts-main";
-	}	
+	}
+	
+	
 }

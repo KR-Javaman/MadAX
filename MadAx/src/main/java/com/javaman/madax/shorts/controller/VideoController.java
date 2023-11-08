@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("shorts")
-@PropertySource("classpath:/config.properties")
+//@PropertySource("classpath:/config.properties")
 public class VideoController {
 	private final VIdeoService service;
 	
