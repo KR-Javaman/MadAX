@@ -157,6 +157,8 @@ body{
 .com-right a{
   color: white;
   font-weight: bold;
+  text-decoration:none;
+  font-size: 14px;
 }
 
 .com-right a:hover{
