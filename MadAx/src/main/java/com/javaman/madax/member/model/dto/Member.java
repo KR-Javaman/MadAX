@@ -20,6 +20,7 @@ public class Member {
 	private String enrollDate;
 	private String memberDelfl;
 	private int authority;
+	private String backgroundImg;
 	
 	
 	
