@@ -2,6 +2,8 @@ package com.javaman.madax.shorts.model.dto;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,7 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Videoboard {
+public class VideoBoard {
 	private int boardVideoNo;
 	private String videoTitle;
 	private String videoContent;
@@ -18,5 +20,8 @@ public class Videoboard {
 	private String videoDelFl;
 	private int memberNo;
 	
-	private List<Videoboard> videoList;
+	private int likeCount;
+	private String videoPath;
+	private String videoRename;
+	
 }
