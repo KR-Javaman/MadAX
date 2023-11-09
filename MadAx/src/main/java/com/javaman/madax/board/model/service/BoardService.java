@@ -4,6 +4,6 @@ import java.util.Map;
 
 public interface BoardService {
 
-	Map<String, Object> selectBoard(int boardCode);
+	Map<String, Object> selectBoard(int boardCode, int cp);
 
 }
