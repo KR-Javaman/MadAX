@@ -16,7 +16,7 @@
  	<!-- 회원 가입 -->
    <insert id="signup"  parameterType="Member" >
       INSERT INTO "MEMBER"
-      VALUES(SEQ_MEMBER_NO.NEXTVAL, #{memberEmail}, #{memberPw}, #{memberNickname}, NULL,DEFAULT, DEFAULT,DEFAULT
+      VALUES(SEQ_MEMBER_NO.NEXTVAL, #{memberEmail}, #{memberPw}, #{memberNickname}, NULL,DEFAULT, DEFAULT,DEFAULT, NULL
       )
    </insert>
    

@@ -97,25 +97,6 @@
   padding:  2rem 4rem;
 }
 
-.background-img {
-  background-color: white;
-  height: 80%;
-  margin-top: 2rem;
-  border: 1px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.background-img > button {
-  background-color: white;
-  font-size: 5rem;
-  border: none;
-  color: black;
-  cursor: pointer;
-  height: 100%;
-  width: 100%;
-}
 
 #editProfile {
   background-color: white;
@@ -172,16 +153,48 @@
   background-color: white;
 }
 
+
+.background-img {
+  background-color: white;
+  height: 80%;
+  margin-top: 2rem;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background-img > #backgroundImg1 {
+  height: 100%;
+  width: 100%;
+}
+
+.background-img > h1 {
+  font-size: 70px;
+}
+
+
+.background-img > button {
+  background-color: white;
+  font-size: 5rem;
+  border: none;
+  color: black;
+  height: 100%;
+  width: 100%;
+}
+
+
 #homeButton {
- border-radius: 1.5rem;
+  border-radius: 1.5rem;
   border : 0.1rem solid rgb(22, 255, 1);
   background-color:rgb(22, 255, 1);
   color: white;
-  width: 12rem;
-  height : 6rem;
-  margin-top: 3rem;
-  margin-right : 5rem;
+  width: 11rem;
+  height : 5rem;
+  margin-top: 3rem; 
+  margin-right : 5rem; 
   font-size: 1.7rem;
+  cursor: pointer;
 
 }
 
@@ -189,18 +202,21 @@
   display: none;
 }
 
-.background-img > h1 {
-  font-size: 70px;
-}
+
+
+
 
 #secessionButton {
   color: black;
   background-color: white;
   border: 0.05rem solid black;
   border-radius: 1.5rem;
-  width: 12rem;
-  height : 6rem;
+  width: 11rem;
+  height : 5rem;
   font-size: 1.7rem;
+  cursor: pointer;
  
 }
+
+
 
