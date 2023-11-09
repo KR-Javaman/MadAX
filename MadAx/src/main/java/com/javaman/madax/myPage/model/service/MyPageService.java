@@ -4,7 +4,8 @@ import com.javaman.madax.member.model.dto.Member;
 
 public interface MyPageService {
 
-	/** 회원 정보 수정
+
+	/** 회원 탈퇴
 	 * @param memberPw
 	 * @param memberNo
 	 * @return result
