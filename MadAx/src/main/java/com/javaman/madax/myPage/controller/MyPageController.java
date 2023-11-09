@@ -23,32 +23,34 @@ public class MyPageController {
 	private MyPageService service;
 	
 	
-	@GetMapping("myPage-home") // /myPage/info (이런 모양의 요청이 왔을 때!)
+	@GetMapping("myPage-home") 
 	public String myPageHome() {
 		
-		// templates/myPage/myPage-profile.html로 forward하겠다라는 뜻
 		return "myPage/myPage-home";
 	}
 	
-	@GetMapping("myPage-profile") // /myPage/info (이런 모양의 요청이 왔을 때!)
+	@GetMapping("myPage-profile") 
 	public String myPageProfile() {
 		
-		// templates/myPage/myPage-profile.html로 forward하겠다라는 뜻
 		return "myPage/myPage-profile";
 	}
 	
-	@GetMapping("myPage-community") // /myPage/info (이런 모양의 요청이 왔을 때!)
+	@GetMapping("myPage-community") 
 	public String myPageCommunity() {
 		
-		// templates/myPage/myPage-profile.html로 forward하겠다라는 뜻
 		return "myPage/myPage-community";
 	}
 	
-	@GetMapping("myPage-secession") // /myPage/info (이런 모양의 요청이 왔을 때!)
+	@GetMapping("myPage-secession") 
 	public String myPageSecession() {
 		
-		// templates/myPage/myPage-profile.html로 forward하겠다라는 뜻
 		return "myPage/myPage-secession";
+	}
+	
+	@GetMapping("myPage-secession2") 
+	public String myPageSecession2() {
+		
+		return "myPage/myPage-secession2";
 	}
 
 
@@ -111,7 +113,7 @@ public class MyPageController {
 	
 	
 
-	@PostMapping("secession")
+	@PostMapping("secession2")
 	public String secession(String memberPw, @SessionAttribute("loginMember") Member loginMember, 
 			RedirectAttributes ra, SessionStatus status) {
 		
@@ -130,7 +132,7 @@ public class MyPageController {
 		
 		else {
 			message = "비밀번호가 일치하지 않습니다.";
-			path = "redirect:secession";
+			path = "redirect:secession2";
 		}
 		
 		ra.addFlashAttribute("message", message);
