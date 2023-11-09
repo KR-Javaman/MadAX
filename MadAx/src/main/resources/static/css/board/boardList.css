@@ -116,7 +116,7 @@ body{
 
 
 .community{
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   width: 1850px;
   min-height: 800px;
@@ -126,11 +126,11 @@ body{
 
 .com-left{
   width: 285px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .com-center{
   width: 1280px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 #writeBtn{
@@ -215,9 +215,9 @@ tbody tr{
 
 
 .pagination-box{
-  border: 1px solid black;
+  
   width: 100%;
-  height: 100px;
+  height: 50px;
 }
 
 .pagination{
@@ -241,7 +241,7 @@ tbody tr{
 
 .current{
   font-weight: bold;
-  background-color: #455ba8;
+  background-color: rgb(147, 251, 1);
   border-radius: 50%;
   color: white !important;
   letter-spacing: 0 !important;
@@ -279,7 +279,7 @@ tbody tr{
   width: 100px;
 
   font-weight: bold;
-  background-color: #455ba8;
+  background-color: rgb(147, 251, 1);
   border: none;
   color: white;
 

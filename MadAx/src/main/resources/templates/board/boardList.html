@@ -19,7 +19,7 @@
 
   <body>
 
-    <main th:with="boardList=${map.boardList}">
+    <main th:with="boardList=${map.boardList}, pagination=${map.pagination}" >
 
       <div class="image">
         <img src="/images/토트넘2.jpeg">
@@ -108,47 +108,74 @@
         </div>
       </div>
 
+
+      <!-- 페이지네이션 -->
       <div class="pagination-box" th:if="${#lists.size(boardList) > 0}">
+        
+        <ul class="pagination">
 
+              <!-- 첫 페이지로 이동 -->
+              <li>
+                  <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=1)}">&lt;&lt;</a>
+              </li>
 
+              <!-- 이전 목록 마지막 번호로 이동 -->
+              <li>
+                  <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${pagination.prevPage})}">&lt;</a>
+              </li>
 
+      
+              <!-- 특정 페이지로 이동 -->
 
+              <!-- 타임리프에서 특정 범위 만큼 반복하기!! (1~10) -->
+              <!-- #numbers.sequence(1,10,1)  :  1~10까지 1씩 증가하며 차례대로 추가한 리스트 생성 -->
+              <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
 
+                  <!-- 현재 보고있는 페이지 -->
+                  <li th:if="${i == pagination.currentPage}">
+                      <a class="current" th:text="${i}">1</a>
+                  </li>
+
+                  <!-- 보고있지 않은 페이지 -->                    
+                  <li th:unless="${i == pagination.currentPage}"> 
+                      <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${i})}" th:text="${i}">2</a> 
+                  </li>
+              </th:block>
+
+              <!-- 다음 목록 시작 번호로 이동 -->
+              <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${pagination.nextPage})}">&gt;</a></li>
+
+              
+              <!-- 끝 페이지로 이동 -->
+              <li>
+                  <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${pagination.maxPage})}">&gt;&gt;</a>
+              </li>
+        </ul>
 
       </div>
 
 
-
-
-
-
-
-      
-    <!-- 검색창 -->
-          <form action="#" method="get" id="boardSearch">
-              <select name="key" id="searchKey">
-                  <option value="t">제목</option>
-                  <option value="c">내용</option>
-                  <option value="tc">제목+내용</option>
-                  <option value="w">작성자</option>
-              </select>
-              <input type="text" name="query"  id="searchQuery" placeholder="검색어를 입력해주세요.">
-              <button>검색</button>
-          </form>
+      <!-- 검색 -->
+      <form action="#" method="get" id="boardSearch">
+        <select name="key" id="searchKey">
+          <option value="t">제목</option>
+          <option value="c">내용</option>
+          <option value="tc">제목+내용</option>
+          <option value="w">작성자</option>
+        </select>
+        <input type="text" name="query"  id="searchQuery" placeholder="검색어를 입력해주세요.">
+        <button>검색</button>
+      </form>
 
 
     </main>
 
-   
- 
     <th:block th:replace = "~{common/common}"></th:block>
 
   </body>
+  
 
   <script src="/js/board/boardList.js"></script>
-
- 
-
 
   <script th:inline ="javascript">
     const boardCode = /*[[${boardCode}]]*/ "게시판코드";

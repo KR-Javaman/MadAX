@@ -31,7 +31,7 @@ public class BoardServiceImpl implements BoardService{
 		
 		
 		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
-
+						//현재 페이지에서 1을 빼고 한 페이지 목록에 보여지는 게시글 수를 곱함(결과 만큼을 건너뛰고 조회)
 		int limit = pagination.getLimit(); 
 		
 		
@@ -44,6 +44,7 @@ public class BoardServiceImpl implements BoardService{
 		
 		Map<String , Object> map =  new HashMap<>();
 		map.put("boardList", boardList);
+		map.put("pagination", pagination);
 		
 		return map;
 	}

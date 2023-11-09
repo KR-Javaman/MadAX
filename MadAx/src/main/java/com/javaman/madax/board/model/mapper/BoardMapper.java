@@ -21,7 +21,7 @@ public interface BoardMapper {
 	
 	/**게시글 수 조회
 	 * @param boardCode
-	 * @return
+	 * @return listCount
 	 */
 	int ListCount(int boardCode);
 
