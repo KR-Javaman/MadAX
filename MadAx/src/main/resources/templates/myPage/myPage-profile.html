@@ -86,11 +86,10 @@
                              <form action="background" method="POST" name="myPageBackground" id="myPageBackground" enctype="multipart/form-data"></form>
                              <label for="backgroundInput" class="background-img">
 
-                                <img th:if="${session.loginMember.backgroundImg == null}" th:src="#{background.default.image}" id="backgroundImg">
-                                <img th:unless="${session.loginMember.backgroundImg == null}" th:src="${session.loginMember.backgroundImg}" id="backgroundImg" >
+                                <img th:if="${session.loginMember.backgroundImg == null}" th:src="#{background.default.image}" id="backgroundImg1">
+                                <img th:unless="${session.loginMember.backgroundImg == null}" th:src="${session.loginMember.backgroundImg}" id="backgroundImg1" >
                                 
                                 <input type="file" id="backgroundInput" name="backgroundImg" accept="image/*">
-                                 <h1>+</h1>
                              </label>
                         </div>
 

@@ -27,8 +27,10 @@ header {
   flex-direction: row;
   margin: auto;
 }
+
 a {
   color: white;
+  text-decoration: none;
 }
 
 .cls-section:nth-child(1),
@@ -101,7 +103,7 @@ nav > ul > li:hover > ul {
   display: block;
 }
 nav ul ul a:hover {
-  background-color: blue;
+  background-color: rgb(147, 251, 1);;
   color: white;
 }
 nav ul > li > ul {
@@ -143,6 +145,9 @@ nav ul > li > ul > li {
 
 }
 
+.cls-login > a {
+  padding: 10px;
+}
 #nav-li-ul li {
   list-style-type: none;
 
