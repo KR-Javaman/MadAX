@@ -59,41 +59,80 @@
 //   };
 //   sendChunk();
 // };
-const uploadFile = document.querySelector("#upload-file");
-const button = document.querySelector("button");
+
+// -----------------------------------------------------------------------------
+// const uploadFile = document.querySelector("#upload-file");
+// const button = document.querySelector("button");
+
+// const upload = () => {
+//   var fileCheck = uploadFile.value;
+//   if (!fileCheck) {
+//     alert("파일을 확인 해주세요");
+//     return false;
+//   }
+
+//   var checkSize = "N";
+//   if (uploadFile.files[0].size > 10485760) {
+//     if (confirm("파일의 용량이 너무 큽니다. 최적하 하시겠습니까?")) {
+//       checkSize = "Y";
+//     }
+//   }
+
+//   var formData = new FormData();
+//   formData.append("video", uploadFile.files[0]);
+//   formData.append("checkSize", checkSize);
+
+//   $.ajax({
+//     type: "POST",
+//     url: "upload",
+//     async: false,
+//     enctype: "multipart/form-data",
+//     contentType: false,
+//     processData: false,
+//     dataType: "JSON",
+//     data: formData,
+//     success: function (result) {
+//       console.log(result);
+//     },
+//     error: function (error) {
+//       console.log(error);
+//     },
+//   });
+// };
+
+const shortsVideo = document.querySelector("#upload-file");
+
+const backupList = new Array(shortsVideo.length);
 
 const upload = () => {
-  var fileCheck = uploadFile.value;
+  var fileCheck = shortsVideo.value;
   if (!fileCheck) {
     alert("파일을 확인 해주세요");
-    return false;
+    return;
   }
 
-  var checkSize = "N";
-  if (uploadFile.files[0].size > 10485760) {
-    if (confirm("파일의 용량이 너무 큽니다. 최적하 하시겠습니까?")) {
-      checkSize = "Y";
-    }
-  }
-
-  var formData = new FormData();
-  formData.append("video", uploadFile.files[0]);
-  formData.append("checkSize", checkSize);
-
-  $.ajax({
-    type: "POST",
-    url: "upload",
-    async: false,
-    enctype: "multipart/form-data",
-    contentType: false,
-    processData: false,
-    dataType: "JSON",
-    data: formData,
-    success: function (result) {
-      console.log(result);
-    },
-    error: function (error) {
-      console.log(error);
-    },
-  });
+  if (shortsVideo.files[0].size > 10485760)
+    alert("파일의 용량이 너무 큽니다. 최적하 하시겠습니까?");
 };
+
+const writeForm = document.querySelector("#writeForm");
+
+writeForm.addEventListener("submit", (e) => {
+  const title = document.querySelector("[name=title]");
+  const content = document.querySelector("[name=content]");
+
+  if (title.value.trim().length == 0) {
+    alert("제목을 입력해주세요");
+    e.preventDefault();
+    title.value = "";
+    title.focus();
+    return;
+  }
+  if (content.value.trim().length == 0) {
+    alert("내용을 입력해주세요");
+    e.preventDefault();
+    content.value = "";
+    content.focus();
+    return;
+  }
+});

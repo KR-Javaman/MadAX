@@ -1,4 +1,7 @@
-document.getElementById("nav-li-ul").style.display = "none";
+// document.getElementById("nav-li-ul").style.display = "none";
+// document.getElementsByClassName("header-menu").style.display = "none";
+// const profile = document.querySelector("#memberHeaderProfile");
+// const p = document.querySelector(".header-menu");
 
 $("nav li").hover(
   function () {
@@ -11,16 +14,32 @@ $("nav li").hover(
   }
 );
 
-
-$(".memberHeaderProfile").hover(
+$("div>a").hover(
   function () {
-    $("ul", this).stop().slideDown(200);
+    $("div", this).stop().slideDown(200);
+    $("div", this).show();
   },
   function () {
-    $("ul", this).stop().slideUp(200);
+    $("div", this).stop().slideUp(200);
+    $("div", this).hide();
   }
 );
 
+// function my() {
+//   document.querySelector(".header-menu").classList.toggle("show");
+// }
+// window.onmouseover = function (e) {
+//   if (!e.tartget.matches(".login-area")) {
+//     var dropdowns = document.getElementsByClassName("header-menu");
+//     var i;
+//     for (i = 0; i < dropdowns.length; i++) {
+//       var open = dropdowns[i];
+//       if (open.classList.contains("show")) {
+//         open.classList.remove("show");
+//       }
+//     }
+//   }
+// };
 // const li = document.querySelector("#nav-li");
 // const ul = document.querySelector("#nav-li-ul");
 

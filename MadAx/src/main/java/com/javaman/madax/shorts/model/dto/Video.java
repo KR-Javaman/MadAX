@@ -11,6 +11,7 @@ public class Video {
 	private int videoNo;
 	private String videoPath;
 	private String videoRename;
+	private String videoOriginalName;
 	private int videoOrder;
 	private int boardVideoNo;
 	
