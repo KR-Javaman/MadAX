@@ -1,5 +1,6 @@
 package com.javaman.madax.shorts.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javaman.madax.member.model.dto.Member;
 import com.javaman.madax.shorts.model.dto.Video;
@@ -51,12 +53,19 @@ public class ShortsController {
 	
 	@PostMapping("edit/insert")
 	public String writeInsert(@SessionAttribute("loginMember") Member loginMember, VideoBoard board,
-							@RequestParam("shortsVideo") MultipartFile video) {
+							@RequestParam("shortsVideo") MultipartFile video,
+							RedirectAttributes ra) throws IllegalStateException, IOException {
 		
 		board.setMemberNo(loginMember.getMemberNo());
 		
 		int result = service.writeInsert(board,video);
-		return null;
+		
+		if(result>0) {
+			ra.addFlashAttribute("message", "글 작성 완료");
+			return "redirect:/shorts/main";
+		}
+		ra.addFlashAttribute("message", "글 작성 실패");
+		return "redirect:/edit/insert";
 	}
 	
 	

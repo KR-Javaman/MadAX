@@ -1,5 +1,7 @@
 package com.javaman.madax.shorts.model.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.javaman.madax.board.model.exception.BoardWriteException;
 import com.javaman.madax.common.utility.Util;
 import com.javaman.madax.shorts.model.dto.Video;
 import com.javaman.madax.shorts.model.dto.VideoPagination;
@@ -29,6 +32,8 @@ public class ShortsServiceImpl implements ShortsService{
 	
 	@Value("${my.video.webpath}")
 	private String webPath;
+	@Value("${my.video.location}")
+	private String folderPath;
 	
 	@Override
 	public Map<String, Object> main(int cp,VideoBoard video) {
@@ -49,7 +54,7 @@ public class ShortsServiceImpl implements ShortsService{
 	}
 	
 	@Override
-	public int writeInsert(VideoBoard board, MultipartFile video) {
+	public int writeInsert(VideoBoard board, MultipartFile video) throws IllegalStateException, IOException {
 
 		int result = mapper.writeInsert(board);
 		
@@ -63,9 +68,22 @@ public class ShortsServiceImpl implements ShortsService{
 			
 			vd.setBoardVideoNo(boardVideoNo);
 			vd.setVideoPath(webPath);
-			vd.setVideoRename(Util.fileRename(vd.getVideoOriginalName() ));
+			vd.setVideoRename(Util.fileRename(vd.getVideoOriginalName()));
+			vd.setUploadFile(video);
+			uploadVideo.add(vd);
 		}
-		return 0;
+		
+		if(uploadVideo.isEmpty()) return boardVideoNo;
+		result = mapper.uploadVideoFile(uploadVideo);
+		
+		if(result == uploadVideo.size()) {
+			for(Video vd : uploadVideo) {
+				vd.getUploadFile().transferTo(new File(folderPath + vd.getVideoRename()));
+			}
+		}else {
+			throw new BoardWriteException("DB UPLOAD FAILED");
+		}
+		return boardVideoNo;
 	}
 	
 }

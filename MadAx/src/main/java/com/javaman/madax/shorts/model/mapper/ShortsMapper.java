@@ -17,6 +17,8 @@ public interface ShortsMapper {
 	
 	int writeInsert(VideoBoard board);
 
+	int uploadVideoFile(List<Video> uploadVideo);
+
 	
 
 	

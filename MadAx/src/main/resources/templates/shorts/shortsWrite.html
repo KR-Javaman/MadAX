@@ -13,11 +13,16 @@
     <th:block th:replace="~{common/common}"></th:block>
   </head>
   <body>
+    <th:block th:replace="~{common/header}"></th:block>
     <main>
-      <th:block th:replace="~{common/header}"></th:block>
       <div class="container">
         <h2>게시판 글쓰기</h2>
-        <form action="write.jsp" method="post" id="writeForm">
+        <form
+          action="insert"
+          method="post"
+          id="writeForm"
+          enctype="multipart/form-data"
+        >
           <div class="form-group">
             <label for="title">제목</label>
 
@@ -26,7 +31,7 @@
               class="form-control"
               id="title"
               placeholder="제목 입력(4-100)"
-              name="title"
+              name="videoTitle"
               maxlength="100"
               required="required"
               pattern=".{4,100}"
@@ -40,7 +45,7 @@
               class="form-control"
               rows="5"
               id="content"
-              name="content"
+              name="videoContent"
               placeholder="내용 작성"
             ></textarea>
           </div>

@@ -1,5 +1,6 @@
 package com.javaman.madax.shorts.model.service;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -11,7 +12,7 @@ public interface ShortsService {
 
 	Map<String, Object> main(int cp, VideoBoard video);
 
-	int writeInsert(VideoBoard board, MultipartFile video);
+	int writeInsert(VideoBoard board, MultipartFile video) throws IllegalStateException, IOException;
 
 
 

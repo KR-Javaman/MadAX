@@ -26,5 +26,17 @@
       VALUES( #{boardVideoNo} , #{videoTitle},  #{videoContent},
          DEFAULT, DEFAULT, DEFAULT, #{memberNo})
 	</insert>
+	
+	<insert id="uploadVideoFile">
+		INSERT INTO "VIDEO"
+		<foreach collection="list" item="vd" separator=" UNION ">
+			SELECT VIDEO_NO(),
+				   #{vd.videoPath},
+				   #{vd.videoRename},
+				   #{vd.videoOriginalName},
+				   #{vd.boardVideoNo}
+	   		FROM DUAL
+		</foreach>
+	</insert>
 
 </mapper>
