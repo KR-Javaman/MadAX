@@ -18,7 +18,7 @@
             <option value="look">조회순</option>
           </select>
         </form>
-        <div class="vdvd">
+        <!-- <div class="vdvd">
           <th:block
             th:each="videoBoard : ${videoList}"
             th:object="${videoBoard}"
@@ -38,73 +38,37 @@
               </div>
             </a>
           </th:block>
-        </div>
-        <div class="vdvd">
-          <a href="#" class="video-a">
-            <video src="#" width="220px" height="320px" controls></video>
-            <div id="video-kdb">
-              (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅁㄹㄴㅁ
-            </div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video src="#" width="220px" height="320px" controls></video>
-            <div id="video-kdb">
-              (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅂㅈㄷㅊㅌ
-            </div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video src="#" width="220px" height="320px" controls></video>
-            <div id="video-kdb">
-              (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅂㅈㄷㅊㅌ
-            </div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video src="#" width="220px" height="320px" controls></video>
-            <div id="video-kdb">(오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴ</div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video src="#" width="220px" height="320px" controls></video>
-            <div id="video-kdb">(오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴ</div>
-          </a>
-        </div>
-        <!-- <div class="vdvd">
-          <a href="index3.html" class="video-a">
-            <video
-              src="IMG_5988.MOV.mp4"
-              width="240px"
-              height="360px"
-              controls
-            ></video>
-            <div id="video-kdb">(오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴ</div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video
-              src="IMG_5988.MOV.mp4"
-              width="240px"
-              height="360px"
-              controls
-            ></video>
-            <div id="video-kdb">(오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴ</div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video
-              src="IMG_5988.MOV.mp4"
-              width="240px"
-              height="360px"
-              controls
-            ></video>
-            <div id="video-kdb">(오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴ</div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video
-              src="IMG_5988.MOV.mp4"
-              width="240px"
-              height="360px"
-              controls
-            ></video>
-            <div id="video-kdb">(오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴ</div>
-          </a>
         </div> -->
+
+        <!-- ----------------------------------- -->
+        <th:block th:each="i : ${#numbers.sequence(0, #lists.size(videoList) - 1)}">
+          <th:block th:if="${i % 5 == 0}">
+            <div class="vdvd">
+          </th:block>
+
+            <a href="#" class="video-a">
+              <video
+                th:src="|${videoList[i].videoPath}${videoList[i].videoRename}|"
+                muted
+                onmouseover="this.play()"
+                onmouseout="this.pause()"
+                width="300px"
+                height="320px"
+                controls
+              ></video>
+              <div id="video-kdb" th:text="${videoList[i].videoTitle}">
+                (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅁㄹㄴㅁ
+              </div>
+            </a>
+
+
+          <th:block th:if="${i % 5 == 4 or i == #lists.size(videoList)-1}">
+            </div>
+          </th:block>
+
+        </th:block>
+
+        <!-- ----------------------------------- -->
         <div class="write-btn-area">
           <button id="writeBtn">글쓰기</button>
         </div>
@@ -167,6 +131,5 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <th:block th:replace="~{common/common}"></th:block>
     <script src="/js/video/shortsMain.js"></script>
-    <script src="/js/video/video.js"></script>
   </body>
 </html>

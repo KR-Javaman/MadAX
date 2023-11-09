@@ -12,7 +12,10 @@ import com.javaman.madax.shorts.model.dto.VideoBoard;
 public interface ShortsMapper {
 
 	int getListCount(VideoBoard video);
+	
 	List<VideoBoard> selectList(RowBounds rowBounds);
+	
+	int writeInsert(VideoBoard board);
 
 	
 

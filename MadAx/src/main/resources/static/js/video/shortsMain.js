@@ -1,7 +1,7 @@
-// const insertBtn = document.querySelector("#writeBtn");
+const insertBtn = document.querySelector("#writeBtn");
 
-// if (insertBtn != null) {
-//   insertBtn.addEventListener("click", () => {
-//     location.href = `/shorts/edit/insert`;
-//   });
-// }
+if (insertBtn != null) {
+  insertBtn.addEventListener("click", () => {
+    location.href = `/shorts/edit/insert`;
+  });
+}

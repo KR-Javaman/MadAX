@@ -18,4 +18,13 @@
 		ORDER BY BOARD_VIDEO_NO DESC
 	</select>
 
+	<insert id="writeInsert" useGeneratedKeys="true">
+		<selectKey order="BEFORE" resultType="_int" keyProperty="boardVideoNo" >
+        	SELECT SEQ_BOARD_VIDEO_NO.NEXTVAL FROM DUAL
+      	</selectKey>
+      INSERT INTO "VIDEO_BOARD"
+      VALUES( #{boardVideoNo} , #{videoTitle},  #{videoContent},
+         DEFAULT, DEFAULT, DEFAULT, #{memberNo})
+	</insert>
+
 </mapper>

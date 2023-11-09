@@ -1,13 +1,18 @@
 package com.javaman.madax.shorts.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.javaman.madax.common.utility.Util;
 import com.javaman.madax.shorts.model.dto.Video;
 import com.javaman.madax.shorts.model.dto.VideoPagination;
 import com.javaman.madax.shorts.model.dto.VideoBoard;
@@ -18,8 +23,12 @@ import lombok.RequiredArgsConstructor;
 @Service
 @Transactional(rollbackFor = Exception.class)
 @RequiredArgsConstructor
+@PropertySource("classpath:/config.properties")
 public class ShortsServiceImpl implements ShortsService{
 	private final ShortsMapper mapper;
+	
+	@Value("${my.video.webpath}")
+	private String webPath;
 	
 	@Override
 	public Map<String, Object> main(int cp,VideoBoard video) {
@@ -39,5 +48,24 @@ public class ShortsServiceImpl implements ShortsService{
 		return map;
 	}
 	
+	@Override
+	public int writeInsert(VideoBoard board, MultipartFile video) {
+
+		int result = mapper.writeInsert(board);
+		
+		if(result == 0) return 0;
+		int boardVideoNo = board.getBoardVideoNo();
+		
+		List<Video> uploadVideo = new ArrayList<>();
+		
+		if(video.getSize()>0) {
+			Video vd = new Video();
+			
+			vd.setBoardVideoNo(boardVideoNo);
+			vd.setVideoPath(webPath);
+			vd.setVideoRename(Util.fileRename(vd.getVideoOriginalName() ));
+		}
+		return 0;
+	}
 	
 }

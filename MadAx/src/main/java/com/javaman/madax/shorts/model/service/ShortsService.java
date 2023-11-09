@@ -2,12 +2,16 @@ package com.javaman.madax.shorts.model.service;
 
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.javaman.madax.shorts.model.dto.Video;
 import com.javaman.madax.shorts.model.dto.VideoBoard;
 
 public interface ShortsService {
 
 	Map<String, Object> main(int cp, VideoBoard video);
+
+	int writeInsert(VideoBoard board, MultipartFile video);
 
 
 
