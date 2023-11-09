@@ -10,7 +10,7 @@
   <body>
     <main>
       <th:block th:replace="~{common/header}"></th:block>
-      <section>
+      <section th:object="${videoBoard}">
         <form action="">
           <select name="videoListType" id="video-list-type">
             <option value="latest">최신순</option>
@@ -20,8 +20,12 @@
         </form>
         <div class="vdvd">
           <a href="index3.html" class="video-a">
+            <th:block
+              th:each="i : ${#numbers.sequence(start, #lists.size(videoBoard.videoList)-1,1)}"
+              th:with="path=|${videoBoard.videoList[i].videoPath}${videoBoard.videoList[i].videoRename}"
+            ></th:block>
             <video
-              src="http://localhost/vod/IMG_5988.MOV.mp4"
+              th:src="${path}"
               muted
               onmouseover="this.play()"
               onmouseout="this.pause()"
@@ -30,7 +34,9 @@
               controls
             ></video>
             <div id="video-kdb">
-              (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅁㄹㄴㅁ
+              <th:block th:text="*{videoTitle}">
+                (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅁㄹㄴㅁ
+              </th:block>
             </div>
           </a>
           <a href="#" class="video-a">
@@ -179,15 +185,16 @@
           enctype="multipart/form-data"
           id="formTest"
         > -->
-        <input type="file" name="shortsVideo" id="upload-file" />
+        <input type="file" name="shortsVideo" id="upload-file" accept=".mp4" />
 
-        <button onclick="Upload()" type="button">업로드</button>
+        <button onclick="upload()" type="button">업로드</button>
         <!-- <input type="submit" value="" /> -->
         <!-- <button type="submit">전송</button> -->
         <!-- </form> -->
         <div class="result"></div>
       </section>
     </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <th:block th:replace="~{common/common}"></th:block>
     <script src="/js/video/video.js"></script>
   </body>

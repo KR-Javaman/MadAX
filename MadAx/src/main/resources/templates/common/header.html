@@ -24,14 +24,25 @@
             </li>
             <li><a href="#" class="nav-a" id="nav-2">지식in</a></li>
             <li><a href="/shorts/main" class="nav-a" id="nav-3">쇼츠</a></li>
+
+           <li th:if="${session.loginMember != null && session.loginMember.authority == 2}"> 
+            <a href="/admin/main">관리자 페이지</a>
+          </li>
+          
           </ul>
         </nav>
       </div>
     </section>
     <section class="cls-section">
       <div class="cls-login">
+
+        
+      </th:block>
+
         <th:block th:if="${session.loginMember == null}"> <a href="/member/login">로그인</a> <a href="/member/signup">회원가입</a> </th:block>
        
+
+
         <th:block th:unless="${session.loginMember == null}">
           <a href="#" class="login-area">
               <!-- 프로필 이미지가 없을 경우 -->
@@ -45,9 +56,8 @@
               <a href="/myPage/myPage-home">마이페이지</a>
               <a href="/member/logout" id="logoutBtn">로그아웃</a>
 
-            <div th:if="${ session.loginMember != null && session.loginMember.authority == 2}">
-              <a href="/admin/main">관리자 페이지</a>
             </div>
+
           </div>
 
         </th:block>
