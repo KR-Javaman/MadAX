@@ -114,9 +114,9 @@
     </footer>
 
     
-  
-
     <th:block th:replace = "~{common/common}"></th:block>
+
+
   </body>
 
 
@@ -127,13 +127,8 @@
  
 
 
-<script th:inline ="javascript">
-  const boardCode = /*[[${boardCode}]]*/"게시판코드";
-
-  const message = /*[[${message}]]*/ "전달받은 message";
-  
-  //             message가 없다면 null
-  if(message != null) alert(message);
-</script>
+  <script th:inline ="javascript">
+    const boardCode = /*[[${boardCode}]]*/ "게시판코드";
+  </script>
 
 </html>
