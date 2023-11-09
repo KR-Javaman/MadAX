@@ -1,14 +1,168 @@
+.myPage-secession-main {
+  padding-left : 70px;
+  width: 85%;
+}
+
+.logo-area {
+  text-align: center;
+  margin-bottom: 70px;
+  margin-top: 10px;
+}
+
+.myPage-title {
+  display :flex;
+  padding-top : 10px;
+  font-size: 5rem;
+  justify-content: center;
+}
+
+.myPage-subject {
+  display: flex;
+  justify-content: center;
+  padding-top : 10px;
+  padding-bottom: 10px;
+  font-size: 25px;
+  font-style: italic;
+}
+
+.myPage-info {
+  margin-bottom : 20px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.myPage-info > label{
+  display: flex;
+  font-size: 16px;
+  margin-bottom: 20px;
+  margin-top : 5px;
+  justify-items: center;
+  font-style: italic;
+
+}
+
 /* **********회원 탈퇴 약관********** */
 .secession-terms{
-  width: 600px;
-  height: 600px;
-  border: 1px solid white;
+  width: 100%;
+  height: 1100px;
+  border: 2px solid white;
   background-color: white;
   color: black;
+  padding : 18px;
   
   overflow: auto;
   /* 내용이 요소를 벗어나는 경우 방향에 맞춰서 자동으로 스크롤 추가 */
 
-  font-family: sans-serif; /* 돋움체 */
-  font-size: 14px;
+ 
+  font-size: 15px;
 }
+
+.secession-agree {
+  display: flex;
+  margin-top: 5px;
+  justify-content: center;
+ 
+}
+
+#agree {
+  width: 20px;
+  height : 20px;
+  align-items: center;
+  margin-top: 6px;
+  background-color: rgb(147, 251, 1);
+  
+}
+
+#agree:hover {
+ 
+  background-color: rgb(147, 251, 1);
+  
+  
+}
+
+.secession-agree > input:hover {
+  background-color : rgb(147, 251, 1)
+}
+.secession-agree > label {
+  margin-left: 10px;
+}
+
+.secession-agree > label:hover {
+  transition-duration: 0.2s;
+  color: rgb(147, 251, 1);
+}
+
+.myPage-submit {
+  display : flex;
+  justify-content: center;
+}
+
+#secessionBtn {
+  
+  margin-top: 30px;
+  color: black;
+  background-color: white;
+  border-radius: 1.5rem;
+  width: 20rem;
+  height : 5rem;
+  font-size: 1.7rem;
+
+ 
+}
+
+.myPage-submit >button:hover {
+  background-color: rgb(147, 251, 1);
+}
+
+/*----------------- secession2 페이지----------------------- */
+
+#secessionFrm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.myPage-row {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.myPage-row > label {
+  padding-top: 5px;
+}
+
+.myPage-row > input {
+  margin-left: 15px;
+  height: 50px;
+  width: 400px;
+  border-radius: 10px;
+  padding-left: 15px;
+  border: 3px solid black;
+  background-color: #282828;
+}
+
+.myPage-row > input:hover {
+  border: 4px solid  rgb(217, 255, 163);
+}
+
+.myPage-row > input:focus-within {
+  border: 4px solid  rgb(217, 255, 163);
+}
+
+/* #memberPw:hover {
+  border: 4px solid  rgb(217, 255, 163);
+}
+
+#memberPw:focus-within {
+  border: 4px solid  rgb(217, 255, 163);
+}
+
+#memberPwConfirm:hover {
+  border: 4px solid  rgb(217, 255, 163);
+}
+
+#memberPwConfirm:focus-within {
+  border: 4px solid  rgb(217, 255, 163);
+} */
