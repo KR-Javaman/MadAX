@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.javaman.madax.shorts.model.dto.Video;
+import com.javaman.madax.shorts.model.dto.VideoBoard;
 import com.javaman.madax.shorts.model.service.ShortsService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,12 +24,18 @@ public class ShortsController {
 	private final ShortsService service;
 	
 	@GetMapping("main")
-	public String main(@PathVariable("boardCode") int boardCode,Model model,
+	public String main(VideoBoard video ,Model model,
 				@RequestParam(value="cp", required = false, defaultValue = "1") int cp) {
-		Map<String, Object> map = service.main(boardCode,cp);
+
+		
+		Map<String, Object> map = service.main(cp,video);
+		model.addAttribute("map", map);
 		
 		return "shorts/shorts-main";
+
 	}
+	
+	
 	
 	
 }
