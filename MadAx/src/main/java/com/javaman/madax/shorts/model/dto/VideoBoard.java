@@ -11,7 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Videoboard {
+public class VideoBoard {
 	private int boardVideoNo;
 	private String videoTitle;
 	private String videoContent;
@@ -20,6 +20,8 @@ public class Videoboard {
 	private String videoDelFl;
 	private int memberNo;
 	
+	private int likeCount;
+	private String videoPath;
+	private String videoRename;
 	
-	private List<Video> videoList;
 }

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Madax</title>
     <link rel="stylesheet" href="/css/shorts/shorts-main.css" />
     <th:block th:replace="~{common/common}"></th:block>
   </head>
   <body>
-    <main>
+    <main th:with="videoList=${map.videoList}, pagination=${map.pagination}">
       <th:block th:replace="~{common/header}"></th:block>
-      <section th:object="${videoBoard}">
+      <section>
         <form action="">
           <select name="videoListType" id="video-list-type">
             <option value="latest">최신순</option>
@@ -18,129 +18,57 @@
             <option value="look">조회순</option>
           </select>
         </form>
-        <div class="vdvd">
-          <a href="index3.html" class="video-a">
-            <th:block
-              th:each="i : ${#numbers.sequence(start, #lists.size(videoBoard.videoList)-1,1)}"
-              th:with="path=|${videoBoard.videoList[i].videoPath}${videoBoard.videoList[i].videoRename}"
-            ></th:block>
-            <video
-              th:src="${path}"
-              muted
-              onmouseover="this.play()"
-              onmouseout="this.pause()"
-              width="220px"
-              height="320px"
-              controls
-            ></video>
-            <div id="video-kdb">
-              <th:block th:text="*{videoTitle}">
-                (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅁㄹㄴㅁ
-              </th:block>
-            </div>
-          </a>
-          <a href="#" class="video-a">
-            <video
-              src="http://localhost/vod/hqqxzd.mp4"
-              width="220px"
-              height="320px"
-              controls
-            ></video>
-            <div id="video-kdb">
-              (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅂㅈㄷㅊㅌ
-            </div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video
-              src="http://localhost/vod/deer 2023-11-04 05-09-47-291.mp4"
-              width="220px"
-              height="320px"
-              controls
-            ></video>
-            <div id="video-kdb">
-              (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅂㅈㄷㅊㅌ
-            </div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video
-              src="http://localhost/vod/e3d5fab4-9ea5-4405-97bc-506115f74864.mp4"
-              width="220px"
-              height="320px"
-              controls
-            ></video>
-            <div id="video-kdb">(오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴ</div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video src="#" width="220px" height="320px" controls></video>
-            <div id="video-kdb">(오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴ</div>
-          </a>
-        </div>
-        <div class="vdvd">
-          <a href="#" class="video-a">
-            <video src="#" width="220px" height="320px" controls></video>
-            <div id="video-kdb">
-              (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅁㄹㄴㅁ
-            </div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video src="#" width="220px" height="320px" controls></video>
-            <div id="video-kdb">
-              (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅂㅈㄷㅊㅌ
-            </div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video src="#" width="220px" height="320px" controls></video>
-            <div id="video-kdb">
-              (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅂㅈㄷㅊㅌ
-            </div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video src="#" width="220px" height="320px" controls></video>
-            <div id="video-kdb">(오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴ</div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video src="#" width="220px" height="320px" controls></video>
-            <div id="video-kdb">(오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴ</div>
-          </a>
-        </div>
         <!-- <div class="vdvd">
-          <a href="index3.html" class="video-a">
-            <video
-              src="IMG_5988.MOV.mp4"
-              width="240px"
-              height="360px"
-              controls
-            ></video>
-            <div id="video-kdb">(오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴ</div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video
-              src="IMG_5988.MOV.mp4"
-              width="240px"
-              height="360px"
-              controls
-            ></video>
-            <div id="video-kdb">(오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴ</div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video
-              src="IMG_5988.MOV.mp4"
-              width="240px"
-              height="360px"
-              controls
-            ></video>
-            <div id="video-kdb">(오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴ</div>
-          </a>
-          <a href="index3.html" class="video-a">
-            <video
-              src="IMG_5988.MOV.mp4"
-              width="240px"
-              height="360px"
-              controls
-            ></video>
-            <div id="video-kdb">(오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴ</div>
-          </a>
+          <th:block
+            th:each="videoBoard : ${videoList}"
+            th:object="${videoBoard}"
+          >
+            <a href="#" class="video-a">
+              <video
+                th:src="|${videoBoard.videoPath}${videoBoard.videoRename}|"
+                muted
+                onmouseover="this.play()"
+                onmouseout="this.pause()"
+                width="300px"
+                height="320px"
+                controls
+              ></video>
+              <div id="video-kdb" th:text="*{videoTitle}">
+                (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅁㄹㄴㅁ
+              </div>
+            </a>
+          </th:block>
         </div> -->
+
+        <!-- ----------------------------------- -->
+        <th:block th:each="i : ${#numbers.sequence(0, #lists.size(videoList) - 1)}">
+          <th:block th:if="${i % 5 == 0}">
+            <div class="vdvd">
+          </th:block>
+
+            <a href="#" class="video-a">
+              <video
+                th:src="|${videoList[i].videoPath}${videoList[i].videoRename}|"
+                muted
+                onmouseover="this.play()"
+                onmouseout="this.pause()"
+                width="300px"
+                height="320px"
+                controls
+              ></video>
+              <div id="video-kdb" th:text="${videoList[i].videoTitle}">
+                (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅁㄹㄴㅁ
+              </div>
+            </a>
+
+
+          <th:block th:if="${i % 5 == 4 or i == #lists.size(videoList)-1}">
+            </div>
+          </th:block>
+
+        </th:block>
+
+        <!-- ----------------------------------- -->
         <div class="write-btn-area">
           <button id="writeBtn">글쓰기</button>
         </div>
@@ -148,7 +76,13 @@
           <ul>
             <li><a href="#">&lt;&lt;</a></li>
             <li><a href="#">&lt;</a></li>
-            <li><a href="#" class="current-pagination">1</a></li>
+            <th:block
+              th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}"
+            >
+              <li th:if="${i == pagination.currentPage}">
+                <a class="current-pagination" th:text="${i}">1</a>
+              </li>
+            </th:block>
             <li><a href="#">2</a></li>
             <li><a href="#">3</a></li>
             <li><a href="#">4</a></li>
@@ -196,6 +130,6 @@
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <th:block th:replace="~{common/common}"></th:block>
-    <script src="/js/video/video.js"></script>
+    <script src="/js/video/shortsMain.js"></script>
   </body>
 </html>

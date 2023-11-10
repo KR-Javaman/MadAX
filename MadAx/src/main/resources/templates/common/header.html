@@ -11,18 +11,28 @@
       <div class="nav">
         <nav>
           <ul>
-            <li id="nav-li">
+            <li class="nav-li">
               <a href="/board/1" class="nav-a" id="nav-1">커뮤니티</a>
-              <ul id="nav-li-ul">
+              <ul class="nav-li-ul">
                 <li>
-                  <a href="#" id="long">긴 글</a>
+                  <a href="#" id="long">일반</a>
                 </li>
                 <li>
-                  <a href="#" id="short">짧은 글</a>
+                  <a href="#" id="short">구인</a>
                 </li>
               </ul>
             </li>
-            <li><a href="#" class="nav-a" id="nav-2">지식in</a></li>
+            <li class="nav-li">
+              <a href="#" class="nav-a" id="nav-2">지식in</a>
+              <ul class="nav-li-ul">
+                <li>
+                  <a href="#" id="long">일반</a>
+                </li>
+                <li>
+                  <a href="#" id="short">구인</a>
+                </li>
+              </ul>
+            </li>
             <li><a href="/shorts/main" class="nav-a" id="nav-3">쇼츠</a></li>
             
            <li th:if="${session.loginMember != null && session.loginMember.authority == 2}"> 
@@ -49,9 +59,10 @@
               <img th:if="${session.loginMember.profileImg == null}" th:src="#{user.default.image}" id="memberHeaderProfile">
                                 
               <!-- 프로필 이미지가 있을 경우 -->
-              <img th:unless="${session.loginMember.profileImg == null}" th:src="${session.loginMember.profileImg}" id="memberHeaderProfile" >
+              <img th:unless="${session.loginMember.profileImg == null}" th:src="${session.loginMember.profileImg}" id="memberHeaderProfile">
           </a>    
             <!-- <input type="checkbox" id="memberHeaderProfile"> -->
+<<<<<<< HEAD
             <div class="header-menu">
               <a href="/myPage/myPage-home">마이페이지</a>
               <a href="/member/logout" id="logoutBtn">로그아웃</a>
@@ -60,6 +71,15 @@
 
           </div>
 
+=======
+            <div class="header-menu">              
+                <a href="/myPage/myPage-home">마이페이지</a>                          
+                <a href="/member/logout" id="logoutBtn">로그아웃</a>            
+                <div th:if="${ session.loginMember != null && session.loginMember.authority == 2}">
+                  <a href="/admin/main">관리자 페이지</a>
+                </div>         
+            </div>
+>>>>>>> origin/main
         </th:block>
       </div>
     </section>

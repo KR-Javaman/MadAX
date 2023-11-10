@@ -30,7 +30,7 @@ public interface MyPageMapper {
 	
 	/** 회원 탈퇴
 	 * @param memberNo
-	 * @return
+	 * @return result
 	 */
 	int secession(int memberNo);
 

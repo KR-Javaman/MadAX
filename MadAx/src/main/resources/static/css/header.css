@@ -3,7 +3,8 @@
 }
 @font-face {
   font-family: "SUITE-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2") format("woff2");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2")
+    format("woff2");
   font-weight: 700;
   font-style: normal;
 }
@@ -27,8 +28,10 @@ header {
   flex-direction: row;
   margin: auto;
 }
+
 a {
   color: white;
+  text-decoration: none;
 }
 
 .cls-section:nth-child(1),
@@ -78,7 +81,6 @@ nav ul a {
 }
 nav ul ul li {
   height: 5rem;
-  
 }
 nav ul ul a {
   display: flex;
@@ -89,7 +91,6 @@ nav ul ul a {
   height: 5rem;
   color: black;
   margin: auto 0;
-  
 }
 nav > ul > li:hover {
   background-color: rgb(147, 251, 1);
@@ -101,8 +102,8 @@ nav > ul > li:hover > ul {
   display: block;
 }
 nav ul ul a:hover {
-  background-color: blue;
-  color: white;
+  background-color: rgb(147, 251, 1);
+  color: black;
 }
 nav ul > li > ul {
   background-color: white;
@@ -137,19 +138,18 @@ nav ul > li > ul > li {
   display: flex;
 }
 .cls-login {
-
   margin-right: 10px;
   text-decoration: none;
-
 }
 
-#nav-li-ul li {
+.cls-login > a {
+  padding: 10px;
+}
+.nav-li-ul li {
   list-style-type: none;
-
 }
 
-
-#nav-li-ul li > a {
+.nav-li-ul li > a {
   text-decoration: none;
 }
 
@@ -158,9 +158,7 @@ nav ul > li > ul > li {
   height: 5rem;
   border-radius: 50%;
   cursor: pointer;
-  
 }
-
 
 .header-menu {
   position: absolute;
@@ -169,21 +167,20 @@ nav ul > li > ul > li {
   border: 1px solid black;
   background-color: white;
   border-radius: 10px;
-  margin-right: 10px
- 
+  margin-right: 10px;
+  /* display: none; */
 }
 
-.header-menu>a {
+.header-menu > a {
   display: flex;
   height: 50%;
   justify-content: center;
   align-items: center;
   text-decoration: none;
   color: black;
- 
 }
 
-.header-menu>a:hover {
+.header-menu > a:hover {
   background-color: rgb(147, 251, 1);
   border-radius: 10px;
   color: black;

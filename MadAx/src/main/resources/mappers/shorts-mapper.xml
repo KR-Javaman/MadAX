@@ -1,11 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <!-- 연결할 인터페이스의 패키지명.인터페이스명으로 작성 -->
-<mapper namespace="com.javaman.madax.board.model.mapper.BoardMapper">
+<mapper namespace="com.javaman.madax.shorts.model.mapper.ShortsMapper">
   
-  
- 	
- 	
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*) FROM "VIDEO_BOARD"
+		WHERE VIDEO_DEL_FL = 'N'
+	</select>
+	
+	<select id="selectList" resultType="VideoBoard">
+		SELECT BOARD_VIDEO_NO, VIDEO_TITLE, VIDEO_PATH, VIDEO_RENAME,
+			(SELECT COUNT(*) FROM "VIDEO_LIKE" L
+			WHERE L.MEMBER_NO  = B.MEMBER_NO  ) LIKE_COUNT
+		FROM "VIDEO_BOARD" B
+		JOIN "VIDEO" USING(BOARD_VIDEO_NO)
+		WHERE VIDEO_DEL_FL ='N'
+		ORDER BY BOARD_VIDEO_NO DESC
+	</select>
 
+	<insert id="writeInsert" useGeneratedKeys="true">
+		<selectKey order="BEFORE" resultType="_int" keyProperty="boardVideoNo" >
+        	SELECT SEQ_BOARD_VIDEO_NO.NEXTVAL FROM DUAL
+      	</selectKey>
+      INSERT INTO "VIDEO_BOARD"
+      VALUES( #{boardVideoNo} , #{videoTitle},  #{videoContent},
+         DEFAULT, DEFAULT, DEFAULT, #{memberNo})
+	</insert>
+	
+	<insert id="uploadVideoFile">
+		INSERT INTO "VIDEO"
+		<foreach collection="list" item="vd" separator=" UNION ">
+			SELECT VIDEO_NO(),
+				   #{vd.videoPath},
+				   #{vd.videoRename},
+				   #{vd.videoOriginalName},
+				   #{vd.boardVideoNo}
+	   		FROM DUAL
+		</foreach>
+	</insert>
 
 </mapper>
