@@ -8,7 +8,9 @@ public interface BoardService {
 
 	Map<String, Object> selectBoard(int boardCode, int cp);
 
-	Board boardDetail(Map<String, Object> map);
+
+
+	
 	
 
 }

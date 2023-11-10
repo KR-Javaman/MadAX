@@ -48,13 +48,8 @@ public class BoardServiceImpl implements BoardService{
 		
 		return map;
 	}
+
 	
-	//게시글 상세조회
-	@Override
-	public Board boardDetail(Map<String, Object> map) {
-		
-		return mapper.boardDetail(map);
-	}
 	
 
 }

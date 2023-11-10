@@ -7,7 +7,7 @@
   
   	<resultMap id="board_rm" type="Board">
 
-		<id property="boardNo" column="BOARD_NO" />
+		<id property="boardNo" column="BOARD_NO"/>
 
 		<!-- collection 태그
 			select로 조회된 결과를 컬렉션(List)에 담아
@@ -55,23 +55,8 @@
 	</select>
 	
 	
-	
-	<!--게시글 상세조회-->
-	<select id="boardDetail" resultMap="board_rm">
-		SELECT BOARD_NO, BOARD_TITLE,BOARD_CONTENT,BOARD_THUMNAIL,BOARD_COUNT,BOARD_CODE,CATEGORY_CODE,CATEGORY2_CODE,
-				TO_CHAR(WRITE_DATE,'YYYY"년" MM"월" DD"일" HH24:MI:SS')WRITE_DATE
-				MEMBER_NICKNAME, PROFILE_IMG, MEMBER_NO
-		FORM "BOARD"
-		JOIN "MEMBER" USING("MEMBER_NO")
-		WHERE BOARD_DEL_FL = 'N'
-		AND BOARD_CODE = #{boardCode}
-		AND CATEGORY_CODE  = #{categoryCode}
-		AND BOARD_NO  = #{boardNo}
-		
-				
-				
-		
-	</select>
+
+
  	
 
 
