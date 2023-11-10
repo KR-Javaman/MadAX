@@ -9,4 +9,6 @@ public interface JisikService {
 
 	List<Board> JisikList();
 
+	Map<String, Object> JisikList(int boardCode);
+
 }

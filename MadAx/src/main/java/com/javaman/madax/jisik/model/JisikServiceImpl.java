@@ -1,6 +1,7 @@
 package com.javaman.madax.jisik.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,11 @@ public class JisikServiceImpl implements JisikService {
 	@Autowired
 	private JisikMapper mapper;
 	
+	
 	@Override
-	public List<Board> JisikList() {
+	public Map<String, Object> JisikList(int boardCode) {
 		// TODO Auto-generated method stub
-		return mapper.JisikList();
+		return mapper.JisikList(boardCode);
 	}
 	
 }

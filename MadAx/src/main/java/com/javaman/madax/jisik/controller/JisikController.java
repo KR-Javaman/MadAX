@@ -25,13 +25,16 @@ public class JisikController {
 	private JisikService service;
 	
 	@GetMapping("jisikList")
-	public String JisikList(Board board) {
+	public String JisikList(int boardCode, Model model) {
 		
 		
 		// 게시글 중 BOARD_CODE가 '2'인 게시글만 모두 불러온 후
 		// JisikList 페이지에 결과가 나오도록 하겠다.
 			
-		List<Board> JisikList = service.JisikList();
+		Map<String, Object> JisikList = service.JisikList(boardCode);
+		
+		
+		
 		
 //		if(boardCode != 2) {
 //			
