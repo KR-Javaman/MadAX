@@ -24,7 +24,7 @@
             </li>
             <li><a href="#" class="nav-a" id="nav-2">지식in</a></li>
             <li><a href="/shorts/main" class="nav-a" id="nav-3">쇼츠</a></li>
-
+            
            <li th:if="${session.loginMember != null && session.loginMember.authority == 2}"> 
             <a href="/admin/main">관리자 페이지</a>
           </li>
