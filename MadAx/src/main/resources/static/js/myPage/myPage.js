@@ -1,6 +1,5 @@
 const checkObj = {
 
-    "currentPw" : false,
     "newPw" : false,
     "newPwConfirm" : false
 };
@@ -13,12 +12,11 @@ const checkObj = {
 
 const newPw = document.getElementById("newPw");
 const newPwConfirm = document.getElementById("newPwConfirm");
-const currentPw = document.getElementById("currentPw");
 
 
 // 마이페이지 (비밀번호 수정)
 // 새 비밀번호 입력 시 유효성 검사
-newPw.addEventListener("input", () => {
+newPw.addEventListener('input', () => {
 
     if(newPw.value.trim().length == 0){
         newPw.value = ""; // 띄어쓰지 못넣게 하기
@@ -37,17 +35,18 @@ newPw.addEventListener("input", () => {
             // 비밀번호 == 비밀번호 확인  (같을 경우)
             if(newPw.value == newPwConfirm.value){
                 alert("비밀번호가 일치합니다");
-                checkObj.memberPwConfirm = true;
+                checkObj.newPwConfirm = true;
                 
             } else{ // 다를 경우
-                checkObj.memberPwConfirm = false;
+                checkObj.newPwConfirm = false;
             }
          }
             
     else{ // 유효하지 않은 경우
     
-        checkObj.memberPw = false; 
-    }
+        checkObj.newPw = false; 
+    } 
+    
 });
 
 // 마이페이지 (비밀번호 수정)
@@ -81,18 +80,17 @@ newPwConfirm.addEventListener('input', ()=>{
 document.getElementById("changePwFrm").addEventListener("submit", e => {
 
     if(currentPw.value.trim().length == 0){
-        currentPw.value = ""; // 띄어쓰지 못넣게 하기
+        currentPw.value = ""; // 띄어쓰기 못넣게 하기
         alert("현재 비밀번호를 입력해주세요.");
         e.preventDefault();
         currentPw.focus();
-        checkObj.currentPw = false; // 빈칸 == 유효 X
         
         return;
     }
 
 
     if(newPw.value.trim().length == 0){
-        newPwConfirm.value = ""; // 띄어쓰지 못넣게 하기
+        newPw.value = ""; // 띄어쓰지 못넣게 하기
         alert("새 비밀번호를 입력해주세요.");
         e.preventDefault();
         newPw.focus();
@@ -101,7 +99,7 @@ document.getElementById("changePwFrm").addEventListener("submit", e => {
         return;
     }
 
-    if(newConfirmPw.value.trim().length == 0){
+    if(newPwConfirm.value.trim().length == 0){
         newPwConfirm.value = ""; // 띄어쓰지 못넣게 하기
         alert("비밀번호 확인을 입력해주세요.");
         e.preventDefault();
@@ -129,6 +127,6 @@ document.getElementById("changePwFrm").addEventListener("submit", e => {
         }
     }
 
-    alert("비밀번호가 변경되었습니다.");
+
 });
 

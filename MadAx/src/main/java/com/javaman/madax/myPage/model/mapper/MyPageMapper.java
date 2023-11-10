@@ -32,7 +32,7 @@ public interface MyPageMapper {
 	 * @param memberNo
 	 * @return result
 	 */
-	int secession(int memberNo);
+	int secession2(int memberNo);
 
 
 }

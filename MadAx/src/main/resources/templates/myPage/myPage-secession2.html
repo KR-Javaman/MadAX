@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Page</title>
 
-    <th:block th:replace="~{common/common}"></th:block>
 
     <link rel="stylesheet" href="/css/myPage/myPage-secession.css">
     <link rel="stylesheet" href="/css/header.css">
@@ -39,16 +38,11 @@
                 <span class="myPage-subject">회원 탈퇴를 위해서 비밀번호를 입력해주세요.</span>
 
                 <br>
-                <form action="secession2" method="POST" name="myPageFrm" id="secessionFrm">
+                <form action="secession" method="POST" name="myPageFrm" id="secessionFrm">
 
                     <div class="myPage-row">
                         <label>비밀번호</label>
                         <input type="password" name="memberPw" id="memberPw" maxlength="30">              
-                    </div>
-
-                    <div class="myPage-row">
-                        <label>비밀번호 확인</label>
-                        <input type="password" name="memberPwConfirm" id="memberPwConfirm" maxlength="30">              
                     </div>
 
                     <div class="myPage-row"> <button id="secessionBtn">탈퇴하기</button> </div>
@@ -61,9 +55,7 @@
 
     </main>
 
-	<!-- <th:block th:replace="~{common/footer}"></th:block> -->
     <th:block th:replace="~{common/common}"></th:block>
 
-    <script src="/js/myPage/myPage-secession.js"></script>
 </body>
 </html>

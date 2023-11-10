@@ -48,7 +48,7 @@ public class MyPageController {
 	}
 	
 	@GetMapping("myPage-secession2") 
-	public String myPageSecession2() {
+	public String secession() {
 		
 		return "myPage/myPage-secession2";
 	}
@@ -110,16 +110,14 @@ public class MyPageController {
 	
 	
 	
-	
-	
 
-	@PostMapping("secession2")
-	public String secession(String memberPw, @SessionAttribute("loginMember") Member loginMember, 
+	@PostMapping("secession")
+	public String secession2(String memberPw, @SessionAttribute("loginMember") Member loginMember, 
 			RedirectAttributes ra, SessionStatus status) {
 		
 		int memberNo = loginMember.getMemberNo();
 		
-		int result = service.secession(memberPw, memberNo);
+		int result = service.secession2(memberPw, memberNo);
 		
 		String path = null;
 		String message = null;
