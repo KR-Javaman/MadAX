@@ -27,16 +27,35 @@
          DEFAULT, DEFAULT, DEFAULT, #{memberNo})
 	</insert>
 	
-	<insert id="uploadVideoFile">
+	<insert id="uploadVideoFile" parameterType="list">
 		INSERT INTO "VIDEO"
-		<foreach collection="list" item="vd" separator=" UNION ">
-			SELECT VIDEO_NO(),
-				   #{vd.videoPath},
-				   #{vd.videoRename},
-				   #{vd.videoOriginalName},
-				   #{vd.boardVideoNo}
-	   		FROM DUAL
-		</foreach>
+			VALUES(SEQ_VIDEO_NO(),
+				   #{videoPath},
+				   #{videoRename},
+				   #{videoOrder},
+				   #{boardVideoNo},
+				   #{videoOriginalName}
+				   )
+	   		
 	</insert>
+	
+	<insert id="videoInsert">
+		INSERT INTO "VIDEO"
+		VALUES(SEQ_VIDEO_NO.NEXTVAL,
+				   #{videoPath},
+				   #{videoRename},
+				   #{videoOrder},
+				   #{boardVideoNo},
+				   #{videoOriginalName})
+	</insert>
+	
+	<select id="selectVideo" resultType="_int">
+		SELECT SEQ_VIDEO_NO.NEXTVAL, #{videoPath},
+			   #{videoRename},
+			   #{videoOrder},
+			   #{boardVideoNo},
+			   #{videoOriginalName}
+		FROM VIDEO
+	</select>
 
 </mapper>

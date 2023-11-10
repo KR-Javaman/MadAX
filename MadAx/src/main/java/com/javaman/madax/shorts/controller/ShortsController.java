@@ -2,6 +2,7 @@ package com.javaman.madax.shorts.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -52,20 +53,21 @@ public class ShortsController {
 	}
 	
 	@PostMapping("edit/insert")
-	public String writeInsert(@SessionAttribute("loginMember") Member loginMember, VideoBoard board,
-							@RequestParam("shortsVideo") MultipartFile video,
+	public String writeInsert(@SessionAttribute("loginMember") Member loginMember, VideoBoard videoBoard,
+							@RequestParam("shortsVideo") List<MultipartFile> video,
 							RedirectAttributes ra) throws IllegalStateException, IOException {
 		
-		board.setMemberNo(loginMember.getMemberNo());
+		videoBoard.setMemberNo(loginMember.getMemberNo());
 		
-		int result = service.writeInsert(board,video);
+		int result = service.writeInsert(videoBoard,video);
 		
 		if(result>0) {
 			ra.addFlashAttribute("message", "글 작성 완료");
 			return "redirect:/shorts/main";
+		}else {
+			ra.addFlashAttribute("message", "글 작성 실패");
+			return "redirect:/shorts/edit/insert";
 		}
-		ra.addFlashAttribute("message", "글 작성 실패");
-		return "redirect:/edit/insert";
 	}
 	
 	

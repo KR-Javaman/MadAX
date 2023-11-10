@@ -15,9 +15,13 @@ public interface ShortsMapper {
 	
 	List<VideoBoard> selectList(RowBounds rowBounds);
 	
-	int writeInsert(VideoBoard board);
+	int writeInsert(VideoBoard videoBoard);
 
 	int uploadVideoFile(List<Video> uploadVideo);
+
+	void videoInsert(Video vd);
+
+	int selectVideo(List<Video> uploadVideo);
 
 	
 
