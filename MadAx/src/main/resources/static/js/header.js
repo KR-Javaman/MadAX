@@ -14,7 +14,7 @@ $("nav li").hover(
   }
 );
 
-$("div>a").hover(
+$("div a").hover(
   function () {
     $("div", this).stop().slideDown(200);
     $("div", this).show();
@@ -29,7 +29,7 @@ $("div>a").hover(
 //   document.querySelector(".header-menu").classList.toggle("show");
 // }
 // window.onmouseover = function (e) {
-//   if (!e.tartget.matches(".login-area")) {
+//   if (!e.tartget.matches(".")) {
 //     var dropdowns = document.getElementsByClassName("header-menu");
 //     var i;
 //     for (i = 0; i < dropdowns.length; i++) {

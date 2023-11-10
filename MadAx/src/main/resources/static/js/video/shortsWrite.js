@@ -111,8 +111,7 @@ const upload = () => {
     return;
   }
 
-  if (shortsVideo.files[0].size > 10485760)
-    alert("파일의 용량이 너무 큽니다. 최적하 하시겠습니까?");
+  if (shortsVideo.files[0].size > 10485760) alert("파일의 용량이 너무 큽니다.");
 };
 
 const writeForm = document.querySelector("#writeForm");

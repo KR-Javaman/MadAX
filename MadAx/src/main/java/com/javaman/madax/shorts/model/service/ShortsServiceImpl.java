@@ -54,36 +54,37 @@ public class ShortsServiceImpl implements ShortsService{
 	}
 	
 	@Override
-	public int writeInsert(VideoBoard board, MultipartFile video) throws IllegalStateException, IOException {
+	public int writeInsert(VideoBoard videoBoard, List<MultipartFile> video) throws IllegalStateException, IOException {
 
-		int result = mapper.writeInsert(board);
+		int result = mapper.writeInsert(videoBoard);
 		
 		if(result == 0) return 0;
-		int boardVideoNo = board.getBoardVideoNo();
 		
 		List<Video> uploadVideo = new ArrayList<>();
-		
-		if(video.getSize()>0) {
-			Video vd = new Video();
-			
-			vd.setBoardVideoNo(boardVideoNo);
-			vd.setVideoPath(webPath);
-			vd.setVideoRename(Util.fileRename(vd.getVideoOriginalName()));
-			vd.setUploadFile(video);
-			uploadVideo.add(vd);
+		for(int i= 0; i<video.size(); i++) {
+			if(video.get(i).getSize()>0) {
+				Video vd = new Video();
+				
+				vd.setBoardVideoNo(videoBoard.getBoardVideoNo());
+				vd.setVideoOrder(i);
+				vd.setVideoPath(webPath);
+				vd.setVideoRename(Util.fileRename(video.get(i).getOriginalFilename()));
+				vd.setUploadFile(video.get(i));
+				uploadVideo.add(vd);
+//				result = mapper.selectVideo(uploadVideo);
+				
+				mapper.videoInsert(vd);
+				
+			}
 		}
 		
-		if(uploadVideo.isEmpty()) return boardVideoNo;
-		result = mapper.uploadVideoFile(uploadVideo);
-		
-		if(result == uploadVideo.size()) {
+		if(!uploadVideo.isEmpty()) {
+			result = 1;
 			for(Video vd : uploadVideo) {
 				vd.getUploadFile().transferTo(new File(folderPath + vd.getVideoRename()));
 			}
-		}else {
-			throw new BoardWriteException("DB UPLOAD FAILED");
 		}
-		return boardVideoNo;
+		return result;
 	}
 	
 }
