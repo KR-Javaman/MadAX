@@ -1,6 +1,6 @@
 package com.javaman.madax.board.controller;
 
-import java.util.Map;
+import java.util.Map; 
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +30,7 @@ private final BoardService service;
 		model.addAttribute("map",map);
 		
 		
+				
 		return "board/boardList";
 	}
 	

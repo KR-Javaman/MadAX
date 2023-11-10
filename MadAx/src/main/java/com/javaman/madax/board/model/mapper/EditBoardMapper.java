@@ -1,6 +1,6 @@
 package com.javaman.madax.board.model.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Mapper; 
 
 import com.javaman.madax.board.model.dto.Board;
 
