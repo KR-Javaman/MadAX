@@ -116,7 +116,7 @@ body{
 
 
 .community{
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   width: 1850px;
   min-height: 800px;
@@ -126,11 +126,11 @@ body{
 
 .com-left{
   width: 285px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .com-center{
   width: 1280px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 #writeBtn{
@@ -210,5 +210,83 @@ tbody tr{
 
 .list-table tr > *{ text-align: center; }
 .list-table tr > *:nth-of-type(1){ width: 10%; }
+
+
+
+
+.pagination-box{
+  
+  width: 100%;
+  height: 50px;
+}
+
+.pagination{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.pagination li{
+  width: 20px;
+  margin: 0 5px;
+  text-align: center;
+}
+
+.pagination a{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.current{
+  font-weight: bold;
+  background-color: rgb(147, 251, 1);
+  border-radius: 50%;
+  color: white !important;
+  letter-spacing: 0 !important;
+}
+
+#boardSearch{
+  text-align: center;
+  width: 500px;
+  height: 30px;
+  margin: 30px auto;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+
+#boardSearch * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#boardSearch select{
+  width: 100px;
+}
+
+#boardSearch input{
+  flex-grow: 1;
+  margin: 0 10px;
+  padding-left: 10px;
+}  
+
+#boardSearch button{
+  
+  width: 100px;
+
+  font-weight: bold;
+  background-color: rgb(147, 251, 1);
+  border: none;
+  color: white;
+
+  cursor: pointer;
+  
+
+}
+
 
 

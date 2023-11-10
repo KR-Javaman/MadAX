@@ -163,13 +163,23 @@ nav ul > li > ul > li {
 .header-menu {
   position: absolute;
   width: 120px;
-  height: 100px;
-  border: 1px solid black;
+  height: 0;
+  overflow: hidden;
+  z-index: 1000;
   background-color: white;
   border-radius: 10px;
-  margin-right: 10px;
-  /* display: none; */
+  margin: 55px -27px;
+
+  
 }
+
+.success-login:hover .header-menu{
+  height: 100px;
+  transition-duration: 0.4s;
+}
+
+
+
 
 .header-menu > a {
   display: flex;
@@ -186,3 +196,11 @@ nav ul > li > ul > li {
   color: black;
   display: absolute;
 }
+
+
+.success-login{
+  display: flex;
+}
+
+
+
