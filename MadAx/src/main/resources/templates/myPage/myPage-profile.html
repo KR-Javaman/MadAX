@@ -7,7 +7,6 @@
     <title>My Page</title>
 
     <th:block th:replace="~{common/common}"></th:block>
-  
     <link rel="stylesheet" href="/css/myPage/myPage-profile.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/myPage/myPage-main.css">
@@ -35,27 +34,27 @@
                             <div class="profile-content" th:object="${loginMember}">
                                 <form action="changeNickname" method="POST" >
                                     <span class="profile-row">
-                                     닉네임 <input type="text" name="memberNickname" id="editProfile"  th:value="*{memberNickname}"> <button id="editButton" >수정하기</button>
+                                     닉네임 <input type="text" name="memberNickname" id="memberNickname" class="editProfile2" th:value="*{memberNickname}"> <button class="editButton" >수정하기</button>
                                     </span>
                                 </form>
                                 
                                 <form action="changeEmail">
                                     <span class="profile-row">
-                                     이메일 <input type="email" name="memberEmail" id="editProfile" th:value="*{memberEmail}"> 
+                                     이메일 <input type="email" name="memberEmail" id="memberEmail" class="editProfile2" th:value="*{memberEmail}"> 
                                     </span>
                                 </form>
                                 
                                 <form action="changePw" method="POST" name="myPageFrm" id="changePwFrm">
                                     <span class="profile-row">
-                                        현재 비밀번호 <input type="password" name="currentPw" id="editProfile"> 
+                                        현재 비밀번호 <input type="password" name="currentPw" id="currentPw" class="editProfile2"> 
                                     </span>
                                 
                                     <span class="profile-row">
-                                        새 비밀번호 <input type="password" name="newPw" id="editProfile"> 
+                                        새 비밀번호 <input type="password" name="newPw" id="newPw" class="editProfile2"> 
                                     </span>
                                 
                                     <span class="profile-row">
-                                        새 비밀번호 확인 <input type="password" name="newPwConfirm" id="editProfile" > <button id="editButton">수정하기</button>
+                                        새 비밀번호 확인 <input type="password" name="newPwConfirm" id="newPwConfirm" class="editProfile2" > <button class="editButton">수정하기</button>
                                     </span>
                                 </form>   
                             </div> 
@@ -108,20 +107,6 @@
     <!-- <th:block th:replace="~{common/footer}"></th:block> -->
    
     <th:block th:replace="~{common/common}"></th:block>
-
-    <script th:inline="javascript">
-        //th:inline="javascript"
-        // - script 태그 내부에 타임리프 쓸거다
-        // -> 타임리프로 출력되는 값을 JS에 맞는 자료형으로 변경해줘
-
-        // messages.properties의 값을 얻어와 전역 변수로 선언
-        const defaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
-
-        // 로그인한 회원의 프로필 이미지 얻어오기 (없으면 null)
-        const loginMemberProfileImg = /*[[${session.loginMember.profileImg}]]*/ "프로필 이미지";
-        
-
-    </script>
 
     <script src="/js/myPage/myPage.js"></script>
 </body>

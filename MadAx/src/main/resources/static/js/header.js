@@ -14,16 +14,16 @@ $("nav li").hover(
   }
 );
 
-$("div>a").hover(
-  function () {
-    $("div", this).stop().slideDown(200);
-    $("div", this).show();
-  },
-  function () {
-    $("div", this).stop().slideUp(200);
-    $("div", this).hide();
-  }
-);
+// $("div>a").hover(
+//   function () {
+//     $("div", this).stop().slideDown(200);
+//     $("div", this).show();
+//   },
+//   function () {
+//     $("div", this).stop().slideUp(200);
+//     $("div", this).hide();
+//   }
+// );
 
 // function my() {
 //   document.querySelector(".header-menu").classList.toggle("show");

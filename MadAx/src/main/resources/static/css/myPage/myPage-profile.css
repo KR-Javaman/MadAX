@@ -98,7 +98,7 @@
 }
 
 
-#editProfile {
+.editProfile2 {
   background-color: white;
   margin-left : 5rem;
   height: 3.5rem;
@@ -111,7 +111,7 @@
 }
 
 
-#editProfile:focus-within {
+.editProfile2:focus-within {
   border-color: rgb(22, 255, 1);
 }
 
@@ -128,7 +128,7 @@
 }
 
 
-#editButton {
+.editButton {
   background-color: white;
   border: 0rem;
   color:rgb(22, 255, 1);
@@ -162,12 +162,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
+}
+
+.background-img:hover {
+  border : 2px solid rgb(22, 255, 1);
 }
 
 .background-img > #backgroundImg1 {
   height: 100%;
   width: 100%;
+  cursor: pointer;
 }
+
+
 
 .background-img > h1 {
   font-size: 70px;
@@ -201,9 +209,6 @@
 #backgroundInput {
   display: none;
 }
-
-
-
 
 
 #secessionButton {
