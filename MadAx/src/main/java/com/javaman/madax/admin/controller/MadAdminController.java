@@ -59,7 +59,7 @@ public class MadAdminController {
 		return "admin/selectAll";
 	}
 	
-	
+	// boardCode가 2인 게시글들만 불러오겠다.
 	
 			
 	

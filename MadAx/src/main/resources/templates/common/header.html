@@ -23,23 +23,22 @@
               </ul>
             </li>
             <li class="nav-li">
-              <a href="#" class="nav-a" id="nav-2">지식in</a>
+              <a href="/jisik/jisikList" class="nav-a" id="nav-2">지식in</a>
               <ul class="nav-li-ul">
                 <li>
-                  <a href="/board/1/1" id="long">일반</a>
+                  <a href="/jisik/1/2" id="long">정보</a>
                 </li>
                 <li>
-                  <a href="/board/1/2" id="short">구인</a>
+                  <a href="/jisik/1/2" id="short">꿀팁</a>
                 </li>
               </ul>
             </li>
-<<<<<<< HEAD
-=======
 
-            <li><a href="/jisik/main" class="nav-a" id="nav-2">지식in</a></li>
+
+
   
 
->>>>>>> origin/LCW
+
             <li><a href="/shorts/main" class="nav-a" id="nav-3">쇼츠</a></li>
             
            <li th:if="${session.loginMember != null && session.loginMember.authority == 2}"> 
@@ -69,7 +68,7 @@
               <img th:unless="${session.loginMember.profileImg == null}" th:src="${session.loginMember.profileImg}" id="memberHeaderProfile">
           </a>    
             <!-- <input type="checkbox" id="memberHeaderProfile"> -->
-<<<<<<< HEAD
+
             <div class="header-menu">
               <a href="/myPage/myPage-home">마이페이지</a>
               <a href="/member/logout" id="logoutBtn">로그아웃</a>
@@ -78,7 +77,7 @@
 
           </div>
 
-=======
+
             <div class="header-menu">              
                 <a href="/myPage/myPage-home">마이페이지</a>                          
                 <a href="/member/logout" id="logoutBtn">로그아웃</a>            
@@ -86,7 +85,7 @@
                   <a href="/admin/main">관리자 페이지</a>
                 </div>         
             </div>
->>>>>>> origin/main
+
         </th:block>
       </div>
     </section>
