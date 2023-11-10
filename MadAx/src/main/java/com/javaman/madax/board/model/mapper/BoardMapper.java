@@ -1,6 +1,7 @@
 package com.javaman.madax.board.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
@@ -24,5 +25,13 @@ public interface BoardMapper {
 	 * @return listCount
 	 */
 	int ListCount(int boardCode);
+
+
+
+	/**게시글 상세조회
+	 * @param map
+	 * @return
+	 */
+	Board boardDetail(Map<String, Object> map);
 
 }
