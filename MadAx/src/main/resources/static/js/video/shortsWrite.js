@@ -112,6 +112,7 @@ const upload = () => {
   }
 
   if (shortsVideo.files[0].size > 10485760) alert("파일의 용량이 너무 큽니다.");
+  return;
 };
 
 const writeForm = document.querySelector("#writeForm");

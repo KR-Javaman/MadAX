@@ -62,6 +62,7 @@ public class ShortsServiceImpl implements ShortsService{
 		
 		List<Video> uploadVideo = new ArrayList<>();
 		for(int i= 0; i<video.size(); i++) {
+			if(video.get(i).getSize()>52428800) return 0;
 			if(video.get(i).getSize()>0) {
 				Video vd = new Video();
 				
@@ -76,6 +77,8 @@ public class ShortsServiceImpl implements ShortsService{
 				mapper.videoInsert(vd);
 				
 			}
+			
+			
 		}
 		
 		if(!uploadVideo.isEmpty()) {
