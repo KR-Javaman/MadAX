@@ -62,7 +62,6 @@
               <img th:unless="${session.loginMember.profileImg == null}" th:src="${session.loginMember.profileImg}" id="memberHeaderProfile">
           </a>    
             <!-- <input type="checkbox" id="memberHeaderProfile"> -->
-<<<<<<< HEAD
             <div class="header-menu">
               <a href="/myPage/myPage-home">마이페이지</a>
               <a href="/member/logout" id="logoutBtn">로그아웃</a>
@@ -71,15 +70,6 @@
 
           </div>
 
-=======
-            <div class="header-menu">              
-                <a href="/myPage/myPage-home">마이페이지</a>                          
-                <a href="/member/logout" id="logoutBtn">로그아웃</a>            
-                <div th:if="${ session.loginMember != null && session.loginMember.authority == 2}">
-                  <a href="/admin/main">관리자 페이지</a>
-                </div>         
-            </div>
->>>>>>> origin/main
         </th:block>
       </div>
     </section>
