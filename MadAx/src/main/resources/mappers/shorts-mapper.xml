@@ -7,6 +7,12 @@
 		
 		<id property="boardVideoNo" column="BOARD_VIDEO_NO" />
 				
+		<collection property="videoList" 
+			select="selectVideoList" 
+			column="BOARD_VIDEO_NO"
+			javaType="java.util.ArrayList"
+			ofType="Video" />		
+				
 	</resultMap>
   
   
@@ -33,7 +39,7 @@
       	</selectKey>
       INSERT INTO "VIDEO_BOARD"
       VALUES( #{boardVideoNo} , #{videoTitle},  #{videoContent},
-         DEFAULT, DEFAULT, DEFAULT, #{memberNo})
+         DEFAULT,  DEFAULT, #{memberNo}, DEFAULT, NULL)
 	</insert>
 	
 	<insert id="uploadVideoFile" parameterType="list">
@@ -68,20 +74,19 @@
 	</select>
 
 
-	<select id="videoBoardDetail" resultMap="video_rm">
-		SELECT BOARD_VIDEO_NO, VIDEO_TITLE, VIDEO_CONTENT, VIDEO_READCOUNT, VIDEO_NO,
-			TO_CHAR(VIDEO_WRITE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') VIDEO_WRITE_DATE,
-			TO_CHAR(VIDEO_UPDATE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') VIDEO_UPDATE_DATE,
-			MEMBER_NICKNAME, PROFILE_IMG, MEMBER_NO,
-			
-			(SELECT COUNT(*) FROM "VIDEO_LIKE" L 
-			WHERE L.BOARD_VIDEO_NO = B.BOARD_VIDEO_NO) LIKE_COUNT
-			
-		FROM "VIDEO_BOARD" B
-		JOIN "MEMBER" USING(MEMBER_NO)
-		JOIN "VIDEO" USING(BOARD_VIDEO_NO)
-		WHERE VIDEO_DEL_FL = 'N'
-		AND VIDEO_NO = #{videoNo}
+	<select id="videoBoardDetail" resultType="VideoBoard">
+			SELECT BOARD_VIDEO_NO, VIDEO_TITLE, VIDEO_CONTENT, VIDEO_READCOUNT, 
+					TO_CHAR(VIDEO_WRITE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') VIDEO_WRITE_DATE,
+					TO_CHAR(VIDEO_UPDATE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') VIDEO_UPDATE_DATE,
+					MEMBER_NICKNAME, PROFILE_IMG, MEMBER_NO,
+					
+					(SELECT COUNT(*) FROM "VIDEO_LIKE" L 
+					WHERE L.BOARD_VIDEO_NO = V.BOARD_VIDEO_NO) LIKE_COUNT
+					
+				FROM "VIDEO_BOARD" V
+				JOIN "MEMBER" USING(MEMBER_NO)
+				WHERE VIDEO_DEL_FL = 'N'
+				AND BOARD_VIDEO_NO = #{boardVideoNo}
 	</select>
 	
 	<select id="likeCLick" resultType="_int">
@@ -95,6 +100,11 @@
 		VIDEO_READCOUNT = VIDEO_READCOUNT + 1
 		WHERE BOARD_VIDEO_NO = #{boardVideoNo}
 	</update>
+	
+	<select id="selectVideoList" resultType="Video">
+		SELECT * FROM VIDEO
+		WHERE BOARD_VIDEO_NO = #{boardVideoNo}
+	</select>
 	
 	
 </mapper>

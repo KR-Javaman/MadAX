@@ -16,12 +16,18 @@ public class VideoBoard {
 	private String videoTitle;
 	private String videoContent;
 	private int videoReadCount;
-	private String videoDate;
 	private String videoDelFl;
 	private int memberNo;
+	private String videoWriteDate;
+	private String videoUpdateDate;
 	
+	private int commentCount;
 	private int likeCount;
+	private String memberNickname;
 	private String videoPath;
 	private String videoRename;
 	
+	private String profileImg;
+	
+	private List<Video> videoList;
 }

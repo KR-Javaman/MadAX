@@ -16,4 +16,6 @@ public class Video {
 	private int boardVideoNo;
 	
 	private MultipartFile uploadFile;
+	
+	
 }

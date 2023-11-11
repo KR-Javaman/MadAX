@@ -53,6 +53,7 @@ public class ShortsServiceImpl implements ShortsService{
 		return map;
 	}
 	
+	//	글 작성
 	@Override
 	public int writeInsert(VideoBoard videoBoard, List<MultipartFile> video) throws IllegalStateException, IOException {
 
@@ -63,8 +64,7 @@ public class ShortsServiceImpl implements ShortsService{
 		List<Video> uploadVideo = new ArrayList<>();
 		for(int i= 0; i<video.size(); i++) {
 			if(video.get(i).getSize()>10485760) {
-//				result = 0;
-//				return result;
+
 				result = 0;
 			}
 
@@ -77,15 +77,10 @@ public class ShortsServiceImpl implements ShortsService{
 				vd.setVideoRename(Util.fileRename(video.get(i).getOriginalFilename()));
 				vd.setUploadFile(video.get(i));
 				uploadVideo.add(vd);
-//				result = mapper.selectVideo(uploadVideo);
 				
 				mapper.videoInsert(vd);
-				
-				
 			}
-			
 		}
-		
 		if(!uploadVideo.isEmpty()) {
 			result = 1;
 			for(Video vd : uploadVideo) {
@@ -98,11 +93,13 @@ public class ShortsServiceImpl implements ShortsService{
 	}
 	
 	
+	// 글 상세 조회
 	@Override
-	public VideoBoard videoBoardDetail(int boardVideoNo) {
-		return mapper.videoBoardDetail(boardVideoNo);
+	public VideoBoard videoBoardDetail(Map<String, Object> map) {
+		return mapper.videoBoardDetail(map);
 	}
 	
+	// 좋아요 
 	@Override
 	public int likeClick(Map<String, Object> map) {
 		return mapper.likeCLick(map);

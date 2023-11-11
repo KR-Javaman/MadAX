@@ -4,15 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/css/shorts/shortsDetail.css" />
     <th:block th:replace="~{common/common}"></th:block>
+    <link rel="stylesheet" href="/css/shorts/shortsDetail.css" />
   </head>
   <body>
     <th:block th:replace="~{common/header}"></th:block>
-    <div class="vid-index3" th:object="${videoBoard}">
-      <section>
+    <div class="vid-index3">
+      <section th:with="videoBoard = ${videoBoard}">
         <video
-          th:src="|${videoList[i].videoPath}${videoList[i].videoRename}|"
+          th:src="|${videoBoard.videoPath}${videoBoard.videoRename}|"
           width="400px"
           height="750px"
           controls
@@ -20,7 +20,7 @@
       </section>
       <section>
         <div class="video-title-content">
-          <div class="video-title" th:text="#{videoTitle}">
+          <div class="video-title" th:text="*{videoTitle}">
             [헬스 꿀팁] 3대 500을 찍고 얻은 5가지 깨달음
           </div>
         </div>
@@ -57,63 +57,7 @@
           </div>
         </div>
         <!--  --------------------------------------------- -->
-        <div class="video-title-content video-content3">
-          <div class="video-comment-list">
-            <ul>
-              <li>
-                <p class="video-comment-writer">
-                  <img src="user.png" alt="" />
-                  <span class="comment-writer-nickname">닉네임</span>
-                  <span class="comment-writer-date">작성일</span>
-                </p>
-                <p class="video-comment-content">
-                  <span>
-                    댓글 내용이라고 적고 테스트하는 중입니다. 한번 더 테스트
-                    테스트 테스트 테테테테테스트틑트트트트
-                  </span>
-                  <img src="basic-heart.png" alt="" id="img" />
-                  <span id="count-heart">0</span>
-                </p>
-                <div class="comment-btn-area">
-                  <button>답글 달기</button>
-                  <button>수정</button>
-                  <button>삭제</button>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div class="video-comment-list">
-            <ul>
-              <li>
-                <p class="video-comment-writer">
-                  <img src="user.png" alt="" />
-                  <span class="comment-writer-nickname">닉네임</span>
-                  <span class="comment-writer-date">작성일</span>
-                </p>
-                <p class="video-comment-content">
-                  <span>
-                    댓글 내용이라고 적고 테스트하는 중입니다. 한번 더 테스트
-                    테스트 테스트 테테테테테스트ㅡ틑
-                  </span>
-                  <img src="basic-heart.png" alt="" id="img" />
-                  <span id="count-heart">0</span>
-                </p>
-              </li>
-            </ul>
-          </div>
-          <!-- <div class="video-comment-list">
-            <ul>
-              <li>
-                <p class="video-comment-writer">
-                  <img src="" alt="" />
-                  <span>닉네임</span>
-                  <span>작성일</span>
-                </p>
-                <p>댓글 내용</p>
-              </li>
-            </ul>
-          </div> -->
-        </div>
+
         <div class="video-title-content">
           <div class="video-button">
             <button>수정</button>

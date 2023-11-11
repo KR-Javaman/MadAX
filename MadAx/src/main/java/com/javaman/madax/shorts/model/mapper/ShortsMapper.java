@@ -24,7 +24,7 @@ public interface ShortsMapper {
 
 	int selectVideo(List<Video> uploadVideo);
 
-	VideoBoard videoBoardDetail(int boardVideoNo);
+	VideoBoard videoBoardDetail(Map<String, Object> map);
 
 	int likeCLick(Map<String, Object> map);
 

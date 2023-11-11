@@ -15,7 +15,7 @@ public interface ShortsService {
 
 	int writeInsert(VideoBoard videoBoard, List<MultipartFile> video) throws IllegalStateException, IOException;
 
-	VideoBoard videoBoardDetail(int boardVideoNo);
+	VideoBoard videoBoardDetail(Map<String, Object> map);
 
 	int likeClick(Map<String, Object> map);
 

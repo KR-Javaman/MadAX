@@ -43,7 +43,6 @@ public class ShortsController {
 	public String main(VideoBoard video ,Model model,
 				@RequestParam(value="cp", required = false, defaultValue = "1") int cp) {
 
-		
 		Map<String, Object> map = service.main(cp,video);
 		model.addAttribute("map", map);
 		
@@ -51,14 +50,14 @@ public class ShortsController {
 
 	}
 	
-	
+	// 글쓰기 페이지
 	@GetMapping("edit/insert")
 	public String writeInsert(@SessionAttribute(value="loginMember", required=false) Member loginMember) {
 		if(loginMember == null) return "redirect:/shorts/main";
 		
 		return "shorts/shortsWrite";
 	}
-	
+	// 업로드
 	@PostMapping("edit/insert")
 	public String writeInsert(@SessionAttribute("loginMember") Member loginMember, VideoBoard videoBoard,
 							@RequestParam("shortsVideo") List<MultipartFile> video,
@@ -87,18 +86,19 @@ public class ShortsController {
 		Map<String, Object> map = new HashMap<>();
 		map.put("boardVideoNo", boardVideoNo);
 		
-		VideoBoard videoBoard = service.videoBoardDetail(boardVideoNo);
+		VideoBoard videoBoard = service.videoBoardDetail(map);
 		
-		String Path = "";
+		String Path = null;
 		
 		if(videoBoard != null) {
 			model.addAttribute("videoBoard", videoBoard);
 			Path = "shorts/shortsDetail";
 			
 			if(loginMember != null) {
-				map.put("loginMember", loginMember);
+				map.put("memberNo", loginMember.getMemberNo());
 				int likeClick = service.likeClick(map);
 				
+				//
 				if(likeClick == 1) {
 					model.addAttribute("likeClick", "on");
 				}
@@ -152,6 +152,7 @@ public class ShortsController {
 		
 		ra.addFlashAttribute("message", "해당 게시글이 존재하지 않습니다");
 		}
+		
 	return Path;
 	}
 }
