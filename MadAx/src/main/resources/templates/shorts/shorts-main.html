@@ -43,10 +43,10 @@
         <!-- ----------------------------------- -->
         <th:block th:each="i : ${#numbers.sequence(0, #lists.size(videoList) - 1)}">
           <th:block th:if="${i % 5 == 0}">
-            <div class="vdvd">
+            <div class="vdvd" th:object="${videoBoard}">
           </th:block>
 
-            <a href="#" class="video-a">
+            <a th:href="@{/shorts/detail/{boardVideoNo}(boardVideoNo=*{boardVideoNo}, cp=${pagination.currentPage})}" class="video-a">
               <video
                 th:src="|${videoList[i].videoPath}${videoList[i].videoRename}|"
                 muted

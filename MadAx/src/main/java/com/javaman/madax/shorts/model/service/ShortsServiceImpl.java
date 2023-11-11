@@ -59,10 +59,15 @@ public class ShortsServiceImpl implements ShortsService{
 		int result = mapper.writeInsert(videoBoard);
 		
 		if(result == 0) return 0;
-		
+	
 		List<Video> uploadVideo = new ArrayList<>();
 		for(int i= 0; i<video.size(); i++) {
-			if(video.get(i).getSize()>52428800) return 0;
+			if(video.get(i).getSize()>10485760) {
+//				result = 0;
+//				return result;
+				result = 0;
+			}
+
 			if(video.get(i).getSize()>0) {
 				Video vd = new Video();
 				
@@ -76,8 +81,8 @@ public class ShortsServiceImpl implements ShortsService{
 				
 				mapper.videoInsert(vd);
 				
+				
 			}
-			
 			
 		}
 		
@@ -86,8 +91,26 @@ public class ShortsServiceImpl implements ShortsService{
 			for(Video vd : uploadVideo) {
 				vd.getUploadFile().transferTo(new File(folderPath + vd.getVideoRename()));
 			}
+		}else {
+			result = 0;
 		}
 		return result;
+	}
+	
+	
+	@Override
+	public VideoBoard videoBoardDetail(int boardVideoNo) {
+		return mapper.videoBoardDetail(boardVideoNo);
+	}
+	
+	@Override
+	public int likeClick(Map<String, Object> map) {
+		return mapper.likeCLick(map);
+	}
+	
+	@Override
+	public int readCount(int boardVideoNo) {
+		return mapper.readCount(boardVideoNo);
 	}
 	
 }
