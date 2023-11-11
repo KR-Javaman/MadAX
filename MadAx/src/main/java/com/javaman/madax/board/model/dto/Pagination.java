@@ -17,7 +17,7 @@ public class Pagination {
 
 	private int currentPage;		// 현재 페이지 번호
 	private int listCount;			// 전체 게시글 수
-	private int limit = 30;			// 한 페이지 목록에 보여지는 게시글 수
+	private int limit = 25;			// 한 페이지 목록에 보여지는 게시글 수
 	private int pageSize = 10;		// 보여질 페이지 번호 개수
 
 	
