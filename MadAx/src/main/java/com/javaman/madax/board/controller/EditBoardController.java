@@ -60,13 +60,13 @@ public class EditBoardController {
 		
 		if(boardNo > 0) {
 			ra.addFlashAttribute("message", "게시글 작성 성공");
-			return "redirect:/board/1";
+			return String.format("redirect:/board/%d/%d",boardCode,boardNo);
 			
 		}
 		
 		else {
 			ra.addFlashAttribute("message", "게시글 작성 실패");
-			return "redirect:insert";
+			return "redirect:/insert";
 		}
 		
 		

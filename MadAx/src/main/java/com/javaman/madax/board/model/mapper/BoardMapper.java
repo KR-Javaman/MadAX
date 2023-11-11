@@ -29,9 +29,12 @@ public interface BoardMapper {
 
 
 	/**게시글 상세조회
-	 * @param map
-	 * @return
+	 * @param boardCode
+	 * @return board
 	 */
-	Board boardDetail(Map<String, Object> map);
+	Board detail(Map<String, Object> map);
+
+
+
 
 }
