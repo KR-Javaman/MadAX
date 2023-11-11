@@ -57,10 +57,21 @@ li{
 
 .submenu > li {
   line-height: 60px;
-  background-color: #dddddd;
+  background-color: white;
   z-index: 1000;
- 
+  
 }
+
+.submenu li > a{
+  color: black;
+}
+.submenu>li:hover{
+
+  background-color: rgb(147, 251, 1);
+  color: white;
+}
+
+
 
 .submenu {
   height: 0; /*ul의 높이를 안보이게 처리*/
@@ -68,6 +79,7 @@ li{
   z-index: 1000;
   position: absolute;
   width:  21.2rem;
+  
  
 }
 
