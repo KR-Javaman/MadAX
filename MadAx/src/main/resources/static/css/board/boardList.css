@@ -116,7 +116,7 @@ body{
 
 
 .community{
-  /* border: 1px solid black; */
+  border: 1px solid black;
   display: flex;
   width: 1850px;
   min-height: 800px;

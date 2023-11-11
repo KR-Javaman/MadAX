@@ -46,10 +46,11 @@ private final BoardService service;
 	
 	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}")
 	public String detail(@PathVariable("boardCode")int boardCode,
-						@PathVariable("boardNo")int boardNo) {
+						@PathVariable("boardNo")int boardNo, 
+						Model model) {
 	
 		
-		return "board/baordList";
+		return "board/Detail";
 		
 	}
 	
