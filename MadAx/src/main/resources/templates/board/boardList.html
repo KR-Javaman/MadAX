@@ -52,9 +52,9 @@
         <button class="btn-select">긴글</button>
         <button class="btn-select">짧은글</button>
         <select name="key" id="selectKey">
-          <option value="t">작성일순</option>
-          <option value="c">조회순</option>
-          <option value="tc">추천순</option>
+          <option value="t" id="date-Sequence">작성일순</option>
+          <option value="c" id="inquiry-Sequence">조회순</option>
+          <option value="tc" id="Recommendation-Sequence">추천순</option>
         </select>
       </div>
 
@@ -86,8 +86,8 @@
 
                 <td th:text="*{memberNickname}">작성자</td>
                 <td th:text="*{writeDate}">작성일</td>
-                <td>0</td>
-                <td>0</td>
+                <td th:text="*{boardCount}">조회수</td>
+                <td th:text="*{likeCount}">좋아요</td>
               </tr>
               
               <div th:if="${session.loginMember != null}">
@@ -185,6 +185,7 @@
 
   <script th:inline ="javascript">
     const boardCode = /*[[${boardCode}]]*/ "게시판코드";
+    const boardNo = /*[[${boardNo}]]*/ "게시글 번호";
   </script>
 
 </html>
