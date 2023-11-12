@@ -6,13 +6,15 @@
     <title>Document</title>
     <th:block th:replace="~{common/common}"></th:block>
     <link rel="stylesheet" href="/css/shorts/shortsDetail.css" />
+    <link rel="stylesheet" href="/css/shorts/shortsComment.css" />
   </head>
   <body>
     <th:block th:replace="~{common/header}"></th:block>
     <div class="vid-index3">
-      <section th:with="videoBoard = ${videoBoard}">
+      <section>
         <video
-          th:src="|${videoBoard.videoPath}${videoBoard.videoRename}|"
+          th:each="i : ${#numbers.sequence(0, #lists.size(videoBoard.videoList)-1, 1)}"
+          th:src="|${videoBoard.videoList[i].videoPath}${videoBoard.videoList[i].videoRename}|"
           width="400px"
           height="750px"
           controls
@@ -20,52 +22,64 @@
       </section>
       <section>
         <div class="video-title-content">
-          <div class="video-title" th:text="*{videoTitle}">
+          <div class="video-title" th:text="${videoBoard.videoTitle}">
             [헬스 꿀팁] 3대 500을 찍고 얻은 5가지 깨달음
           </div>
         </div>
         <div class="video-title-content">
-          <div class="video-content1" th:text="*{videoContent}">
-            <span
-              >근비대나 수행능력 향상을 목적으로 웨이트 트레이닝을하는 분들에게
-              이 영상이 조금이나마 도움이 되었으면 좋겠습니다.</span
-            >
-            <span class="video-write-date">작성일 : [[*{videoWriteDate}]]</span>
-          </div>
-        </div>
-        <div class="video-title-content">
-          <div class="video-content2">
-            <div class="video-writer">
-              <img th:if="*{profileImg}" th:src="*{profileImg}" />
-              <img th:unless="*{profileImg}" th:src="#{user.default.image}" />
-              <span class="nickname-area" th:text="*{memberNickname}"
-                >닉네임</span
+          <div class="video-content1">
+            <th:block th:text="${videoBoard.videoContent}">
+              <span
+                >근비대나 수행능력 향상을 목적으로 웨이트 트레이닝을하는
+                분들에게 이 영상이 조금이나마 도움이 되었으면 좋겠습니다.</span
               >
-              <span class="like-area">
-                <i
-                  class="fa-heart"
-                  th:classappend="${likeCheck} ? fa-solid : fa-regular"
-                  id="img"
-                ></i>
-
-                <span id="count-heart" th:text="*{likeCount}">0</span>
-              </span>
-            </div>
-            <div class="write-info">
-              <span class="video-count">조회수 : [[*{readCount}]]</span>
-            </div>
+            </th:block>
+            <span class="video-write-date"
+              >[[${videoBoard.videoWriteDate}]]</span
+            >
           </div>
-        </div>
-        <!--  --------------------------------------------- -->
-
-        <div class="video-title-content">
           <div class="video-button">
             <button>수정</button>
             <button>삭제</button>
             <button>신고</button>
           </div>
         </div>
+        <div class="video-title-content">
+          <div class="video-content2">
+            <div class="video-writer">
+              <img th:if="*{profileImg}" th:src="${videoBoard.profileImg}" />
+              <img th:unless="*{profileImg}" th:src="#{user.default.image}" />
+              <span class="nickname-area" th:text="${videoBoard.memberNickname}"
+                >닉네임</span
+              >
+              <span class="like-area">
+                <i
+                  class="fa-heart"
+                  th:classappend="${likeClick} ? fa-solid : fa-regular"
+                  id="img"
+                ></i>
+
+                <span id="count-heart" th:text="${videoBoard.likeCount}"
+                  >0</span
+                >
+              </span>
+            </div>
+            <div class="write-info">
+              <span class="video-count">[[*{readCount}]]</span>
+            </div>
+          </div>
+        </div>
+        <!--  ------------------------->
+
+        <th:block th:replace="~{shorts/shortsComment}"></th:block>
       </section>
     </div>
+    <script th:inline="javascript">
+      const boardVideoNo = /*[[${boardVideoNo}]]*/ "영상 게시글 번호";
+      const loginCheck =
+        /*[[${session.loginMember != null ? true : false}]]*/ "로그인 여부";
+    </script>
+    <script src="/js/video/shortsDetail.js"></script>
+    <script src="/js/video/shortsComment.js"></script>
   </body>
 </html>

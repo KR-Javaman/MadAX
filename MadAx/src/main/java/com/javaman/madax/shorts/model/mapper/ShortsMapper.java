@@ -24,11 +24,19 @@ public interface ShortsMapper {
 
 	int selectVideo(List<Video> uploadVideo);
 
-	VideoBoard videoBoardDetail(Map<String, Object> map);
+	VideoBoard videoBoardDetail(int boardVideoNo);
 
 	int likeCLick(Map<String, Object> map);
 
 	int readCount(int boardVideoNo);
+
+	int deleteLike(Map<String, Object> paramMap);
+
+	int insertLike(Map<String, Object> paramMap);
+
+	int countLike(Integer boardVideoNo);
+
+	
 
 	
 

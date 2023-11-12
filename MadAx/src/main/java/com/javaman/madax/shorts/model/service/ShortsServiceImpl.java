@@ -95,8 +95,8 @@ public class ShortsServiceImpl implements ShortsService{
 	
 	// 글 상세 조회
 	@Override
-	public VideoBoard videoBoardDetail(Map<String, Object> map) {
-		return mapper.videoBoardDetail(map);
+	public VideoBoard videoBoardDetail(int boardVideoNo) {
+		return mapper.videoBoardDetail(boardVideoNo);
 	}
 	
 	// 좋아요 
@@ -108,6 +108,23 @@ public class ShortsServiceImpl implements ShortsService{
 	@Override
 	public int readCount(int boardVideoNo) {
 		return mapper.readCount(boardVideoNo);
+	}
+	
+	@Override
+	public int like(Map<String, Object> paramMap) {
+		
+		int result = 0;
+		
+		if((Integer)(paramMap.get("check")) == 1) {
+			result = mapper.deleteLike(paramMap);
+		}else {
+			result = mapper.insertLike(paramMap);
+		}
+		if(result == 0) {
+			return -1;
+		}
+		
+		return mapper.countLike((Integer)(paramMap.get("boardVideoNo")));
 	}
 	
 }

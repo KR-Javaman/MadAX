@@ -14,8 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -86,7 +88,7 @@ public class ShortsController {
 		Map<String, Object> map = new HashMap<>();
 		map.put("boardVideoNo", boardVideoNo);
 		
-		VideoBoard videoBoard = service.videoBoardDetail(map);
+		VideoBoard videoBoard = service.videoBoardDetail(boardVideoNo);
 		
 		String Path = null;
 		
@@ -103,56 +105,68 @@ public class ShortsController {
 					model.addAttribute("likeClick", "on");
 				}
 			}
-		if(loginMember == null || loginMember.getMemberNo() != videoBoard.getMemberNo()) {
-			Cookie c = null;
-			Cookie[] cookies = req.getCookies();
+			if(loginMember == null || loginMember.getMemberNo() != videoBoard.getMemberNo()) {
+				Cookie c = null;
+				Cookie[] cookies = req.getCookies();
 			
-			if(cookies != null) {
-				for(Cookie cookie : cookies) {
-					if(cookie.getName().equals("readBoardNo")) {
-						c = cookie;
-						break;
+				if(cookies != null) {
+					for(Cookie cookie : cookies) {
+						if(cookie.getName().equals("readBoardNo")) {
+							c = cookie;
+							break;
+						}
 					}
 				}
-			}
 			
-			int result = 0;
-			if(c == null) {
-				c = new Cookie("readBoardNo", "|" + boardVideoNo + "|");
-				result = service.readCount(boardVideoNo);
-			}else {
-				if(c.getValue().indexOf("|"+boardVideoNo+"|") == -1) {
-					c.setValue(c.getValue()+"|"+boardVideoNo+"|");
+				int result = 0;
+				if(c == null) {
+					c = new Cookie("readBoardNo", "|" + boardVideoNo + "|");
 					result = service.readCount(boardVideoNo);
+				}else {
+					if(c.getValue().indexOf("|"+boardVideoNo+"|") == -1) {
+						c.setValue(c.getValue()+"|"+boardVideoNo+"|");
+						result = service.readCount(boardVideoNo);
+					}
 				}
-			}
-			if(result > 0) {
-				videoBoard.setVideoReadCount(videoBoard.getVideoReadCount() + 1);
-				c.setPath("/");
+				if(result > 0) {
+					videoBoard.setVideoReadCount(videoBoard.getVideoReadCount() + 1);
+					c.setPath("/");
+					
+					Calendar cal = Calendar.getInstance();
+					cal.add(cal.DATE, 1);
+					
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					
+					Date d = new Date();
+					Date temp = new Date(cal.getTimeInMillis());
+					Date a = sdf.parse(sdf.format(temp));
+					
+					long diff = (a.getTime() - d.getTime()) / 1000;
+					
+					c.setMaxAge((int)diff);
+					
+					resp.addCookie(c);
+				}
 				
-				Calendar cal = Calendar.getInstance();
-				cal.add(cal.DATE, 1);
-				
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				
-				Date d = new Date();
-				Date temp = new Date(cal.getTimeInMillis());
-				Date a = sdf.parse(sdf.format(temp));
-				
-				long diff = (a.getTime() - d.getTime()) / 1000;
-				
-				c.setMaxAge((int)diff);
-				
-				resp.addCookie(c);
 			}
 			
-		}
-	}else { // 게시글이 없을 경우
-		Path = "redirect:/shorts/main";
-		
-		ra.addFlashAttribute("message", "해당 게시글이 존재하지 않습니다");
+		}else { // 게시글이 없을 경우
+			Path = "redirect:/shorts/main";
+			ra.addFlashAttribute("message", "해당 게시글이 존재하지 않습니다");
 		}
 		
-	return Path;
+		return Path;
 	}
+	
+	
+	@PostMapping("detail/like")
+	@ResponseBody
+	public int like(@RequestBody Map<String, Object> paramMap, 
+			@SessionAttribute("loginMember") Member loginMember) {
+		paramMap.put("memberNo", loginMember.getMemberNo());
+		return service.like(paramMap);
+	}
+	
+	
+	
 }
