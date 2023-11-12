@@ -1,6 +1,6 @@
 <div class="myPage-wallpaper" >
-  <img th:if="${session.loginMember.backgroundImg == null}" th:src="#{background.default.image2}" id="backgroundImg">
-  <img th:unless="${session.loginMember.backgroundImg == null}" th:src="${session.loginMember.backgroundImg}" id="backgroundImg" >
+  <img th:if="${session.loginMember.backgroundImg == null}" th:src="#{background.default.image2}" class="backgroundImg">
+  <img th:unless="${session.loginMember.backgroundImg == null}" th:src="${session.loginMember.backgroundImg}" class="backgroundImg" >
 </div>
 
 <section class="myPage-middle">

@@ -13,7 +13,7 @@ body {
   /* margin-top:5rem; */
 }
 
-#backgroundImg {
+.backgroundImg {
   width: 100%;
   height: 45rem;
 }

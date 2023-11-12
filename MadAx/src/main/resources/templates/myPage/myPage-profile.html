@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Page</title>
 
-    <th:block th:replace="~{common/common}"></th:block>
-  
     <link rel="stylesheet" href="/css/myPage/myPage-profile.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/myPage/myPage-main.css">
@@ -35,27 +33,27 @@
                             <div class="profile-content" th:object="${loginMember}">
                                 <form action="changeNickname" method="POST" >
                                     <span class="profile-row">
-                                     닉네임 <input type="text" name="memberNickname" id="editProfile"  th:value="*{memberNickname}"> <button id="editButton" >수정하기</button>
+                                     닉네임 <input type="text" name="memberNickname" id="memberNickname" class="editProfile2" th:value="*{memberNickname}"> <button class="editButton" >수정하기</button>
                                     </span>
                                 </form>
                                 
                                 <form action="changeEmail">
                                     <span class="profile-row">
-                                     이메일 <input type="email" name="memberEmail" id="editProfile" th:value="*{memberEmail}"> 
+                                     이메일 <input type="email" name="memberEmail" id="memberEmail" class="editProfile2" th:value="*{memberEmail}"> 
                                     </span>
                                 </form>
                                 
                                 <form action="changePw" method="POST" name="myPageFrm" id="changePwFrm">
                                     <span class="profile-row">
-                                        현재 비밀번호 <input type="password" name="currentPw" id="editProfile"> 
+                                        현재 비밀번호 <input type="password" name="currentPw" id="currentPw" class="editProfile2"> 
                                     </span>
                                 
                                     <span class="profile-row">
-                                        새 비밀번호 <input type="password" name="newPw" id="editProfile"> 
+                                        새 비밀번호 <input type="password" name="newPw" id="newPw" class="editProfile2"> 
                                     </span>
                                 
                                     <span class="profile-row">
-                                        새 비밀번호 확인 <input type="password" name="newPwConfirm" id="editProfile" > <button id="editButton">수정하기</button>
+                                        새 비밀번호 확인 <input type="password" name="newPwConfirm" id="newPwConfirm" class="editProfile2" > <button class="editButton">수정하기</button>
                                     </span>
                                 </form>   
                             </div> 
@@ -75,6 +73,7 @@
                                     <div class="profile-btn-area">
                                         <input type="file" id="imageInput" name="profileImg" accpet="image/*">
                                         <button>변경하기</button>
+                                        button
                                     </div>
 
                                 </form> 
@@ -83,19 +82,24 @@
                         <div class="myPage-profile-mid">
                              배경화면 
                              <br>
-                             <form action="background" method="POST" name="myPageBackground" id="myPageBackground" enctype="multipart/form-data"></form>
-                             <label for="backgroundInput" class="background-img">
+                             <form action="background" method="POST" name="myPageBackground" id="backgroundFrm" enctype="multipart/form-data">
+                                <label for="backgroundInput" class="background-img">
 
-                                <img th:if="${session.loginMember.backgroundImg == null}" th:src="#{background.default.image}" id="backgroundImg1">
-                                <img th:unless="${session.loginMember.backgroundImg == null}" th:src="${session.loginMember.backgroundImg}" id="backgroundImg1" >
+                                    <img th:if="${session.loginMember.backgroundImg == null}" th:src="#{background.default.image}" id="backgroundImg">
+                                    <img th:unless="${session.loginMember.backgroundImg == null}" th:src="${session.loginMember.backgroundImg}" id="backgroundImg" >
                                 
-                                <input type="file" id="backgroundInput" name="backgroundImg" accept="image/*">
-                             </label>
+                                    <input type="file" id="backgroundInput" name="backgroundImg" accept="image/*">
+                                
+                                </label>
+
+                                <span class="background-btn-area"> <button>변경하기</button> <button>초기화</button> </span>
+
+                            </form>
                         </div>
 
                         <span class="myPage-profile-lower">
-                            <a href="/myPage/myPage-home"><button id="homeButton">홈으로</button> </a> 
-                            <a href="/myPage/myPage-secession"><button id="secessionButton">회원 탈퇴</button></a>
+                            <a href="/myPage/myPage-home" id="homeButton1"><button id="homeButton">홈으로</button> </a> 
+                            <a href="/myPage/myPage-secession" id="secessionButton1"><button id="secessionButton">회원 탈퇴</button></a>
                         </span>   
                         
                     </section>  
@@ -110,9 +114,7 @@
     <th:block th:replace="~{common/common}"></th:block>
 
     <script th:inline="javascript">
-        //th:inline="javascript"
-        // - script 태그 내부에 타임리프 쓸거다
-        // -> 타임리프로 출력되는 값을 JS에 맞는 자료형으로 변경해줘
+
 
         // messages.properties의 값을 얻어와 전역 변수로 선언
         const defaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
