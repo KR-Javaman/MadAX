@@ -29,4 +29,5 @@ public class VideoBoard {
 	private String profileImg;
 	
 	private List<Video> videoList;
+	private List<VideoComment> videoCommentList;
 }
