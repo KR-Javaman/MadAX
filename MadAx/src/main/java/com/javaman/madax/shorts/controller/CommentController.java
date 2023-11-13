@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +32,7 @@ public class CommentController {
 	private final CommentService service;
 	
 	@GetMapping(value="videoComment", produces="application/json")
-	public String selectComment(int boardVideoNo, Model model,
+	public String selectComment(@PathVariable("boardVideoNo") int boardVideoNo, Model model,
 						@SessionAttribute(value="loginMeber", required = false) Member loginMember){
 		
 		Map<String, Object> map = new HashMap<>();

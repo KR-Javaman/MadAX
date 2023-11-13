@@ -129,6 +129,7 @@
 		WHERE BOARD_VIDEO_NO = #{boardVideoNo}
 	</select>
 	
+	<!-- 댓글 조회 -->
 		<select id="selectCommentList" resultType="VideoComment">
 		      SELECT LEVEL, C.* FROM
 		         (SELECT COMMENT_NO, COMMENT_CONTENT,
@@ -145,6 +146,34 @@
 		      CONNECT BY PRIOR COMMENT_NO = PARENT_NO
 		      ORDER SIBLINGS BY COMMENT_NO
 	</select>
+	
+	
+	
+	<update id="deleteBoard">
+		UPDATE VIDEO_BOARD SET
+		VIDEO_DEL_FL = 'Y'
+		WHERE BOARD_VIDEO_NO = #{boardVideoNo}
+		AND MEMBER_NO = #{memberNo}
+	</update>
+	
+	
+	<update id="updateBoard">
+		UPDATE VIDEO_BOARD SET
+		VIDEO_TITLE = #{videoTitle},
+		VIDEO_CONTENT = #{videoContent},
+		VIDEO_UPDATE_DATE = SYSDATE
+		WHERE BOARD_VIDEO_NO = #{boardVideoNo}
+	</update>
+	
+	<update id="videoUpdate">
+		UPDATE VIDEO SET
+		VIDEO_PATH = #{videoPath},
+		VIDEO_RENAME = #{videoRename},
+		VIDEO_ORIGINALNAME = #{videoOriginalName}
+		WHERE BOARD_VIDEO_NO = #{boardVideoNo}
+		AND VIDEO_ORDER = #{videoOrder}
+	</update>
+	
 	
 	
 </mapper>

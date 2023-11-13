@@ -167,6 +167,73 @@ public class ShortsController {
 		return service.like(paramMap);
 	}
 	
+	// 삭제
+	@GetMapping("edit/{boardVideoNo:[0-9]+}/delete")
+	public String deleteBoard(@PathVariable("boardVideoNo") int boardVideoNo,
+							@SessionAttribute("loginMember") Member loginMember,
+							RedirectAttributes ra) {
+		
+		if(loginMember == null) {
+			ra.addFlashAttribute("message","로그인을 먼저 해주세요.");
+			return "redirect:/shorts/main";
+		}
+		
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("boardVideoNo", boardVideoNo);
+		paramMap.put("memberNo", loginMember.getMemberNo());
+		
+		int result = service.deleteBoard(paramMap);
+		
+		String path = null;
+		String message = null;
+		
+		if(result>0) {
+			path="redirect:/shorts/main";
+			message="삭제되었습니다.";
+		}else {
+			path="redirect:/";
+			message="삭제를 실패하였습니다.";
+		}
+		ra.addFlashAttribute("message", message);
+		return path;
+	}
 	
+	
+	@GetMapping("edit/{boardVideoNo:[0-9]+}/update")
+	public String updateBoard(@PathVariable("boardVideoNo") int boardVideoNo, Model model) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("boardVideoNo", boardVideoNo);
+		
+		VideoBoard videoBoard = service.videoBoardDetail(boardVideoNo);
+		
+		model.addAttribute("videoBoard", videoBoard);
+		return "shorts/shortsUpdate";
+	}
+	
+	
+	@PostMapping("edit/{boardVideoNo:[0-9]+}/update")
+	public String updateBoard(@PathVariable("boardVideoNo") int boardVideoNo,
+						VideoBoard videoBoard, String querystring, 
+						@RequestParam("shortsVideo") List<MultipartFile> video,
+						RedirectAttributes ra) throws IllegalStateException, IOException {
+		
+		videoBoard.setBoardVideoNo(boardVideoNo);
+		
+		int result = service.updateBoard(videoBoard, video);
+		
+		String message = null;
+		String path = null;
+		
+		if(result > 0) {
+			message = "게시글이 수정되었습니다.";
+			path = String.format("redirect:/shorts/main/%d/%d%s", boardVideoNo, querystring);
+		}else {
+			message = "게시글 수정을 실패하였습니다.";
+			path = "redirect:update";
+		}
+		ra.addFlashAttribute(message);
+		return path;
+	}
 	
 }

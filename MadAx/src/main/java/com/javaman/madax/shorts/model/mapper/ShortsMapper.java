@@ -36,6 +36,12 @@ public interface ShortsMapper {
 
 	int countLike(Integer boardVideoNo);
 
+	int deleteBoard(Map<String, Object> paramMap);
+
+	int updateBoard(VideoBoard videoBoard);
+
+	int videoUpdate(Video vd);
+
 	
 
 	

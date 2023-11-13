@@ -39,9 +39,13 @@
             >
           </div>
           <div class="video-button">
-            <button>수정</button>
-            <button>삭제</button>
-            <button>신고</button>
+            <th:block
+              th:if="${session.loginMember != null and session.loginMember.memberNo == videoBoard.memberNo}"
+            >
+              <button id="updateBtn">수정</button>
+              <button id="deleteBtn">삭제</button>
+              <button>신고</button>
+            </th:block>
           </div>
         </div>
         <div class="video-title-content">
@@ -71,6 +75,9 @@
         </div>
         <!--  ------------------------->
         <th:block th:replace="~{shorts/shortsComment}"></th:block>
+        <div class="video-title-content" id="listBtn">
+          <button id="goToListBtn">목록으로</button>
+        </div>
       </section>
     </div>
     <script th:inline="javascript">
