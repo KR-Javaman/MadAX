@@ -3,6 +3,7 @@ package com.javaman.madax.myPage.model.mapper;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaman.madax.member.model.dto.Member;
 
@@ -32,7 +33,20 @@ public interface MyPageMapper {
 	 * @param memberNo
 	 * @return result
 	 */
-	int secession(int memberNo);
+	int secession2(int memberNo);
+
+	/** 프로필 이미지 수정
+	 * @param loginMember
+	 * @return result
+	 */
+	int profile(Member loginMember);
+
+	int background(Member loginMember);
+
+
+	int deleteBackground(Member backgroundImg);
+	
+	
 
 
 }

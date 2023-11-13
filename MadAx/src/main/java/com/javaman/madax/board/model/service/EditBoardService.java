@@ -2,6 +2,7 @@ package com.javaman.madax.board.model.service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,6 +17,14 @@ public interface EditBoardService {
 	 * @return
 	 */
 	int insertBoard(Board board, List<MultipartFile> images) throws IllegalStateException, IOException;
+
+	
+	
+	/**게시글 삭제
+	 * @param map
+	 * @return result
+	 */
+	int delete(Map<String, Integer> map);
 
 
 	

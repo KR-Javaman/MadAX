@@ -12,7 +12,7 @@
 
 .myPage-profile-total{
   width: 100%;
-  height: 100%;
+  height: 105%;
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
@@ -38,6 +38,47 @@
   background-color: white;
   border-radius: 1.2rem;
   
+}
+
+
+.editProfile2 {
+  background-color: white;
+  margin-left : 5rem;
+  height: 3.5rem;
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 0.8rem;
+  color: black;
+  padding: 1rem;
+
+}
+
+
+.editProfile2:focus-within {
+  border-color: rgb(22, 255, 1);
+}
+
+
+.profile-row {
+  color:black; 
+  background-color: white;
+  padding-top: 3rem;
+  font-weight: bold;
+  align-items: center;
+  display: flex;
+  width: 100%;
+
+}
+
+
+.editButton {
+  background-color: white;
+  border: 0rem;
+  color:rgb(22, 255, 1);
+  margin-left: 4px;
+  padding: 5px;
+  
+
 }
 
 
@@ -69,16 +110,11 @@
 }
 
 
-.profile-btn-area{
-  width: 23rem;
-  background-color: white;
-}
-
 .profile-btn-area > button{
   background-color: white;
   color: black;
   border: 1px solid black;
-  width: 11rem;
+  width: 13rem;
   height: 3.4rem;
   font-size: 1.5rem;
   cursor: pointer;
@@ -97,91 +133,100 @@
   padding:  2rem 4rem;
 }
 
-
-#editProfile {
-  background-color: white;
-  margin-left : 5rem;
-  height: 3.5rem;
-  width: 50%;
-  border: 1px solid black;
-  border-radius: 0.8rem;
-  color: black;
-  padding: 1rem;
-
+.backgroundFrm {
+  display: none;
 }
 
 
-#editProfile:focus-within {
-  border-color: rgb(22, 255, 1);
-}
-
-
-.profile-row {
-  color:black; 
+.myPage-profile-mid > .backgroundFrm > .background-img {
   background-color: white;
-  padding-top: 3rem;
-  font-weight: bold;
-  align-items: center;
-  display: flex;
-  width: 100%;
-
-}
-
-
-#editButton {
-  background-color: white;
-  border: 0rem;
-  color:rgb(22, 255, 1);
-  margin-left: 4px;
-  padding: 5px;
-  
-
-}
-
-.myPage-profile-lower {
-  background-color: white;
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-}
-
-.myPage-profile-lower > a {
-  background-color: white;
-}
-
-.myPage-profile-lower >form {
-  background-color: white;
-}
-
-
-.background-img {
-  background-color: white;
-  height: 80%;
+  height: 40%;
   margin-top: 2rem;
   border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
-.background-img > #backgroundImg1 {
-  height: 100%;
+
+.background-img > #backgroundImg {
+  margin-top: 2rem;
+  height: 425px;
   width: 100%;
+  cursor: pointer;
+  border: 2px solid black;
+  
 }
 
-.background-img > h1 {
-  font-size: 70px;
+#backgroundImg:hover {
+  border : 4px solid rgb(22, 255, 1);
 }
 
 
-.background-img > button {
+#backgroundInput {
+  display: none;
+}
+
+
+.background-btn-area {
+
+  display: flex;
+  justify-content: end;
+}
+
+
+.background-btn-area > button {
   background-color: white;
-  font-size: 5rem;
-  border: none;
+  height : 3rem;
+  font-size: 1.6rem;
+  border: 2px solid black;
   color: black;
-  height: 100%;
-  width: 100%;
+  cursor: pointer;
+  border: none;
+  display: flex;
 }
+
+.background-btn-area > button:hover {
+  transition-duration: 0.3s;
+  color:rgb(22, 255, 1);
+}
+.background-btn-area1 {
+
+  display: flex;
+  justify-content: end;
+}
+
+
+.background-btn-area1 > button {
+  background-color: white;
+  justify-content: end;
+  height : 3rem;
+  font-size: 1.2rem;
+  font-style: italic;
+  text-decoration: underline;
+  margin-bottom: 100px;
+  color: black;
+  cursor: pointer;
+  border: none;
+  display: flex;
+}
+
+.background-btn-area1 > button:hover {
+  transition-duration: 0.3s;
+  color:rgb(22, 255, 1);
+}
+
+
+.myPage-profile-lower {
+  display: flex;
+  justify-content: center;
+  margin-top: 130px;
+ 
+}
+
+
+
 
 
 #homeButton {
@@ -190,20 +235,13 @@
   background-color:rgb(22, 255, 1);
   color: white;
   width: 11rem;
-  height : 5rem;
-  margin-top: 3rem; 
+  height : 4.5rem;
+ 
   margin-right : 5rem; 
   font-size: 1.7rem;
   cursor: pointer;
 
 }
-
-#backgroundInput {
-  display: none;
-}
-
-
-
 
 
 #secessionButton {
@@ -212,11 +250,18 @@
   border: 0.05rem solid black;
   border-radius: 1.5rem;
   width: 11rem;
-  height : 5rem;
+  height : 4.5rem;
   font-size: 1.7rem;
   cursor: pointer;
  
 }
 
+#homeButton1 {
+  cursor: none;
+}
+
+#secessionButton1 {
+  cursor: none;
+}
 
 

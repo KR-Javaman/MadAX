@@ -1,9 +1,9 @@
 package com.javaman.madax.board.controller;
 
-
-
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,9 +43,6 @@ public class EditBoardController {
 	
 	
 	
-	
-	
-	
 	/**게시글 작성
 	 * @param boardCode
 	 * @param board
@@ -57,6 +54,7 @@ public class EditBoardController {
 								Board board, RedirectAttributes ra,
 								@SessionAttribute("loginMember") Member loginMember,
 								@RequestParam("images") List<MultipartFile> images)throws IllegalStateException, IOException {
+		
 		
 		
 		board.setMemberNo(loginMember.getMemberNo());
@@ -76,7 +74,56 @@ public class EditBoardController {
 		}
 		
 		
+	}
+	
+	
+	/**게시글 삭제
+	 * @param boardCode
+	 * @param boardNo
+	 * @param loginMember
+	 * @param ra
+	 * @return
+	 */
+	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete")
+	public String deleteBoard( @PathVariable("boardCode") int boardCode,
+								@PathVariable("boardNo")int boardNo, 
+								@SessionAttribute(value ="loginMember", required = false) Member loginMember,
+								RedirectAttributes ra) {
+		
+		
+		if(loginMember == null) {
+			ra.addFlashAttribute("message" ,"로그인 후 이용해주세요");
+			return "redirect:/member/login";
+		}
+		
+		
+		Map<String, Integer> map = new HashMap<>();
+		map.put("boardCode", boardCode);
+		map.put("boardNo", boardNo);
+		map.put("memberNo", loginMember.getMemberNo());
+		
+		
+		int result = service.delete(map);
+		
+		String path = null;
+		String message = null;
+		
+		if(result > 0) {
+			message = "삭제되었습니다";
+			path = "redirect:/board/"+ boardCode;  
+		}else {
+			message = "삭제 실패";
+			path = "redirect:/";
+			
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return path;
+			
 		
 	}
+	
+	
 	
 }
