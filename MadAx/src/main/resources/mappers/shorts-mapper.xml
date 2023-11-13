@@ -7,7 +7,7 @@
 		
 		<id property="boardVideoNo" column="BOARD_VIDEO_NO" />
 		
-		<collection property="VideocommentList"
+		<collection property="videoCommentList"
 					select="selectCommentList"
 					column="BOARD_VIDEO_NO"
 					javaType="java.util.ArrayList"
@@ -134,11 +134,11 @@
 		         (SELECT COMMENT_NO, COMMENT_CONTENT,
 		             TO_CHAR(COMMENT_WRITE_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') COMMENT_WRITE_DATE,
 		             BOARD_VIDEO_NO, MEMBER_NO, MEMBER_NICKNAME, PROFILE_IMG, PARENT_NO, COMMENT_DEL_FL
-		         FROM "COMMENT"
+		         FROM "VIDEO_COMMENT"
 		         JOIN MEMBER USING(MEMBER_NO)
-		         WHERE BOARD_NO = #{boardNo}) C
+		         WHERE BOARD_VIDEO_NO = #{boardVideoNo}) C
 		      WHERE COMMENT_DEL_FL = 'N'
-		      OR 0 != (SELECT COUNT(*) FROM "COMMENT" SUB
+		      OR 0 != (SELECT COUNT(*) FROM "VIDEO_COMMENT" SUB
 		                  WHERE SUB.PARENT_NO = C.COMMENT_NO
 		                  AND COMMENT_DEL_FL = 'N')
 		      START WITH PARENT_NO IS NULL

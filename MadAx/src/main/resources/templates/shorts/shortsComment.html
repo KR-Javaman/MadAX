@@ -4,7 +4,7 @@
       <li
         class="comment-row"
         th:classappend="${videoComment.parentNo} != 0 ? child-comment"
-        th:each="comment : ${videoBoard.commentList}"
+        th:each="videoComment : ${videoBoard.videoCommentList}"
         th:object="${videoComment}"
       >
         <th:block th:if="*{commentDelFl == 'Y'}">
@@ -27,8 +27,12 @@
           </p>
           <p class="video-comment-content">
             <span th:text="*{commentContent}" class="comment-content"> 댓글 내용 </span>
-            <img src="basic-heart.png" alt="" id="img" />
-            <span id="count-heart">0</span>
+            <i
+              class="fa-heart"
+              th:classappend="${likeClickComment} ? fa-solid : fa-regular"
+              id="imgComment"
+            ></i>
+            <span id="count-heart" th:text="*{likeCountComment}">0</span>
           </p>
           <div class="comment-btn-area">
             <button th:onclick="|showInsertComment(*{commentNo}, this)|">답글 달기</button>
@@ -52,6 +56,7 @@
 </div>
 
 <script th:inline="javascript">
-  const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인 회원 번호";
+  const loginMemberNo =
+    /*[[${session.loginMember?.memberNo}]]*/ "로그인 회원 번호";
   const userDefaultImage = /*[[#{user.default.image}]]*/ "회원 기본 이미지";
 </script>

@@ -148,12 +148,12 @@ section:last-child {
   display: flex;
   align-items: center;
 }
-.video-comment-content > img,
+.video-comment-content > i,
 #count-heart {
   width: 1.5rem;
   height: 1.5rem;
 }
-.video-comment-content > img {
+.video-comment-content > i {
   margin: 0.3rem;
 }
 .video-button {
