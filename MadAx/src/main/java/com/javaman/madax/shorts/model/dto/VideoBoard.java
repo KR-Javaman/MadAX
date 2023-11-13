@@ -2,7 +2,6 @@ package com.javaman.madax.shorts.model.dto;
 
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,12 +15,18 @@ public class VideoBoard {
 	private String videoTitle;
 	private String videoContent;
 	private int videoReadCount;
-	private String videoDate;
 	private String videoDelFl;
 	private int memberNo;
+	private String videoWriteDate;
+	private String videoUpdateDate;
 	
+	private int commentCount;
 	private int likeCount;
+	private String memberNickname;
 	private String videoPath;
 	private String videoRename;
 	
+	private String profileImg;
+	
+	private List<Video> videoList;
 }

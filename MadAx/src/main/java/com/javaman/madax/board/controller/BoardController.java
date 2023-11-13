@@ -1,6 +1,10 @@
 package com.javaman.madax.board.controller;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,8 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -17,6 +24,10 @@ import com.javaman.madax.board.model.dto.Board;
 import com.javaman.madax.board.model.service.BoardService;
 import com.javaman.madax.member.model.dto.Member;
 
+import com.javaman.madax.board.model.dto.BoardImg;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 
@@ -50,12 +61,13 @@ private final BoardService service;
 	
 	
 	
-	
+	//게시글 상세조회
 	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}")
 	public String detail(@PathVariable("boardCode")int boardCode,
 						@PathVariable("boardNo")int boardNo, 
 						Model model,
-						RedirectAttributes ra) {
+						RedirectAttributes ra,
+						@SessionAttribute(value = "loginMember", required = false) Member loginMember) {
 		
 		
 		Map<String, Object> map = new HashMap<>();
@@ -64,14 +76,53 @@ private final BoardService service;
 		
 		Board board = service.detail(map);
 		
-		if(board != null) {
-			model.addAttribute("board",board);
-			return "board/boardDetail";
-		}
-			
-		return "board/boardDetail";
+		String path = null;
 		
+		if(board != null) { //게시글이 있을 때
+			model.addAttribute("board",board);
+			
+			path = "board/boardDetail";
+			
+			
+			if(loginMember != null) {
+				
+				map.put("memberNo", loginMember.getMemberNo());
+				int likeCheck = service.likeCheck(map);
+				
+				
+				if(likeCheck == 1) {
+					model.addAttribute("likeCheck" , "on");
+				}
+			}
+			
+			
+		}else { //게시글 없을 경우
+			path = "redirect:/board/" + boardCode;
+			
+		}
+		
+		return path;
 	}
+	
+	
+	
+	
+			
+	/*좋아요 처리
+	 * @param paramMap : boardNo, check(0.1)담긴 맵
+	 *  **/
+	@PostMapping("like")
+	@ResponseBody
+	public int like(@RequestBody Map<String, Object> paramMap , @SessionAttribute("loginMember") Member loginMember) {
+		
+		//paramMap에 로그인 회원 번호만 추가
+		paramMap.put("memberNo", loginMember.getMemberNo());
+		
+		
+		//paramMap : {boardNo,memberNo, check}
+		return service.like(paramMap);  //-1(실패) / 0이상 (성공)
+}
+	
 	
 	
 	

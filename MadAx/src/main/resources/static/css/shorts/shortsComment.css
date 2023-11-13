@@ -1,0 +1,22 @@
+.comment-write-area {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+.comment-write-area > textarea {
+  flex-basis: 85%;
+  margin-right: 1rem;
+  resize: none;
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.3rem;
+}
+.comment-write-area > button {
+  flex-basis: 10%;
+  height: 5rem;
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  border-radius: 1rem;
+  font-weight: bold;
+}

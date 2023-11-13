@@ -10,7 +10,7 @@
   <body>
     <main th:with="videoList=${map.videoList}, pagination=${map.pagination}">
       <th:block th:replace="~{common/header}"></th:block>
-      <section>
+      <section th:object="${videoBoard}">
         <form action="">
           <select name="videoListType" id="video-list-type">
             <option value="latest">최신순</option>
@@ -42,11 +42,11 @@
 
         <!-- ----------------------------------- -->
         <th:block th:each="i : ${#numbers.sequence(0, #lists.size(videoList) - 1)}">
-          <th:block th:if="${i % 5 == 0}">
-            <div class="vdvd">
+          <th:block th:if="${i % 5 == 0}" >
+            <div class="vdvd" >
           </th:block>
-
-            <a href="#" class="video-a">
+         
+            <a th:href="@{/shorts/detail/{boardVideoNo}(boardVideoNo=${videoList[i].boardVideoNo}, cp=${pagination.currentPage})}" class="video-a">
               <video
                 th:src="|${videoList[i].videoPath}${videoList[i].videoRename}|"
                 muted
@@ -60,7 +60,6 @@
                 (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅁㄹㄴㅁ
               </div>
             </a>
-
 
           <th:block th:if="${i % 5 == 4 or i == #lists.size(videoList)-1}">
             </div>

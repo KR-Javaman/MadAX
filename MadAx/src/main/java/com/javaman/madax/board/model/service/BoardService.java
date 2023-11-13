@@ -17,6 +17,17 @@ public interface BoardService {
 	Board detail(Map<String, Object> map);
 
 
+	//게시글 좋아요 여부 확인
+	int likeCheck(Map<String, Object> map);
+
+
+	
+	int like(Map<String, Object> paramMap);
+
+
+
+
+
 
 	
 	
