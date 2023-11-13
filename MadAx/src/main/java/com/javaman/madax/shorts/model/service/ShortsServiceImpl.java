@@ -53,6 +53,27 @@ public class ShortsServiceImpl implements ShortsService{
 		return map;
 	}
 	
+	
+	@Override
+	public Map<String, Object> searchMain(Map<String, Object> paramMap, int cp) {
+		int listCount = mapper.searchCount(paramMap);
+
+		VideoPagination pagination = new VideoPagination(cp, listCount);
+		
+		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit();
+		int limit = pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<VideoBoard> videoList = mapper.searchMain(rowBounds, paramMap);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("videoList", videoList);
+		map.put("pagination", pagination);
+		return map;
+	}
+	
+	
 	//	글 작성
 	@Override
 	public int writeInsert(VideoBoard videoBoard, List<MultipartFile> video) throws IllegalStateException, IOException {

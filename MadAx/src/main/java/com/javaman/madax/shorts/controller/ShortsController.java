@@ -43,11 +43,16 @@ public class ShortsController {
 	
 	@GetMapping("main")
 	public String main(VideoBoard video ,Model model,
-				@RequestParam(value="cp", required = false, defaultValue = "1") int cp) {
+				@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
+				@RequestParam Map<String, Object> paramMap) {
 
-		Map<String, Object> map = service.main(cp,video);
-		model.addAttribute("map", map);
-		
+		if(paramMap.get("key") == null && paramMap.get("query") == null) {
+			Map<String, Object> map = service.main(cp,video);
+			model.addAttribute("map",map);
+		}else {
+			Map<String, Object> map = service.searchMain(paramMap, cp);
+			model.addAttribute("map", map);
+		}
 		return "shorts/shorts-main";
 
 	}
@@ -227,7 +232,7 @@ public class ShortsController {
 		
 		if(result > 0) {
 			message = "게시글이 수정되었습니다.";
-			path = String.format("redirect:/shorts/main/%d/%d%s", boardVideoNo, querystring);
+			path = String.format("redirect:/shorts/detail/%d%s", boardVideoNo, querystring);
 		}else {
 			message = "게시글 수정을 실패하였습니다.";
 			path = "redirect:update";

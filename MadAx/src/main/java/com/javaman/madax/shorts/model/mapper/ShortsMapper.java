@@ -41,6 +41,12 @@ public interface ShortsMapper {
 	int updateBoard(VideoBoard videoBoard);
 
 	int videoUpdate(Video vd);
+	
+	int searchCount(Map<String, Object> paramMap);
+
+	List<VideoBoard> searchMain(RowBounds rowBounds, Map<String, Object> paramMap);
+
+	
 
 	
 

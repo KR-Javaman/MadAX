@@ -18,35 +18,16 @@
             <option value="look">조회순</option>
           </select>
         </form>
-        <!-- <div class="vdvd">
-          <th:block
-            th:each="videoBoard : ${videoList}"
-            th:object="${videoBoard}"
-          >
-            <a href="#" class="video-a">
-              <video
-                th:src="|${videoBoard.videoPath}${videoBoard.videoRename}|"
-                muted
-                onmouseover="this.play()"
-                onmouseout="this.pause()"
-                width="300px"
-                height="320px"
-                controls
-              ></video>
-              <div id="video-kdb" th:text="*{videoTitle}">
-                (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅁㄹㄴㅁ
-              </div>
-            </a>
-          </th:block>
-        </div> -->
-
         <!-- ----------------------------------- -->
         <th:block th:each="i : ${#numbers.sequence(0, #lists.size(videoList) - 1)}">
           <th:block th:if="${i % 5 == 0}" >
             <div class="vdvd" >
           </th:block>
          
-            <a th:href="@{/shorts/detail/{boardVideoNo}(boardVideoNo=${videoList[i].boardVideoNo}, cp=${pagination.currentPage})}" class="video-a">
+            <a 
+              th:if="${param.key == null}"
+              th:href="@{/shorts/detail/{boardVideoNo}(boardVideoNo=${videoList[i].boardVideoNo}, cp=${pagination.currentPage})}"
+              class="video-a">
               <video
                 th:src="|${videoList[i].videoPath}${videoList[i].videoRename}|"
                 muted
@@ -57,7 +38,24 @@
                 controls
               ></video>
               <div id="video-kdb" th:text="${videoList[i].videoTitle}">
-                (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅁㄹㄴㅁ
+                게시글 제목
+              </div>
+            </a>
+            <a 
+              th:unless="${param.key == null}"
+              th:href="@{/shorts/detail/{boardVideoNo}(boardVideoNo=${videoList[i].boardVideoNo},
+               cp=${pagination.currentPage}, key=${param.key}, query=${param.query})}" class="video-a">
+              <video
+                th:src="|${videoList[i].videoPath}${videoList[i].videoRename}|"
+                muted
+                onmouseover="this.play()"
+                onmouseout="this.pause()"
+                width="300px"
+                height="320px"
+                controls
+              ></video>
+              <div id="video-kdb" th:text="${videoList[i].videoTitle}">
+                게시글 제목
               </div>
             </a>
 
@@ -71,59 +69,72 @@
         <div class="write-btn-area">
           <button id="writeBtn">글쓰기</button>
         </div>
-        <div class="video-pagination">
-          <ul>
-            <li><a href="#">&lt;&lt;</a></li>
-            <li><a href="#">&lt;</a></li>
+
+        <div class="video-pagination" th:if="${#lists.size(videoList) > 0}">
+          <ul class="pagination" th:if="${param.key == null}">
+            <li>
+              <a th:href="@{/shorts/main(cp=1)}">&lt;&lt;</a>
+            </li>
+            <li>
+              <a th:href="@{/shorts/main(cp=${pagination.prevPage})}">&lt;</a>
+            </li>
             <th:block
               th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}"
             >
               <li th:if="${i == pagination.currentPage}">
                 <a class="current-pagination" th:text="${i}">1</a>
               </li>
+              <li th:unless="${i == pagination.currentPage}">
+                <a th:href="@{/shorts/main(cp=${i})}"
+                   th:text="${i}">2</a>
+              </li>
             </th:block>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-            <li><a href="#">7</a></li>
-            <li><a href="#">8</a></li>
-            <li><a href="#">9</a></li>
-            <li><a href="#">10</a></li>
-            <li><a href="#">&gt;</a></li>
-            <li><a href="#">&gt;&gt;</a></li>
+            <li><a th:href="@{/shorts/main(cp=${pagination.nextPage})}">&gt;</a></li>
+            <li><a th:href="@{/shorts/main(cp=${pagination.maxPage})}">&gt;&gt;</a></li>
+          </ul>
+            <!--  검색  -->
+          <ul class="pagination" th:unless="${param.key == null}">
+            <li>
+              <a th:href="@{/shorts/main(cp=1, key=${param.key}, query=${param.query})}">&lt;&lt;</a>
+            </li>
+            <li>
+              <a th:href="@{/shorts/main(cp=${pagination.prevPage}, key=${param.key}, query=${param.query})}">&lt;</a>
+            </li>
+            <th:block
+              th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}"
+            >
+              <li th:if="${i == pagination.currentPage}">
+                <a class="current-pagination" th:text="${i}">1</a>
+              </li>
+              <li th:unless="${i == pagination.currentPage}">
+                <a th:href="@{/shorts/main(cp=${i}, key=${param.key}, query=${param.query})}"
+                   th:text="${i}">2</a>
+              </li>
+            </th:block>
+            
+            <li><a th:href="@{/shorts/main(cp=${pagination.nextPage}, key=${param.key}, query=${param.query})}">&gt;</a></li>
+            <li><a th:href="@{/shorts/main(cp=${pagination.maxPage}, key=${param.key}, query=${param.query})}">&gt;&gt;</a></li>
           </ul>
         </div>
 
-        <form action="" id="search-area">
+        <form th:action="@{main}" method="get" id="search-area">
           <select name="key" id="searchKey">
-            <option value="searchTitle">제목</option>
-            <option value="searchNickname">작성자</option>
-            <option value="searchContent">내용</option>
+            <option value="t">제목</option>
+            <option value="c">내용</option>
+            <option value="tc">제목+내용</option>
+            <option value="w">작성자</option>
           </select>
           <div class="searchMain">
             <img src="/images/search_icon.png" />
             <input
               type="text"
               id="search"
+              name="query"
               placeholder="검색어를 입력해주세요"
             />
           </div>
           <button>검색</button>
         </form>
-        <!-- <form
-          action="video"
-          method="post"
-          enctype="multipart/form-data"
-          id="formTest"
-        > -->
-        <input type="file" name="shortsVideo" id="upload-file" accept=".mp4" />
-
-        <button onclick="upload()" type="button">업로드</button>
-        <!-- <input type="submit" value="" /> -->
-        <!-- <button type="submit">전송</button> -->
-        <!-- </form> -->
         <div class="result"></div>
       </section>
     </main>

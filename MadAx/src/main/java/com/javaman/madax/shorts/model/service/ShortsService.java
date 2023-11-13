@@ -27,6 +27,8 @@ public interface ShortsService {
 
 	int updateBoard(VideoBoard videoBoard, List<MultipartFile> video) throws IllegalStateException, IOException;
 
+	Map<String, Object> searchMain(Map<String, Object> paramMap, int cp);
+
 
 
 }
