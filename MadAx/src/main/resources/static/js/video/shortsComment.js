@@ -83,7 +83,7 @@ const selectCommentList = () => {
     })
     .catch((e) => console.log(e));
 };
-
+//----------------------------------------
 const addComment = document.getElementById("addComment");
 const commentContent = document.getElementById("commentContent");
 
@@ -126,7 +126,7 @@ addComment.addEventListener("click", (e) => {
       console.log(e);
     });
 });
-
+//------------------------------------
 function deleteVideoComment(commentNo) {
   if (confirm("정말로 삭제 하시겠습니까?")) {
     fetch("/shorts/detail/videoComment", {
@@ -195,13 +195,13 @@ function showUpdateComment(commentNo, btn) {
   commentBtnArea.append(updateBtn, cancelBtn);
   commentRow.append(commentBtnArea);
 }
-
+//------------------------------------------
 function updateCancel(btn) {
   if (confirm("댓글을 수정 하시겠습니까?")) {
     btn.parentElement.parentElement.innerHTML = beforeCommentRow;
   }
 }
-
+//------------------------------------------
 function updateComment(commentNo, btn) {
   const commentContent = btn.parentElement.previousElementSibling.value;
 
@@ -223,7 +223,7 @@ function updateComment(commentNo, btn) {
     })
     .catch((e) => console.log(e));
 }
-
+//-----------------------------------------
 function showInsertComment(parentNo, btn) {
   const temp = document.getElementsByClassName("commentInsertContent");
 
@@ -259,18 +259,16 @@ function showInsertComment(parentNo, btn) {
   cancelBtn.innerText = "취소";
   cancelBtn.setAttribute("onclick", "insertCancel(this)");
 
-  // 답글 버튼 영역의 자식으로 등록/취소 버튼 추가
   commentBtnArea.append(insertBtn, cancelBtn);
 
-  // 답글 버튼 영역을 화면에 추가된 textarea 뒤쪽에 추가
   textarea.after(commentBtnArea);
 }
-
+//-------------------------------------------------
 function insertCancel(btn) {
   btn.parentElement.previousElementSibling.remove();
   btn.parentElement.remove();
 }
-
+//---------------------------------------------
 function insertChildComment(parentNo, btn) {
   const commentContent = btn.parentElement.previousElementSibling.value;
 
@@ -286,23 +284,60 @@ function insertChildComment(parentNo, btn) {
     memberNo: loginMemberNo,
     boardVideoNo: boardVideoNo,
     parentNo: parentNo,
-  }; // JS객체
+  };
 
   fetch("/shorts/detail/videoComment", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(dataObj), // JS객체 -> JSON 파싱
+    body: JSON.stringify(dataObj),
   })
     .then((resp) => resp.text())
     .then((result) => {
       if (result > 0) {
-        // 등록 성공
         alert("답글이 등록되었습니다.");
-        selectCommentList(); // 비동기 댓글 목록 조회 함수 호출
+        selectCommentList();
       } else {
-        // 실패
         alert("답글 등록에 실패했습니다...");
       }
     })
     .catch((err) => console.log(err));
 }
+
+// -----------------------------------------------------
+const likeImgComment = document.querySelector("#imgComment");
+
+likeImgComment.addEventListener("click", (e) => {
+  if (!loginCheck) {
+    alert("로그인을 먼저 해주세요");
+    return;
+  }
+  let check;
+
+  if (e.target.classList.contains("fa-regular")) {
+    check = 0;
+  } else {
+    check = 1;
+  }
+
+  const dataObj = { commentNo: commentNo, check: check };
+
+  fetch("/shorts/detail/videoComment/like", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dataObj),
+  })
+    .then((resp) => resp.text())
+    .then((count) => {
+      if (count == -1) {
+        console.log("좋아요 실패");
+        return;
+      }
+      e.target.classList.toggle("fa-regular");
+      e.target.classList.toggle("fa-solid");
+
+      e.target.nextElementSibling.innerText = count;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+});

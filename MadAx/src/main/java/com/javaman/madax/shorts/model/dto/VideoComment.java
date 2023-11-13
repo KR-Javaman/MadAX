@@ -18,5 +18,7 @@ public class VideoComment {
 	    private int parentNo;
 	    
 	    private String memberNickname;
-	    private String profileImg;	
+	    private String profileImg;
+	    
+	    private int likeCountComment;
 }
