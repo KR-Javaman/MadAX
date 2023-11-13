@@ -51,6 +51,10 @@ public interface BoardMapper {
 	int countBoardLike(Integer boardNo);
 
 
+	//게시글 죄회수증가
+	int updateBoardCount(int boardNo);
+
+
 	
 
 

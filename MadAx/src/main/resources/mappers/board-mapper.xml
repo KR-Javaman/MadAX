@@ -96,6 +96,13 @@
 	</select>
 	
 	
+	<!--조회수 증가-->
+	<update id="updateBoardCount">
+		UPDATE "BOARD" SET
+		BOARD_COUNT = BOARD_COUNT +1
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
 	
 
 	
