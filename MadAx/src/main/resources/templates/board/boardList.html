@@ -89,10 +89,7 @@
                 <td th:text="*{boardCount}">조회수</td>
                 <td th:text="*{likeCount}">좋아요</td>
               </tr>
-              
-              <div th:if="${session.loginMember != null}">
-                <button id="writeBtn">글쓰기</button>                     
-              </div>
+            
             </tbody>
 
           </table>
@@ -112,6 +109,10 @@
             </ul>
           </div>
         </div>
+      </div>
+
+      <div th:if="${session.loginMember != null}" class="writeBtn">
+        <button id="writeBtn">글쓰기</button>                     
       </div>
 
 
@@ -149,6 +150,8 @@
                   <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${pagination.maxPage})}">&gt;&gt;</a>
               </li>
         </ul>
+
+        
 
       </div>
 

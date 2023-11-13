@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,6 +62,7 @@ public class EditBoardController {
 		board.setBoardCode(boardCode);
 		
 		int boardNo = service.insertBoard(board, images);
+		
 		
 		if(boardNo > 0) {
 			ra.addFlashAttribute("message", "게시글 작성 성공");
@@ -122,6 +124,22 @@ public class EditBoardController {
 		return path;
 			
 		
+	}
+	
+	
+	/**게시글 수정화면 전환
+	 * @param boardCode
+	 * @param boardNo
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/update")
+	public String updateBoard(@PathVariable("boardCode")int boardCode,
+							  @PathVariable("boardNo")int boardNo,
+							  Model model) {
+		
+		
+		return null;
 	}
 	
 	

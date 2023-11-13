@@ -24,7 +24,7 @@ public interface EditBoardService {
 	 * @param map
 	 * @return result
 	 */
-	int delete(Map<String, Integer> map);
+	int delete(Map<String, Integer> map) ;
 
 
 	
