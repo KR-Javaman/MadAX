@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <!-- 연결할 인터페이스의 패키지명.인터페이스명으로 작성 -->
-<mapper namespace="com.javaman.madax.shorts.model.mapper.ShortsMapper">
+<mapper namespace="com.javaman.madax.myPage.model.mapper.MyShortsMapper">
   
   	<resultMap id="video_rm" type="VideoBoard">
 		
@@ -25,20 +25,24 @@
   
 	<select id="getListCount" resultType="_int">
 		SELECT COUNT(*) FROM "VIDEO_BOARD"
+		JOIN "VIDEO" USING(BOARD_VIDEO_NO)
 		WHERE VIDEO_DEL_FL = 'N'
+		AND MEMBER_NO = #{memberNo}
 	</select>
 	
 	<select id="selectList" resultType="VideoBoard">
-		SELECT BOARD_VIDEO_NO, VIDEO_TITLE, VIDEO_PATH, VIDEO_RENAME,
+		SELECT BOARD_VIDEO_NO, VIDEO_TITLE, VIDEO_PATH, VIDEO_RENAME, MEMBER_NO
 			(SELECT COUNT(*) FROM "VIDEO_LIKE" L
 			WHERE L.MEMBER_NO  = B.MEMBER_NO  ) LIKE_COUNT
 		FROM "VIDEO_BOARD" B
 		JOIN "VIDEO" USING(BOARD_VIDEO_NO)
 		WHERE VIDEO_DEL_FL ='N'
+		AND MEMBER_NO = #{memberNo}
+		
 		ORDER BY BOARD_VIDEO_NO DESC
 	</select>
 
-	<insert id="writeInsert" useGeneratedKeys="true">
+	<!--<insert id="writeInsert" useGeneratedKeys="true">
 		<selectKey order="BEFORE" resultType="_int" keyProperty="boardVideoNo" >
         	SELECT SEQ_BOARD_VIDEO_NO.NEXTVAL FROM DUAL
       	</selectKey>
@@ -142,7 +146,7 @@
 		      START WITH PARENT_NO IS NULL
 		      CONNECT BY PRIOR COMMENT_NO = PARENT_NO
 		      ORDER SIBLINGS BY COMMENT_NO
-	</select>
+	</select>-->
 	
 	
 </mapper>

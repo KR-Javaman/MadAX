@@ -63,6 +63,12 @@ public class MyPageController {
 		return "myPage/myPage-shorts";
 	}
 	
+	@GetMapping("myPage-jisikin") 
+	public String myPageJisikin() {
+		
+		return "myPage/myPage-jisikin";
+	}
+	
 	@GetMapping("profile") // /myPage/info (이런 모양의 요청이 왔을 때!)
 	public String profile() {
 		
@@ -167,7 +173,6 @@ public class MyPageController {
 		
 		// 프로필 이미지 수정 서비스 호출 후 결과 반환
 		int result = service.profile(profileImg, loginMember);
-							// 실제 이미지 파일, 세션에 저장된 회원 정보
 		
 		// 서비스 결과에 따라 응답 제어
 		String message = null;
@@ -181,7 +186,6 @@ public class MyPageController {
 		
 		ra.addFlashAttribute("message", message);
 		
-		// 프로필 페이지로 리다이렉트
 		return "redirect:profile";
 		
 	}
@@ -193,13 +197,14 @@ public class MyPageController {
 		
 		// 프로필 이미지 수정 서비스 호출 후 결과 반환
 		int result = service.background(backgroundImg, loginMember);
-							// 실제 이미지 파일, 세션에 저장된 회원 정보
 		
 		// 서비스 결과에 따라 응답 제어
 		String message = null;
 		
 		if(result > 0) { 
+			
 			message ="백그라운드 이미지가 변경 되었습니다.";
+			
 		} else {
 			message = "백그라운드 이미 변경 실패!";
 			
@@ -207,7 +212,6 @@ public class MyPageController {
 		
 		ra.addFlashAttribute("message", message);
 		
-		// 프로필 페이지로 리다이렉트
 		return "redirect:profile";
 		
 	}
@@ -217,11 +221,8 @@ public class MyPageController {
 			Member backgroundImg, @SessionAttribute("loginMember") Member loginMember,
 			RedirectAttributes ra) throws IllegalStateException, IOException {
 		
-		// 프로필 이미지 수정 서비스 호출 후 결과 반환
 		int result = service.deleteBackground(backgroundImg, loginMember);
-							// 실제 이미지 파일, 세션에 저장된 회원 정보
 		
-		// 서비스 결과에 따라 응답 제어
 		String message = null;
 		
 		if(result == 0) { 
@@ -233,7 +234,6 @@ public class MyPageController {
 		
 		ra.addFlashAttribute("message", message);
 		
-		// 프로필 페이지로 리다이렉트
 		return "redirect:profile";
 		
 	}
