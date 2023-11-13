@@ -48,43 +48,28 @@
             <span th:text="*{writeDate}">게시글 작성일</span><br>
             <span th:text="*{boardCount}">조회수</span>
           </div>
+
+          <!--게시판 좋아요 -->
+          <span class="like-area">
+
+            <!-- 좋아요 누른적이 있으면 fa-solid, 없으면 fa-regular 클래스 추가 -->
+            <!-- ${likeCheck} ? fa-solid : fa-reagular
+                ${likeCheck}가 참조하는 값이 있으면 fa-solid
+                                            없으면(==null) fa-regular
+            -->
+            <i class="fa-heart" th:classappend = "${likeCheck} ? fa-solid : fa-regular" id="boardLike"></i>
+  
+            <!-- 좋아요 개수 -->
+            <span th:text="*{likeCount}">0</span>
+          </span>
+
         </div>
 
 
-                <!-- 좋아요 하트 -->
-                <span class="like-area">
-
-                    <!-- 좋아요 누른적이 있으면 fa-solid, 없으면 fa-regular 클래스 추가 -->
-                    <i class="fa-heart fa-regular" id="boardLike"></i>
-
-                    <!-- 좋아요 개수 -->
-                    <span>0</span>
-                </span>
-
-    
-
-
-      
-
-
+          
 
         <!-- ====================== 이미지가 있을 경우 출력하는 구문 (예정) ====================== -->
-       <!--  <h5>썸네일</h5>
-        <div class="img-box">
-            <div class="boardImg thumbnail">
-                <img src=#">                     
-                <a href="#">다운로드</a>         
-            </div>
-        </div>
-        
-        
-        <h5>업로드 이미지</h5>
-        <div class="img-box">
-            <div class="boardImg">
-                <img src="#">   
-                <a href="#">다운로드</a>                
-            </div>
-        </div> -->
+     
         <!-- ====================== 이미지가 있을 경우 출력하는 구문 (예정) ====================== -->
 
         <!-- 내용 -->
@@ -108,15 +93,20 @@
     </section>
 
 
-      
-  
-  
-      
-  
-  
     </div>
 
   </main>
+<script th:inline = "javascript">
+
+  const boardCode = /*[[${boardCode}]]*/ "게시판 코드";
+  const boardNo = /*[[${boardNo}]]*/ "게시글 번호";
+
+  const loginCheck = /*[[${session.loginMember != null ? true : false}]]*/ "로그인여부";
+
+
+</script>
+
+<script src="/js/board/boardDetail.js"></script>
 
 
     
