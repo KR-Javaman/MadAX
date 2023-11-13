@@ -53,37 +53,78 @@ public class ShortsServiceImpl implements ShortsService{
 		return map;
 	}
 	
+	//	글 작성
 	@Override
-	public int writeInsert(VideoBoard board, MultipartFile video) throws IllegalStateException, IOException {
+	public int writeInsert(VideoBoard videoBoard, List<MultipartFile> video) throws IllegalStateException, IOException {
 
-		int result = mapper.writeInsert(board);
+		int result = mapper.writeInsert(videoBoard);
 		
 		if(result == 0) return 0;
-		int boardVideoNo = board.getBoardVideoNo();
-		
+	
 		List<Video> uploadVideo = new ArrayList<>();
-		
-		if(video.getSize()>0) {
-			Video vd = new Video();
-			
-			vd.setBoardVideoNo(boardVideoNo);
-			vd.setVideoPath(webPath);
-			vd.setVideoRename(Util.fileRename(vd.getVideoOriginalName()));
-			vd.setUploadFile(video);
-			uploadVideo.add(vd);
+		for(int i= 0; i<video.size(); i++) {
+			if(video.get(i).getSize()>10485760) {
+
+				result = 0;
+			}
+
+			if(video.get(i).getSize()>0) {
+				Video vd = new Video();
+				
+				vd.setBoardVideoNo(videoBoard.getBoardVideoNo());
+				vd.setVideoOrder(i);
+				vd.setVideoPath(webPath);
+				vd.setVideoRename(Util.fileRename(video.get(i).getOriginalFilename()));
+				vd.setUploadFile(video.get(i));
+				uploadVideo.add(vd);
+				
+				mapper.videoInsert(vd);
+			}
 		}
-		
-		if(uploadVideo.isEmpty()) return boardVideoNo;
-		result = mapper.uploadVideoFile(uploadVideo);
-		
-		if(result == uploadVideo.size()) {
+		if(!uploadVideo.isEmpty()) {
+			result = 1;
 			for(Video vd : uploadVideo) {
 				vd.getUploadFile().transferTo(new File(folderPath + vd.getVideoRename()));
 			}
 		}else {
-			throw new BoardWriteException("DB UPLOAD FAILED");
+			result = 0;
 		}
-		return boardVideoNo;
+		return result;
+	}
+	
+	
+	// 글 상세 조회
+	@Override
+	public VideoBoard videoBoardDetail(int boardVideoNo) {
+		return mapper.videoBoardDetail(boardVideoNo);
+	}
+	
+	// 좋아요 
+	@Override
+	public int likeClick(Map<String, Object> map) {
+		return mapper.likeCLick(map);
+	}
+	
+	@Override
+	public int readCount(int boardVideoNo) {
+		return mapper.readCount(boardVideoNo);
+	}
+	
+	@Override
+	public int like(Map<String, Object> paramMap) {
+		
+		int result = 0;
+		
+		if((Integer)(paramMap.get("check")) == 1) {
+			result = mapper.deleteLike(paramMap);
+		}else {
+			result = mapper.insertLike(paramMap);
+		}
+		if(result == 0) {
+			return -1;
+		}
+		
+		return mapper.countLike((Integer)(paramMap.get("boardVideoNo")));
 	}
 	
 }
