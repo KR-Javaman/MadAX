@@ -37,6 +37,10 @@ public class Board {
     
     //게시글 이미지 목록
     private List<BoardImg> imageList;
+    
+    private List<Comment> commentList;
+    
+    
 
 
 

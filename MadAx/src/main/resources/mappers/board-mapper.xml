@@ -6,31 +6,13 @@
   
   	<resultMap id="board_rm" type="Board">
 
-		<id property="boardNo" column="BOARD_NO"/>
+		<id property="boardNo" column="BOARD_NO" />
 
-		<!-- collection 태그
-			select로 조회된 결과를 컬렉션(List)에 담아
-			지정된 필드에 세팅
-			
-			property : List를 담을 DTO의 필드명
-			select : 실행할 select의 id
-			column : 조회 결과 중 지정된 컬럼의 값을 파라미터로 전달
-			javaType : List(컬렉션)의 타입을 지정
-			ofType : List(컬렉션)의 제네릭(타입 제한) 지정
-		-->
-		<collection property="commentList"
-					select="selectCommentList"
-					column="BOARD_NO"
-					javaType="java.util.ArrayList"
-					ofType="Comment"
-					/>
-					
 		<collection property="imageList" 
                select="selectImageList" 
                column="BOARD_NO"
                javaType="java.util.ArrayList"
                ofType="BoardImg" />			
-					
 	</resultMap>
   
   	<!--게시글 수 조회-->
@@ -58,7 +40,7 @@
 	
 	
 	<!--게시글 상세조회-->	
-	<select id="detail" resultType="Board">
+	<select id="detail" resultMap="board_rm">
 		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, BOARD_COUNT,
 			TO_CHAR(WRITE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS')WRITE_DATE,
 			MEMBER_NICKNAME, PROFILE_IMG, MEMBER_NO, PROFILE_IMG,

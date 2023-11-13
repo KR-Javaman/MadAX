@@ -38,62 +38,68 @@ public class EditBoardServiceImpl implements EditBoardService{
 	
 	
 	//게시글 작성
-	@Override
-	public int insertBoard(Board board, List<MultipartFile> images) throws IllegalStateException, IOException {
-		
-	
-		int result = mapper.insertBoard(board);
-		
-		if(result == 0) { //삽입 실패
+		@Override
+		public int insertBoard(Board board, List<MultipartFile> images) throws IllegalStateException, IOException {
 			
-			return 0;
-		}
-		
-		int boardNo = board.getBoardNo();  
-		
-		
-				List<BoardImg> uploadList = new ArrayList<>();
+			//1. 게시글(BOARD 테이블) 부분만 먼저 INSERT
+			
+			//1)게시글 삽입 mapper메서드 호출 후 결과 반환 받기
+			int result = mapper.insertBoard(board);
+			
+			if(result == 0) return 0; //삽입 실패
+	
+			int boardNo = board.getBoardNo();
+			
+			List<BoardImg> uploadList = new ArrayList<>();
+			
+			
+			for(int i = 0; i<images.size(); i++) {
 				
 				
-				for(int i = 0; i<images.size(); i++) {
+				if(images.get(i).getSize() > 0) {
+					
+					BoardImg img = new BoardImg();
+					
+					img.setBoardNo(boardNo); 
+					img.setImgOrder(i); 	 
 					
 					
-					if(images.get(i).getSize() > 0) {
-						
-						BoardImg img = new BoardImg();
-						
-						img.setBoardNo(boardNo); 
-						img.setImgOrder(i); 	
-						img.setImgOriginalName(images.get(i).getOriginalFilename()); 
-						img.setImgPath(webPath);
-						img.setImgRename(Util.fileRename(images.get(i).getOriginalFilename())); 
-						img.setUploadFile(images.get(i));
-						
-						uploadList.add(img);
-					}
+					img.setImgOriginalName(images.get(i).getOriginalFilename()); 
+					
+					//웹 접근 경로
+					img.setImgPath(webPath);
+				
+					//변경된 파일명
+					img.setImgRename(Util.fileRename(images.get(i).getOriginalFilename())); 
+					
+					//실제 업로드된 파일을 img에 세팅
+					img.setUploadFile(images.get(i));
+					
+					//uploadList에 추가
+					uploadList.add(img);
 				}
-				
-				
-				if(uploadList.isEmpty()) {
-					return boardNo;
-				}
-				
-				
-				result = mapper.insertUploadList(uploadList);
-				
-				
-				if(result == uploadList.size()) {
-					
-					for(BoardImg img : uploadList) {
-						img.getUploadFile().transferTo(new File(folderPath + img.getImgRename()));
-					}
-				}else { 
-					
-					throw new BoardWriteException("파일 정보 DB 삽입 실패");
-				}
-				
+			}
+			
+			
+			if(uploadList.isEmpty()) {
 				return boardNo;
 			}
+			
+			result = mapper.insertUploadList(uploadList);
+			
+			
+			if(result == uploadList.size()) {
+				
+				for(BoardImg img : uploadList) {
+					img.getUploadFile().transferTo(new File(folderPath + img.getImgRename()));
+				}
+			}else { 
+				
+				throw new BoardWriteException("파일 정보 DB 삽입 실패");
+			}
+			
+			return boardNo;
+		}
 		
 		
 	

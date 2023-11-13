@@ -58,25 +58,26 @@ public class EditBoardController {
 		
 		
 		
-		board.setMemberNo(loginMember.getMemberNo());
-		board.setBoardCode(boardCode);
 		
-		int boardNo = service.insertBoard(board, images);
-		
-		
-		if(boardNo > 0) {
-			ra.addFlashAttribute("message", "게시글 작성 성공");
-			return String.format("redirect:/board/%d/%d",boardCode,boardNo);
-			
-		}
-		
-		else {
-			ra.addFlashAttribute("message", "게시글 작성 실패");
-			return "redirect:/insert";
-		}
-		
-		
-	}
+				board.setMemberNo(loginMember.getMemberNo());
+				board.setBoardCode(boardCode);
+				
+				//서비스 호출 후 결과 반환
+				int boardNo = service.insertBoard(board,images);
+				
+				
+				
+				
+				if(boardNo > 0 ) {
+					ra.addFlashAttribute("message","게시글 작성 성공");
+					return String.format("redirect:/board/%d/%d",boardCode,boardNo);
+				}
+				
+				
+				ra.addFlashAttribute("message", "게시글 작성 실패");
+				
+				return "redirect:insert";  //작성화면
+			}
 	
 	
 	/**게시글 삭제

@@ -29,29 +29,25 @@
 	 </update>
 	 
 	 
-	 <!--이미지 일괄 삽입-->
-	 <insert id="insertUploadList" parameterType="list">
-		 INSERT INTO "BOARD_IMG"
-		 
-		 <foreach collection="list" item="img" separator=" UNION ">
-			 SELECT NEXT_IMG_NO(),
-			 		#{img.imgPath},
-			 		#{img.imgRename},
-			 		#{img.imgOriginalName},
-			 		#{img.imgOrder},
-			 		#{img.boardNo}
-			 FROM DUAL
-		 </foreach>
-		 
-	 </insert>
-	 
-	 
-	 
-	 
-	 
-	
-	
  
+	 <insert id="insertUploadList" parameterType="list">
+	 INSERT INTO "BOARD_IMG"
+	 
+	 
+	 <foreach collection="list" item="img" separator=" UNION ">
+		 SELECT NEXT_IMG_NO(),
+		 		#{img.imgPath},
+		 		#{img.imgRename},
+		 		#{img.imgOriginalName},
+		 		#{img.imgOrder},
+		 		#{img.boardNo}
+		 FROM DUAL
+	 </foreach>
+
+	</insert>
+ 
+	 
+	 
    
 
 
