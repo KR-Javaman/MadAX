@@ -51,6 +51,8 @@ public interface BoardMapper {
 	int countBoardLike(Integer boardNo);
 
 
+	
+
 
 
 
