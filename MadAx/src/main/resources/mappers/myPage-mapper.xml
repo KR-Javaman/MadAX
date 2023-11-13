@@ -38,12 +38,18 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
 	
-	<!-- 프로필 이미지 수정 -->
+	<!-- 백그라운드 이미지 수정 -->
 	<update id="background">
 		UPDATE "MEMBER" SET
 		BACKGROUND_IMG = #{backgroundImg}
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
 
+		<!-- 백그라운드 이미지 삭제 -->
+	<update id="deleteBackground">
+		UPDATE "MEMBER" SET
+		BACKGROUND_IMG = ''
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
 
 </mapper>

@@ -1,5 +1,5 @@
 <div class="myPage-wallpaper" >
-  <img th:if="${session.loginMember.backgroundImg == null}" th:src="#{background.default.image2}" class="backgroundImg">
+  <img th:if="${session.loginMember.backgroundImg == null}" th:src="#{background.default.image}" class="backgroundImg">
   <img th:unless="${session.loginMember.backgroundImg == null}" th:src="${session.loginMember.backgroundImg}" class="backgroundImg" >
 </div>
 
@@ -25,3 +25,21 @@
   </div>    
 
 </section>
+
+<script th:inline="javascript">
+
+
+  // messages.properties의 값을 얻어와 전역 변수로 선언
+  const defaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
+
+  // 로그인한 회원의 프로필 이미지 얻어오기 (없으면 null)
+  const loginMemberProfileImg = /*[[${session.loginMember.profileImg}]]*/ "프로필 이미지";
+
+   // messages.properties의 값을 얻어와 전역 변수로 선언
+   const defaultBackgroundImage = /*[[#{background.default.image}]]*/ "기본 이미지";
+
+// 로그인한 회원의 프로필 이미지 얻어오기 (없으면 null)
+  const loginMemberbackgroundImg = /*[[${session.loginMember.backgroundImg}]]*/ "프로필 이미지";
+  
+
+</script>

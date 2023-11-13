@@ -3,6 +3,7 @@ package com.javaman.madax.myPage.model.mapper;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaman.madax.member.model.dto.Member;
 
@@ -41,6 +42,9 @@ public interface MyPageMapper {
 	int profile(Member loginMember);
 
 	int background(Member loginMember);
+
+
+	int deleteBackground(Member backgroundImg);
 	
 	
 

@@ -12,7 +12,7 @@
 
 .myPage-profile-total{
   width: 100%;
-  height: 100%;
+  height: 105%;
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
@@ -110,16 +110,11 @@
 }
 
 
-.profile-btn-area{
-  width: 23rem;
-  background-color: white;
-}
-
 .profile-btn-area > button{
   background-color: white;
   color: black;
   border: 1px solid black;
-  width: 11rem;
+  width: 13rem;
   height: 3.4rem;
   font-size: 1.5rem;
   cursor: pointer;
@@ -145,7 +140,7 @@
 
 .myPage-profile-mid > .backgroundFrm > .background-img {
   background-color: white;
-  height: 80%;
+  height: 40%;
   margin-top: 2rem;
   border: 1px solid black;
   display: flex;
@@ -157,13 +152,15 @@
 
 .background-img > #backgroundImg {
   margin-top: 2rem;
-  height: 250px;
+  height: 425px;
   width: 100%;
   cursor: pointer;
+  border: 2px solid black;
+  
 }
 
 #backgroundImg:hover {
-  border : 2px solid rgb(22, 255, 1);
+  border : 4px solid rgb(22, 255, 1);
 }
 
 
@@ -181,16 +178,41 @@
 
 .background-btn-area > button {
   background-color: white;
-  font-size: 5rem;
-  width: 11rem;
-  height : 5rem;
-  font-size: 1.7rem;
+  height : 3rem;
+  font-size: 1.6rem;
+  border: 2px solid black;
   color: black;
   cursor: pointer;
   border: none;
+  display: flex;
 }
 
 .background-btn-area > button:hover {
+  transition-duration: 0.3s;
+  color:rgb(22, 255, 1);
+}
+.background-btn-area1 {
+
+  display: flex;
+  justify-content: end;
+}
+
+
+.background-btn-area1 > button {
+  background-color: white;
+  justify-content: end;
+  height : 3rem;
+  font-size: 1.2rem;
+  font-style: italic;
+  text-decoration: underline;
+  margin-bottom: 100px;
+  color: black;
+  cursor: pointer;
+  border: none;
+  display: flex;
+}
+
+.background-btn-area1 > button:hover {
   transition-duration: 0.3s;
   color:rgb(22, 255, 1);
 }
@@ -198,19 +220,14 @@
 
 .myPage-profile-lower {
   display: flex;
-  align-items: baseline;
-  width: 236px;
-  margin-left: 340px;
-  margin-top: 65px;
+  justify-content: center;
+  margin-top: 130px;
+ 
 }
 
-.myPage-profile-lower > a {
-  background-color: white;
-}
 
-.myPage-profile-lower >form {
-  background-color: white;
-}
+
+
 
 #homeButton {
   border-radius: 1.5rem;
@@ -218,7 +235,7 @@
   background-color:rgb(22, 255, 1);
   color: white;
   width: 11rem;
-  height : 5rem;
+  height : 4.5rem;
  
   margin-right : 5rem; 
   font-size: 1.7rem;
@@ -233,7 +250,7 @@
   border: 0.05rem solid black;
   border-radius: 1.5rem;
   width: 11rem;
-  height : 5rem;
+  height : 4.5rem;
   font-size: 1.7rem;
   cursor: pointer;
  

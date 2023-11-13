@@ -72,7 +72,7 @@
 
                                     <div class="profile-btn-area">
                                         <input type="file" id="imageInput" name="profileImg" accpet="image/*">
-                                        <button>변경하기</button>
+                                        <button>저장하기</button>
                                         button
                                     </div>
 
@@ -92,10 +92,22 @@
                                 
                                 </label>
 
-                                <span class="background-btn-area"> <button>변경하기</button> <button>초기화</button> </span>
+                                <span class="background-btn-area">
+                                    <button>저장하기</button>
 
+                                </span>
                             </form>
+
+                            <form action="deleteBackground" method="POST" id="deleteFrm">
+                                <span class="background-btn-area1"> 
+                                    <button th:unless="${session.loginMember.backgroundImg == null}" id="deleteImage" th:text="|배경화면 초기화를 원하시면 여기를 클릭하세요.|"></button> 
+                                    <button th:if="${session.loginMember.backgroundImg == null}" id="deleteImage"></button> 
+                                </span>
+                            </form>
+                            
                         </div>
+
+                           
 
                         <span class="myPage-profile-lower">
                             <a href="/myPage/myPage-home" id="homeButton1"><button id="homeButton">홈으로</button> </a> 
@@ -113,17 +125,6 @@
    
     <th:block th:replace="~{common/common}"></th:block>
 
-    <script th:inline="javascript">
-
-
-        // messages.properties의 값을 얻어와 전역 변수로 선언
-        const defaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
-
-        // 로그인한 회원의 프로필 이미지 얻어오기 (없으면 null)
-        const loginMemberProfileImg = /*[[${session.loginMember.profileImg}]]*/ "프로필 이미지";
-        
-
-    </script>
 
     <script src="/js/myPage/myPage.js"></script>
 </body>

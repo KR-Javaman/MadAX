@@ -194,5 +194,35 @@ public class MyPageServiceImpl implements MyPageService{
 						
 						return result;
 		}
+		
+		@Override
+		public int deleteBackground(Member backgroundImg, Member loginMember) throws IllegalStateException, IOException {
+			String backup = loginMember.getBackgroundImg();
+			
+			String rename = null;
+			
+			
+			if(backgroundImg != null) { 
+				
+				loginMember.setBackgroundImg(null); // 이미지 제거
+				
+			}
+			
+			// mapper 호출
+			int result = mapper.background(loginMember);
+			
+			// DB 업데이트 성공 시 
+			// 메모리에 임시 저장된 파일을 지정된 경로에 저장
+			if(result == 0) {
+				
+				
+				// loginMember에 backup 해둔 이미지를 세팅
+				loginMember.setBackgroundImg(backup);
+				
+			}
+			
+			
+			return result;
+		}
 	
 }

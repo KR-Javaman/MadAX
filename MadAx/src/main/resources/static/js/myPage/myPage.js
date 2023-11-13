@@ -261,7 +261,7 @@ if(imageInput != null) { // #imageInput 존재할 때
 
         if(flag){ //flag가 true인 경우 수행
             e.preventDefault(); // form 태그 제출 기본 (동작)이벤트를 막기(제거)
-            alert("이미지 변경 후 클릭 해주세요.");
+            alert("위의 프로필 이미지를 변경 후 클릭해주세요.");
         }
 
     });
@@ -377,8 +377,30 @@ if(backgroundInput != null) { // #backgroundInput 존재할 때
 
     /* 이미지 선택 버튼을 클릭하여 선택된 파일이 변했을 때 함수 수행  */
 
-    // change 이벤트 : input의 이전 값과 현재 값이 다를 때 발생
     backgroundInput.addEventListener("change", changeImageFn);
+
+    const deleteBackgroundImage = document.querySelector("#deleteImage"); // 초기화 버튼
+
+    deleteBackgroundImage.addEventListener("click", () => {
+        backgroundImg.setAttribute("src", defaultBackgroundImage);
+        backgroundInput.value = "";
+
+        backupInput.value = "";
+
+        statusCheck = 0; // 있었는데 없어짐. (x버튼 누른 후)
+
+        let flag = true;
+
+        // 1) 로그인한 회원의  백그라운드가 있음 -> 없어짐
+        if(loginMemberbackgroundImg != null && statusCheck == 0) flag = false;
+        if(flag) {
+            e.preventDefault();
+            alert("이미지가 초기화 됩니다.");
+        }
+
+        
+    });
+
 
     // ---------- 프로필 이미지 변경 form태그 제출 시 동작 ------------
 
@@ -388,18 +410,18 @@ if(backgroundInput != null) { // #backgroundInput 존재할 때
 
         let flag = true;
 
-        // 1) 로그인한 회원의 프로필이 있음 -> 없어짐
-        if(loginMemberBackgroundImg != null && statusCheck == 0) flag = false;
+        // 1) 로그인한 회원의  백그라운드가 있음 -> 없어짐
+        if(loginMemberbackgroundImg != null && statusCheck == 0) flag = false;
         
-        // 2) 로그인한 회원의 프로필이 없음 -> 있음
-        if(loginMemberBackgroundImg == null && statusCheck == 1) flag = false;
+        // 2) 로그인한 회원의 백그라운드가 없음 -> 있음
+        if(loginMemberbackgroundImg == null && statusCheck == 1) flag = false;
         
-        // 3) 로그인한 회원의 프로필이 있음 -> 변경
-        if(loginMemberBackgroundImg != null && statusCheck == 1) flag = false;
+        // 3) 로그인한 회원의 백그라운드가 있음 -> 변경
+        if(loginMemberbackgroundImg != null && statusCheck == 1) flag = false;
 
         if(flag){ //flag가 true인 경우 수행
             e.preventDefault(); // form 태그 제출 기본 (동작)이벤트를 막기(제거)
-            alert("이미지 변경 후 클릭 해주세요.");
+            alert("위의 배경화면 이미지를 변경 후 클릭해주세요");
         }
 
     });

@@ -39,4 +39,7 @@ public interface MyPageService {
 
 	int background(MultipartFile backgroundImg, Member loginMember) throws IllegalStateException, IOException;
 
+	int deleteBackground(Member backgroundImg, Member loginMember) throws IllegalStateException, IOException;
+
+
 }
