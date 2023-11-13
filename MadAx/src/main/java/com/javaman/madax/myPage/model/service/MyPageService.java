@@ -14,7 +14,7 @@ public interface MyPageService {
 	 * @param memberNo
 	 * @return result
 	 */
-	int secession(String memberPw, int memberNo);
+	int secession2(String memberPw, int memberNo);
 
 	/** 닉네임 변경
 	 * @param updateMember

@@ -69,7 +69,7 @@ public class MyPageServiceImpl implements MyPageService{
 	
 	
 	@Override
-	public int secession(String memberPw, int memberNo) {
+	public int secession2(String memberPw, int memberNo) {
 		// 1. 로그인한 회원의 암호화된 비밀번호 조회
 				String encPw = mapper.selectMemberPw(memberNo);
 				if(!bcrypt.matches(memberPw, encPw)) { // 같지 않으면
@@ -77,7 +77,7 @@ public class MyPageServiceImpl implements MyPageService{
 				}
 				
 				// 탈퇴 처리 SQL 수행
-				return mapper.secession(memberNo);
+				return mapper.secession2(memberNo);
 	}
 	
 	// 프로필 이미지 수정

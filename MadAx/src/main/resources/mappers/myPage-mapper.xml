@@ -25,7 +25,7 @@
 	</update>
 	
 	<!-- 회원 탈퇴-->
-	<update id="secession">
+	<update id="secession2">
 		UPDATE "MEMBER" SET
 		MEMBER_DEL_FL = 'Y'
 		WHERE MEMBER_NO = #{memberNo}
