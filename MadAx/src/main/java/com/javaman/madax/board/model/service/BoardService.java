@@ -21,9 +21,12 @@ public interface BoardService {
 	int likeCheck(Map<String, Object> map);
 
 
-	
-	int like(Map<String, Object> paramMap);
+	//게시글 좋아요 처리
+	int like(Map<String, Object> map);
 
+
+	
+	
 
 
 

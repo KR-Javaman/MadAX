@@ -4,7 +4,7 @@
 <mapper namespace="com.javaman.madax.board.model.mapper.EditBoardMapper">
   
 
-	
+	<!--게시글 작성-->
 	 <insert id="insertBoard" parameterType="Board" useGeneratedKeys="true">
 		 
 		 <selectKey order="BEFORE" resultType="_int" keyProperty="boardNo">
@@ -18,20 +18,20 @@
 		
 	 </insert>
 	 
-	 <insert id="uploadList" parameterType="list">
-		 INSERT INTO "BOARD_IMG"
-		 
-		 <foreach collection="list" item="img" separator=" UNION ">
-			 SELECT NEXT_IMG_NO(),
-			 		#{img.imgPath},
-			 		#{img.imgRename},
-			 		#{img.imgOriginalName},
-			 		#{img.imgOrder},
-			 		#{img.boardNo}
-			 FROM DUAL
-		 </foreach>
-		 
-	 </insert>
+	 
+	 <!--게시글 삭제-->
+	 <update id="delete">
+		UPDATE "BOARD" SET
+	  	BOARD_DEL_FL = 'Y'
+	  	WHERE BOARD_CODE = #{boardCode}
+	  	AND BOARD_NO = #{boardNo}
+	  	AND MEMBER_NO = #{memberNo}
+	 </update>
+	 
+	 
+	 
+	 
+	
 	
  
    
