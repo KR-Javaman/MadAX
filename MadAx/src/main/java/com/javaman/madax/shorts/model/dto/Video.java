@@ -4,9 +4,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class Video {
 	private int videoNo;
 	private String videoPath;
@@ -16,4 +18,6 @@ public class Video {
 	private int boardVideoNo;
 	
 	private MultipartFile uploadFile;
+	
+	
 }

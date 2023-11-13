@@ -1,6 +1,7 @@
 package com.javaman.madax.shorts.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
@@ -22,6 +23,20 @@ public interface ShortsMapper {
 	void videoInsert(Video vd);
 
 	int selectVideo(List<Video> uploadVideo);
+
+	VideoBoard videoBoardDetail(int boardVideoNo);
+
+	int likeCLick(Map<String, Object> map);
+
+	int readCount(int boardVideoNo);
+
+	int deleteLike(Map<String, Object> paramMap);
+
+	int insertLike(Map<String, Object> paramMap);
+
+	int countLike(Integer boardVideoNo);
+
+	
 
 	
 

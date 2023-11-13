@@ -17,6 +17,21 @@
 		 		DEFAULT, DEFAULT, DEFAULT,#{boardCode},#{categoryCode}, #{category2Code})
 		
 	 </insert>
+	 
+	 <insert id="uploadList" parameterType="list">
+		 INSERT INTO "BOARD_IMG"
+		 
+		 <foreach collection="list" item="img" separator=" UNION ">
+			 SELECT NEXT_IMG_NO(),
+			 		#{img.imgPath},
+			 		#{img.imgRename},
+			 		#{img.imgOriginalName},
+			 		#{img.imgOrder},
+			 		#{img.boardNo}
+			 FROM DUAL
+		 </foreach>
+		 
+	 </insert>
 	
  
    
