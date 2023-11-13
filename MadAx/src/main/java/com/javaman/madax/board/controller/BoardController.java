@@ -1,5 +1,6 @@
 package com.javaman.madax.board.controller;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import com.javaman.madax.board.model.service.BoardService;
 import com.javaman.madax.member.model.dto.Member;
 
 import lombok.RequiredArgsConstructor;
+
 
 @Controller
 @RequestMapping("board")
@@ -48,53 +50,37 @@ private final BoardService service;
 	
 	
 	
-	/**게시글 상세조회
-	 * @param boardCode
-	 * @param categoryCode
-	 * @param boardNo
-	 * @param loginMember
-	 * @param model
-	 * @param ra
-	 * @return
-	 */
-	@GetMapping("{boardCode:[0-9]+}/{categoryCode:[0-9]+}/{boardNo:[0-9]+}")
-	public String BoardDetail(@PathVariable("boardCode")int boardCode,
-								@PathVariable("categoryCode")int categoryCode,
-								@PathVariable("boardNo")int boardNo,
-								@SessionAttribute(value = "loginMember", required = false) Member loginMember,
-								Model model, RedirectAttributes ra) {
 	
-		Map<String , Object> map = new HashMap<>();
+	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}")
+	public String detail(@PathVariable("boardCode")int boardCode,
+						@PathVariable("boardNo")int boardNo, 
+						Model model,
+						RedirectAttributes ra) {
+		
+		
+		Map<String, Object> map = new HashMap<>();
 		map.put("boardCode", boardCode);
-		map.put("categoryCode", categoryCode);
 		map.put("boardNo", boardNo);
 		
-		
-		Board board = service.boardDetail(map);
+		Board board = service.detail(map);
 		
 		if(board != null) {
-			model.addAttribute("board", board);
-			
-			return "board/Detail";
-			
+			model.addAttribute("board",board);
+			return "board/boardDetail";
 		}
+			
+		return "board/boardDetail";
 		
-		
-		return null;
 	}
 	
 	
+	
+	
+	
+	
+	
+	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
 
 
