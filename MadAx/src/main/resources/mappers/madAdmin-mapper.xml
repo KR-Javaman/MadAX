@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <!-- 연결할 인터페이스의 패키지명.인터페이스명으로 작성 -->
-<mapper namespace="com.javaman.madax.admin.model.mapper.MadAdminMapper">
+<mapper namespace="com.javaman.madax.admin.mapper.MadAdminMapper">
   
-	<select id="selectAll" resultType="Member">
-		
-			SELECT MEMBER_NO, MEMBER_DEL_FL
+  	<select id="selectMember" resultType="Member">
+      SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_DEL_Fl, AUTHORITY
+      FROM "MEMBER"
+      WHERE MEMBER_EMAIL = #{inputEmail}
+   </select>
+  
+  	
+	<select id="selectAll" resultType="Member">	
+			SELECT MEMBER_NO, MEMBER_DEL_Fl, MEMBER_EMAIL
 			FROM "MEMBER" 
 			ORDER BY MEMBER_NO DESC
-					
 	</select>
 
  

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    
+    <link rel="stylesheet" th:href="@{/css/common/header.css}">
+    <link rel="stylesheet" th:href="@{/css/jisik/jisikHeader.css}">
+</head>
+<body>
+
+
+    <th:block th:replace="~{common/header}"></th:block>
+    
+    <div class="list">
+        <ul class="menu">
+
+            <li>
+                <a th:href="@{/jisik/jisikList(c1=${param.c1})}">전체</a>
+            </li>
+            
+            <li>
+                <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=1)}">축구</a>
+            </li>
+
+            <li>
+                <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=2)}">야구</a>
+            </li> 
+
+            <li>
+                <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=3)}">농구</a>
+
+            </li>
+    
+            <li>
+                <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=4)}">헬스</a>
+            </li>  
+
+            <li>
+                <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=5)}">기타</a>
+            </li>
+    
+      </div>
+</body>
+</html>
+

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="Ko" xmlns="http://www.thymeleaf.org"
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+
+   <link rel="stylesheet" href="/css/main.css">
+   <link rel="stylesheet" href="/css/admin/success.css">
+
+   
+
+
+   <th:block th:replace = "~{common/common}"></th:block>
+</head>
+
+<body>
+
+
+    <th:block th:replace="~{common/header}"></th:block>
+   
+   <h3 th:text="|${param.inputEmail} 회원정보|"></h3>
+
+
+   <div class="admin-table"> 
+
+       <table border="1" th:object="${searchMember}">
+           
+           <tr>
+               <th>회원번호</th>
+               <td th:text="*{memberNo}"></td>
+            </tr>
+            
+            <tr>
+                <th>회원 이메일</th>
+                <td th:text="*{memberEmail}"></td>
+            </tr>
+            
+            <tr>
+                <th>회원 권한</th>
+                
+                <td>
+                    <th:block th:if="*{authority == 1}">일반 사용자</th:block>
+                    <th:block th:if="*{authority == 2}">관리자</th:block>
+                    
+                    <form action="changeAuthority" method="POST" style="display: inline;">
+                        <input type="hidden" name="memberNo" th:value="*{memberNo}">
+                        <input type="hidden" name="memberEmail" th:value="*{memberEmail}">
+                        
+                        <button th:if="*{authority == 1}">관리자로 변경</button>
+                        <button th:if="*{authority == 2}">일반 사용자로 변경</button>
+                    </form>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>탈퇴 여부</th>
+                <td>
+                    <th:block th:text="*{memberDelFl}"></th:block>
+                    
+                    <th:block th:if="*{memberDelFl == 'Y'}">
+                        
+                        <!-- 왜 form 태그에 POST로 하는가
+                            insert/update/delete 수행하는 구문을 주소에서 파라미터를 마음대로 수정 가능한 GET 방식으로 구현하게 되면
+                            DB 데이터가 임의로 변하게 되는 문제가 발생할 수 있기 때문에 주소로 수정 못 하게 POST를 이용
+                        -->
+                        <form action="restoration" method="post" style="display:inline">
+                            <input type="hidden" th:value="*{memberNo}" name="memberNo">
+                            <input type="hidden" th:value="*{memberEmail}" name="memberEmail">
+                            <button>복구</button>
+                        </form>
+                    </th:block>
+                    
+                </td>
+            </tr>
+            
+        </table>
+        
+    </div>
+
+        <button onclick="location.href='main'">메인 페이지</button>
+        
+        <button onclick="history.back()">관리자 페이지로 돌아가기</button>
+        
+        <form action="initPw" method="post" th:object="${searchMember}">
+
+      <input type="hidden" th:value="*{memberNo}" name="memberNo">
+      <input type="hidden" th:value="*{memberEmail}" name="memberEmail">
+
+      <button style="color: red; background-color: white;">비밀번호 초기화</button>
+      
+   </form>
+
+   <form action="changePw" method="post" th:object="${searchMember}">
+
+      <input type="hidden" th:value="*{memberNo}" name="memberNo">
+
+      <button style="color: blue; background-color: white;">비밀번호 변경</button>
+   </form>
+   
+   <script th:inline="javascript">
+      // 타임리프 natural template
+      // JS 문법 오류가 발생하는 것을 방지
+      const message = /*[[${message}]]*/ "메시지";
+
+      if(message != null){
+         alert(message);
+      }
+
+
+   </script>
+
+   
+
+</body>
+
+
+</html>
