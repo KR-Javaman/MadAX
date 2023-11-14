@@ -136,7 +136,7 @@ video:hover {
 
   text-align: center;
   border-radius: 0.3rem;
-  background-color: antiquewhite;
+  background-color: white;
   border: none;
   cursor: pointer;
 }
@@ -144,7 +144,7 @@ video:hover {
   width: 28rem;
   margin: 0 1rem;
   border-radius: 0.3rem;
-  background-color: antiquewhite;
+  background-color: white;
   border: none;
   font-size: 1.4rem;
   outline: none;
@@ -153,7 +153,7 @@ video:hover {
   width: 10rem;
   text-align: center;
   border-radius: 0.3rem;
-  background-color: antiquewhite;
+  background-color: white;
   border: none;
   font-size: 1.4rem;
   cursor: pointer;
@@ -166,7 +166,7 @@ video:hover {
 .searchMain {
   display: flex;
   align-items: center;
-  background-color: antiquewhite;
+  background-color: white;
   border-radius: 1rem;
 }
 
@@ -187,4 +187,10 @@ video::-webkit-media-controls-volume-slider {
 }
 video::-internal-media-controls-download-button {
   display: none;
+}
+#contentNone {
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+  height: 65rem;
 }

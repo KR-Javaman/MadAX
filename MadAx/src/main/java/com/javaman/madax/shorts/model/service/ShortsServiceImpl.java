@@ -35,6 +35,7 @@ public class ShortsServiceImpl implements ShortsService{
 	@Value("${my.video.location}")
 	private String folderPath;
 	
+	// 목록 조회
 	@Override
 	public Map<String, Object> main(int cp,VideoBoard video) {
 		int listCount = mapper.getListCount(video);
@@ -53,7 +54,7 @@ public class ShortsServiceImpl implements ShortsService{
 		return map;
 	}
 	
-	
+	// 검색 목록 조회
 	@Override
 	public Map<String, Object> searchMain(Map<String, Object> paramMap, int cp) {
 		int listCount = mapper.searchCount(paramMap);

@@ -15,11 +15,17 @@
           <select name="videoListType" id="video-list-type">
             <option value="latest">최신순</option>
             <option value="like">좋아요순</option>
-            <option value="look">조회순</option>
+            <option value="look">조회수순</option>
           </select>
         </form>
         <!-- ----------------------------------- -->
-        <th:block th:each="i : ${#numbers.sequence(0, #lists.size(videoList) - 1)}">
+        <th:block th:if="${#lists.size(videoList) == 0}" >
+          <div id="contentNone">게시글이 존재하지 않습니다.</div>
+        </th:block>
+        
+        <th:block 
+            th:each="i : ${#numbers.sequence(0, #lists.size(videoList) - 1)}"
+            th:unless="${#lists.size(videoList) == 0}">
           <th:block th:if="${i % 5 == 0}" >
             <div class="vdvd" >
           </th:block>
@@ -66,7 +72,7 @@
         </th:block>
 
         <!-- ----------------------------------- -->
-        <div class="write-btn-area">
+        <div class="write-btn-area" th:if="${session.loginMember != null}">
           <button id="writeBtn">글쓰기</button>
         </div>
 
@@ -135,7 +141,6 @@
           </div>
           <button>검색</button>
         </form>
-        <div class="result"></div>
       </section>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>

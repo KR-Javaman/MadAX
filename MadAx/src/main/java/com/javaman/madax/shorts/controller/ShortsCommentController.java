@@ -27,12 +27,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @SessionAttributes({"loginMember"})
 @RequestMapping("shorts/detail")
-public class CommentController {
+public class ShortsCommentController {
 	
 	private final CommentService service;
 	
 	@GetMapping(value="videoComment", produces="application/json")
-	public String selectComment(@PathVariable("boardVideoNo") int boardVideoNo, Model model,
+	public String selectComment(int boardVideoNo, Model model,
 						@SessionAttribute(value="loginMeber", required = false) Member loginMember){
 		
 		Map<String, Object> map = new HashMap<>();
