@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>메인페이지</title>
+
+
+    <link rel="stylesheet" href="/css/jisik/jisikHeader.css">
+
+    <link rel="stylesheet" href="/css/main.css">
+
+    <link rel="stylesheet" href="/css/jisik/jisikDetail.css">
+
+
+
+    <th:block th:replace = "~{common/common}"></th:block>
+
+<body>
+    <main>
+        <th:block th:replace="~{jisik/jisikHeader}"></th:block>
+
+        
+        <section class="jisik-detail" th:object="${board}">  
+            <!-- 제목 -->
+            <div>
+
+                <h1 class="jisik-title" th:text="*{boardTitle}">게시글 제목</h1>
+                
+                <!-- 프로필 + 닉네임 + 작성일 + 조회수 -->
+                <div class="jisikDetail-header">
+                    <div class="jisikDetail-writer">
+                        
+                        <!-- 프로필 이미지 -->
+                        <!-- 프로필 이미지가 없을 경우 기본 이미지 출력 -->
+                        
+                        <!-- 타임리프 if문에서 객체가 null이 아니면 true
+                            null 이면 false
+                        -->
+                        <img th:unless="*{profileImg}" th:src="#{user.default.image}">
+                        
+                        <!-- 프로필 이미지가 있을 경우 출력 -->
+                        <img th:if="*{profileImg}" th:src="*{profileImg}">
+                        
+                        <!-- 좋아요 하트 -->
+                        <span class="like-area">
+                            
+                    </div>
+                        <!-- 좋아요 누른적이 있으면 fa-solid, 없으면 fa-regular 클래스 추가 -->
+                        
+                        <!-- ${likeCheck} ? fa-solid : fa-ragular  
+                            -> ${likeCheck}가 참조하는 값이 있으면  fa-solid
+                               없으면 (== null) fa-regular
+                        -->
+                        <i class="fa-heart" th:classappend="${likeCheck} ? fa-solid : fa-regular" id="boardLike"></i>
+
+                        <!-- 좋아요 개수 -->
+                        <span th:text="*{likeCount}">0</span>
+                    </span>
+
+                </div>
+
+                <div class="jisikDetail-info">
+                    <p> <span>작성일</span> *{writeDate}</p>     
+
+                     수정한 게시글인 경우
+                    <p> <span>마지막 수정일</span> *{boardUpdateDate}</p>   
+
+                    <p> <span>조회수</span> *{boardCount} </p>                    
+                </div>
+            </div>
+
+
+
+            <!-- ====================== 이미지가 있을 경우 출력하는 구문 (예정) ====================== -->
+
+           
+
+            <!-- ====================== 이미지가 있을 경우 출력하는 구문 (예정) ====================== -->
+            
+            <!-- 내용 -->
+            <div class="board-content" th:text="*{boardContent}">내용</div>
+
+
+
+            <!-- 버튼 영역-->
+            <div class="board-btn-area">
+
+                <!-- 로그인한 회원과 게시글 작성자 번호가 같은 경우-->
+                <th:block th:if="${session.loginMember != null 
+                                 and session.loginMember.memberNo == board.memberNo}"> 
+                    <button id="updateBtn">수정</button>
+                    <button id="deleteBtn">삭제</button>
+                </th:block>
+
+                <button id="goToListBtn">목록으로</button>
+            </div>
+
+        </section>
+
+
+        <!-- 댓글 영역-->
+        <!-- <th:block th:replace="~{board/comment}"></th:block>
+
+    </main>
+
+
+    <th:block th:replace="~{common/footer}"></th:block> -->
+
+
+
+    <script th:inline="javascript">
+
+    // <script th:inline="javascripit">
+
+        // const boardNo = /*[[${boardNo}]]*/ 
+        // const boardCode = /*[[boardCode]]*/
+
+        
+
+        /****** JS 파일에서 사용할 값을 전역 변수로 선언 ******/
+        
+        // @PathVariable로 인해 request scope에 세팅된 값 얻어오기
+        // const boardCode = /*[[${boardCode}]]*/ "게시판 코드";
+        const boardNo = /*[[${boardNo}]]*/ "게시글 번호";
+
+        // session에 세팅된 loginMember 존재 여부 확인
+        const loginCheck = /*[[${session.loginMember != null ? true : false}]]*/ "로그인 여부";
+        
+        // -----------------------------------------------------------
+
+        const imageList = /*[[${board.imageList}]]*/ [];
+        
+        const previewList = document.querySelectorAll('.boardImg > img');
+
+        previewList.forEach((preview, i)=>{
+            console.log(preview);
+            preview.src = imageList[i].imgPath + imageList[i].imgRename;
+        })
+
+
+    </script>
+
+
+    <script src="/js/board/boardDetail.js"></script>
+    <script src="/js/board/comment.js"></script>
+    
+</body>
+</html>

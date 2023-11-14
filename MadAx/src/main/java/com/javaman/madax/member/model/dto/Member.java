@@ -1,6 +1,6 @@
 package com.javaman.madax.member.model.dto;
 
-import lombok.Getter;
+import lombok.Getter; 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,7 +18,7 @@ public class Member {
 	private String memberNickname;
 	private String profileImg;
 	private String enrollDate;
-	private String memberDelfl;
+	private String memberDelFl;
 	private int authority;
 	private String backgroundImg;
 	
