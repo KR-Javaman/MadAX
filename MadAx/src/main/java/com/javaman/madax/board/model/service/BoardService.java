@@ -44,6 +44,24 @@ public interface BoardService {
 
 
 
+	Map<String, Object> searchBoardList(Map<String, Object> paramMap, int cp);
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	

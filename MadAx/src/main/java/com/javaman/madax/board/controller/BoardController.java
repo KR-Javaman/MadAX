@@ -24,7 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.javaman.madax.board.model.dto.Board;
 import com.javaman.madax.board.model.service.BoardService;
 import com.javaman.madax.member.model.dto.Member;
-
+import com.javaman.madax.shorts.model.dto.VideoBoard;
 import com.javaman.madax.board.model.dto.BoardImg;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -49,13 +49,19 @@ private final BoardService service;
 	@GetMapping("{boardCode:[0-9]+}")
 	public String selectBoard(@PathVariable("boardCode") int boardCode,
 								Model model,
-								@RequestParam(value = "cp", required = false, defaultValue = "1") int cp) {
+								@RequestParam(value = "cp", required = false, defaultValue = "1") int cp,
+								@RequestParam Map<String, Object> paramMap) {
 		
+		if(paramMap.get("key")==null) {
 			
-		Map<String, Object> map = service.selectBoard(boardCode, cp);
-		
-		model.addAttribute("map",map);
-		
+			Map<String, Object> map = service.selectBoard(boardCode, cp);
+			model.addAttribute("map",map);
+			
+		}else {
+			Map<String, Object> map = service.searchBoardList(paramMap, cp);
+			model.addAttribute("map",map);
+		}
+			
 		
 		return "board/boardList";
 	}
@@ -245,13 +251,7 @@ private final BoardService service;
 		
 		//paramMap : {boardNo,memberNo, check}
 		return service.like(map);  //-1(실패) / 0이상 (성공)
-}
-	
-	
-	
-	
-	
-	
+	}
 	
 	
 	

@@ -81,6 +81,14 @@ public interface BoardMapper {
 
 
 
+	int searchListCount(Map<String, Object> paramMap);
+
+
+
+	List<Board> searchBoardList(Map<String, Object> paramMap, RowBounds rowBounds);
+
+
+
 
 
 	
