@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>메인페이지</title>
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <header>
+      <th:block th:replace="~{common/header}"></th:block>
+    </header>
+
+   
+  </head> 
+
+  <body th:with="jisikList=${map.jisikList}">
+
+
+
+          <table class="jisik-table" border="1">
+                      
+            <thead>
+              <tr>
+                  <th>글번호</th>
+                  <th>제목</th>
+                  <th>작성자</th>
+                  <th>작성일</th>
+                  <th>조회수</th>
+                  <th>좋아요</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              <tr th:each=" board: ${jisikList}" th:object="${board}">
+                <td th:text="*{boardNo}">게시글 번호</td>
+                <td>
+                  <a href="/jisik/jisikList/" th:text="*{boardTitle}">게시글 제목</a>
+                </td>
+
+                td
+
+                <td th:text="*{memberNickname}">작성자</td>
+                <td th:text="*{writeDate}">작성일</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              
+              <div th:if="${session.loginMember != null}">
+                <button id="writeBtn">글쓰기</button>                     
+              </div>
+            </tbody>
+
+          </table>
+
+
+
+
+      <!-- 검색 -->
+
+<!--       
+      <form action="#" method="get" id="boardSearch">
+        <select name="key" id="searchKey">
+          <option value="t">제목</option>
+          <option value="c">내용</option>
+          <option value="tc">제목+내용</option>
+          <option value="w">작성자</option>
+        </select>
+        <input type="text" name="query"  id="searchQuery" placeholder="검색어를 입력해주세요.">
+        <button>검색</button>
+      </form> -->
+
+
+    </main>
+
+    <th:block th:replace = "~{common/common}"></th:block>
+
+  </body>
+  
+
+
+
+  <script th:inline ="javascript">
+    const boardCode = /*[[${boardCode}]]*/ "게시판코드";
+  </script>
+
+</html>

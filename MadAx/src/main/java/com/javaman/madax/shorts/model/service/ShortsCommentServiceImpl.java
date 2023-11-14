@@ -7,16 +7,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.javaman.madax.shorts.model.dto.VideoComment;
-import com.javaman.madax.shorts.model.mapper.CommentMapper;
+import com.javaman.madax.shorts.model.mapper.ShortsCommentMapper;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class CommentServiceImpl implements CommentService{
+public class ShortsCommentServiceImpl implements ShortsCommentService{
 
-	private final CommentMapper mapper;
+	private final ShortsCommentMapper mapper;
 	
 	@Override
 	public List<VideoComment> selectComment(int boardVideoNo) {

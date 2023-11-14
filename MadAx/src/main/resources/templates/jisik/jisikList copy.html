@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 이름</title>
+
+    <th:block th:replace="~{common/common}"></th:block>
+
+    <link rel="stylesheet" href="/css/board/boardList-style.css">
+
+</head>
+<body>
+    
+    <!-- th:with="key=value" : 변수 선언 -->
+    <main th:with="boardList=${map.jisikList}, pagination=${map.pagination}">
+        
+        <th:block th:replace="~{common/header}"></th:block>
+
+        <section class="jisik-list">
+
+            <h1 class="jisik-name" th:text="${boardName}">게시판 이름</h1>
+
+            <!-- 검색 구현 후 사용 -->
+            <h3 th:if="${param.key != null and param.query != null}" 
+                style="margin:30px" th:text="|${param.query} 검색 결과입니다|">OOO 검색 결과</h3>
+
+
+            <div class="list-wrapper">
+                <table class="list-table">
+                    
+
+
+            <div th:if="${session.loginMember != null}" class="btn-area">
+                <!-- 로그인 상태일 때만 글쓰기 버튼 노출 -->
+
+                <!-- 
+                    /board/{boardCode}
+                    -> /editBoard/{boardCode}/insert (GET)
+                -->
+                <button id="insertBtn">글쓰기</button>                     
+            </div>
+
+
+            <!-- ============================================================================================================== -->
+
+            <!-- 게시글이 있을 때만 페이지네이션이 보이게 함 -->
+            <div class="pagination-area" th:if="${#lists.size(jisikList) > 0}">
+
+                    <!-- 첫 페이지로 이동 -->
+                    <li>
+                        <a th:href="@{/jisik/{boardCode}(boardCode=${boardCode}, cp=1)}">&lt;&lt;</a>
+                    </li>
+
+                    <!-- 이전 목록 마지막 번호로 이동 -->
+                    <li>
+                        <a th:href="@{/jisik/{boardCode}(boardCode=${boardCode}, cp=${pagination.prevPage})}">&lt;</a>
+                    </li>
+
+
+
+                    <!-- 특정 페이지로 이동 -->
+
+                    <!-- 타임리프에서 특정 범위 만큼 반복하기!! (1~10) -->
+                    <!-- #numbers.sequence(1,10,1)  :  1~10까지 1씩 증가하며 차례대로 추가한 리스트 생성 -->
+                    <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+                        
+                        <!-- 현재 보고있는 페이지 -->
+                        <li th:if="${i == pagination.currentPage}">
+                            <a class="current" th:text="${i}">1</a>
+                        </li>
+    
+                        <!-- 보고있지 않은 페이지 -->                    
+                        <li th:unless="${i == pagination.currentPage}"> 
+                            <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${i})}" th:text="${i}">2</a> 
+                        </li>
+                    </th:block>
+
+                    <!-- 다음 목록 시작 번호로 이동 -->
+                    <li>
+                        <a th:href="@{/jisik/{boardCode}(boardCode=${boardCode}, cp=${pagination.nextPage})}">&gt;</a>
+                    </li>
+
+                    <!-- 끝 페이지로 이동 -->
+                    <li>
+                        <a th:href="@{/jisik/{boardCode}(boardCode=${boardCode}, cp=${pagination.maxPage})}">&gt;&gt;</a>
+                    </li>
+
+
+                </ul>
+
+                <!-- 검색하는 경우 -->
+                <ul class="pagination" th:unless="${param.key == null}">
+                
+                    <!-- 첫 페이지로 이동 -->
+                    <li>
+                        <a th:href="@{/jisik/{boardCode}(boardCode=${boardCode}, cp=1, key=${param.key}, query=${param.query})}">&lt;&lt;</a>
+                    </li>
+
+                    <!-- 이전 목록 마지막 번호로 이동 -->
+                    <li>
+                        <a th:href="@{/jisik/{boardCode}(boardCode=${boardCode}, cp=${pagination.prevPage}, key=${param.key}, query=${param.query})}">&lt;</a>
+                    </li>
+
+
+
+                    <!-- 특정 페이지로 이동 -->
+
+                    <!-- 타임리프에서 특정 범위 만큼 반복하기!! (1~10) -->
+                    <!-- #numbers.sequence(1,10,1)  :  1~10까지 1씩 증가하며 차례대로 추가한 리스트 생성 -->
+                    <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+                        
+                        <!-- 현재 보고있는 페이지 -->
+                        <li th:if="${i == pagination.currentPage}">
+                            <a class="current" th:text="${i}">1</a>
+                        </li>
+    
+                        <!-- 보고있지 않은 페이지 -->                    
+                        <li th:unless="${i == pagination.currentPage}"> 
+                            <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${i}, key=${param.key}, query=${param.query})}" th:text="${i}">2</a> 
+                        </li>
+                    </th:block>
+
+                    <!-- 다음 목록 시작 번호로 이동 -->
+                    <li>
+                        <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${pagination.nextPage}, key=${param.key}, query=${param.query})}">&gt;</a>
+                    </li>
+
+                    <!-- 끝 페이지로 이동 -->
+                    <li>
+                        <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${pagination.maxPage}, key=${param.key}, query=${param.query})}">&gt;&gt;</a>
+                    </li>
+
+
+                </ul>
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+			<!-- 검색창 -->
+            <form th:action="@{{boardCode}(boardCode=${boardCode})}" method="get" id="boardSearch">
+
+                <select name="key" id="searchKey">
+                    <option value="t">제목</option>
+                    <option value="c">내용</option>
+                    <option value="tc">제목+내용</option>
+                    <option value="w">작성자</option>
+                </select>
+
+                <input type="text" name="query"  id="searchQuery" placeholder="검색어를 입력해주세요.">
+
+                <button>검색</button>
+            </form>
+
+        </section>
+    </main>
+    
+
+    <th:block th:replace="~{common/footer}"></th:block>
+
+    <script th:inline="javascript">
+        const boardCode = /*[[${boardCode}]]*/ "게시판 코드";
+        
+    </script>
+
+
+    <script src="/js/board/boardList.js"></script>
+
+</body>
+</html>

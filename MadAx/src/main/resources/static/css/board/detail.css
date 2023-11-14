@@ -37,17 +37,29 @@
   border-top: 3px solid rgb(141, 141, 141);
   border-bottom: 3px solid rgb(141, 141, 141);
   display: flex;
-}
-
-.profileImg{
-  width: 150px;
-  height: 110px;
-  display: flex;
-  border: 1px solid black;
-  margin-top: 22px;
   
 }
 
+.profileImg{
+  width: 130px;
+  height: 130px;
+  display: flex;
+  margin: auto 0;
+  border: 2px solid black;
+}
+
+
+
+.board-content{
+  clear: both;
+  padding: 30px 0;
+  margin: 30px 0;
+  border-top : 3px solid  rgb(141, 141, 141);
+  border-bottom : 3px solid  rgb(141, 141, 141);
+  font-size: 20px;
+  white-space: pre-wrap;
+  color: white;
+}
 
 .board-main{
   /* border: 1px solid black; */
@@ -57,7 +69,6 @@
 
 .board-main>h1,span{
   margin-top: 5px;
-  padding: 10px;
   font-size: 15px;
   color: white;
   
@@ -117,28 +128,19 @@
   height: 240px;
   float: left;
   text-align: center;
+  /* border: 1px solid black; */
+}
+
+.img-box{
+  /* border: 1px solid black; */
+  width: 100px;
+  height: 100px;
 }
 
 /* 이미지 */
 .boardImg img{
   max-width: 90%;
   max-height: 90%;
-}
-
-/* 썸네일만 이미지 크게 */
-.thumbnail{
-  width: 300px;   
-  height: 300px;
-}
-
-/* 다운로드 a태그 */
-.boardImg a{
-  display: block;
-  text-align: center;
-  color: black;
-  text-decoration: none;
-  font-size: 12px;
-  margin-top: 5px;
 }
 
 /* 버튼 영역 */
@@ -178,4 +180,18 @@
   cursor: pointer;
 }
 
+
+/* 이미지를 감싸는 div */
+.boardImg{
+  width: 25%;
+  height: 240px;
+  float: left;
+  text-align: center;
+}
+
+/* 이미지 */
+.boardImg img{
+  max-width: 90%;
+  max-height: 90%;
+}
 
