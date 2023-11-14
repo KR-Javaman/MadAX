@@ -25,6 +25,10 @@ public interface BoardService {
 	int like(Map<String, Object> map);
 
 
+	//게시글 조회수
+	int updateBoardCount(int boardNo);
+
+
 	
 	
 
