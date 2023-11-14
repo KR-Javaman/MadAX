@@ -4,6 +4,7 @@ package com.javaman.madax.board.model.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ import com.javaman.madax.board.model.exception.BoardWriteException;
 import com.javaman.madax.board.model.mapper.EditBoardMapper;
 import com.javaman.madax.common.utility.Util;
 
+import com.javaman.madax.board.model.exception.BoardUpdateException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -108,5 +110,58 @@ public class EditBoardServiceImpl implements EditBoardService{
 	public int delete(Map<String, Integer> map) {
 	
 		return mapper.delete(map);
+	}
+	
+	
+	//게시글 수정
+	@Override
+	public int updateBoard(Board board, List<MultipartFile> images) throws IllegalStateException, IOException{
+		
+		//1. 게시글 수정(제목, 내용)수정
+		int result = mapper.updateBoard(board);
+		
+		//수정 실패 시
+		if(result == 0) {
+			
+			return 0;
+		}
+		
+		
+		
+		List<BoardImg> uploadList = new ArrayList<>();
+		
+	
+		for(int i = 0; i<images.size(); i++) {
+		
+			if(images.get(i).getSize() > 0) {
+				
+				BoardImg img = new BoardImg();
+				
+				img.setBoardNo(board.getBoardNo()); 
+				img.setImgOrder(i); 	
+				img.setImgOriginalName(images.get(i).getOriginalFilename()); 
+				img.setImgPath(webPath);
+				img.setImgRename(Util.fileRename(images.get(i).getOriginalFilename())); 
+				img.setUploadFile(images.get(i));
+				uploadList.add(img);
+				
+				result = mapper.updateBoardImg(img);
+				
+				if(result == 0) {
+					mapper.boardImgInsert(img);
+				}
+			}
+		}
+		
+		if(!uploadList.isEmpty()) {
+			result = 1;
+			
+			for(BoardImg img : uploadList) {
+				img.getUploadFile().transferTo(new File(folderPath + img.getImgRename() ) );
+			}
+		}
+		
+		return result;
+		
 	}
 }

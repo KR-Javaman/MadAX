@@ -23,12 +23,11 @@
       
       <h2>게시판 글쓰기</h2>
 
-      <form action="insert" method="post" id="writeSubmit" enctype="multipart/form-data">
+      <form action="update" method="post" id="writeSubmit" enctype="multipart/form-data" th:object="${board}">
 
-        <div class="form-group" th:object="${board}">
+        <div class="form-group" >
           <label for="title">제목</label>
-          <input type="text" class="form-control" id="title" placeholder="제목 입력(4-100)" name="boardTitle"
-                  maxlength="100" required="required" pattern=".{4,100}" th:text="${boardTitle}">
+          <input type="text" class="form-control" id="title"  name="boardTitle"  maxlength="100" required="required" pattern=".{4,100}"  placeholder="내용 작성" th:value="*{boardTitle}">
         </div>
 
         <div class="category">
@@ -41,19 +40,14 @@
             <option value="">기타</option>
         </div>
 
-        <div class="form-group" th:object="${board}">
-          <label for="content">내용</label>
-          <textarea class="form-control" rows="5" id="content" name="boardContent" placeholder="내용 작성" th:text="${boardContent}"></textarea>
-        </div>
-
         <div class="form-group">
-          <label for="writer">태그#</label>
-          <input type="text" class="form-control" id="writer" placeholder="작성자(2자-10자)" name="writer">
+          <label for="content">내용</label>
+          <textarea class="form-control" rows="5" id="content" name="boardContent" placeholder="내용 작성" th:text="*{boardContent}"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-default">등록</button>
-        <button>이미지 첨부</button>
         <input type="file" name="images">
+        <button type="submit" class="btn btn-default">등록</button>
+        
       </form>  
 
     </div>  

@@ -24,6 +24,7 @@ import com.javaman.madax.board.model.dto.Board;
 import com.javaman.madax.board.model.service.BoardService;
 import com.javaman.madax.member.model.dto.Member;
 
+import com.javaman.madax.board.model.dto.BoardImg;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -173,6 +174,22 @@ private final BoardService service;
 	            
 	            
 	         }
+	        
+
+			
+	         if (board.getImageList().size() > 0) {
+
+	        	 BoardImg thumbnail = null;
+	             
+	             //썸네일이 존재하면
+	             if (board.getImageList().get(0).getImgOrder() == 0) {
+	                thumbnail = board.getImageList().get(0);
+	             }
+
+	             model.addAttribute("thumbnail", thumbnail);
+	             model.addAttribute("start", thumbnail != null ? 1 : 0);
+	          }
+	          
 
 			
 			

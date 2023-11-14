@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javaman.madax.board.model.dto.Board;
+import com.javaman.madax.board.model.service.BoardService;
 import com.javaman.madax.board.model.service.EditBoardService;
 import com.javaman.madax.member.model.dto.Member;
 
@@ -30,6 +31,8 @@ import lombok.RequiredArgsConstructor;
 public class EditBoardController {
 
 	private final EditBoardService service;
+	
+	private final BoardService boardService;
 	
 	
 	/**게시글 작성화면으로 전환
@@ -57,16 +60,11 @@ public class EditBoardController {
 								@RequestParam("images") List<MultipartFile> images)throws IllegalStateException, IOException {
 		
 		
-		
-		
 				board.setMemberNo(loginMember.getMemberNo());
 				board.setBoardCode(boardCode);
 				
-				//서비스 호출 후 결과 반환
+			
 				int boardNo = service.insertBoard(board,images);
-				
-				
-				
 				
 				if(boardNo > 0 ) {
 					ra.addFlashAttribute("message","게시글 작성 성공");
@@ -76,7 +74,7 @@ public class EditBoardController {
 				
 				ra.addFlashAttribute("message", "게시글 작성 실패");
 				
-				return "redirect:insert";  //작성화면
+				return "redirect:insert"; 
 			}
 	
 	
@@ -140,8 +138,58 @@ public class EditBoardController {
 							  Model model) {
 		
 		
-		return null;
+		Map<String, Object> map = new HashMap<>();
+		map.put("boardCode", boardCode);
+		map.put("boardNo", boardNo);
+		
+		Board board = boardService.detail(map);
+		model.addAttribute("board",board);
+		
+		return "board/boardUpdate";
 	}
+	
+	
+	/**게시글 수정
+	 * @param boardCode
+	 * @param boardNo
+	 * @param board
+	 * @param querystring
+	 * @param deleteOrder
+	 * @param images
+	 * @param ra
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
+	@RequestMapping("/{boardCode:[0-9]+}/{boardNo:[0-9]+}/update")
+	public String updateBoard(@PathVariable("boardCode")int boardCode,
+							@PathVariable("boardNo")int boardNo,
+							Board board,
+							@RequestParam("images") List<MultipartFile> images,
+							RedirectAttributes ra) throws IllegalStateException, IOException {
+		
+		
+		board.setBoardCode(boardCode);
+		board.setBoardNo(boardNo);
+		
+		
+		int result = service.updateBoard(board,images);
+		
+		
+		
+		if(result > 0) {
+			ra.addFlashAttribute("message","게시글 수정 성공");
+			return String.format("redirect:/board/%d/%d",boardCode,boardNo);
+		}else {
+			
+			ra.addFlashAttribute("message", "게시글 수정 실패");
+			return "redirect:update";
+		}
+	
+		
+		
+	}
+	
 	
 	
 	
