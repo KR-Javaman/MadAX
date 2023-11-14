@@ -70,23 +70,25 @@
 
 
           <tr th:each="board: ${jisikList}" th:object="${board}">
-            <td th:text="*{boardNo}">게시글 번호</td>
-            <td>
+            <td th:text="*{boardNo}" class="table-elements">게시글 번호</td>
+
+            <td class="table-elements">
 
               <a th:href="@{/jisik/jisikDetail/{boardNo}(boardNo=*{boardNo})}" th:text="*{boardTitle}">게시글 제목</a>
               <!-- <a th:href="@{/jisik/jisikDetail/(c1=${param.c1}, c2=${param.c2}, 
                 cp=${jisikPagination.currentPage})/(boardNo=*{boardNo})}"
                 th:text="*{boardTitle}">게시글 제목</a> -->
+
             </td>
 
-            <td th:text="*{boardContent}">내용</td>
+            <td th:text="*{boardContent}" class="table-elements">내용</td>
 
-            <td th:text="*{memberNickname}">작성자</td>
+            <td th:text="*{memberNickname}" class="table-elements">작성자</td>
 
-            <td th:text="*{writeDate}">작성일</td>
+            <td th:text="*{writeDate}" class="table-elements">작성일</td>
 
-            <td></td>
-            <td></td>
+            <td class="table-elements"></td>
+            <td class="table-elements"></td>
 
             <!-- <td th:text="*{categoryCode}"><td>
             <td th:text="*{category2Code}"><td> -->

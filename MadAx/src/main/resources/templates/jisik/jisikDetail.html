@@ -20,38 +20,39 @@
     <main>
         <th:block th:replace="~{jisik/jisikHeader}"></th:block>
 
+        
         <section class="jisik-detail" th:object="${board}">  
             <!-- 제목 -->
-            <h1 class="jisik-title" th:text="*{boardTitle}">게시글 제목</h1>
+            <div>
 
-            <!-- 프로필 + 닉네임 + 작성일 + 조회수 -->
-            <div class="jisikDetail-header">
-                <div class="jisik-writer">
-
-                    <!-- 프로필 이미지 -->
-                    <!-- 프로필 이미지가 없을 경우 기본 이미지 출력 -->
-
-                    <!-- 타임리프 if문에서 객체가 null이 아니면 true
-                         null 이면 false
-                    -->
-                    <img th:unless="*{profileImg}" th:src="#{user.default.image}">
-                    
-                    <!-- 프로필 이미지가 있을 경우 출력 -->
-                    <img th:if="*{profileImg}" th:src="*{profileImg}">
-
-                    <span th:text="*{memberNickname}">작성자 닉네임</span>
-
-                    
-                    <!-- 좋아요 하트 -->
-                    <span class="like-area">
+                <h1 class="jisik-title" th:text="*{boardTitle}">게시글 제목</h1>
+                
+                <!-- 프로필 + 닉네임 + 작성일 + 조회수 -->
+                <div class="jisikDetail-header">
+                    <div class="jisikDetail-writer">
                         
+                        <!-- 프로필 이미지 -->
+                        <!-- 프로필 이미지가 없을 경우 기본 이미지 출력 -->
+                        
+                        <!-- 타임리프 if문에서 객체가 null이 아니면 true
+                            null 이면 false
+                        -->
+                        <img th:unless="*{profileImg}" th:src="#{user.default.image}">
+                        
+                        <!-- 프로필 이미지가 있을 경우 출력 -->
+                        <img th:if="*{profileImg}" th:src="*{profileImg}">
+                        
+                        <!-- 좋아요 하트 -->
+                        <span class="like-area">
+                            
+                    </div>
                         <!-- 좋아요 누른적이 있으면 fa-solid, 없으면 fa-regular 클래스 추가 -->
                         
                         <!-- ${likeCheck} ? fa-solid : fa-ragular  
                             -> ${likeCheck}가 참조하는 값이 있으면  fa-solid
                                없으면 (== null) fa-regular
                         -->
-                        <i class="fa-heart" th:classappend="${likeCheck} ? fa-solid : fa-regular" id="jisikLike"></i>
+                        <i class="fa-heart" th:classappend="${likeCheck} ? fa-solid : fa-regular" id="boardLike"></i>
 
                         <!-- 좋아요 개수 -->
                         <span th:text="*{likeCount}">0</span>
@@ -59,13 +60,13 @@
 
                 </div>
 
-                <div class="jisik-info">
-                    <p> <span>작성일</span> [[*{boardWriteDate}]] </p>     
+                <div class="jisikDetail-info">
+                    <p> <span>작성일</span> *{writeDate}</p>     
 
-                    <!-- 수정한 게시글인 경우 -->
-                    <p> <span>마지막 수정일</span> [[*{boardUpdateDate}]]</p>   
+                     수정한 게시글인 경우
+                    <p> <span>마지막 수정일</span> *{boardUpdateDate}</p>   
 
-                    <p> <span>조회수</span> [[*{readCount}]] </p>                    
+                    <p> <span>조회수</span> *{boardCount} </p>                    
                 </div>
             </div>
 
@@ -73,60 +74,17 @@
 
             <!-- ====================== 이미지가 있을 경우 출력하는 구문 (예정) ====================== -->
 
-              <!-- 이미지가 있을 경우 -->
-              <th:block th:if="${#lists.size(board.imageList) > 0}" >
-            
-              <!-- 썸네일 영역(썸네일이 있을 경우) -->
-              <!--  
-                  - 이미지는 IMG_ORDER 오름차순을 정렬된다
-                  - IMG_ORDER의 값이 0인 이미지가 썸네일이다
-                  -> imageList에 썸네일이 있다면
-                      조회 되었을 때 IMG_ORDER가 0인 이미지가
-                      imageList [0]에 저장 되었을 것이다
-              -->
-              <th:block th:if="${thumbnail}">
-                  <h5>썸네일</h5>
-                  <div class="img-box">
-                      <div class="boardImg thumbnail">
-                          <img th:src="|${thumbnail.imgPath}${thumbnail.imgRename}|">                     
-                          <a th:href="|${thumbnail.imgPath}${thumbnail.imgRename}|"
-                              th:download="${thumbnail.imgOriginalName}">다운로드</a>         
-                      </div>
-                  </div>
-              </th:block>
-
-              <!-- 일반 이미지가 있을 경우 -->
-              <th:block th:if="${#lists.size(board.imageList) > start}" >
-
-                  <!-- 업로드 이미지 영역 -->
-                  <h5>업로드 이미지</h5>
-                  <div class="img-box">
-
-                      <div th:each="i : ${#numbers.sequence(start, #lists.size(board.imageList)-1, 1)}" 
-                          th:with="path=|${board.imageList[i].imgPath}${board.imageList[i].imgRename}|"
-                          class="boardImg">
-
-                          <img th:src="${path}">   
-
-                          <a href="${path}" 
-                              th:download="${board.imageList[i].imgOriginalName}">다운로드</a>                
-                      </div>
-
-                  </div>
-              </th:block>
-          
-          </th:block>
-
+           
 
             <!-- ====================== 이미지가 있을 경우 출력하는 구문 (예정) ====================== -->
             
             <!-- 내용 -->
-            <div class="jisik-content" th:text="*{boardContent}">내용</div>
+            <div class="board-content" th:text="*{boardContent}">내용</div>
 
 
 
             <!-- 버튼 영역-->
-            <div class="jisik-btn-area">
+            <div class="board-btn-area">
 
                 <!-- 로그인한 회원과 게시글 작성자 번호가 같은 경우-->
                 <th:block th:if="${session.loginMember != null 
@@ -142,12 +100,12 @@
 
 
         <!-- 댓글 영역-->
-        <th:block th:replace="~{board/comment}"></th:block>
+        <!-- <th:block th:replace="~{board/comment}"></th:block>
 
     </main>
 
 
-    <th:block th:replace="~{common/footer}"></th:block>
+    <th:block th:replace="~{common/footer}"></th:block> -->
 
 
 

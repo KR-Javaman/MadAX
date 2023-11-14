@@ -1,6 +1,6 @@
 package com.javaman.madax.jisik.controller;
 
-import java.text.ParseException;
+import java.text.ParseException; 
 import java.util.HashMap;
 import java.util.Map;
 
@@ -86,14 +86,21 @@ public class JisikController {
 		
 		@GetMapping("jisikDetail/{boardNo:[0-9]+}")
 		public String jisikDetail(Model model, 
-				@PathVariable("boardNo") int boardNo, 
-				@SessionAttribute(value = "loginMember", required = false) Member loginMember, HttpServletRequest req, 
-				HttpServletResponse resp) throws ParseException {
+				@PathVariable("boardNo") int boardNo,
+				@SessionAttribute(value = "loginMember", required = false) Member loginMember,
+					HttpServletRequest req, 
+					HttpServletResponse resp) throws ParseException {
+			
 			
 			Board board = service.jisikDetail(boardNo);
 				
-			model.addAttribute(boardNo);
+			model.addAttribute("board", board);
 			return "jisik/jisikDetail";
+			
+			
+			
+			
+			
 		} 
 		
 			

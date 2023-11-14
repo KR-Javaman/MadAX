@@ -26,8 +26,6 @@ public class Board {
     private int category2Code;
     
     
-    
-    
     // 목록 조회, 상세 조회 시 매핑되는 필드
     private int commentCount; // 댓글 수
     private int likeCount; // 좋아요 수
