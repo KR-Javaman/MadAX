@@ -55,6 +55,34 @@ public interface BoardMapper {
 	int updateBoardCount(int boardNo);
 
 
+	/**게시글 수 조회
+	 * @param board
+	 * @return
+	 */
+	int ListCount(Board board);
+
+
+
+	/**게시글 수 조회
+	 * @param board
+	 * @param rowBounds
+	 * @return
+	 */
+	List<Board> CategoryBoard(Board board, RowBounds rowBounds);
+
+
+
+	/**카테고리별 게시글
+	 * @param boardMap
+	 * @param rowBounds
+	 * @return
+	 */
+	List<Board> CategoryBoard(Map<String, Integer> boardMap, RowBounds rowBounds);
+
+
+
+
+
 	
 
 

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -39,7 +40,7 @@ public class BoardController{
 private final BoardService service;
 	
 	
-	/**게시글 조회
+	/**게시글 전체 조회
 	 * @param boardCode
 	 * @param model
 	 * @param cp
@@ -57,6 +58,34 @@ private final BoardService service;
 		
 		
 		return "board/boardList";
+	}
+	
+	
+	
+	/**카테고리 별 조회
+	 * @param boardCode
+	 * @param categoryCode
+	 * @param category2Code
+	 * @param model
+	 * @param cp
+	 * @return
+	 */
+	@GetMapping("{boardCode:[0-9]+}/{categoryCode:[0-9]+}/{categoryCodeTwo:[0-9]+}")
+	public String CategoryBoard(@PathVariable("boardCode") int boardCode,
+								@PathVariable("categoryCode") int categoryCode,
+								@PathVariable("categoryCodeTwo") int categoryCodeTwo,
+								Model model,
+								@RequestParam(value = "cp", required = false, defaultValue = "1") int cp) {
+		
+		
+	
+		Map<String, Object> map = service.CategoryBoard( boardCode, categoryCode, categoryCodeTwo, cp);
+		
+		model.addAttribute("map",map);
+		
+		
+		return "board/boardList";
+		
 	}
 	
 	

@@ -107,5 +107,42 @@ public class BoardServiceImpl implements BoardService{
 	
 	
 	
+	//카테고리별 게시글 조회
+	@Override
+	public Map<String, Object> CategoryBoard(int boardCode, int categoryCode, int categoryCodeTwo, int cp) {
+		
+		//게시글 수 조회
+				int listCount = mapper.ListCount(boardCode);
+				
+				Pagination pagination = new Pagination(cp, listCount);
+				
+				
+				int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+								//현재 페이지에서 1을 빼고 한 페이지 목록에 보여지는 게시글 수를 곱함(결과 만큼을 건너뛰고 조회)
+				int limit = pagination.getLimit(); 
+				
+				
+				RowBounds rowBounds = new RowBounds(offset,limit);
+				
+				
+				
+				//게시글 조회
+				
+				Map<String, Integer> boardMap = new HashMap<>();
+				boardMap.put("boardCode", boardCode);
+				boardMap.put("categoryCode", categoryCode);
+				boardMap.put("categoryCodeTwo", categoryCodeTwo);
+				
+				List<Board> boardList = mapper.CategoryBoard(boardMap, rowBounds);
+				
+				Map<String , Object> map =  new HashMap<>();
+				map.put("boardList", boardList);
+				map.put("pagination", pagination);
+				
+				return map;
+	}
+	
+	
+	
 
 }
