@@ -1,7 +1,8 @@
 package com.javaman.madax.jisik.controller;
 
-import java.util.List;
-import java.util.Map;  
+import java.text.ParseException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,13 +13,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.javaman.madax.board.model.dto.Board;
 import com.javaman.madax.jisik.model.JisikService;
+import com.javaman.madax.member.model.dto.Member;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("jisik")
+@SessionAttributes({ "loginMember" })
 public class JisikController {
 	
 	@Autowired
@@ -43,29 +52,48 @@ public class JisikController {
 		// MAP으로 
 	
 		@GetMapping("jisikList")
-		public String JisikList(Board board, Model model) {
+		public String jisikList(Model model, 
+				@RequestParam(value = "cp", required = false, defaultValue = "1") int cp,
+				@RequestParam Map<String, Object> paramMap) {
 			
+				
+				Map<String, Object> map = service.jisikList(paramMap, cp);
 			
-			Map<String, Object> map = service.jisikList(board);
-			model.addAttribute("map", map);
+				model.addAttribute("map", map);
+				
+				
+				
+//			if(paramMap.get("key") == null && paramMap.get("query") == null) { // 일반 목록 조회
+//				Map<String, Object> map = service.selectJisikList(board, cp);
+//				
+//
+//			} else {
+//				
+//				paramMap.put("board", board);
+//				
+//				Map<String, Object> map = service.searchJisikList(paramMap, cp);
+//				
+//				model.addAttribute("map", map);
+//				
+//				
+//			}
 	
-		return "jisik/jisikList";
+			return "jisik/jisikList";
 		
-		
-//		if(boardCode != 2) {
-//			
-//			return "null";
-//			
-//		} else {
-//			
-//			return "jisik/jisikList";
-//		}
-//		
-//		
-//		
-//		// 뭘 받아 와야 하는지	
-//		//
-//			
 	}
-	
-}
+		
+		@GetMapping("jisikDetail/{boardNo:[0-9]+}")
+		public String jisikDetail(Model model, 
+				@PathVariable("boardNo") int boardNo, 
+				@SessionAttribute(value = "loginMember", required = false) Member loginMember, HttpServletRequest req, 
+				HttpServletResponse resp) throws ParseException {
+			
+			Board board = service.jisikDetail(boardNo);
+				
+			model.addAttribute(boardNo);
+			return "jisik/jisikDetail";
+		} 
+		
+			
+		
+}		

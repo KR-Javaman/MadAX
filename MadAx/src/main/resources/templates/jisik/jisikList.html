@@ -1,114 +1,243 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>메인페이지</title>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>메인페이지</title>
 
 
-    <link rel="stylesheet" href="/css/jisik/jisikHeader.css">
+  <link rel="stylesheet" href="/css/jisik/jisikHeader.css">
 
-    <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/main.css">
 
-    <link rel="stylesheet" href="/css/jisik/jisikList.css">
-
-
-
-    <th:block th:replace = "~{common/common}"></th:block>
+  <link rel="stylesheet" href="/css/jisik/jisikList.css">
 
 
-   
-  </head> 
+
+  <th:block th:replace="~{common/common}"></th:block>
 
 
-  <th:block th:replace="~{jisik/jisikHeader}"></th:block>
+
+</head>
 
 
-  <div class="door">
-    <h1>지식인</h1>
+<th:block th:replace="~{jisik/jisikHeader}"></th:block>
+
+<div class="door">
+  <h1>지식인</h1>
+</div>
+
+<!-- <div th:switch="${c1}"> 
+    <div th:case="1">정보</div>
+    <div ></div>
+    <h1>지식인</h1> 
+  <div> -->
+<!--   
+  <div th:if="${param.c1} == 1"></div>
+  <div th:if="${param.c1} == 2"></div>
+  c1=1 정보
+  c2=2 꿀팁
+  th:if unless  -->
+
+
+<body th:with="jisikList=${map.jisikList}, jisikPagination=${map.jisikPagination}">
+
+  <section class="board-list">
+
+  <div class="list-wrapper">
+
+
+    <table class="jisik-table" border="1">
+
+      <thead>
+        <tr>
+          <th>글번호</th>
+          <th>제목</th>
+          <th>내용</th>
+          <th>작성자</th>
+          <th>작성일</th>
+          <!-- <th>게시판</th>
+          <th>카테고리</th> -->
+          <th>조회수</th>
+          <th>좋아요</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <th:block th:unless="${#lists.size(jisikList) == 0}">
+
+
+          <tr th:each="board: ${jisikList}" th:object="${board}">
+            <td th:text="*{boardNo}">게시글 번호</td>
+            <td>
+
+              <a th:href="@{/jisik/jisikDetail/{boardNo}(boardNo=*{boardNo})}" th:text="*{boardTitle}">게시글 제목</a>
+              <!-- <a th:href="@{/jisik/jisikDetail/(c1=${param.c1}, c2=${param.c2}, 
+                cp=${jisikPagination.currentPage})/(boardNo=*{boardNo})}"
+                th:text="*{boardTitle}">게시글 제목</a> -->
+            </td>
+
+            <td th:text="*{boardContent}">내용</td>
+
+            <td th:text="*{memberNickname}">작성자</td>
+
+            <td th:text="*{writeDate}">작성일</td>
+
+            <td></td>
+            <td></td>
+
+            <!-- <td th:text="*{categoryCode}"><td>
+            <td th:text="*{category2Code}"><td> -->
+
+
+
+          </tr>
+
+
+      </tbody>
+
+    </table>
   </div>
 
 
-  <body th:with="jisikList=${map.jisikList}">
+
+  <div th:if="${session.loginMember != null}" class="btn-area">
+    <!-- 로그인 상태일 때만 글쓰기 버튼 노출 -->
+
+    <!-- 
+        /board/{boardCode}
+        -> /editBoard/{boardCode}/insert (GET)
+    -->
+    <button id="insertBtn">글쓰기</button>                     
+</div>
 
 
-          <div class="list-wrapper">
+  <!-- ============================================================================================================== -->
 
-         
-          <table class="jisik-table" border="1">
-                      
-            <thead>
-              <tr>
-                  <th>글번호</th>
-                  <th>제목</th>
-                  <th>내용</th>
-                  <th>작성자</th>
-                  <th>작성일</th>
-                  <th>조회수</th>
-                  <th>좋아요</th>
-              </tr>
-            </thead>
-            
-            <tbody>
-
-              <th:block th:unless="${#lists.size(jisikList) == 0}">
-
-
-              <tr th:each=" board: ${jisikList}" th:object="${board}">
-                <td th:text="*{boardNo}">게시글 번호</td>
-                <td>
-                  <a href="/jisik/jisikList/" th:text="*{boardTitle}">게시글 제목</a>
-                </td>
-
-                <td th:text="*{boardContent}">내용</td>
-
-                <td th:text="*{memberNickname}">작성자</td>
-                <td th:text="*{writeDate}">작성일</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-
-
+            <!-- 게시글이 있을 때만 페이지네이션이 보이게 함 -->
+            <div class="pagination" th:if="${#lists.size(map.jisikList) > 0}">
+ 
+              <!-- 검색이 아닐 경우 -->
+              <!-- <ul class="pagination" th:if="${param.key == null}">  -->
               
-              <div th:if="${session.loginMember != null}">
-                <button id="writeBtn">글쓰기</button>                     
-              </div>
+                  <!-- 첫 페이지로 이동 -->
+                  <li>
+                      <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=${param.c2}, cp=1)}">&lt;&lt;</a>
+                  </li>
 
-            </tbody>
-
-          </table>
-        </div>  
-
-        <div class="jisik-pagination">
-          <ul>
-            <li><a href="#">&lt;&lt;</a></li>
-            <li><a href="#">&lt;</a></li>
-            <th:block
-              th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}"
-            >
-              <li th:if="${i == pagination.currentPage}">
-                <a class="current-pagination" th:text="${i}">1</a>
-              </li>
-            </th:block>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-            <li><a href="#">7</a></li>
-            <li><a href="#">8</a></li>
-            <li><a href="#">9</a></li>
-            <li><a href="#">10</a></li>
-            <li><a href="#">&gt;</a></li>
-            <li><a href="#">&gt;&gt;</a></li>
-          </ul>
-        </div>
+                  <!-- 이전 목록 마지막 번호로 이동 -->
+                  <li>
+                      <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=${param.c2}, cp=${jisikPagination.prevPage})}">&lt;</a>
+                  </li>
 
 
 
-      <!-- 검색 -->
+                  <!-- 특정 페이지로 이동 -->
 
-<!--       
+                  <!-- 타임리프에서 특정 범위 만큼 반복하기!! (1~10) -->
+                  <!-- #numbers.sequence(1,10,1)  :  1~10까지 1씩 증가하며 차례대로 추가한 리스트 생성 -->
+                  <th:block th:each="i : ${#numbers.sequence(jisikPagination.startPage, jisikPagination.endPage, 1)}">
+                      
+                      <!-- 현재 보고있는 페이지 -->
+                      <li th:if="${i == jisikPagination.currentPage}">
+                          <a class="current" th:text="${i}">1</a>
+                      </li>
+  
+                      <!-- 보고있지 않은 페이지 -->                    
+                      <li th:unless="${i == jisikPagination.currentPage}"> 
+                          <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=${param.c2}, cp=${i})}" th:text="${i}">2</a> 
+                      </li>
+                  </th:block>
+
+                  <!-- 다음 목록 시작 번호로 이동 -->
+                  <li>
+                      <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=${param.c2}, cp=${jisikPagination.nextPage})}">&gt;</a>
+                  </li>
+
+                  <!-- 끝 페이지로 이동 -->
+                  <li>
+                      <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=${param.c2}, cp=${jisikPagination.maxPage})}">&gt;&gt;</a>
+                  </li>
+
+
+              </ul>
+
+              <!-- param.key 없다 -->
+              <!-- 검색하는 경우 -->
+              <ul class="jisikPagination" th:unless="${param.key == null}">
+              
+                  <!-- 첫 페이지로 이동 -->
+                  <li>
+                      <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=${param.c2}, cp=1)}">&lt;&lt;</a>
+                  </li>
+
+                  <!-- 이전 목록 마지막 번호로 이동 -->
+                  <li>
+                      <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=${param.c2}, cp=${jisikPagination.prevPage})}">&lt;</a>
+                  </li>
+
+
+
+                  <!-- 특정 페이지로 이동 -->
+
+                  <!-- 타임리프에서 특정 범위 만큼 반복하기!! (1~10) -->
+                  <!-- #numbers.sequence(1,10,1)  :  1~10까지 1씩 증가하며 차례대로 추가한 리스트 생성 -->
+                  <th:block th:each="i : ${#numbers.sequence(jisikPagination.startPage, jisikPagination.endPage, 1)}">
+                      
+                      <!-- 현재 보고있는 페이지 -->
+                      <li th:if="${i == jisikPagination.currentPage}">
+                          <a class="current" th:text="${i}">1</a>
+                      </li>
+  
+                      <!-- 보고있지 않은 페이지 -->                    
+                      <li th:unless="${i == jisikPagination.currentPage}"> 
+                          <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=${param.c2}, cp=${i} )}" th:text="${i}">2</a> 
+                      </li>
+                  </th:block>
+
+                  <!-- 다음 목록 시작 번호로 이동 -->
+                  <li>
+                      <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=${param.c2}, cp=${jisikPagination.nextPage})}">&gt;</a>
+                  </li>
+
+                  <!-- 끝 페이지로 이동 -->
+                  <li>
+                      <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=${param.c2}, cp=${jisikPagination.maxPage})}">&gt;&gt;</a>
+                  </li>
+
+              </ul>
+
+          </div>
+
+          <!-- 검색창 -->
+          <form th:action="@{/jisik/jisikList(c1=${param.c1}, c2=${param.c2})}" method="get" id="boardSearch">
+
+            <select name="key" id="searchKey">
+                <option value="t">제목</option>
+                <option value="c">내용</option>
+                <option value="tc">제목+내용</option>
+                <option value="w">작성자</option>
+            </select>
+
+            <input type="text" name="query"  id="searchQuery" placeholder="검색어를 입력해주세요.">
+
+            <button>검색</button>
+        </form>
+
+    </section>
+
+
+
+
+
+
+
+
+  <!-- 검색 -->
+
+  <!--       
       <form action="#" method="get" id="boardSearch">
         <select name="key" id="searchKey">
           <option value="t">제목</option>
@@ -121,18 +250,18 @@
       </form> -->
 
 
-    </main>
+  </main>
 
-    <th:block th:replace = "~{common/common}"></th:block>
+  <th:block th:replace="~{common/common}"></th:block>
 
-  </body>
-  
-
+</body>
 
 
-  <script th:inline ="javascript">
-    const boardCode = /*[[${boardCode}]]*/ "게시판코드";
-  </script>
+
+
+<script th:inline="javascript">
+  const boardCode = /*[[${boardCode}]]*/ "게시판코드";
+</script>
 
 
 </html>

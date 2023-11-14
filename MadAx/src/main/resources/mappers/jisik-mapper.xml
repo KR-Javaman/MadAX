@@ -16,17 +16,88 @@
 	
 
 		
-	 	<select id="jisickList" resultType="Board">
+ 	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOARD
+		JOIN "MEMBER" USING("MEMBER_NO")
+		WHERE BOARD_DEL_FL = 'N'
+		AND BOARD_CODE = '2'
+		
+		<if test='c1 != null and c1 != ""'>
+			AND CATEGORY_CODE = #{c1}
+		</if>
+		
+		<if test='c2 != null and c2 != ""'>
+			AND CATEGORY2_CODE = #{c2}
+		</if>
+		
+		ORDER BY BOARD_NO DESC
+	</select>
+
+ 	<select id="jisikList" resultType="Board">
 		SELECT BOARD_NO,BOARD_TITLE, BOARD_CONTENT, MEMBER_NICKNAME,WRITE_DATE
 		FROM BOARD
 		JOIN "MEMBER" USING("MEMBER_NO")
 		WHERE BOARD_DEL_FL = 'N'
 		AND BOARD_CODE = '2'
+		
+		<if test='c1 != null and c1 != ""'>
+			AND CATEGORY_CODE = #{c1}
+		</if>
+		
+		<if test='c2 != null and c2 != ""'>
+			AND CATEGORY2_CODE = #{c2}
+		</if>
+		
 		ORDER BY BOARD_NO DESC
-		</select>
+	</select>
+	
+	
+	<select id="jisikDetail" resultType="Board">
+		
+		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, BOARD_COUNT,
+			TO_CHAR(WRITE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS')WRITE_DATE,
+			MEMBER_NICKNAME, PROFILE_IMG, MEMBER_NO, PROFILE_IMG,
 
+			(SELECT COUNT(*) FROM "BOARD_LIKE" L
+			WHERE L.BOARD_NO = B.BOARD_NO) LIKE_COUNT
+
+		FROM "BOARD" B
+		JOIN "MEMBER" USING(MEMBER_NO)
+		WHERE BOARD_DEL_FL = 'N'
+		AND BOARD_NO = #{boardNo}	
+	</select>
+	
+  	<!-- 
+ 	<select id="selectJisikBoard" resultType="Board">
+		SELECT BOARD_NO, BOARD_TITLE, MEMBER_NICKNAME, WRITE_DATE
+		FROM BOARD
+		JOIN "MEMBER" USING("MEMBER_NO")
+		WHERE BOARD_CODE =	'2'
+		AND BOARD_DEL_FL = 'N'
+		ORDER BY BOARD_NO DESC
+	</select>
 	
 	
+	
+		
+	<select id="searchJisikList" resultType="Board">
+		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, BOARD_COUNT,
+			TO_CHAR(WRITE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS')WRITE_DATE,
+			MEMBER_NICKNAME, PROFILE_IMG, MEMBER_NO, PROFILE_IMG,
+
+			(SELECT COUNT(*) FROM "BOARD_LIKE" L 
+			WHERE L.BOARD_NO = B.BOARD_NO) LIKE_COUNT
+
+		FROM "BOARD" B
+		JOIN "MEMBER" USING(MEMBER_NO)
+		WHERE BOARD_DEL_FL = 'N'
+		AND BOARD_CODE = '2'
+		AND BOARD_NO = #{boardNo}
+	</select>
+	
+	
+	<!-->
 
 	
 

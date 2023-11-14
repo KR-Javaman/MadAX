@@ -17,28 +17,28 @@
         <ul class="menu">
 
             <li>
-                <a href="/jisik/jisikList/">전체</a>
+                <a th:href="@{/jisik/jisikList(c1=${param.c1})}">전체</a>
             </li>
             
             <li>
-                <a href="/jisik/2/1">축구</a>
+                <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=1)}">축구</a>
             </li>
 
             <li>
-                <a href="jisik/2/2">야구</a>
+                <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=2)}">야구</a>
             </li> 
 
             <li>
-                <a href="jisik/2/3">농구</a>
+                <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=3)}">농구</a>
 
             </li>
     
             <li>
-                <a href="jisik/2/2">헬스</a>
+                <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=4)}">헬스</a>
             </li>  
 
             <li>
-                <a href="jisik/2/2">기타</a>
+                <a th:href="@{/jisik/jisikList(c1=${param.c1}, c2=5)}">기타</a>
             </li>
     
       </div>
