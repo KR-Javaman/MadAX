@@ -1,13 +1,13 @@
 package com.javaman.madax.board.model.mapper;
 
 
-<<<<<<< HEAD
-import org.apache.ibatis.annotations.Mapper;  
+
+import org.apache.ibatis.annotations.Mapper;   
 
 import java.util.List;
-=======
+
 import java.util.Map;
->>>>>>> 7fcfe7d9c6944bfbe345775bbb4dc0e9403dd23f
+
 
 import org.apache.ibatis.annotations.Mapper;
 

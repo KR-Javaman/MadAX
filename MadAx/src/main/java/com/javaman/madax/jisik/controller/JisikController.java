@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -54,7 +55,8 @@ public class JisikController {
 		@GetMapping("jisikList")
 		public String jisikList(Model model, 
 				@RequestParam(value = "cp", required = false, defaultValue = "1") int cp,
-				@RequestParam Map<String, Object> paramMap) {
+				@RequestParam Map<String, Object> paramMap
+			) {
 			
 				
 				Map<String, Object> map = service.jisikList(paramMap, cp);
