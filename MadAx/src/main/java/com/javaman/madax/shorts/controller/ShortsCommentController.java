@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.javaman.madax.member.model.dto.Member;
 import com.javaman.madax.shorts.model.dto.VideoComment;
-import com.javaman.madax.shorts.model.service.CommentService;
+import com.javaman.madax.shorts.model.service.ShortsCommentService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("shorts/detail")
 public class ShortsCommentController {
 	
-	private final CommentService service;
+	private final ShortsCommentService service;
 	
 	@GetMapping(value="videoComment", produces="application/json")
 	public String selectComment(int boardVideoNo, Model model,
