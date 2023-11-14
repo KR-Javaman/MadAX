@@ -1,5 +1,9 @@
 package com.javaman.madax.myPage.model.service;
 
+import java.io.IOException;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import com.javaman.madax.member.model.dto.Member;
 
 public interface MyPageService {
@@ -10,7 +14,7 @@ public interface MyPageService {
 	 * @param memberNo
 	 * @return result
 	 */
-	int secession(String memberPw, int memberNo);
+	int secession2(String memberPw, int memberNo);
 
 	/** 닉네임 변경
 	 * @param updateMember
@@ -25,5 +29,17 @@ public interface MyPageService {
 	 * @return result
 	 */
 	int changePw(String currentPw, String newPw, int memberNo);
+	
+	/** 프로필 이미지 수정
+	 * @param profileImg
+	 * @param loginMember
+	 * @return result
+	 */
+	int profile(MultipartFile profileImg, Member loginMember) throws IllegalStateException, IOException;
+
+	int background(MultipartFile backgroundImg, Member loginMember) throws IllegalStateException, IOException;
+
+	int deleteBackground(Member backgroundImg, Member loginMember) throws IllegalStateException, IOException;
+
 
 }

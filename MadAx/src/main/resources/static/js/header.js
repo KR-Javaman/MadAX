@@ -3,16 +3,16 @@
 // const profile = document.querySelector("#memberHeaderProfile");
 // const p = document.querySelector(".header-menu");
 
-$("nav li").hover(
-  function () {
-    $("ul", this).stop().slideDown(200);
-    $("ul", this).show();
-  },
-  function () {
-    $("ul", this).stop().slideUp(200);
-    $("ul", this).hide();
-  }
-);
+// $("nav li").hover(
+//   function () {
+//     $("ul", this).stop().slideDown(200);
+//     $("ul", this).show();
+//   },
+//   function () {
+//     $("ul", this).stop().slideUp(200);
+//     $("ul", this).hide();
+//   }
+// );
 
 // $("div>a").hover(
 //   function () {

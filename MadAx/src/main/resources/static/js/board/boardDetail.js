@@ -1,22 +1,19 @@
-//좋아요 버튼(#boardLike) 요소를 얻어와 변수에 저장
+/* =========================좋아요 버튼 ======================*/
+
 const boardLike = document.getElementById("boardLike");
 
-//좋아요 버튼 클릭 시(이벤트 리스너 추가)
 boardLike.addEventListener("click", e=>{
   
   //1. 로그인 여부 확인
   
-  if(!loginCheck){ //로그인x
+  if(!loginCheck){
     alert("로그인 후 이용해주세요")
     return;
   }
 
   //2. 기존에 좋아요 상태 확인
   let check;
-
-  //fa-regular: 비어있는 하트
-  //fa-solid : 채워진 하트
-  // 클릭한 하트에 class 속성 값으로 "fa-regular"가 있으면 true
+  
   if(e.target.classList.contains("fa-regular")){
     check = 0;
   }else{
@@ -26,12 +23,12 @@ boardLike.addEventListener("click", e=>{
   //3. ajax 호출
 
   //1)ajax로 비동기 요청 시 전달할 데이터를 모아둔 객체
-  const dataObj = {"boardNo" : boardNo, "check" : check};
+  const dataObj = {boardNo : boardNo, check : check};
 
   fetch("/board/like", {
     method : "POST", 
     headers : {"Content-Type": "application/json"},  //json : JS 객체 모양의 문자열
-    body : JSON.stringify(dataObj) //JS객체 -> JSON 문자열화
+    body : JSON.stringify(dataObj) 
     
   })
   .then(resp => resp.text())
@@ -53,6 +50,28 @@ boardLike.addEventListener("click", e=>{
   })
   .catch(e => console.log(e));
 });
+
+
+
+
+/* ==================게시글 삭제 버튼 클릭======================= */
+
+const deleteBtn = document.getElementById("deleteBtn");
+
+deleteBtn.addEventListener("click", ()=>{
+  location.href = `/editBoard/${boardCode}/${boardNo}/delete`;
+});
+
+
+
+/* ==================게시글 수정 버튼 클릭======================= */
+
+const updateBtn = document.getElementById("updateBtn");
+
+updateBtn.addEventListener("click", ()=>{
+  location.href = `/editBoard/${boardCode}/${boardNo}/update`;
+});
+
 
 
 

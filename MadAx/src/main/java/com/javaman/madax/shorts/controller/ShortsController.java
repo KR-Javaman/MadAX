@@ -158,7 +158,7 @@ public class ShortsController {
 		return Path;
 	}
 	
-	
+	// 좋아요
 	@PostMapping("detail/like")
 	@ResponseBody
 	public int like(@RequestBody Map<String, Object> paramMap, 

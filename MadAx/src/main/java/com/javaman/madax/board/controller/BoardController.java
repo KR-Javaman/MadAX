@@ -1,10 +1,6 @@
 package com.javaman.madax.board.controller;
 
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,8 +20,7 @@ import com.javaman.madax.board.model.dto.Board;
 import com.javaman.madax.board.model.service.BoardService;
 import com.javaman.madax.member.model.dto.Member;
 
-import com.javaman.madax.board.model.dto.BoardImg;
-import jakarta.servlet.http.Cookie;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -67,7 +62,8 @@ private final BoardService service;
 						@PathVariable("boardNo")int boardNo, 
 						Model model,
 						RedirectAttributes ra,
-						@SessionAttribute(value = "loginMember", required = false) Member loginMember) {
+						@SessionAttribute(value = "loginMember", required = false) Member loginMember,
+						HttpServletRequest req, HttpServletResponse resp) {
 		
 		
 		Map<String, Object> map = new HashMap<>();
@@ -96,6 +92,8 @@ private final BoardService service;
 			}
 			
 			
+			
+			
 		}else { //게시글 없을 경우
 			path = "redirect:/board/" + boardCode;
 			
@@ -105,22 +103,20 @@ private final BoardService service;
 	}
 	
 	
-	
-	
 			
 	/*좋아요 처리
 	 * @param paramMap : boardNo, check(0.1)담긴 맵
 	 *  **/
 	@PostMapping("like")
 	@ResponseBody
-	public int like(@RequestBody Map<String, Object> paramMap , @SessionAttribute("loginMember") Member loginMember) {
+	public int like(@RequestBody Map<String, Object> map , @SessionAttribute("loginMember") Member loginMember) {
 		
 		//paramMap에 로그인 회원 번호만 추가
-		paramMap.put("memberNo", loginMember.getMemberNo());
+		map.put("memberNo", loginMember.getMemberNo());
 		
 		
 		//paramMap : {boardNo,memberNo, check}
-		return service.like(paramMap);  //-1(실패) / 0이상 (성공)
+		return service.like(map);  //-1(실패) / 0이상 (성공)
 }
 	
 	
