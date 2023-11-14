@@ -1,5 +1,7 @@
 package com.javaman.madax.shorts.model.dto;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,4 +23,5 @@ public class VideoComment {
 	    private String profileImg;
 	    
 	    private int likeCountComment;
+	    
 }
