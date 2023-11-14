@@ -35,17 +35,17 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("myPage-shorts")
+@RequestMapping("myPage")
 @SessionAttributes({"loginMember"})
 public class MyShortsController {
 
 	private final MyShortsService service;
 	
 	@GetMapping("myPage-shorts")
-	public String main(VideoBoard video ,Model model,
+	public String selectBoard(@SessionAttribute(value="loginMember", required=false /*필수는 아니다*/) Member loginMember,Model model,
 				@RequestParam(value="cp", required = false, defaultValue = "1") int cp) {
 
-		Map<String, Object> map = service.main(cp,video);
+		Map<String, Object> map = service.selectBoard(loginMember.getMemberNo(), cp);
 		model.addAttribute("map", map);
 		
 		return "myPage/myPage-shorts";

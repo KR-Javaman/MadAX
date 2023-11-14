@@ -11,7 +11,9 @@ import com.javaman.madax.shorts.model.dto.VideoBoard;
 
 public interface MyShortsService {
 
-	Map<String, Object> main(int cp, VideoBoard video);
+
+
+	Map<String, Object> selectBoard(int memberNo, int cp);
 
 //	int writeInsert(VideoBoard videoBoard, List<MultipartFile> video) throws IllegalStateException, IOException;
 //

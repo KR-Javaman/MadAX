@@ -20,6 +20,7 @@
 
         <hr>
         <section class="myPage-content" th:object="${videoBoard}">
+
             <th:block th:replace="~{myPage/sideMenu}"></th:block>
     
             <section class="myPage-main">
@@ -28,26 +29,23 @@
                     <label id="myshorts">내가 올린 쇼츠</label>
                         <section class="myPage-shorts-total">
                             
+                          <th:block th:if="${#lists.size(videoList) == 0}">
+                            <h1 class="noBoard">게시글이 존재하지 않습니다.</h1>
+                          </th:block>
+
+                          <th:block th:each="i : ${#numbers.sequence(0, #lists.size(videoList) - 1)}" th:unless="${#lists.size(videoList) == 0}">
+                             <th:block th:if="${i % 5 == 0}" >
+                                <div class="vdvd" >
+                             </th:block>
          
-                <th:block th:each="i : ${#numbers.sequence(0, #lists.size(videoList) - 1)}">
-          <th:block th:if="${i % 5 == 0}" >
-            <div class="vdvd" >
-          </th:block>
-         
-            <a th:href="@{/shorts/detail/{boardVideoNo}(boardVideoNo=${videoList[i].boardVideoNo}, cp=${pagination.currentPage})}" class="video-a">
-              <video
-                th:src="|${videoList[i].videoPath}${videoList[i].videoRename}|"
-                muted
-                onmouseover="this.play()"
-                onmouseout="this.pause()"
-                width="300px"
-                height="320px"
-                controls
-              ></video>
-              <div id="video-kdb" th:text="${videoList[i].videoTitle}">
-                (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅁㄹㄴㅁ
-              </div>
-            </a>
+                           <a th:href="@{/shorts/detail/{boardVideoNo}(boardVideoNo=${videoList[i].boardVideoNo}, cp=${pagination.currentPage})}" class="video-a">
+                             <video th:src="|${videoList[i].videoPath}${videoList[i].videoRename}|" muted onmouseover="this.play()"
+                                  onmouseout="this.pause()"
+                                  width="300px"
+                                  height="320px"
+                                  controls></video>
+                            <div id="video-kdb" th:text="${videoList[i].videoTitle}">게시글 제목 </div>
+                          </a>
 
           <th:block th:if="${i % 5 == 4 or i == #lists.size(videoList)-1}">
             </div>
@@ -55,45 +53,47 @@
 
         </th:block>
 
-        -----------------------------------
-        <!-- <div class="write-btn-area">
-          <button id="writeBtn">글쓰기</button>
-        </div> -->
-        <div class="video-pagination">
-          <ul>
-            <li><a href="#">&lt;&lt;</a></li>
-            <li><a href="#">&lt;</a></li>
-            <th:block
-              th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}"
-            >
-              <li th:if="${i == pagination.currentPage}">
-                <a class="current-pagination" th:text="${i}">1</a>
-              </li>
-            </th:block>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-            <li><a href="#">7</a></li>
-            <li><a href="#">8</a></li>
-            <li><a href="#">9</a></li>
-            <li><a href="#">10</a></li>
-            <li><a href="#">&gt;</a></li>
-            <li><a href="#">&gt;&gt;</a></li>
-          </ul>
-        </div>
-                
-                        
-            </section>  
+          <section class="pagination-section" th:if="${#lists.size(videoList) > 0}">
+           <ul class="pagination">
 
-            </section>
+              <li>
+                  <a th:href="@{/myPage/myPage-community(cp=1)}">&lt;&lt;</a>
+              </li>
+
+              <li>
+                  <a th:href="@{/myPage/myPage-community(cp=${pagination.prevPage})}">&lt;</a>
+              </li>
+
+              <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+
+                
+                  <li th:if="${i == pagination.currentPage}">
+                      <a class="current" th:text="${i}">1</a>
+                  </li>
+                  
+                  <li th:unless="${i == pagination.currentPage}"> 
+                      <a th:href="@{/myPage/myPage-community(cp=${i})}" th:text="${i}">2</a> 
+                  </li>
+              </th:block>
+
+                <li><a th:href="@{/myPage/myPage-community(cp=${pagination.nextPage})}">&gt;</a></li>
+
+            
+                <li>
+                  <a th:href="@{/myPage/myPage-community(cp=${pagination.maxPage})}">&gt;&gt;</a>
+                </li>
+              </ul>
+
+          </section>
+                
+        </section>  
+
         </section>
+      </section>
     </section>
     
     </main>    
     <!-- <th:block th:replace="~{common/footer}"></th:block> -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
     <th:block th:replace="~{common/common}"></th:block>
 
 

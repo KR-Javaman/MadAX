@@ -40,8 +40,11 @@
                                 <thead>
                                   <tr>
                                       <th>게시판 종류</th>
+                                      <th>카테고리</th>
+                                      <th>상세 카테고리</th>
                                       <th>글번호</th>
                                       <th>제목</th>
+                                      <th colspan="6">내용</th>
                                       <th>작성자</th>
                                       <th>작성일</th>
                                       <th>조회수</th>
@@ -58,14 +61,20 @@
                                  <!-- 게시글이 존재할 때 -->
                                 <th:block th:unless="${#lists.size(boardList) == 0}">
                                   <tr th:each="board: ${boardList}" th:object="${board}">
-                                    <td th:if="*{boardName} == 커뮤니티" th:text="*{boardName}" style="color:rgb(147, 251, 1); border-left: 3px solid rgb(147, 251, 1);">게시판 종류</td>
-                                    <td th:if="*{boardName} == 지식인" th:text="*{boardName}" style="color:rgb(33, 155, 255);  border-left: 3px solid rgb(33, 155, 255);">게시판 종류</td>
+                                    <td th:text="*{boardName}" style="color:rgb(147, 251, 1);  border-left: 3px solid rgb(147, 251, 1);">게시판 종류</td>
+                                    <td th:if="*{categoryName} == 구인" th:text="*{categoryName}" style="color:rgb(33, 155, 255);  border-left: 3px solid rgb(33, 155, 255);">카테고리 종류</td>
+                                    <td th:unless="*{categoryName} == 구인" th:text="*{categoryName}" style="color:rgb(255, 0, 128);  border-left: 3px solid rgb(255, 0, 128);">카테고리 종류</td>
+                                    <td th:text="*{categoryNameTwo}" style="font-style:italic">상세 카테고리 종류</td>
+
+
                                     <td th:text="*{boardNo}">게시글 번호</td>
-                                    <td th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode},boardNo=*{boardNo})}">
+                                    <td>
                                       <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode},boardNo=*{boardNo})}"
-                                        th:text="*{boardTitle}">게시글 제목</a>
+                                        th:text="*{boardTitle}" style="text-decoration: underline;">게시글 제목</a>
                                     </td>
-                    
+                                    <td colspan="6"> 
+                                      <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode},boardNo=*{boardNo})}" th:text="*{boardContent}" style="text-decoration: underline;">게시글 내용 </a>
+                                    </td> 
                                     <td th:text="*{memberNickname}">작성자</td>
                                     <td th:text="*{writeDate}">작성일</td>
                                     <td th:text="*{boardCount}">조회수</td>

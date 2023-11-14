@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.javaman.madax.board.model.exception.BoardWriteException;
-import com.javaman.madax.common.utility.Util;
 import com.javaman.madax.myPage.model.mapper.MyShortsMapper;
 import com.javaman.madax.shorts.model.dto.Video;
 import com.javaman.madax.shorts.model.dto.VideoPagination;
@@ -36,15 +34,15 @@ public class MyShortsServiceImpl implements MyShortsService{
 	private String folderPath;
 	
 	@Override
-	public Map<String, Object> main(int cp,VideoBoard video) {
-		int listCount = mapper.getListCount(video);
+	public Map<String, Object> selectBoard(int memberNo, int cp) {
+		int listCount = mapper.getListCount(memberNo);
 		VideoPagination pagination = new VideoPagination(cp, listCount);
 		 
 		int offset = (pagination.getCurrentPage()-1)*pagination.getLimit();
 		int limit = pagination.getLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		List<VideoBoard> videoList = mapper.selectList(rowBounds);
+		List<VideoBoard> videoList = mapper.selectBoard(memberNo, rowBounds);
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("videoList", videoList);

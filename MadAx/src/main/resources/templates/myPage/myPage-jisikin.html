@@ -9,88 +9,127 @@
     <link rel="stylesheet" href="/css/myPage/myPage-jisikin.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/myPage/myPage-main.css">
+    <!-- <link rel="stylesheet" href="/css/shorts/shorts-main.css" /> -->
 </head>
 <body>
-    <main>
+    <main th:with="boardList=${map.boardList}, pagination=${map.pagination}">
         <th:block th:replace="~{common/header}"></th:block>
         
         <th:block th:replace="~{myPage/myPage-common}"></th:block>
 
         <hr>
 
-			
         
         <section class="myPage-content">
             <th:block th:replace="~{myPage/sideMenu}"></th:block>
     
             <section class="myPage-main">
                 
-                <section class="myPage-jisikin-main">
-                    <label id="myshorts">내가 작성한 지식인</label>
-                        <section class="myPage-jisikin-total">
+                <section class="myPage-community-main">
+                    <label id="myshorts">내가 작성한 지식in글</label>
+                    
+                      <button id="writeBtn">글쓰기</button>                     
+                    
+                        <section class="myPage-community-total">
+
+                          <div class="community">
+                          
+                            <div class="com-center">
+                              <table class="list-table" border="0">
+                                          
+                                <thead>
+                                  <tr>
+                                      <th>게시판 종류</th>
+                                      <th>카테고리</th>
+                                      <th>상세 카테고리</th>
+                                      <th>글번호</th>
+                                      <th>제목</th>
+                                      <th colspan="6">내용</th>
+                                      <th>작성자</th>
+                                      <th>작성일</th>
+                                      <th>조회수</th>
+                                      <th>좋아요</th>
+                                  </tr>
+                                </thead>
+                                
+                                <tbody>
+
+                                  <tr th:if="${#lists.size(boardList) == 0}">
+                                    <th colspan="6">게시글이 존재하지 않습니다.</th>
+                                  </tr>
+        
+                                 <!-- 게시글이 존재할 때 -->
+                                <th:block th:unless="${#lists.size(boardList) == 0}">
+                                  <tr th:each="board: ${boardList}" th:object="${board}">
+                                    <td th:text="*{boardName}" style="color:rgb(147, 251, 1);  border-left: 3px solid rgb(147, 251, 1);">게시판 종류</td>
+                                    <td th:if="*{categoryName} == 정보" th:text="*{categoryName}" style="color:rgb(33, 155, 255);  border-left: 3px solid rgb(33, 155, 255);">카테고리 종류</td>
+                                    <td th:unless="*{categoryName} == 꿀팁" th:text="*{categoryName}" style="color:rgb(255, 0, 128);  border-left: 3px solid rgb(255, 0, 128);">카테고리 종류</td>
+                                    <td th:text="*{categoryNameTwo}" style="font-style:italic">상세 카테고리 종류</td>
+
+
+                                    <td th:text="*{boardNo}">게시글 번호</td>
+                                    <td>
+                                      <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode},boardNo=*{boardNo})}"
+                                        th:text="*{boardTitle}" style="text-decoration: underline;">게시글 제목</a>
+                                    </td>
+                                    <td colspan="6"> 
+                                      <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode},boardNo=*{boardNo})}" th:text="*{boardContent}" style="text-decoration: underline;">게시글 내용 </a>
+                                    </td> 
+                                    <td th:text="*{memberNickname}">작성자</td>
+                                    <td th:text="*{writeDate}">작성일</td>
+                                    <td th:text="*{boardCount}">조회수</td>
+                                    <td th:text="*{likeCount}">좋아요</td>
+                                  </tr>
+                                </tbody>
+                    
+                              </table>
+                              </div>
+                            </div>                 
+                          </section>
+                          
+                          <section class="pagination-section" th:if="${#lists.size(boardList) > 0}">
+         <!-- 페이지네이션 -->
                             
-         
-                <!-- <th:block th:each="i : ${#numbers.sequence(0, #lists.size(videoList) - 1)}">
-          <th:block th:if="${i % 5 == 0}" >
-            <div class="vdvd" >
-          </th:block>
-         
-            <a th:href="@{/shorts/detail/{boardVideoNo}(boardVideoNo=${videoList[i].boardVideoNo}, cp=${pagination.currentPage})}" class="video-a">
-              <video
-                th:src="|${videoList[i].videoPath}${videoList[i].videoRename}|"
-                muted
-                onmouseover="this.play()"
-                onmouseout="this.pause()"
-                width="300px"
-                height="320px"
-                controls
-              ></video>
-              <div id="video-kdb" th:text="${videoList[i].videoTitle}">
-                (오운완)벤치프레스 자세 교정 / 꿀팁ㅁㄴㅁㄹㄴㅁ
-              </div>
-            </a>
+                              
+                              <ul class="pagination">
 
-          <th:block th:if="${i % 5 == 4 or i == #lists.size(videoList)-1}">
-            </div>
-          </th:block>
+                                  
+                                    <li>
+                                        <a th:href="@{/myPage/myPage-community(cp=1)}">&lt;&lt;</a>
+                                    </li>
 
-        </th:block>
+                                    
+                                    <li>
+                                        <a th:href="@{/myPage/myPage-community(cp=${pagination.prevPage})}">&lt;</a>
+                                    </li>
 
-        -----------------------------------
-        <div class="write-btn-area">
-          <button id="writeBtn">글쓰기</button>
-        </div>
-        <div class="video-pagination">
-          <ul>
-            <li><a href="#">&lt;&lt;</a></li>
-            <li><a href="#">&lt;</a></li>
-            <th:block
-              th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}"
-            >
-              <li th:if="${i == pagination.currentPage}">
-                <a class="current-pagination" th:text="${i}">1</a>
-              </li>
-            </th:block>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-            <li><a href="#">7</a></li>
-            <li><a href="#">8</a></li>
-            <li><a href="#">9</a></li>
-            <li><a href="#">10</a></li>
-            <li><a href="#">&gt;</a></li>
-            <li><a href="#">&gt;&gt;</a></li>
-          </ul>
-        </div> -->
-                
+                                    <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
 
+                                      
+                                        <li th:if="${i == pagination.currentPage}">
+                                            <a class="current" th:text="${i}">1</a>
+                                        </li>
+                                        
+                                        <li th:unless="${i == pagination.currentPage}"> 
+                                            <a th:href="@{/myPage/myPage-community(cp=${i})}" th:text="${i}">2</a> 
+                                        </li>
+                                    </th:block>
+
+                                    <li><a th:href="@{/myPage/myPage-community(cp=${pagination.nextPage})}">&gt;</a></li>
+
+                                  
+                                    <li>
+                                        <a th:href="@{/myPage/myPage-community(cp=${pagination.maxPage})}">&gt;&gt;</a>
+                                    </li>
+                              </ul>
+
+                            
+                          </section>
 
                         
             </section>  
 
-            </section>
+            
         </section>
     </section>
     
@@ -98,6 +137,8 @@
     <!-- <th:block th:replace="~{common/footer}"></th:block> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
     <th:block th:replace="~{common/common}"></th:block>
+
+    <script src="/js/board/boardList.js"></script>
 
 
     <!-- <script src="/js/video/shortsMain.js"></script> -->

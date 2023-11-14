@@ -52,17 +52,6 @@ public class MyPageController {
 		return "myPage/myPage-secession2";
 	}
 	
-	@GetMapping("myPage-shorts") 
-	public String myPageShorts() {
-		
-		return "myPage/myPage-shorts";
-	}
-	
-	@GetMapping("myPage-jisikin") 
-	public String myPageJisikin() {
-		
-		return "myPage/myPage-jisikin";
-	}
 	
 	@GetMapping("profile") // /myPage/info (이런 모양의 요청이 왔을 때!)
 	public String profile() {
