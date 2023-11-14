@@ -39,11 +39,6 @@ public class MyPageController {
 		return "myPage/myPage-profile";
 	}
 	
-	@GetMapping("myPage-community") 
-	public String myPageCommunity() {
-		
-		return "myPage/myPage-community";
-	}
 	
 	@GetMapping("myPage-secession") 
 	public String myPageSecession() {

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 연결할 인터페이스의 패키지명.인터페이스명으로 작성 -->
+<mapper namespace="com.javaman.madax.myPage.model.mapper.MyCommunityMapper">
+  
+  	
+  	<resultMap id="board_rm" type="Board">
+
+		<id property="boardNo" column="BOARD_NO"/>
+
+		<!-- collection 태그
+			select로 조회된 결과를 컬렉션(List)에 담아
+			지정된 필드에 세팅
+			
+			property : List를 담을 DTO의 필드명
+			select : 실행할 select의 id
+			column : 조회 결과 중 지정된 컬럼의 값을 파라미터로 전달
+			javaType : List(컬렉션)의 타입을 지정
+			ofType : List(컬렉션)의 제네릭(타입 제한) 지정
+		-->
+		<collection property="commentList"
+					select="selectCommentList"
+					column="BOARD_NO"
+					javaType="java.util.ArrayList"
+					ofType="Comment"
+					/>
+					
+		<collection property="imageList" 
+               select="selectImageList" 
+               column="BOARD_NO"
+               javaType="java.util.ArrayList"
+               ofType="BoardImg" />			
+					
+	</resultMap>
+	
+	
+  	<!--게시글 수 조회-->
+  	<select id="ListCount" resultType="_int">
+		SELECT COUNT(*) FROM "BOARD"
+		JOIN "MEMBER" USING (MEMBER_NO)
+		WHERE BOARD_DEL_FL = 'N'
+		AND MEMBER_NO = #{memberNo}
+	  </select>
+	  
+	
+  	<!--게시글 조회-->
+ 	<select id="selectBoard" resultType="Board">
+		SELECT BOARD_NAME,BOARD_NO,BOARD_TITLE,MEMBER_NICKNAME,WRITE_DATE,
+		
+		(SELECT COUNT(*) FROM "BOARD_LIKE" L 
+			WHERE L.BOARD_NO = B.BOARD_NO) LIKE_COUNT
+		
+		FROM BOARD B
+		JOIN "MEMBER" USING(MEMBER_NO)
+		JOIN "BOARD_TYPE" USING(BOARD_CODE)
+		WHERE MEMBER_NO = #{memberNo}
+		AND BOARD_DEL_FL = 'N'
+		ORDER BY WRITE_DATE DESC
+	</select>
+	
+</mapper>
