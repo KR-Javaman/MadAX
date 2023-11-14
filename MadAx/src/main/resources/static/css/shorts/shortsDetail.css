@@ -35,7 +35,7 @@ section:last-child {
 .video-title-content {
   /* display: flex; */
   /* flex-direction: row; */
-  margin: 1rem;
+  margin: 1rem 1rem 0 1rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
@@ -55,12 +55,26 @@ section:last-child {
   background-color: antiquewhite;
 }
 .video-title-content:nth-child(4) {
-  height: 42%;
+  height: 45%;
   background-color: antiquewhite;
 }
 .video-title-content:nth-child(5) {
-  height: 5%;
+  height: 3%;
+  background-color: antiquewhite;
 }
+#listBtn {
+  margin: 0.1rem;
+  display: flex;
+  justify-content: right;
+}
+#listBtn > button {
+  height: 2.8rem;
+  width: 5rem;
+  border: 0.1rem solid black;
+  background-color: white;
+  margin-right: 1.5rem;
+}
+
 .video-title {
   display: flex;
   align-items: center;
@@ -71,8 +85,9 @@ section:last-child {
   height: 3rem;
 }
 .like-area > #img {
-  width: 3rem;
-  height: 3rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: red;
 }
 .like-area {
   margin-left: 3rem;
@@ -111,51 +126,6 @@ section:last-child {
 #count-heart {
   margin-left: 0.5rem;
 }
-
-.video-comment-list {
-  margin: 1rem;
-}
-.video-comment-list > ul {
-  list-style: none;
-}
-.video-comment-list li {
-  padding: 0.2rem 0 0.8rem;
-}
-.video-comment-list p {
-  font-size: 1.3rem;
-}
-.video-comment-writer {
-  display: flex;
-  align-items: center;
-  padding-bottom: 0.3rem;
-}
-.video-comment-writer > img {
-  width: 3rem;
-  height: 3rem;
-}
-.comment-writer-nickname,
-.comment-writer-date {
-  margin-left: 1rem;
-}
-.comment-writer-date {
-  font-size: 0.8rem;
-  color: #aaa;
-}
-.video-comment-content {
-  /* padding-left: 4.5rem; */
-  font-size: 1.3rem;
-  /* white-space: pre-wrap; */
-  display: flex;
-  align-items: center;
-}
-.video-comment-content > i,
-#count-heart {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-.video-comment-content > i {
-  margin: 0.3rem;
-}
 .video-button {
   text-align: right;
 }
@@ -168,15 +138,4 @@ section:last-child {
   background-color: antiquewhite;
 
   cursor: pointer;
-}
-.comment-btn-area > button {
-  margin-left: 1rem;
-  background-color: antiquewhite;
-  border: 0;
-  cursor: pointer;
-  font-size: 1.3rem;
-  color: #aaa;
-}
-.comment-btn-area > button:hover {
-  color: #282828;
 }

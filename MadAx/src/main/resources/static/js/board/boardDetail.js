@@ -39,12 +39,10 @@ boardLike.addEventListener("click", e=>{
       return;
     }
 
-    //요소.classList.toggle("클래스명")
-    //- 요소에 클래스가 있으면 삭제, 없으면 추가
     e.target.classList.toggle("fa-regular");
     e.target.classList.toggle("fa-solid");
 
-    //좋아요 수 (count)를 화면에 출력
+    
     e.target.nextElementSibling.innerText = count;
 
   })

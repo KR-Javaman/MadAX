@@ -23,6 +23,12 @@ public interface ShortsService {
 
 	int like(Map<String, Object> paramMap);
 
+	int deleteBoard(Map<String, Object> paramMap);
+
+	int updateBoard(VideoBoard videoBoard, List<MultipartFile> video) throws IllegalStateException, IOException;
+
+	Map<String, Object> searchMain(Map<String, Object> paramMap, int cp);
+
 
 
 }

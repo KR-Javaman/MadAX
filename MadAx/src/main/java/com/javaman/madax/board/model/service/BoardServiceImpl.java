@@ -99,6 +99,13 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	
+	@Override
+	public int updateBoardCount(int boardNo) {
+	
+		return mapper.updateBoardCount(boardNo);
+	}
+	
+	
 	
 
 }

@@ -1,14 +1,11 @@
-package com.javaman.madax.shorts.model.mapper;
+package com.javaman.madax.shorts.model.service;
 
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import com.javaman.madax.shorts.model.dto.VideoComment;
 
-@Mapper
-public interface CommentMapper {
+public interface ShortsCommentService {
 
 	List<VideoComment> selectComment(int boardVideoNo);
 
@@ -20,10 +17,6 @@ public interface CommentMapper {
 
 	int likeClick(Map<String, Object> map);
 
-	int deleteCommentLike(Map<String, Object> paramMap);
-
-	int insertCommentLike(Map<String, Object> paramMap);
-
-	int countCommentLike(Integer commentNo);
+	int likeComment(Map<String, Object> paramMap);
 
 }
