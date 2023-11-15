@@ -5,12 +5,22 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Document</title>
+      <link rel="stylesheet" href="/css/admin/selectAll.css">
+      <link rel="stylesheet" href="/css/main.css">
+
+
+      <th:block th:replace = "~{common/common}"></th:block>
+
+      
    </head>
    <body>
+
+      <th:block th:replace="~{common/header}"></th:block>
       
+      <div class="admin-table">
       <table border="1">
          
-         <tr>
+         <tr class="table-head">
             <th>회원번호</th>
             <th>이메일</th>
             <th>탈퇴 여부</th>
@@ -20,24 +30,27 @@
             반복되는 횟수만큼 th:each가 지정된 태그가 출력된다. -->
             <tr th:each="member : ${memberList}" th:object="${member}">
                
-               <td th:text="*{memberNo}"></td>
+               <td class="table-elements" th:text="*{memberNo}"></td>
                
-               <td>
-                  <a th:href="@{/admin/selectAll(inputEmail=*{memberEmail})}" 
+               <td class="table-elements">
+                  <a th:href="@{/admin/selectMember(inputEmail=*{memberEmail})}" 
                   th:text="*{memberEmail}"></a>
                   
                </td>
                
-               <td th:text="*{memberDelFl}"></td>
+               <td class="table-elements" th:text="*{memberDelFl}"></td>
                
                <!-- td th:text="*{ }" -->
             </tr>
             
          </table>
          
-         <button onclick="history.back()">돌아가기</button>
          
+      </div>
+      
+      <button onclick="history.back()" class="history-back">관리자 페이지로 돌아가기</button>
          
+      <th:block th:replace = "~{common/common}"></th:block>      
          
       </body>
       </html>

@@ -6,91 +6,142 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Page</title>
 
-    <th:block th:replace="~{common/common}"></th:block>
-
-    <link rel="stylesheet" href="../css/myPage-style.css">
-
-
+    <link rel="stylesheet" href="/css/myPage/myPage-community.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/myPage/myPage-main.css">
+    <!-- <link rel="stylesheet" href="/css/shorts/shorts-main.css" /> -->
 </head>
 <body>
-    <main>
+    <main th:with="boardList=${map.boardList}, pagination=${map.pagination}">
         <th:block th:replace="~{common/header}"></th:block>
-              
-        <div class="myPage-wallpaper">
-            <img src="../images/wallpaper.png" id="wallpaper" >
-        </div>
-
-        <section class="myPage-middle">
         
-            <div class="myPage-middle-profile">
-        
-                <img src="../images/logo.jpg" id="memberProfile">
-                <span id="nickName" th:text="*{memberNickname}">닉네임</span>
-                <p id="email" th:text="*{memberEmail}">이메일</p>
-
-            </div>    
+        <th:block th:replace="~{myPage/myPage-common}"></th:block>
 
         <hr>
-        </section>
-			<th:block th:replace="~{myPage/sideMenu}"></th:block>
+
         
         <section class="myPage-content">
-            <section class="myPage-profile-main">
-                <label id="myProfile">내가 작성한글 ></label> <label id="myProfile2">커뮤니티</label>
-             <section class="myPage-profile-total">
-                   
-                        <div class="myPage-profile-upper">
-                            <div class="profile-content">
-                                <form action="changeNickname" method="POST">
-                                    닉네임 <input type="text" id="nickname"> <button id="editButton">수정하기</button>
-                                </form>
-                                <br>
-                                <form action="changePw">
-                                    비밀번호 <input type="password" id="pw"> <button id="editButton">수정하기</button>
-                                </form>
-                                <br>
-                                <form action="changePw2">
-                                    비밀번호 확인 <input type="password" id="pwCheck"> 
-                                </form>
-                                <br>
-                                <form action="changeEmail">
-                                    이메일 <input type="email" id="profileEmail"> <button id="editButton">수정하기</button>
-                                </form>
-                            </div> 
-                            <div class="myPage-profile-img">
-                                <form action="profile" method="POST" name="myPageChangeImg">
-                                    <div class="profile-image-area">
-                                        <img th:src="#{user.default.image}" id="memberProfile">
-                                        <input type="file" id="memberProfile" name="imageInput" accpet="image/">
-                                    </div>
-                                </form> 
-                            </div>
-                        </div> 
-                        
-                         <div class="myPage-profile-mid">
-                             배경화면 
-                             <br>
-                             <div class="background-img">
-                                 <input type="file" id="backgroundPic">
-                             </div>
-                         </div>
-
-                         <span class="myPage-profile-lower"><a href="../html/myPage-home.html"><button id="homeButton">홈으로</button> </a> 
-                            <form action="secession" method="POST"> 
-                                <button id="secessionButton">회원 탈퇴</button>
-                            </form>
-                        </span>   
-                        
-                    </section>  
-               
+            <th:block th:replace="~{myPage/sideMenu}"></th:block>
+    
+            <section class="myPage-main">
+                
+                <section class="myPage-community-main">
+                    <label id="myshorts">내가 작성한 커뮤니티</label>
                     
+                      <button id="writeBtn">글쓰기</button>                     
+                    
+                        <section class="myPage-community-total">
 
-            </section>
+                          <div class="community">
+                          
+                            <div class="com-center">
+                              <table class="list-table" border="0">
+                                          
+                                <thead>
+                                  <tr>
+                                      <th>게시판 종류</th>
+                                      <th>카테고리</th>
+                                      <th>상세 카테고리</th>
+                                      <th>글번호</th>
+                                      <th>제목</th>
+                                      <th colspan="6">내용</th>
+                                      <th>작성자</th>
+                                      <th>작성일</th>
+                                      <th>조회수</th>
+                                      <th>좋아요</th>
+                                  </tr>
+                                </thead>
+                                
+                                <tbody>
+
+                                  <tr th:if="${#lists.size(boardList) == 0}">
+                                    <th colspan="6">게시글이 존재하지 않습니다.</th>
+                                  </tr>
+        
+                                 <!-- 게시글이 존재할 때 -->
+                                <th:block th:unless="${#lists.size(boardList) == 0}">
+                                  <tr th:each="board: ${boardList}" th:object="${board}">
+                                    <td th:text="*{boardName}" style="color:rgb(147, 251, 1);  border-left: 3px solid rgb(147, 251, 1);">게시판 종류</td>
+                                    <td th:if="*{categoryName} == 구인" th:text="*{categoryName}" style="color:rgb(33, 155, 255);  border-left: 3px solid rgb(33, 155, 255);">카테고리 종류</td>
+                                    <td th:unless="*{categoryName} == 구인" th:text="*{categoryName}" style="color:rgb(255, 0, 128);  border-left: 3px solid rgb(255, 0, 128);">카테고리 종류</td>
+                                    <td th:text="*{categoryNameTwo}" style="font-style:italic">상세 카테고리 종류</td>
+
+
+                                    <td th:text="*{boardNo}">게시글 번호</td>
+                                    <td>
+                                      <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode},boardNo=*{boardNo})}"
+                                        th:text="*{boardTitle}" style="text-decoration: underline;">게시글 제목</a>
+                                    </td>
+                                    <td colspan="6"> 
+                                      <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode},boardNo=*{boardNo})}" th:text="*{boardContent}" style="text-decoration: underline;">게시글 내용 </a>
+                                    </td> 
+                                    <td th:text="*{memberNickname}">작성자</td>
+                                    <td th:text="*{writeDate}">작성일</td>
+                                    <td th:text="*{boardCount}">조회수</td>
+                                    <td th:text="*{likeCount}">좋아요</td>
+                                  </tr>
+                
+                                </tbody>
+                    
+                              </table>
+                              </div>
+                            </div>                 
+                          </section>
+                          
+                          <section class="pagination-section" th:if="${#lists.size(boardList) > 0}">
+         <!-- 페이지네이션 -->
+                            
+                              
+                              <ul class="pagination">
+
+                                  
+                                    <li>
+                                        <a th:href="@{/myPage/myPage-community(cp=1)}">&lt;&lt;</a>
+                                    </li>
+
+                                    
+                                    <li>
+                                        <a th:href="@{/myPage/myPage-community(cp=${pagination.prevPage})}">&lt;</a>
+                                    </li>
+
+                                    <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+
+                                      
+                                        <li th:if="${i == pagination.currentPage}">
+                                            <a class="current" th:text="${i}">1</a>
+                                        </li>
+                                        
+                                        <li th:unless="${i == pagination.currentPage}"> 
+                                            <a th:href="@{/myPage/myPage-community(cp=${i})}" th:text="${i}">2</a> 
+                                        </li>
+                                    </th:block>
+
+                                    <li><a th:href="@{/myPage/myPage-community(cp=${pagination.nextPage})}">&gt;</a></li>
+
+                                  
+                                    <li>
+                                        <a th:href="@{/myPage/myPage-community(cp=${pagination.maxPage})}">&gt;&gt;</a>
+                                    </li>
+                              </ul>
+
+                            
+                          </section>
+
+                        
+            </section>  
+
+            
         </section>
-
+    </section>
+    
     </main>    
     <!-- <th:block th:replace="~{common/footer}"></th:block> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
+    <th:block th:replace="~{common/common}"></th:block>
 
-    <!-- <script src="/js/myPage/myPage.js"></script> -->
+    <script src="/js/board/boardList.js"></script>
+
+
+    <!-- <script src="/js/video/shortsMain.js"></script> -->
 </body>
 </html>

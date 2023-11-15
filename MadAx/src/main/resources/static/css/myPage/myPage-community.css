@@ -1,0 +1,132 @@
+.myPage-main{
+  width: 85%;
+  padding-left : 7rem;
+  min-height: 600px;
+}
+
+.myPage-community-main{
+  
+  font-size: 1.8rem;
+ 
+}
+
+
+.myPage-community-total{
+  min-height: 600px;
+  width: 100%;
+  height: 105%;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  
+  border-radius: 1.2rem;
+ 
+}
+
+
+.community{
+  /* border: 1px solid black; */
+  display: flex;
+  width: 100%;
+  min-height: 700px;
+  margin: 0 auto;
+ 
+}
+
+
+.com-center{
+  width: 100%;
+
+}
+
+#writeBtn{
+  float: right;
+  width: 70px;
+  height: 40px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+ }
+ 
+
+ 
+.list-table{
+  width: 100%;
+  padding: 20px;
+  border-collapse: collapse;
+  
+}
+
+.list-table > thead{ 
+  background-color: #ececec; 
+  color: rgb(0, 0, 0);
+}
+
+
+th,td{
+  border-bottom: 1px solid #a6a6a6;
+}
+
+thead > tr{
+  height: 80px;
+}
+
+tbody>tr{
+  height: 70px;
+  background-color: rgba(0, 0, 0, 0.623);
+}
+tbody > td{
+  color: white;
+  background-color: black;
+}
+
+.list-table tr th{
+  font-size: 18px;
+}
+.list-table tr td{
+  font-size: 15px;
+  color: white;
+}
+
+.list-table tr > *{ text-align: center; }
+.list-table tr > *:nth-of-type(1){ width: 10%; }
+
+
+.pagination-box{
+ 
+  border: 1px solid black;
+  width: 100%;
+  height: 50px;
+}
+
+.pagination{
+  margin-top: 20px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.pagination li{
+  width: 20px;
+  margin: 10px 5px;
+  text-align: center;
+  font-size: 15px;
+  
+}
+
+.pagination a{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.current{
+  font-weight: bold;
+  background-color: rgb(147, 251, 1);
+  border-radius: 50%;
+  color: rgb(0, 0, 0) !important;
+  letter-spacing: 0 !important;
+}

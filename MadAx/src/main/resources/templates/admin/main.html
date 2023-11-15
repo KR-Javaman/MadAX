@@ -5,19 +5,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>관리자 페이지</title>
-    <link rel="stylesheet" href="../../static/css/admin/main.css">
-   
-    <th:block th:replace="~{common/common}"></th:block>
+    <link rel="stylesheet" href="/css/main.css">
+
+
+    <th:block th:replace = "~{common/common}"></th:block>
 
   </head>
-
+  
   <body>
-
+    
     <th:block th:replace="~{common/header}"></th:block>
+
+   <hr>
+
+   <h3>이메일이 일치하는 회원 정보 조회</h3>
+   <form action="selectMember">
+
+      이메일 : <input type="text" name="inputEmail">
+   <button>검색</button>
+
+   </form>
+
+   <hr>
 
 
     <h2 style="color: black;"><a href="selectAll">전체 회원 조회</a></h2>
 
+    <th:block th:replace = "~{common/common}"></th:block>
 
   </body>
 </html>
