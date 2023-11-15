@@ -91,8 +91,6 @@ public class MyPageServiceImpl implements MyPageService{
 			// - 파일명 변경하는 이유 ! -> 파일명 같으면 이전 파일을 덮어씌우기 때문에! (이전 파일이 사라짐) 
 			String rename = null;
 			
-
-			
 			if(profileImg.getSize() > 0) { // 업로드된 파일이 있다면
 				
 				// 1) 파일명 변경 // 파일명 같으면 이전 파일을 덮어씌우니까. 파일명을 변경
@@ -118,12 +116,7 @@ public class MyPageServiceImpl implements MyPageService{
 				
 				if( profileImg.getSize() > 0 ) { // 업로드 파일 있을 때
 					
-					// transfer : 옮기다, 갈아타다
-					
-					// 파일.transferTo(파일경로)
-					// -> 메모리에 저장된 파일을 지정된 경로로 옮김(저장)
 					profileImg.transferTo(new File(folderPath + rename));
-					// -> C:/workspace/project-resources/images/member/20231101144523_00001.jpg
 					
 				}
 				
@@ -135,64 +128,49 @@ public class MyPageServiceImpl implements MyPageService{
 			}
 			
 			
-			
 			return result;
 		}
 		
 		@Override
 		public int background(MultipartFile backgroundImg, Member loginMember) throws IllegalStateException, IOException {
-			// 프로필 이미지 변경 실패 대비 (이전 프로필 이미지 경로 저장)
-						String backup = loginMember.getBackgroundImg();
-						
-						// 변경된 파일명을 저장할 변수 선언
-						// - 파일명 변경하는 이유 ! -> 파일명 같으면 이전 파일을 덮어씌우기 때문에! (이전 파일이 사라짐) 
-						String rename = null;
-						
 
+			String backup = loginMember.getBackgroundImg();
 						
-						if(backgroundImg.getSize() > 0) { // 업로드된 파일이 있다면
+			String rename = null;
+						
+						
+			if(backgroundImg.getSize() > 0) { // 업로드된 파일이 있다면
 							
-							// 1) 파일명 변경 // 파일명 같으면 이전 파일을 덮어씌우니까. 파일명을 변경
-							rename = Util.fileRename( backgroundImg.getOriginalFilename());
+				// 1) 파일명 변경 // 파일명 같으면 이전 파일을 덮어씌우니까. 파일명을 변경
+				rename = Util.fileRename( backgroundImg.getOriginalFilename());
 							
-							// 2) 바뀐 파일명 + 경로를 loginMember 세팅
-							loginMember.setBackgroundImg( webpath2 + rename );
+				// 2) 바뀐 파일명 + 경로를 loginMember 세팅
+				loginMember.setBackgroundImg( webpath2 + rename );
 							
-							// /images/member/20231101144523_00001.jpg // 이런 문자열로 만들어짐.
+				// /images/member/20231101144523_00001.jpg // 이런 문자열로 만들어짐.
 							
 							
-						} else { // 업로드된 파일이 없다면 -> 기본 이미지로 변경
-							loginMember.setBackgroundImg(null); // 이미지 제거
+				} else { // 업로드된 파일이 없다면 -> 기본 이미지로 변경
+					loginMember.setBackgroundImg(null); // 이미지 제거
 							
-						}
+				}
 						
 						// mapper 호출
-						int result = mapper.background(loginMember);
+			int result = mapper.background(loginMember);
 						
-						// DB 업데이트 성공 시 
-						// 메모리에 임시 저장된 파일을 지정된 경로에 저장
-						if(result > 0) {
+			if(result > 0) {
 							
-							if( backgroundImg.getSize() > 0 ) { // 업로드 파일 있을 때
-								
-								// transfer : 옮기다, 갈아타다
-								
-								// 파일.transferTo(파일경로)
-								// -> 메모리에 저장된 파일을 지정된 경로로 옮김(저장)
-								backgroundImg.transferTo(new File(folderPath2 + rename));
-								// -> C:/workspace/project-resources/images/member/20231101144523_00001.jpg
-								
-							}
+				if( backgroundImg.getSize() > 0 ) { // 업로드 파일 있을 때
+						backgroundImg.transferTo(new File(folderPath2 + rename));
+					
+					}
 							
-						} else { // DB 업데이트 실패
+			} else { // DB 업데이트 실패
 							
-							// loginMember에 backup 해둔 이미지를 세팅
-							loginMember.setBackgroundImg(backup);
-							
-						}
+					loginMember.setBackgroundImg(backup);
+				}
 						
-						
-						return result;
+				return result;
 		}
 		
 		@Override
