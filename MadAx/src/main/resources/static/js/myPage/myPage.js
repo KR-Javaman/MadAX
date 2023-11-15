@@ -137,7 +137,6 @@ document.getElementById("changePwFrm").addEventListener("submit", e => {
 const profileImg = document.querySelector("#profileImg"); // img 태그
 let imageInput = document.querySelector("#imageInput"); // input 태그
 
-
 let statusCheck = -1;
 
 let backupInput; // 
@@ -150,7 +149,6 @@ if(imageInput != null) { // #imageInput 존재할 때
         console.log(e.target); // input태그
         console.log(e.target.value); // value -> 업로드 파일 경로가 나옴(fakepath 형태로 출력) // C:\fakepath\sample5.jpg
 
-        /* 이게 중요! 파일의 정보가 담긴 배열이 담겨있기 때문에!*/
         console.log(e.target.files); // 업로드된 파일의 정보가 담긴 배열 반환
                                      // *실제 파일 *
 
@@ -162,15 +160,12 @@ if(imageInput != null) { // #imageInput 존재할 때
         if(uploadFile == undefined) { //취소를 눌러서 files[0]에 파일이 없어졌을 때
             console.log("파일 선택이 취소됨");
 
-            // 1) backup한 요소를 복제
             const temp = backupInput.cloneNode(true);
 
-            // 2) 화면에 원본 input을 temp로 바꾸는 작업
             imageInput.after(temp); // 원본 다음에 temp 추가
             imageInput.remove(); // 원본을 화면에서 제거
             imageInput = temp; // temp를 imageInput 변수에 대입
 
-            // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
             imageInput.addEventListener("change", changeImageFn);
 
             return; 
@@ -185,22 +180,17 @@ if(imageInput != null) { // #imageInput 존재할 때
 
             if(statusCheck == -1) { // 이미지 변경이 없었을 때 
 
-                // 최대 크기를 초과해도 input에 value가 남기 때문에 
-                // 이를 제거하는 코드가 필요하다! 
                 imageInput.value = ''; // value 삭제
                                     // 동시에 files도 삭제됨
                 statusCheck = -1; // 선택 없음 상태
 
             } else { // 기존 이미지가 있었을 때 
-                // 1) backup한 요소를 복제
                 const temp = backupInput.cloneNode(true);
 
-                // 2) 화면에 원본 input을 temp로 바꾸는 작업
                 imageInput.after(temp); // 원본 다음에 temp 추가
                 imageInput.remove(); // 원본을 화면에서 제거
                 imageInput = temp; // temp를 imageInput 변수에 대입
 
-                // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
                 imageInput.addEventListener("change", changeImageFn);
                 
                 statusCheck = 1;
@@ -211,21 +201,10 @@ if(imageInput != null) { // #imageInput 존재할 때
 
         // ----------- 선택된 이미지 파일을 읽어와 미리 보기 만들기 --------------
 
-        // JS에서 파일 읽는 객체 
-        // -> 파일을 읽고 클라리언트 컴퓨터에 파일을 저장할 수 있음
         const reader = new FileReader();
-
-        // 매개변수에 작성된 파일을 읽어서 
-        // 파일을 나타내는 URL 형태로 변경
-        // -> FileReader.result 필드에 저장되어 있음
         reader.readAsDataURL(uploadFile);
 
-        // 파일을 다 읽었을 때 
         reader.onload = e => {
-            // console.log(reader.result); // 읽은 파일의 URL
-
-            // img태그의 src 속성의 속성 값으로
-            // 읽은 파일의 URL을 대입
 
             profileImg.setAttribute("src", reader.result);
 
@@ -272,23 +251,17 @@ if(imageInput != null) { // #imageInput 존재할 때
 //--------------------------------------------------------------------
 // 백그라운드 이미지 
 
-
-
-/* 프로필 이미지 미리보기, 제거 */
 const backgroundImg = document.querySelector("#backgroundImg"); // img 태그
 let backgroundInput = document.querySelector("#backgroundInput"); // input 태그
 
 
-
 if(backgroundInput != null) { // #backgroundInput 존재할 때 
 
-    /* 프로필 이미지 변경(선택) 시 수행할 함수 */
     const changeImageFn = e => {
 
         console.log(e.target); // input태그
         console.log(e.target.value); // value -> 업로드 파일 경로가 나옴(fakepath 형태로 출력) // C:\fakepath\sample5.jpg
 
-        /* 이게 중요! 파일의 정보가 담긴 배열이 담겨있기 때문에!*/
         console.log(e.target.files); // 업로드된 파일의 정보가 담긴 배열 반환
                                      // *실제 파일 *
 
@@ -300,15 +273,12 @@ if(backgroundInput != null) { // #backgroundInput 존재할 때
         if(uploadFile == undefined) { //취소를 눌러서 files[0]에 파일이 없어졌을 때
             console.log("파일 선택이 취소됨");
 
-            // 1) backup한 요소를 복제
             const temp = backupInput.cloneNode(true);
 
-            // 2) 화면에 원본 input을 temp로 바꾸는 작업
             backgroundInput.after(temp); // 원본 다음에 temp 추가
             backgroundInput.remove(); // 원본을 화면에서 제거
             backgroundInput = temp; // temp를 backgroundInput 변수에 대입
 
-            // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
             backgroundInput.addEventListener("change", changeImageFn);
 
             return; 
@@ -323,22 +293,16 @@ if(backgroundInput != null) { // #backgroundInput 존재할 때
 
             if(statusCheck == -1) { // 이미지 변경이 없었을 때 
 
-                // 최대 크기를 초과해도 input에 value가 남기 때문에 
-                // 이를 제거하는 코드가 필요하다! 
                 backgroundInput.value = ''; // value 삭제
-                                    // 동시에 files도 삭제됨
                 statusCheck = -1; // 선택 없음 상태
 
             } else { // 기존 이미지가 있었을 때 
-                // 1) backup한 요소를 복제
                 const temp = backupInput.cloneNode(true);
 
-                // 2) 화면에 원본 input을 temp로 바꾸는 작업
                 backgroundInput.after(temp); // 원본 다음에 temp 추가
                 backgroundInput.remove(); // 원본을 화면에서 제거
                 backgroundInput = temp; // temp를 backgroundInput 변수에 대입
 
-                // 복제본은 이벤트가 복제 안되니까 다시 이벤트를 추가
                 backgroundInput.addEventListener("change", changeImageFn);
                 
                 statusCheck = 1;
@@ -347,35 +311,22 @@ if(backgroundInput != null) { // #backgroundInput 존재할 때
             return;
         }
 
-        // ----------- 선택된 이미지 파일을 읽어와 미리 보기 만들기 --------------
-
-        // JS에서 파일 읽는 객체 
-        // -> 파일을 읽고 클라리언트 컴퓨터에 파일을 저장할 수 있음
         const reader = new FileReader();
 
-        // 매개변수에 작성된 파일을 읽어서 
-        // 파일을 나타내는 URL 형태로 변경
-        // -> FileReader.result 필드에 저장되어 있음
         reader.readAsDataURL(uploadFile);
 
-        // 파일을 다 읽었을 때 
         reader.onload = e => {
-            // console.log(reader.result); // 읽은 파일의 URL
 
-            // img태그의 src 속성의 속성 값으로
-            // 읽은 파일의 URL을 대입
 
             backgroundImg.setAttribute("src", reader.result);
 
             statusCheck = 1; // 새 이미지 선택한 경우
 
-            // 파일이 추가된 input을 backup 해두기
             backupInput = backgroundInput.cloneNode(true);
         }
 
     }
 
-    /* 이미지 선택 버튼을 클릭하여 선택된 파일이 변했을 때 함수 수행  */
 
     backgroundInput.addEventListener("change", changeImageFn);
 
@@ -387,11 +338,10 @@ if(backgroundInput != null) { // #backgroundInput 존재할 때
 
         backupInput.value = "";
 
-        statusCheck = 0; // 있었는데 없어짐. (x버튼 누른 후)
+        statusCheck = 0; 
 
         let flag = true;
 
-        // 1) 로그인한 회원의  백그라운드가 있음 -> 없어짐
         if(loginMemberbackgroundImg != null && statusCheck == 0) flag = false;
         if(flag) {
             e.preventDefault();
@@ -402,7 +352,7 @@ if(backgroundInput != null) { // #backgroundInput 존재할 때
     });
 
 
-    // ---------- 프로필 이미지 변경 form태그 제출 시 동작 ------------
+    // ---------- 백그라운드 변경 form태그 제출 시 동작 ------------
 
     const backgroundFrm = document.getElementById("backgroundFrm");
 

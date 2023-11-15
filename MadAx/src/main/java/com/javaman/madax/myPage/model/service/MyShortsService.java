@@ -1,0 +1,30 @@
+package com.javaman.madax.myPage.model.service;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.javaman.madax.shorts.model.dto.Video;
+import com.javaman.madax.shorts.model.dto.VideoBoard;
+
+public interface MyShortsService {
+
+
+
+	Map<String, Object> selectBoard(int memberNo, int cp);
+
+//	int writeInsert(VideoBoard videoBoard, List<MultipartFile> video) throws IllegalStateException, IOException;
+//
+//	VideoBoard videoBoardDetail(int boardVideoNo);
+//
+//	int likeClick(Map<String, Object> map);
+//
+//	int readCount(int boardVideoNo);
+//
+//	int like(Map<String, Object> paramMap);
+
+
+
+}

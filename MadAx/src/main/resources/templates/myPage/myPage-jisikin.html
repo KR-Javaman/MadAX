@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Page</title>
 
-    <link rel="stylesheet" href="/css/myPage/myPage-community.css">
+    <link rel="stylesheet" href="/css/myPage/myPage-jisikin.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/myPage/myPage-main.css">
     <!-- <link rel="stylesheet" href="/css/shorts/shorts-main.css" /> -->
@@ -26,7 +26,7 @@
             <section class="myPage-main">
                 
                 <section class="myPage-community-main">
-                    <label id="myshorts">내가 작성한 커뮤니티</label>
+                    <label id="myshorts">내가 작성한 지식in글</label>
                     
                       <button id="writeBtn">글쓰기</button>                     
                     
@@ -62,8 +62,8 @@
                                 <th:block th:unless="${#lists.size(boardList) == 0}">
                                   <tr th:each="board: ${boardList}" th:object="${board}">
                                     <td th:text="*{boardName}" style="color:rgb(147, 251, 1);  border-left: 3px solid rgb(147, 251, 1);">게시판 종류</td>
-                                    <td th:if="*{categoryName} == 구인" th:text="*{categoryName}" style="color:rgb(33, 155, 255);  border-left: 3px solid rgb(33, 155, 255);">카테고리 종류</td>
-                                    <td th:unless="*{categoryName} == 구인" th:text="*{categoryName}" style="color:rgb(255, 0, 128);  border-left: 3px solid rgb(255, 0, 128);">카테고리 종류</td>
+                                    <td th:if="*{categoryName} == 정보" th:text="*{categoryName}" style="color:rgb(33, 155, 255);  border-left: 3px solid rgb(33, 155, 255);">카테고리 종류</td>
+                                    <td th:unless="*{categoryName} == 꿀팁" th:text="*{categoryName}" style="color:rgb(255, 0, 128);  border-left: 3px solid rgb(255, 0, 128);">카테고리 종류</td>
                                     <td th:text="*{categoryNameTwo}" style="font-style:italic">상세 카테고리 종류</td>
 
 
@@ -80,7 +80,6 @@
                                     <td th:text="*{boardCount}">조회수</td>
                                     <td th:text="*{likeCount}">좋아요</td>
                                   </tr>
-                
                                 </tbody>
                     
                               </table>
