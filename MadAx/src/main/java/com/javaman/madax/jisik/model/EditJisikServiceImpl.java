@@ -28,17 +28,39 @@ public class EditJisikServiceImpl implements EditJisikService{
 	@Value("${my.jisik.webpath}")
 	private String webPath;
 	
-	@Override
-	public Map<String, Object> jisikWrite(Map<String, Object> paramMap, int cp) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	// 게시글 작성 
+//	
+//	@Override
+//	public Map<String, Object> jisikWrite(Map<String, Object> paramMap) {
+//		
+//		Map<String, Object> map = new HashMap<>();
+//		return mapper.jisikWrite(paramMap);
+//	}
+	
+//	@Override
+//	public Map<String, Object> jisikWrite(Map<String, Object> paramMap) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//	
+//	
+//	@Override
+//	public int jisikWrite(Board board, List<MultipartFile> images) {
+//		int result = mapper.jisikWrite(board);
+//		
+//		if(result == 0) return 0;
+//		
+//		int boardNo = board.getBoardNo();
+//		return boardNo;
+//	}
 	
 	@Override
-	public int jisikWrite(Board board, List<MultipartFile> images) {
+	public int jisikWrite(Board board) {
 		// TODO Auto-generated method stub
-		return 0;
+		return mapper.jisikWrite(board);
 	}
+	
 	
 }
 

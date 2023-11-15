@@ -58,30 +58,22 @@ public class EditJisikController {
 			@SessionAttribute("loginMember") Member loginMember,
 			Board board,
 			@RequestParam("images") List<MultipartFile> images,
-			@RequestParam(value = "cp", required = false, defaultValue = "1") int cp,
-			@RequestParam Map<String, Object> paramMap,
-			RedirectAttributes ra) 
-	
-					throws IllegalStateException, IOException {
+
+			RedirectAttributes ra) throws IllegalStateException, IOException {
 			
-			if(paramMap.get("Key") == null && paramMap.get("query") == null) {
-				return "";
-			}
+			board.setMemberNo( loginMember.getMemberNo() );
 			
-			Map<String, Object> map = service.jisikWrite(paramMap, cp);
-			
-			board.setMemberNo(loginMember.getMemberNo());
-			
-			int boardNo = service.jisikWrite(board, images);
+			int boardNo = service.jisikWrite(board);
 			
 			if(boardNo > 0) {
+				
 				ra.addFlashAttribute("message","게시글 작성 완료");
-				return "/jisikList";
+				return "localHost";
 			}
 			
 				ra.addFlashAttribute("message", "게시글 작성 실패");
 				
-			return "redirect:jisikWrite/";
+			return "jisik/jisikWrite";
 	}
 	
 

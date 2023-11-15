@@ -91,8 +91,11 @@ public class JisikController {
 			@SessionAttribute(value = "loginMember", required = false) Member loginMemberx,
 				HttpServletRequest req, 
 				HttpServletResponse resp) throws ParseException {
-				
+		
+		
 		Board board = service.jisikDetail(boardNo);
+		
+		
 			
 		model.addAttribute("board", board);
 		return "jisik/jisikDetail";

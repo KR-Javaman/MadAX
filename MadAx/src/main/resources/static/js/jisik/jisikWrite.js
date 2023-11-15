@@ -153,8 +153,8 @@ boardWriteFrm.addEventListener("submit", e => {
 
    const title = document.querySelector("[name='boardTitle']");
    const content = document.querySelector("[name='boardContent']");
-   const type = document.getElementById("type");
-   const sport = document.getElementById("sport");
+//    const type = document.getElementById("type");
+//    const sport = document.getElementById("sport");
 
    if(title.value.trim().length == 0){
       alert("제목을 작성 해주세요");

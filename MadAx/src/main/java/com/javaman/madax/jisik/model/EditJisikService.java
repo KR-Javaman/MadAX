@@ -9,8 +9,10 @@ import com.javaman.madax.board.model.dto.Board;
 
 public interface EditJisikService {
 
-	int jisikWrite(Board board, List<MultipartFile> images);
+//	int jisikWrite(Board board, List<MultipartFile> images);
+//
+//	Map<String, Object> jisikWrite(Map<String, Object> paramMap);
 
-	Map<String, Object> jisikWrite(Map<String, Object> paramMap, int cp);
+	int jisikWrite(Board board);
 
 }

@@ -11,11 +11,10 @@
 			SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
 		 </selectKey>
 		 
-		 INSERT INTO "BOARD"
-		 						
+		 INSERT INTO "BOARD"	 						
 		 VALUES(#{boardNo}, #{memberNo}, #{boardTitle}, #{boardContent}, NULL,
-		 		DEFAULT, DEFAULT, DEFAULT,#{boardCode},#{categoryCode}, #{category2Code})
-		
+		 		DEFAULT, DEFAULT, DEFAULT, #{boardCode}, #{categoryCode}, #{categoryCodeTwo})
+
 	 </insert>
 	 
 	
