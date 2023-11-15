@@ -8,8 +8,9 @@ public interface BoardService {
 
 	
 	
-	//게시글 조회
+	//게시글 전체 조회
 	Map<String, Object> selectBoard(int boardCode, int cp);
+	
 	
 	
 	
@@ -27,6 +28,43 @@ public interface BoardService {
 
 	//게시글 조회수
 	int updateBoardCount(int boardNo);
+
+	
+	
+
+	/**카테고리별 게시글 조회
+	 * @param boardCode
+	 * @param categoryCode
+	 * @param categoryCodeTwo
+	 * @param cp
+	 * @return
+	 */
+	Map<String, Object> CategoryBoard(int boardCode, int categoryCode, int categoryCodeTwo, int cp);
+
+
+
+
+	Map<String, Object> searchBoardList(Map<String, Object> paramMap, int cp);
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 
 
 	

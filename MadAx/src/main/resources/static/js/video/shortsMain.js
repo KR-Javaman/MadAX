@@ -25,3 +25,15 @@ const search = document.querySelector("#search");
     }
   }
 };
+
+// const listOptions = document.querySelectorAll("#video-list-type > option");
+
+// () => {
+//   for (let listOption of listOptions) {
+//     if (listOption.selected) {
+//       listOption.value == obj.key;
+//       break;
+//     }
+//   }
+//   const obj = { listOption: listOption.value };
+// };

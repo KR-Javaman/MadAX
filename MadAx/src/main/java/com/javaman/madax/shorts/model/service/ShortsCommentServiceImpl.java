@@ -12,7 +12,7 @@ import com.javaman.madax.shorts.model.mapper.ShortsCommentMapper;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 @RequiredArgsConstructor
 public class ShortsCommentServiceImpl implements ShortsCommentService{
 

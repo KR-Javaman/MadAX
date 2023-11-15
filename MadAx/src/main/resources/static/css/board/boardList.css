@@ -133,6 +133,34 @@ body{
 .com-center{
   width: 1280px;
   /* border: 1px solid black; */
+
+
+}
+
+
+.list-table tr .no{
+  border: 1px solid black;
+  width: 15%;
+}
+.list-table tr .title{
+  border: 1px solid black;
+  width: 25%;
+}
+.list-table tr .nickname{
+  border: 1px solid black;
+  width: 15%;
+}
+.list-table tr .date{
+  border: 1px solid black;
+  width: 20%;
+}
+.list-table tr .count{
+  border: 1px solid black;
+  width: 10%;
+}
+.list-table tr .like{
+  border: 1px solid black;
+  width: 15%;
 }
 
 
