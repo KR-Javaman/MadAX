@@ -10,6 +10,12 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 @Transactional
+<<<<<<< HEAD
+public class CommentServieImpl implements CommentService{
+	
+	private final CommentMapper mapper;
+=======
+>>>>>>> a038abdc16868cfb008c36ae157200bd07028485
 
 public class CommentServieImpl implements CommentService{
 

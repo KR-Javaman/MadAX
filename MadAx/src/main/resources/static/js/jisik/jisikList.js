@@ -17,7 +17,11 @@ const insertBtn = document.getElementById("insertBtn");
       
       insertBtn.addEventListener('click', () => {
 
-         location.href = `/jisik/jisikList(c1=${param.c1}, c2=${param.c2})/insert`;
+         location.href = `/jisik/(c1=${param.c1}, c2=${param.c2})/jisikWrite`;
+         location.href = `/jisik/jisikWrite`;  
+         // (c1=${param.c1}, c2=${param.c2})
+         // '/jisik/${boardCode}/jisikWrite'
+         // ${categoryCode}/${categoryCodeTwo}
 
       });
       
