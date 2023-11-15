@@ -22,17 +22,12 @@
       </section>
       <section>
         <div class="video-title-content">
-          <div class="video-title" th:text="${videoBoard.videoTitle}">
-            [헬스 꿀팁] 3대 500을 찍고 얻은 5가지 깨달음
-          </div>
+          <div class="video-title" th:text="${videoBoard.videoTitle}">제목</div>
         </div>
         <div class="video-title-content">
           <div class="video-content1">
             <th:block th:text="${videoBoard.videoContent}">
-              <span
-                >근비대나 수행능력 향상을 목적으로 웨이트 트레이닝을하는
-                분들에게 이 영상이 조금이나마 도움이 되었으면 좋겠습니다.</span
-              >
+              <span>내용</span>
             </th:block>
             <span class="video-write-date"
               >[[${videoBoard.videoWriteDate}]]</span

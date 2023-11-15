@@ -84,3 +84,6 @@
   width: 47rem;
   margin-left: 3rem;
 }
+.like-area > #imgComment {
+  color: red;
+}

@@ -1,13 +1,15 @@
+// const likeClickComment = document.querySelector(".likeClickComment");
+
 const selectCommentList = () => {
-  fetch("/shorts/detail/videoComment?boardVideoNo=" + boardVideoNo)
+  fetch("/videoComment?boardVideoNo=" + boardVideoNo)
     .then((resp) => resp.json())
-    .then((cList) => {
-      console.log(cList);
+    .then((vcList) => {
+      console.log(vcList);
 
       const videoCommentList = document.getElementById("commentList");
       videoCommentList.innerHTML = "";
 
-      for (let videoComment of cList) {
+      for (let videoComment of vcList) {
         const commentRow = document.createElement("li");
         commentRow.classList.add("comment-row");
 
@@ -35,12 +37,75 @@ const selectCommentList = () => {
           commentWriteDate.innerText = videoComment.commentWriteDate;
 
           commentWriter.append(profileImg, memberNickname, commentWriteDate);
+          //-------------------------------------------
+          const commentWriter2 = document.createElement("p");
+          commentWriter2.classList.add("video-comment-content");
 
           const commentContent = document.createElement("span");
           commentContent.classList.add("comment-content");
-          commentContent.innerHTML = videoComment.commentContent;
+          commentContent.innerText = videoComment.commentContent;
 
-          commentRow.append(commentWriter, commentContent);
+          const likeArea = document.createElement("span");
+          likeArea.classList.add("like-area");
+
+          const heartImg = document.createElement("i");
+          heartImg.classList.add("fa-heart");
+          // heartImg.setAttribute(
+          //   "classappend",
+          //   "${likeClickComment} ? fa-solid : fa-regular"
+          // );
+
+          if (videoComment.likeClick.equals("on")) {
+            heartImg.classList.add("fa-solid");
+          } else {
+            heartImg.classList.add("fa-regular");
+          }
+          //---------------------------------------댓글 좋아요
+          // heartImg.addEventListener("click", (e) => {
+          //   if (!loginCheck) {
+          //     alert("로그인을 먼저 해주세요");
+          //     return;
+          //   }
+          //   let check;
+
+          //   if (e.target.classList.contains("fa-regular")) {
+          //     check = 0;
+          //   } else {
+          //     check = 1;
+          //   }
+
+          //   const data = { check: check, commentNo: commentNo };
+
+          //   fetch("/videoComment/like", {
+          //     method: "POST",
+          //     headers: { "Content-Type": "application/json" },
+          //     body: JSON.stringify(data),
+          //   })
+          //     .then((resp) => resp.text())
+          //     .then((count) => {
+          //       if (count == -1) {
+          //         console.log("좋아요 실패");
+          //         return;
+          //       }
+          //       e.target.classList.toggle("fa-regular");
+          //       e.target.classList.toggle("fa-solid");
+
+          //       e.target.nextElementSibling.innerText = count;
+          //     })
+          //     .catch((e) => {
+          //       console.log(e);
+          //     });
+          // });
+          const likeCount = document.createElement("span");
+          likeCount.classList.add("count-heart");
+          likeCount.innerText = videoComment.likeCountComment;
+
+          likeArea.append(heartImg, likeCount);
+
+          commentWriter2.append(commentContent, likeArea);
+          //-----------------------------------------------------------------------
+
+          commentRow.append(commentWriter, commentWriter2);
 
           if (loginCheck) {
             const commentBtnArea = document.createElement("div");
@@ -70,7 +135,7 @@ const selectCommentList = () => {
 
               deleteBtn.setAttribute(
                 "onclick",
-                "deleteComment(" + videoComment + ")"
+                "deleteVideoComment(" + videoComment + ")"
               );
 
               commentBtnArea.append(updateBtn, deleteBtn);
@@ -106,7 +171,7 @@ addComment.addEventListener("click", (e) => {
     boardVideoNo: boardVideoNo,
   };
 
-  fetch("/shorts/detail/videoComment", {
+  fetch("/videoComment", {
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(dataObj),
@@ -126,17 +191,15 @@ addComment.addEventListener("click", (e) => {
       console.log(e);
     });
 });
-//------------------------------------
+//-------------------------------------------------
 function deleteVideoComment(commentNo) {
   if (confirm("정말로 삭제 하시겠습니까?")) {
-    fetch("/shorts/detail/videoComment", {
-      method: "delete",
+    fetch("/videoComment", {
+      method: "DELETE",
       headers: { "Content-type": "application/json" },
       body: commentNo,
     })
-      .then((resp) => {
-        resp.text();
-      })
+      .then((resp) => resp.text())
       .then((result) => {
         if (result > 0) {
           alert("삭제되었습니다.");
@@ -148,7 +211,7 @@ function deleteVideoComment(commentNo) {
       .catch((e) => console.log(e));
   }
 }
-
+//----------------------------------------------------
 let beforeCommentRow;
 
 function showUpdateComment(commentNo, btn) {
@@ -207,7 +270,7 @@ function updateComment(commentNo, btn) {
 
   const dataObj = { commentNo: commentNo, commentContent: commentContent };
 
-  fetch("/shorts/detail/videoComment", {
+  fetch("/videoComment", {
     method: "put",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(dataObj),
@@ -286,7 +349,7 @@ function insertChildComment(parentNo, btn) {
     parentNo: parentNo,
   };
 
-  fetch("/shorts/detail/videoComment", {
+  fetch("/videoComment", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(dataObj),
@@ -319,12 +382,12 @@ likeImgComment.addEventListener("click", (e) => {
     check = 1;
   }
 
-  const dataObj = { commentNo: commentNo, check: check };
+  const data = { check: check, commentNo: commentNo };
 
-  fetch("/shorts/detail/videoComment/like", {
-    method: "post",
+  fetch("/videoComment/like", {
+    method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(dataObj),
+    body: JSON.stringify(data),
   })
     .then((resp) => resp.text())
     .then((count) => {
