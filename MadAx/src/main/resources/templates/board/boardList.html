@@ -25,25 +25,19 @@
         <img src="/images/토트넘2.jpeg">
       </div>
 
-
-      
- 
       <th:block th:replace="~{board/headerList}"></th:block>
 
       <div class="sortation">
         <h1>커뮤니티</h1>
       </div>
-
-      
-
-        <div class="search">
-          <form action="#" method="get" id="list-search">
-            <div>
-              <input type="text" class="search-input"  placeholder="검색어를 입력해주세요.">
-              <button>검색</button>
-            </div>
-          </form>
-        </div>
+      <div class="search">
+        <form action="#" method="get" id="list-search">
+          <div>
+            <input type="text" class="search-input"  placeholder="검색어를 입력해주세요.">
+            <button>검색</button>
+          </div>
+        </form>
+      </div>
 
 
 <!--     
@@ -93,6 +87,7 @@
                   <a th:href="@{/board/{boardCode}/{boardNo}
                                         (boardCode=${boardCode},boardNo=*{boardNo})}"
                     th:text="*{boardTitle}">게시글 제목</a>
+              
                 </td>
 
                 <td th:text="*{memberNickname}">작성자</td>
@@ -132,35 +127,31 @@
         
         <ul class="pagination">
 
-             
-              <li>
-                  <a th:href="@{/board/{boardCode}/{categoryCode}/{categoryCodeTwo}(boardCode=${boardCode},categoryCode=${categoryCode}, categoryCodeTwo=${categoryCodeTwo}, cp=1)}">&lt;&lt;</a>
-              </li>
+            <li>
+                <a th:href="@{/board/{boardCode}/{categoryCode}/{categoryCodeTwo}(boardCode=${boardCode},categoryCode=${categoryCode}, categoryCodeTwo=${categoryCodeTwo}, cp=1)}">&lt;&lt;</a>
+            </li>
+            <li>
+                <a th:href="@{/board/{boardCode}/{categoryCode}/{categoryCodeTwo}(boardCode=${boardCode},categoryCode=${categoryCode}, categoryCodeTwo=${categoryCodeTwo}, cp=${pagination.prevPage})}">&lt;</a>
+            </li>
 
-              
-              <li>
-                  <a th:href="@{/board/{boardCode}/{categoryCode}/{categoryCodeTwo}(boardCode=${boardCode},categoryCode=${categoryCode}, categoryCodeTwo=${categoryCodeTwo}, cp=${pagination.prevPage})}">&lt;</a>
-              </li>
+          <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
 
-              <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+            <li th:if="${i == pagination.currentPage}">
+                <a class="current" th:text="${i}">1</a>
+            </li>
+            
+            <li th:unless="${i == pagination.currentPage}"> 
+                <a th:href="@{/board/{boardCode}/{categoryCode}/{categoryCodeTwo}(boardCode=${boardCode},categoryCode=${categoryCode}, categoryCodeTwo=${categoryCodeTwo}, cp=${i})}" th:text="${i}">2</a> 
+            </li>
+          </th:block>
 
-                
-                  <li th:if="${i == pagination.currentPage}">
-                      <a class="current" th:text="${i}">1</a>
-                  </li>
-                  
-                  <li th:unless="${i == pagination.currentPage}"> 
-                      <a th:href="@{/board/{boardCode}/{categoryCode}/{categoryCodeTwo}(boardCode=${boardCode},categoryCode=${categoryCode}, categoryCodeTwo=${categoryCodeTwo}, cp=${i})}" th:text="${i}">2</a> 
-                  </li>
-              </th:block>
+          <li><a th:href="@{/board/{boardCode}/{categoryCode}/{categoryCodeTwo}(boardCode=${boardCode},categoryCode=${categoryCode}, categoryCodeTwo=${categoryCodeTwo}, cp=${pagination.nextPage})}">&gt;</a></li>
 
-              <li><a th:href="@{/board/{boardCode}/{categoryCode}/{categoryCodeTwo}(boardCode=${boardCode},categoryCode=${categoryCode}, categoryCodeTwo=${categoryCodeTwo}, cp=${pagination.nextPage})}">&gt;</a></li>
-
-             
-              <li>
-                  <a th:href="@{/board/{boardCode}/{categoryCode}/{categoryCodeTwo}(boardCode=${boardCode},categoryCode=${categoryCode}, categoryCodeTwo=${categoryCodeTwo}, cp=${pagination.maxPage})}">&gt;&gt;</a>
-              </li>
-        </ul>
+          
+            <li>
+                <a th:href="@{/board/{boardCode}/{categoryCode}/{categoryCodeTwo}(boardCode=${boardCode},categoryCode=${categoryCode}, categoryCodeTwo=${categoryCodeTwo}, cp=${pagination.maxPage})}">&gt;&gt;</a>
+            </li>
+    </ul>
 
         
 
@@ -177,7 +168,7 @@
         </select>
         <input type="text" name="query"  id="searchQuery" placeholder="검색어를 입력해주세요.">
         <button>검색</button>
-      </form>
+      </form> 
 
 
     </main>

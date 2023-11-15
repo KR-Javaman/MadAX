@@ -8,7 +8,8 @@
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/board/headerList.css}">
     <link rel="stylesheet" th:href="@{/css/board/boardList.css}">
-    <link rel="stylesheet" th:href="@{/css/board/footer.css}">
+   <link rel="stylesheet" th:href="@{/css/board/detail.css}">
+    
 
     <header>
       <th:block th:replace="~{common/header}"></th:block>
@@ -34,68 +35,82 @@
         <h1>커뮤니티</h1>
       </div>
 
-      
 
-    
-
-
-    
-
-      <div class="search">
-        <form action="#" method="get" id="list-search">
-          <div>
-            <input type="text" class="search-input"  placeholder="검색어를 입력해주세요.">
-            <button>검색</button>
-          </div>
-        </form>
-      </div>
-
-
-  
-    <div class="selectBox">
+    <!-- <div class="selectBox">
       <select name="key" id="selectKey">
         <option value="t" id="date-Sequence">작성일순</option>
         <option value="c" id="inquiry-Sequence">조회순</option>
         <option value="tc" id="Recommendation-Sequence">추천순</option>
       </select>
-    </div>
+    </div> -->
 
 
     
     <div class="community">
       <div class="com-left"></div>
       <div class="com-center">
-        <table class="list-table" border="0">
-                    
-          <thead>
-            <tr>
-                <th class="no">글번호</th>
-                <th class="title">제목</th>
-                <th class="nickname">작성자</th>
-                <th class="date">작성일</th>
-                <th class="count">조회수</th>
-                <th class="like">좋아요</th>
-            </tr>
-          </thead>
-          
-          <tbody>
-            <tr th:each="board: ${boardList}" th:object="${board}">
-              <td th:text="*{boardNo}">게시글 번호</td>
-              <td>
-                <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode},boardNo=*{boardNo})}"
-                  th:text="*{boardTitle}">게시글 제목</a>
-              </td>
+      
+        <section class="detail" th:each="board: ${boardList}" th:object="${board}" > 
+        
+          <div class="board-detail">
+<!--         
+            <div class="profileImg">
+              <img th:unless="*{profileImg}" th:src="#{user.default.image}">
+              <img th:if="*{profileImg}" th:src="*{profileImg}" width="100%">
+            </div> -->
+  
+            <div class="board-main">
+              <h1 class="board-title"> 게시글 제목 : <span th:text="*{boardTitle}"></span></h1>
+              <h1 class="board-title"> 작성자 닉네임 : <span th:text="*{memberNickname}"></span></h1>
+              <h1 class="board-title"> 게시글 번호 : <span th:text="*{boardNo}"></span></h1>
+              <h1 class="board-title"> 게시글 작성일 : <span th:text="*{writeDate}"></span></h1>
+              <h1 class="board-title"> 조회수 : <span th:text="*{boardCount}"></span></h1>
+            </div>
+  
+            <!--좋아요  클릭 -->
+            <span class="like-area">
+                      
+              <i class="fa-heart" th:classappend = "${likeCheck} ? fa-solid : fa-regular" id="boardLike"></i>
+  
+              <!-- 좋아요 개수 -->
+              <span th:text="*{likeCount}">0</span>
+              
+            </span>
+  
+          </div>
+  
+  
+        <th:block th:if="${#lists.size(board.imageList) > 0}" >
+           
+          <th:bloack th:if="${thumbnail}">
+       
+            <div class="img-box">
+                <div class="boardImg thumbnail">
+                    <img th:src="|${thumbnail.imgPath}${thumbnail.imgRename}|">                     
+                </div>
+            </div>
+          </th:bloack>
+  
+  
+          <th:block th:if="${#lists.size(board.imageList) > start}" >
+            <div class="img-box">
+  
+              <div th:each="i : ${#numbers.sequence(start, #lists.size(board.imageList)-1, 1)}" 
+                  th:with="path=|${board.imageList[i].imgPath}${board.imageList[i].imgRename}|"
+                  class="boardImg">
+  
+                  <img th:src="${path}">   
+              </div>
+  
+            </div>
+          </th:block>
+       
+        </th:block>
 
-              <td th:text="*{memberNickname}">작성자</td>
-              <td th:text="*{writeDate}">작성일</td>
-              <td th:text="*{boardCount}">조회수</td>
-              <td th:text="*{likeCount}">좋아요</td>
-            </tr>
-          
-          </tbody>
+        </section>
 
-        </table>
       </div>
+
       <div class="com-right">
         <div>
           <ul>

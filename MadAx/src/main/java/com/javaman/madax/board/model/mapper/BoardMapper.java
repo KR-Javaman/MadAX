@@ -11,22 +11,37 @@ import com.javaman.madax.board.model.dto.Board;
 @Mapper
 public interface BoardMapper {
 
+
+	/**게시글 수 조회
+	 * @param codeMap
+	 * @return listCount
+	 */
+	int ListCount(Map<String, Integer> codeMap);
+	
 	
 	/**게시글 전체조회
 	 * @param codeMap
 	 * @return
 	 */
 	List<Board> selectBoard(Map<String, Integer> codeMap, RowBounds rowBounds);
+	
+	
+	
+	
+	//검색 게시글 수 조회
+	int searchListCount(Map<String, Object> paramMap);
+	
 
-	
-	
-	/**게시글 수 조회
-	 * @param codeMap
-	 * @return listCount
+	/**게시글 검색
+	 * @param paramMap
+	 * @param rowBounds
+	 * @return
 	 */
-	int ListCount(Map<String, Integer> codeMap);
+	List<Board> searchBoardList(Map<String, Object> paramMap, RowBounds rowBounds);
 
-
+	
+	
+	
 
 	/**게시글 상세조회
 	 * @param boardCode
@@ -34,6 +49,7 @@ public interface BoardMapper {
 	 */
 	Board detail(Map<String, Object> map);
 
+	
 	
 	//좋아요 체크
 	int likeCheck(Map<String, Object> map);
@@ -51,49 +67,8 @@ public interface BoardMapper {
 	int countBoardLike(Integer boardNo);
 
 
-	//게시글 죄회수증가
+	//게시글 조회수증가
 	int updateBoardCount(int boardNo);
 
 
-	/**게시글 수 조회
-	 * @param board
-	 * @return
-	 */
-	int ListCount(Board board);
-
-
-	/**카테고리별 게시글 조회
-	 * @param boardMap
-	 * @param rowBounds
-	 * @return
-	 */
-	List<Board> CategoryBoard(Map<String, Integer> boardMap, RowBounds rowBounds);
-
-
-
-	
-	int searchListCount(Map<String, Object> paramMap);
-
-
-
-	/**게시글 검색
-	 * @param paramMap
-	 * @param rowBounds
-	 * @return
-	 */
-	List<Board> searchBoardList(Map<String, Object> paramMap, RowBounds rowBounds);
-
-
-
-	//정렬 테스트
-	int ListCount(int boardCode);
-
-
-
-
-
-
-
-
-	
 }
