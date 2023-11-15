@@ -86,6 +86,11 @@ tbody > td{
 .list-table tr td{
   font-size: 15px;
   color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 245px;
+  line-height: 25px;
+  padding: 15px 24px;
 }
 .list-table tr > *{ text-align: center; }
 .list-table tr > *:nth-of-type(1){ width: 10%; }
