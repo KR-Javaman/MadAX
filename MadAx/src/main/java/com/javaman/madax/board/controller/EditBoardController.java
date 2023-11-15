@@ -41,7 +41,6 @@ public class EditBoardController {
 	 */
 	@GetMapping("{boardCode:[0-9]+}/insert")
 	public String insertBoard(@PathVariable("boardCode")int boardCode) {
-		
 		return "board/boardWrite";
 	}
 	
@@ -76,6 +75,17 @@ public class EditBoardController {
 				
 				return "redirect:insert"; 
 			}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	/**게시글 삭제

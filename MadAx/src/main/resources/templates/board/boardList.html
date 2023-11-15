@@ -48,9 +48,6 @@
 
     
       <div class="selectBox">
-        <button class="btn-select">전체</button>
-        <button class="btn-select">긴글</button>
-        <button class="btn-select">짧은글</button>
         <select name="key" id="selectKey">
           <option value="t" id="date-Sequence">작성일순</option>
           <option value="c" id="inquiry-Sequence">조회순</option>
@@ -80,7 +77,8 @@
               <tr th:each="board: ${boardList}" th:object="${board}">
                 <td th:text="*{boardNo}">게시글 번호</td>
                 <td>
-                  <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode},boardNo=*{boardNo})}"
+                  <a th:href="@{/board/{boardCode}/{boardNo}
+                                        (boardCode=${boardCode},boardNo=*{boardNo})}"
                     th:text="*{boardTitle}">게시글 제목</a>
                 </td>
 
@@ -123,12 +121,12 @@
 
              
               <li>
-                  <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=1)}">&lt;&lt;</a>
+                  <a th:href="@{/board/{boardCode}/{categoryCode}/{categoryCodeTwo}(boardCode=${boardCode},categoryCode=${categoryCode}, categoryCodeTwo=${categoryCodeTwo}, cp=1)}">&lt;&lt;</a>
               </li>
 
               
               <li>
-                  <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${pagination.prevPage})}">&lt;</a>
+                  <a th:href="@{/board/{boardCode}/{categoryCode}/{categoryCodeTwo}(boardCode=${boardCode},categoryCode=${categoryCode}, categoryCodeTwo=${categoryCodeTwo}, cp=${pagination.prevPage})}">&lt;</a>
               </li>
 
               <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
@@ -139,15 +137,15 @@
                   </li>
                   
                   <li th:unless="${i == pagination.currentPage}"> 
-                      <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${i})}" th:text="${i}">2</a> 
+                      <a th:href="@{/board/{boardCode}/{categoryCode}/{categoryCodeTwo}(boardCode=${boardCode},categoryCode=${categoryCode}, categoryCodeTwo=${categoryCodeTwo}, cp=${i})}" th:text="${i}">2</a> 
                   </li>
               </th:block>
 
-              <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${pagination.nextPage})}">&gt;</a></li>
+              <li><a th:href="@{/board/{boardCode}/{categoryCode}/{categoryCodeTwo}(boardCode=${boardCode},categoryCode=${categoryCode}, categoryCodeTwo=${categoryCodeTwo}, cp=${pagination.nextPage})}">&gt;</a></li>
 
              
               <li>
-                  <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${pagination.maxPage})}">&gt;&gt;</a>
+                  <a th:href="@{/board/{boardCode}/{categoryCode}/{categoryCodeTwo}(boardCode=${boardCode},categoryCode=${categoryCode}, categoryCodeTwo=${categoryCodeTwo}, cp=${pagination.maxPage})}">&gt;&gt;</a>
               </li>
         </ul>
 
@@ -180,7 +178,6 @@
 
   <script th:inline ="javascript">
     const boardCode = /*[[${boardCode}]]*/ "게시판코드";
-    const boardNo = /*[[${boardNo}]]*/ "게시글 번호";
   </script>
 
 </html>

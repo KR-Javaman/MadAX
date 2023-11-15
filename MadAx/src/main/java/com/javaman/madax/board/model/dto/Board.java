@@ -24,7 +24,6 @@ public class Board {
     private int boardCode;
     private int categoryCode;
     private int categoryCodeTwo;
-
     private String boardName;
     private String categoryName;
     private String categoryNameTwo;

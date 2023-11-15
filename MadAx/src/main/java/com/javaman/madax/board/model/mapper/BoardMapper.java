@@ -12,19 +12,19 @@ import com.javaman.madax.board.model.dto.Board;
 public interface BoardMapper {
 
 	
-	/**게시글 조회
-	 * @param boardCode
+	/**게시글 전체조회
+	 * @param codeMap
 	 * @return
 	 */
-	List<Board> selectBoard(int boardCode, RowBounds rowBounds);
+	List<Board> selectBoard(Map<String, Integer> codeMap, RowBounds rowBounds);
 
 	
 	
 	/**게시글 수 조회
-	 * @param boardCode
+	 * @param codeMap
 	 * @return listCount
 	 */
-	int ListCount(int boardCode);
+	int ListCount(Map<String, Integer> codeMap);
 
 
 
@@ -62,17 +62,7 @@ public interface BoardMapper {
 	int ListCount(Board board);
 
 
-
-	/**게시글 수 조회
-	 * @param board
-	 * @param rowBounds
-	 * @return
-	 */
-	List<Board> CategoryBoard(Board board, RowBounds rowBounds);
-
-
-
-	/**카테고리별 게시글
+	/**카테고리별 게시글 조회
 	 * @param boardMap
 	 * @param rowBounds
 	 * @return
@@ -81,20 +71,18 @@ public interface BoardMapper {
 
 
 
+	
 	int searchListCount(Map<String, Object> paramMap);
 
 
 
+	/**게시글 검색
+	 * @param paramMap
+	 * @param rowBounds
+	 * @return
+	 */
 	List<Board> searchBoardList(Map<String, Object> paramMap, RowBounds rowBounds);
 
 
-
-
-
 	
-
-
-
-
-
 }

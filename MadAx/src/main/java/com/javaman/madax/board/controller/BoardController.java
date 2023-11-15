@@ -40,30 +40,45 @@ public class BoardController{
 private final BoardService service;
 	
 	
-	/**게시글 전체 조회
+	
+	
+
+	/**게시글 전제 조회
 	 * @param boardCode
 	 * @param model
 	 * @param cp
+	 * @param paramMap
 	 * @return
 	 */
-	@GetMapping("{boardCode:[0-9]+}")
+	@GetMapping("{boardCode:[0-9]+}/{categoryCode:[0-9]+}/{categoryCodeTwo:[0-9]+}")
 	public String selectBoard(@PathVariable("boardCode") int boardCode,
+								@PathVariable("categoryCode")int categoryCode,
+								@PathVariable("categoryCodeTwo")int categoryCodeTwo,
 								Model model,
 								@RequestParam(value = "cp", required = false, defaultValue = "1") int cp,
 								@RequestParam Map<String, Object> paramMap) {
 		
 		if(paramMap.get("key")==null) {
 			
-			Map<String, Object> map = service.selectBoard(boardCode, cp);
+			Map<String, Integer> codeMap = new HashMap<>();
+			codeMap.put("boardCode", boardCode);
+			codeMap.put("categoryCode", categoryCode);
+			codeMap.put("categoryCodeTwo", categoryCodeTwo);
+	
+			Map<String, Object> map = service.selectBoard(codeMap, cp);
 			model.addAttribute("map",map);
 			
 		}else {
 			Map<String, Object> map = service.searchBoardList(paramMap, cp);
 			model.addAttribute("map",map);
 		}
-			
 		
+		if(categoryCode == 1){
+			return "board/boardList";
+		}else {
+			
 		return "board/boardList";
+		}
 	}
 	
 	
@@ -76,24 +91,35 @@ private final BoardService service;
 	 * @param cp
 	 * @return
 	 */
-	@GetMapping("{boardCode:[0-9]+}/{categoryCode:[0-9]+}/{categoryCodeTwo:[0-9]+}")
-	public String CategoryBoard(@PathVariable("boardCode") int boardCode,
-								@PathVariable("categoryCode") int categoryCode,
-								@PathVariable("categoryCodeTwo") int categoryCodeTwo,
-								Model model,
-								@RequestParam(value = "cp", required = false, defaultValue = "1") int cp) {
-		
-		
-	
-		Map<String, Object> map = service.CategoryBoard( boardCode, categoryCode, categoryCodeTwo, cp);
-		
-		model.addAttribute("map",map);
-		
-		
-		return "board/boardList";
-		
-	}
-	
+//	@GetMapping("{boardCode:[0-9]+}/{categoryCode:[0-9]+}/{categoryCodeTwo:[0-9]+}")
+//	public String CategoryBoard(@PathVariable("boardCode") int boardCode,
+//								@PathVariable("categoryCode") int categoryCode,
+//								@PathVariable("categoryCodeTwo") int categoryCodeTwo,
+//								Model model,
+//								@RequestParam(value = "cp", required = false, defaultValue = "1") int cp) {
+//		
+//		
+//	
+//		Map<String , Integer> boardMap = new HashMap<>();
+//		boardMap.put("boardCode", boardCode);
+//		boardMap.put("categoryCode", categoryCode);
+//		boardMap.put("categoryCodeTwo", categoryCodeTwo);
+//		
+//		Map<String, Object> map = service.CategoryBoard(boardMap, cp);
+//				
+//		
+//		if(categoryCode == 1 ) {
+//			
+//			model.addAttribute("map",map);
+//			
+//			return "board/boardList";
+//		}else {
+//			
+//			model.addAttribute("map",map);
+//			return "board/recruitment";
+//		}
+//		
+//	}
 	
 	
 	//게시글 상세조회
@@ -107,7 +133,7 @@ private final BoardService service;
 		
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("boardCode", boardCode);
+		map.put("boardCode", boardCode);	
 		map.put("boardNo", boardNo);
 		
 		Board board = service.detail(map);
@@ -168,24 +194,16 @@ private final BoardService service;
 	                  result = service.updateBoardCount(boardNo);
 	               }
 	            }
-	            
-	            
-
-	            // 4) 조회 수 증가 성공 시
-	            // 쿠키가 적용되는 경로, 수명(당일 23시 59분 59초) 지정
-
-	            if (result > 0) {
+	         
+	               if (result > 0) {
 	               board.setBoardCount(board.getBoardCount() + 1);
-	               // 조회된 board 조회 수와 DB 조회 수 동기화
-
-	               // 적용 경로 설정
-	               c.setPath("/"); // "/" 이하 경로 요청 시 쿠키 서버로 전달
+	               c.setPath("/"); 
 
 	               // 수명 지정
-	               Calendar cal = Calendar.getInstance(); // 싱글톤 패턴
-	               cal.add(cal.DATE, 1);  //24시간 후의 시간을 기록
+	               Calendar cal = Calendar.getInstance();
+	               cal.add(cal.DATE, 1);  
 
-	               // 날짜 표기법 변경 객체 (DB의 TO_CHAR()와 비슷)
+	            
 	               SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	               // java.util.Date
@@ -206,14 +224,10 @@ private final BoardService service;
 	               resp.addCookie(c); // 응답 객체를 이용해서
 	                              // 클라이언트에게 전달
 	            }
-	            
-	            
 	         }
 	        
-
-			
-	         if (board.getImageList().size() > 0) {
-
+	        	if (board.getImageList().size() > 0) {
+	        	 
 	        	 BoardImg thumbnail = null;
 	             
 	             //썸네일이 존재하면
@@ -226,13 +240,9 @@ private final BoardService service;
 	          }
 	          
 
-			
-			
 		}else { //게시글 없을 경우
 			path = "redirect:/board/" + boardCode;
-			
 		}
-		
 		return path;
 	}
 	
