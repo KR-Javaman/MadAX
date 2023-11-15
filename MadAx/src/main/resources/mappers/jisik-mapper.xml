@@ -28,7 +28,7 @@
 		</if>
 		
 		<if test='c2 != null and c2 != ""'>
-			AND CATEGORY2_CODE = #{c2}
+			AND CATEGORY_CODE_TWO = #{c2}
 		</if>
 		
 		ORDER BY BOARD_NO DESC
@@ -46,7 +46,7 @@
 		</if>
 		
 		<if test='c2 != null and c2 != ""'>
-			AND CATEGORY2_CODE = #{c2}
+			AND CATEGORY_CODE_TWO = #{c2}
 		</if>
 		
 		ORDER BY BOARD_NO DESC

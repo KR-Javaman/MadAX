@@ -32,9 +32,7 @@ public class JisikPagination {
 		calcJisikPagination();
 		
 	}
-	
-	
-	
+		
 	public int getCurrentPage() {
 		return currentPage;
 	}

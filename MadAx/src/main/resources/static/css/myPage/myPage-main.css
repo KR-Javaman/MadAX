@@ -114,6 +114,10 @@ label {
   
 }
 
+.list-group > li > a:checked{
+  color:rgb(147, 251, 1);
+}
+
 
 .myPage-main{
   width: 85%;

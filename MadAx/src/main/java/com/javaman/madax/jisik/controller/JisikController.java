@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,17 +55,17 @@ public class JisikController {
 	
 		@GetMapping("jisikList")
 		public String jisikList(Model model, 
-				@RequestParam(value = "cp", required = false, defaultValue = "1") int cp,
-				@RequestParam Map<String, Object> paramMap
-			) {
+			@RequestParam(value = "cp", required = false, defaultValue = "1") int cp,
+			@RequestParam Map<String, Object> paramMap
+				) {
+		
 			
-				
-				Map<String, Object> map = service.jisikList(paramMap, cp);
+			Map<String, Object> map = service.jisikList(paramMap, cp);
+		
+			model.addAttribute("map", map);
 			
-				model.addAttribute("map", map);
-				
-				
-				
+			
+			
 //			if(paramMap.get("key") == null && paramMap.get("query") == null) { // 일반 목록 조회
 //				Map<String, Object> map = service.selectJisikList(board, cp);
 //				
@@ -79,29 +80,26 @@ public class JisikController {
 //				
 //				
 //			}
-	
-			return "jisik/jisikList";
+
+		return "jisik/jisikList";
 		
 	}
 		
-		@GetMapping("jisikDetail/{boardNo:[0-9]+}")
-		public String jisikDetail(Model model, 
-				@PathVariable("boardNo") int boardNo,
-				@SessionAttribute(value = "loginMember", required = false) Member loginMember,
-					HttpServletRequest req, 
-					HttpServletResponse resp) throws ParseException {
-			
-			
-			Board board = service.jisikDetail(boardNo);
+	@GetMapping("jisikDetail/{boardNo:[0-9]+}")
+	public String jisikDetail(Model model, 
+			@PathVariable("boardNo") int boardNo,
+			@SessionAttribute(value = "loginMember", required = false) Member loginMemberx,
+				HttpServletRequest req, 
+				HttpServletResponse resp) throws ParseException {
 				
-			model.addAttribute("board", board);
-			return "jisik/jisikDetail";
+		Board board = service.jisikDetail(boardNo);
 			
-			
-			
-			
-			
-		} 
+		model.addAttribute("board", board);
+		return "jisik/jisikDetail";
+
+	} 
+	
+	
 		
 			
 		

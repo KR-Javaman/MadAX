@@ -26,14 +26,11 @@ public class MadAdminController {
 		return "admin/main";
 	}
 	
-	
-
 	@GetMapping("selectMember")
 	public String selectMember(String inputEmail, Model model) {
 		
 		Member searchMember = service.selectMember(inputEmail);
-		
-		
+			
 		// 이메일이 일치하는 회원이 존재하는 경우
 		// model.addAttribute("searchMember", value);
 		// return "admin/success"; // forward
