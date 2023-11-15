@@ -64,7 +64,7 @@
                                         <td th:unless="*{categoryName} == 구인" th:text="*{categoryName}" style="color:rgb(255, 0, 128); border-left: 3px solid rgb(255, 0, 128); ">카테고리 종류</td>
                                         <td th:text="*{categoryNameTwo}" style="font-style:italic">상세 카테고리 종류</td>
                                         <td>
-                                            <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode},boardNo=*{boardNo})}"
+                                            <a th:href="@{/board/1/{boardNo}(boardNo=*{boardNo})}"
                                               th:text="*{boardTitle}" style="text-decoration: underline;">게시글 제목</a>
                                         </td>
                                         <td th:text="*{writeDate}" style="font-size:13px;">작성일</td>
@@ -106,7 +106,7 @@
                                         <td th:unless="*{categoryName} == 정보" th:text="*{categoryName}" style="color:rgb(255, 217, 48);  border-left: 3px solid rgb(255, 217, 48);">카테고리 종류</td>
                                         <td th:text="*{categoryNameTwo}" style="font-style:italic">상세 카테고리 종류</td>
                                         <td>
-                                            <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode},boardNo=*{boardNo})}"
+                                            <a th:href="@{/jisik/jisikDetail/{boardNo}(boardNo=*{boardNo})}"
                                               th:text="*{boardTitle}" style="text-decoration: underline;">게시글 제목</a>
                                         </td>
                                         <td th:text="*{writeDate}" style="font-size:13px;">작성일</td>
@@ -122,6 +122,26 @@
                     <label>내가 작성한 쇼츠</label>
                     <a href="/myPage/myPage-shorts" id="more">더보기</a>
                     <div id="shorts">
+                        <th:block th:with="videoList=${map3.videoList}">
+                            <th:block th:if="${#lists.size(videoList) == 0}">
+                                <h1 class="noBoard">게시글이 존재하지 않습니다.</h1>
+                            </th:block>
+
+                            <th:block th:each="i : ${#numbers.sequence(0, #lists.size(videoList) - 1)}" th:unless="${#lists.size(videoList) == 0}">
+                                <th:block th:if="${i % 5 == 0}" >
+                                    <div class="vdvd" >
+                                </th:block>
+            
+                            <a th:href="@{/shorts/detail/{boardVideoNo}(boardVideoNo=${videoList[i].boardVideoNo})}" class="video-a">
+                                <video th:src="|${videoList[i].videoPath}${videoList[i].videoRename}|" muted onmouseover="this.play()"
+                                    onmouseout="this.pause()"
+                                    width="300px"
+                                    height="320px"
+                                    controls></video>
+                                <div id="video-kdb" th:text="${videoList[i].videoTitle}">게시글 제목 </div>
+                            </a>
+                        </th:block>
+
 
                     </div>
 

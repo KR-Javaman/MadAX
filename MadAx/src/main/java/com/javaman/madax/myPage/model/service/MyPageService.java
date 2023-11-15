@@ -47,6 +47,8 @@ public interface MyPageService {
 
 	Map<String, Object> selectJisikin(int memberNo, int cp);
 
+	Map<String, Object> selectVideo(int memberNo, int cp);
+
 
 
 }

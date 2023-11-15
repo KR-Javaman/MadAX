@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.javaman.madax.board.model.dto.Board;
+import com.javaman.madax.board.model.dto.Pagination;
 import com.javaman.madax.common.utility.Util;
 import com.javaman.madax.member.model.dto.Member;
 import com.javaman.madax.myPage.model.mapper.MyPageMapper;
@@ -43,6 +44,11 @@ public class MyPageServiceImpl implements MyPageService{
 	
 	@Value("${my.background.location}")
 	private String folderPath2;
+	
+	@Value("${my.video.webpath}")
+	private String webPath3;
+	@Value("${my.video.location}")
+	private String folderPath3;
 	
 	
 	@Override
@@ -74,6 +80,23 @@ public class MyPageServiceImpl implements MyPageService{
 		
 		return map2; 
 	}
+	
+	@Override
+	public Map<String, Object> selectVideo(int memberNo, int cp) {
+		
+		
+		RowBounds rowBounds3 = new RowBounds(0, 5);
+				
+		//게시글 조회
+		List<Board> videoList = mapper.selectVideo(memberNo, rowBounds3);
+		
+		Map<String , Object> map3 =  new HashMap<>();
+		map3.put("videoList", videoList);
+		
+		return map3; 
+	}
+	
+	
 	
 	
 	

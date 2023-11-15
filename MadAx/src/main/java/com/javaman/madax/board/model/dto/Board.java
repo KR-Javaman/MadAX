@@ -22,19 +22,13 @@ public class Board {
     private String boardDelFl;
     private int memberNo;
     private int boardCode;
-//    private int categoryCode;
     private int categoryCode;
-<<<<<<< HEAD
-//    private int categoryName;
-    private int categoryCodeTwo;
-=======
     private int categoryCodeTwo;
 
     private String boardName;
     private String categoryName;
     private String categoryNameTwo;
 
->>>>>>> a038abdc16868cfb008c36ae157200bd07028485
     
     
     // 목록 조회, 상세 조회 시 매핑되는 필드

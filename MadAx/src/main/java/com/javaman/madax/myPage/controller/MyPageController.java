@@ -63,10 +63,13 @@ public class MyPageController {
 
 		Map<String, Object> map = service.selectCommunity(loginMember.getMemberNo(), cp);
 		Map<String, Object> map2 = service.selectJisikin(loginMember.getMemberNo(), cp);
+		Map<String, Object> map3 = service.selectVideo(loginMember.getMemberNo(), cp);
 		
-		model.addAttribute("map2",map2);
+		
 
 		model.addAttribute("map",map);
+		model.addAttribute("map2",map2);
+		model.addAttribute("map3",map3);
 		
 		return "myPage/myPage-home";
 		

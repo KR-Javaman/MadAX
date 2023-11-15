@@ -54,6 +54,8 @@ public interface MyPageMapper {
 	List<Board> selectCommunity(int memberNo, RowBounds rowBounds);
 	
 	List<Board> selectJisikin(int memberNo, RowBounds rowbounds2);
+
+	List<Board> selectVideo(int memberNo, RowBounds rowBounds3);
 	
 	
 
