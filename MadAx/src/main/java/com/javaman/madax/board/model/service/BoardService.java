@@ -38,8 +38,8 @@ public interface BoardService {
 
 
 
-	//카테고리별 게시글 검색
-	Map<String, Object> CategoryBoard(Map<String, Integer> boardMap, int cp);
+
+
 
 
 

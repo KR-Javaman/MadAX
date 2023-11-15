@@ -84,5 +84,16 @@ public interface BoardMapper {
 	List<Board> searchBoardList(Map<String, Object> paramMap, RowBounds rowBounds);
 
 
+
+	//정렬 테스트
+	int ListCount(int boardCode);
+
+
+
+
+
+
+
+
 	
 }

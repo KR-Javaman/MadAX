@@ -46,17 +46,30 @@
         </div>
 
 
-    
+<!--     
       <div class="selectBox">
         <select name="key" id="selectKey">
           <option value="t" id="date-Sequence">작성일순</option>
           <option value="c" id="inquiry-Sequence">조회순</option>
           <option value="tc" id="Recommendation-Sequence">추천순</option>
         </select>
+      </div> -->
+
+
+
+      <div class="selectBox">
+        <a class="btn btn-primary" 
+        th:href="@{/board/dat1, cp=1}">날짜순</a>
+
+        <a class="btn btn-primary" 
+        th:href="@{/board/date2, cp=1}">조회수순</a>
+
+        <a class="btn btn-primary" 
+        th:href="@{/board/date3, cp=1}">좋아요순</a>
       </div>
 
 
-      
+
       <div class="community">
         <div class="com-left"></div>
         <div class="com-center">
@@ -98,12 +111,12 @@
               <li class="shortkey">바로가기</li>
               <br>
               <hr>
-              <li><a href="/board/1"> 전체</a></li>
-              <li><a href="/board/1/1/1"> 축구</a></li>
-              <li><a href="/board/1/1/2"> 야구</a></li>
-              <li><a href="/board/1/1/3"> 농구</a></li>
-              <li><a href="/board/1/1/4"> 헬스</a></li>
-              <li><a href="/board/1/1/5"> 기타</a></li>
+              <li><a href="/board/1/1/1"> 전체</a></li>
+              <li><a href="/board/1/1/2"> 축구</a></li>
+              <li><a href="/board/1/1/3"> 야구</a></li>
+              <li><a href="/board/1/1/4"> 농구</a></li>
+              <li><a href="/board/1/1/5"> 헬스</a></li>
+              <li><a href="/board/1/1/6"> 기타</a></li>
             </ul>
           </div>
         </div>

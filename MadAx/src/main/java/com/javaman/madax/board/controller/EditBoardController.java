@@ -70,18 +70,9 @@ public class EditBoardController {
 					return String.format("redirect:/board/%d/%d",boardCode,boardNo);
 				}
 				
-				
 				ra.addFlashAttribute("message", "게시글 작성 실패");
-				
 				return "redirect:insert"; 
 			}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

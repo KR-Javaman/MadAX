@@ -111,37 +111,6 @@ public class BoardServiceImpl implements BoardService{
 	
 	
 	
-	
-	//카테고리별 게시글 조회
-	@Override
-	public Map<String, Object> CategoryBoard(Map<String, Integer> boardMap, int cp) {
-		
-				//게시글 수 조회
-				int listCount = mapper.ListCount(boardMap);
-				
-				Pagination pagination = new Pagination(cp, listCount);
-				
-				
-				int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
-				//현재 페이지에서 1을 빼고 한 페이지 목록에 보여지는 게시글 수를 곱함(결과 만큼을 건너뛰고 조회)
-				int limit = pagination.getLimit(); 
-				
-				
-				RowBounds rowBounds = new RowBounds(offset,limit);
-				
-				
-				List<Board> boardList = mapper.CategoryBoard(boardMap, rowBounds);
-				
-				Map<String , Object> map =  new HashMap<>();
-				map.put("boardList", boardList);
-				map.put("pagination", pagination);
-				
-				return map;
-	}
-	
-	
-	
-	
 	//게시글 검색
 	@Override
 	public Map<String, Object> searchBoardList(Map<String, Object> paramMap, int cp) {
@@ -165,6 +134,11 @@ public class BoardServiceImpl implements BoardService{
 
 		return map;
 	}
+	
+
+
+	
+	
 	
 
 	

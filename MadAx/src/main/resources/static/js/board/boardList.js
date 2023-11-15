@@ -10,21 +10,6 @@ writeBtn.addEventListener("click", ()=>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* 검색창에 이전 검색 기록 남겨두기 */
 const options = document.querySelectorAll("#searchKey > option");
 const searchQuery = document.getElementById("searchQuery");

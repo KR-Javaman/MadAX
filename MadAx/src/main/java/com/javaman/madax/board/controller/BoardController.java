@@ -77,49 +77,13 @@ private final BoardService service;
 			return "board/boardList";
 		}else {
 			
-		return "board/boardList";
+		return "board/recruitment";
 		}
 	}
 	
 	
 	
-	/**카테고리 별 조회
-	 * @param boardCode
-	 * @param categoryCode
-	 * @param category2Code
-	 * @param model
-	 * @param cp
-	 * @return
-	 */
-//	@GetMapping("{boardCode:[0-9]+}/{categoryCode:[0-9]+}/{categoryCodeTwo:[0-9]+}")
-//	public String CategoryBoard(@PathVariable("boardCode") int boardCode,
-//								@PathVariable("categoryCode") int categoryCode,
-//								@PathVariable("categoryCodeTwo") int categoryCodeTwo,
-//								Model model,
-//								@RequestParam(value = "cp", required = false, defaultValue = "1") int cp) {
-//		
-//		
-//	
-//		Map<String , Integer> boardMap = new HashMap<>();
-//		boardMap.put("boardCode", boardCode);
-//		boardMap.put("categoryCode", categoryCode);
-//		boardMap.put("categoryCodeTwo", categoryCodeTwo);
-//		
-//		Map<String, Object> map = service.CategoryBoard(boardMap, cp);
-//				
-//		
-//		if(categoryCode == 1 ) {
-//			
-//			model.addAttribute("map",map);
-//			
-//			return "board/boardList";
-//		}else {
-//			
-//			model.addAttribute("map",map);
-//			return "board/recruitment";
-//		}
-//		
-//	}
+
 	
 	
 	//게시글 상세조회
