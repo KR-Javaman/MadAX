@@ -23,8 +23,6 @@
 	</resultMap>
   
   
-  
-  
 	<select id="getListCount" resultType="_int">
 		SELECT COUNT(*) FROM "VIDEO_BOARD"
 		WHERE VIDEO_DEL_FL = 'N'

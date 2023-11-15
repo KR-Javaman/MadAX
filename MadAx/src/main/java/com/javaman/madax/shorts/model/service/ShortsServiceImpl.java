@@ -121,7 +121,7 @@ public class ShortsServiceImpl implements ShortsService{
 		return mapper.videoBoardDetail(boardVideoNo);
 	}
 	
-	// 좋아요 
+	// 좋아요 여부 확인
 	@Override
 	public int likeClick(Map<String, Object> map) {
 		return mapper.likeCLick(map);
@@ -195,6 +195,9 @@ public class ShortsServiceImpl implements ShortsService{
 		}
 		return result;
 	}
+	
+	
+	
 	
 	
 }

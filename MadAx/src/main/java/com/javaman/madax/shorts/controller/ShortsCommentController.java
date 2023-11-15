@@ -26,7 +26,6 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @SessionAttributes({"loginMember"})
-@RequestMapping("shorts/detail")
 public class ShortsCommentController {
 	
 	private final ShortsCommentService service;
@@ -40,7 +39,7 @@ public class ShortsCommentController {
 		
 		List<VideoComment> videoComment = service.selectComment(boardVideoNo);
 		
-		String path = "null";
+		String path = null;
 		
 		if(videoComment != null) {
 			model.addAttribute("videoComment", videoComment);
@@ -51,7 +50,7 @@ public class ShortsCommentController {
 				int likeClick = service.likeClick(map);
 				
 				if(likeClick == 1) {
-					model.addAttribute("likeClickComment", "on");
+					model.addAttribute("likeClick", "on");
 				}
 			}
 		}
