@@ -62,8 +62,8 @@
                                 <th:block th:unless="${#lists.size(boardList) == 0}">
                                   <tr th:each="board: ${boardList}" th:object="${board}">
                                     <td th:text="*{boardName}" style="color:rgb(147, 251, 1);  border-left: 3px solid rgb(147, 251, 1);">게시판 종류</td>
-                                    <td th:if="*{categoryName} == 정보" th:text="*{categoryName}" style="color:rgb(33, 155, 255);  border-left: 3px solid rgb(33, 155, 255);">카테고리 종류</td>
-                                    <td th:unless="*{categoryName} == 정보" th:text="*{categoryName}" style="color:rgb(255, 0, 128);  border-left: 3px solid rgb(255, 0, 128);">카테고리 종류</td>
+                                    <td th:if="*{categoryName} == 정보" th:text="*{categoryName}" style="color:rgb(253, 122, 70);  border-left: 3px solid rgb(253, 122, 70);">카테고리 종류</td>
+                                    <td th:unless="*{categoryName} == 정보" th:text="*{categoryName}" style="color:rgb(255, 217, 48);  border-left: 3px solid rgb(255, 217, 48);">카테고리 종류</td>
                                     <td th:text="*{categoryNameTwo}" style="font-style:italic">상세 카테고리 종류</td>
 
 

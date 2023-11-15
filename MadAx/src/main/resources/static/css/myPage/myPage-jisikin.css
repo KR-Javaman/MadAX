@@ -85,7 +85,7 @@ tbody > td{
 }
 .list-table tr td{
   font-size: 15px;
-  color: white;
+  color: rgba(255, 255, 255, 0.705);
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 245px;

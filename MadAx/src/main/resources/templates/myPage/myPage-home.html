@@ -36,21 +36,91 @@
 
                 <div class="mid">
                 <div class="myCommunity">
-                    <label>내가 쓴 커뮤니티 글</label>
+                    <label>내가 작성한 커뮤니티 글</label> 
                     <a href="/myPage/myPage-community" id="more">더보기</a>
                     <br>
-                    <div id="myCommunityList"></div>
+
+                    <div id="myCommunityList">
+                        <table class="list-table" border="0" th:with="boardList=${map.boardList}">
+                            <thead>
+                                <tr>
+                                    <th>카테고리</th>
+                                    <th>상세 카테고리</th>
+                                    <th>제목</th>
+                                    <th>작성일</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                <tr th:if="${#lists.size(boardList) == 0}" >
+                                    <th colspan="6">게시글이 존재하지 않습니다.</th>
+                                </tr>
+
+                                <th:block th:unless="${#lists.size(boardList) == 0}">
+                                     <tr th:each="board: ${boardList}" th:object="${board}">
+                                        <td th:if="*{categoryName} == 구인" th:text="*{categoryName}" style="color:rgb(33, 155, 255);  border-left: 3px solid rgb(33, 155, 255); ">카테고리 종류</td>
+                                        <td th:unless="*{categoryName} == 구인" th:text="*{categoryName}" style="color:rgb(255, 0, 128); border-left: 3px solid rgb(255, 0, 128); ">카테고리 종류</td>
+                                        <td th:text="*{categoryNameTwo}" style="font-style:italic">상세 카테고리 종류</td>
+                                        <td>
+                                            <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode},boardNo=*{boardNo})}"
+                                              th:text="*{boardTitle}" style="text-decoration: underline;">게시글 제목</a>
+                                        </td>
+                                        <td th:text="*{writeDate}" style="font-size:13px;">작성일</td>
+                                    </tr>
+                                </th:block> 
+                            </tbody>
+                        </table>
+                       
+                    </div>
                 </div>
 
-                <div class="myKin">
-                    <label>내가 쓴 지식in 글</label>
-                    <a href="/myPage/myPage-myKin" id="more">더보기</a>
-                    <div id="myKinList"></div>
+                <div class="myJisikin">
+
+                    <label>내가 작성한 지식in 글</label>
+
+                    <a href="/myPage/myPage-jisikin" id="more">더보기</a>
+
+                    <div id="myKinList">
+                        <table class="list-table" border="0" th:with="boardList2=${map2.boardList2}">
+                            <thead>
+                                <tr>
+                                    <th>카테고리</th>
+                                    <th>상세 카테고리</th>
+                                    <th>제목</th>
+                                    <th>작성일</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                <tr th:if="${#lists.size(boardList2) == 0}" >
+                                    <th colspan="6">게시글이 존재하지 않습니다.</th>
+                                </tr>
+
+                                <th:block th:unless="${#lists.size(boardList2) == 0}">
+                                     <tr th:each="board: ${boardList2}" th:object="${board}">
+                                        <td th:if="*{categoryName} == 정보" th:text="*{categoryName}" style="color:rgb(253, 122, 70);  border-left: 3px solid rgb(253, 122, 70);">카테고리 종류</td>
+                                        <td th:unless="*{categoryName} == 정보" th:text="*{categoryName}" style="color:rgb(255, 217, 48);  border-left: 3px solid rgb(255, 217, 48);">카테고리 종류</td>
+                                        <td th:text="*{categoryNameTwo}" style="font-style:italic">상세 카테고리 종류</td>
+                                        <td>
+                                            <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode},boardNo=*{boardNo})}"
+                                              th:text="*{boardTitle}" style="text-decoration: underline;">게시글 제목</a>
+                                        </td>
+                                        <td th:text="*{writeDate}" style="font-size:13px;">작성일</td>
+                                    </tr>
+                                </th:block> 
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
               </div>
                 <div class="myShorts">
-                    <label>내가 올린 쇼츠</label>
-                    <a href="/myPage/myPage-myShorts" id="more">더보기</a>
+                    <label>내가 작성한 쇼츠</label>
+                    <a href="/myPage/myPage-shorts" id="more">더보기</a>
                     <div id="shorts">
 
                     </div>

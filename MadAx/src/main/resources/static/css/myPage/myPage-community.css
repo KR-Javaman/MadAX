@@ -73,20 +73,21 @@ thead > tr{
 
 tbody>tr{
   height: 70px;
-  background-color: rgba(0, 0, 0, 0.623);
+  background-color: #0a0a0a8c;
 }
 tbody > td{
   color: white;
-  background-color: black;
+  background-color: #0a0a0a8c;
 }
 
 .list-table tr th{
   font-size: 18px;
 }
+
 .list-table tr td{
 
   font-size: 15px;
-  color: white;
+  color: rgba(255, 255, 255, 0.705);
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 245px;

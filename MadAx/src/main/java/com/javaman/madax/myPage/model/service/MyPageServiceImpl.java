@@ -3,8 +3,10 @@ package com.javaman.madax.myPage.model.service;
 import java.io.File; 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -13,14 +15,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.javaman.madax.board.model.dto.Board;
 import com.javaman.madax.common.utility.Util;
 import com.javaman.madax.member.model.dto.Member;
 import com.javaman.madax.myPage.model.mapper.MyPageMapper;
 
 
-
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 @PropertySource("classpath:/config.properties")
 public class MyPageServiceImpl implements MyPageService{
 	
@@ -41,6 +43,37 @@ public class MyPageServiceImpl implements MyPageService{
 	
 	@Value("${my.background.location}")
 	private String folderPath2;
+	
+	
+	@Override
+	public Map<String, Object> selectCommunity(int memberNo, int cp) {
+		
+		
+		RowBounds rowBounds = new RowBounds(0, 9);
+				
+		//게시글 조회
+		List<Board> boardList = mapper.selectCommunity(memberNo, rowBounds);
+		
+		Map<String , Object> map =  new HashMap<>();
+		map.put("boardList", boardList);
+		
+		return map; 
+	}
+	
+	@Override
+	public Map<String, Object> selectJisikin(int memberNo, int cp) {
+		
+		
+		RowBounds rowBounds2 = new RowBounds(0, 9);
+				
+		//게시글 조회
+		List<Board> boardList2 = mapper.selectJisikin(memberNo, rowBounds2);
+		
+		Map<String , Object> map2 =  new HashMap<>();
+		map2.put("boardList2", boardList2);
+		
+		return map2; 
+	}
 	
 	
 	

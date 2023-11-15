@@ -1,9 +1,11 @@
 package com.javaman.madax.myPage.controller;
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,12 +28,6 @@ public class MyPageController {
 	@Autowired
 	private MyPageService service;
 	
-	
-	@GetMapping("myPage-home") 
-	public String myPageHome() {
-		
-		return "myPage/myPage-home";
-	}
 	
 	@GetMapping("myPage-profile") 
 	public String myPageProfile() {
@@ -60,6 +56,25 @@ public class MyPageController {
 		return "myPage/myPage-profile"; }
 
 
+	@GetMapping("myPage-home") 
+	public String selectBoard(@SessionAttribute(value="loginMember", required=false /*필수는 아니다*/) Member loginMember, Model model,
+		@RequestParam(value = "cp", required = false, defaultValue = "1") int cp
+		) {
+
+		Map<String, Object> map = service.selectCommunity(loginMember.getMemberNo(), cp);
+		Map<String, Object> map2 = service.selectJisikin(loginMember.getMemberNo(), cp);
+		
+		model.addAttribute("map2",map2);
+
+		model.addAttribute("map",map);
+		
+		return "myPage/myPage-home";
+		
+	}
+	
+
+	
+	
 	
 	@PostMapping("changeNickname")
 	public String changeNickname(Member updateMember, @SessionAttribute("loginMember") Member loginMember, RedirectAttributes ra) {
