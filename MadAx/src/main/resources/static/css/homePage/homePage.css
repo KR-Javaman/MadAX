@@ -50,7 +50,7 @@ a {
   border-radius: 18px;
   background-color: #0a0a0a8c;
   width: 100%;
-  height: 53.4rem;
+  height: auto;
   margin-top: 1.5rem;
 }
 
@@ -67,8 +67,14 @@ a {
 }
 
 
-.communityBoard:last-child {
-  border-bottom: none;
+.communityBoardContent {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  max-width: 800px;
+
 }
 
 
@@ -183,7 +189,7 @@ font-size: 15px; }
   border-radius: 18px;
   background-color: #0a0a0a8c;
   width: 100%;
-  height: 50.5rem;
+  height: auto;
   margin-top: 1.5rem;
 }
 

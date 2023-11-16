@@ -26,7 +26,7 @@ public class HomeServiceImpl implements HomeService {
 	@Override
 	public Map<String, Object> selectCommunity(Board board, int cp) {
 		
-		RowBounds rowBounds = new RowBounds(0, 7);
+		RowBounds rowBounds = new RowBounds(0, 5);
 		
 		//게시글 조회
 		List<Board> boardList = mapper.selectCommunity(board, rowBounds);
