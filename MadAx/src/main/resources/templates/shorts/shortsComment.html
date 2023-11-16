@@ -37,9 +37,8 @@
             </span>
           </p>
           <div class="comment-btn-area">
-            <button th:onclick="|showInsertComment(*{commentNo}, this)|">답글 달기</button>
-            
             <th:block th:if="${session.loginMember != null and session.loginMember.memberNo == videoComment.memberNo}">
+              <button th:onclick="|showInsertComment(*{commentNo}, this)|">답글 달기</button>
               <button th:onclick="|showUpdateComment(*{commentNo}, this)|">수정</button>
               <button th:onclick="|deleteVideoComment(*{commentNo})|">삭제</button>
             </th:block>
@@ -55,6 +54,7 @@
       등록
     </button>
   </div>
+  
 </div>
 
 <script th:inline="javascript">
