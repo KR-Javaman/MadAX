@@ -1,6 +1,6 @@
 :root {
   font-size: 62.5%;
-  max-height: 90vh;
+  max-height: 85vh;
 }
 * {
   box-sizing: border-box;
@@ -16,7 +16,7 @@ body {
 
 .myPage-wallpaper {
   width: 100%;
-  max-height:95vh;
+  max-height:90vh;
 }
 .myPage-wallpaper img {
   width: 100%;
@@ -26,8 +26,8 @@ body {
 }
 
 button {
-  position: absolute;
-  top:85%;
+  position: fixed;
+  top:90%;
   left:50%;
   transform: translate(-50%, -50%);
   z-index : 100;
@@ -35,6 +35,7 @@ button {
   height: 80px;
   border-radius: 50px;
   background-color: rgb(147, 251, 1);
+  border:none;
   font-size: 35px;
   cursor: pointer;
 
@@ -43,6 +44,7 @@ button {
 
 button a {
   text-align: center;
+  
   color: black;
   width: 300px;
   height: 80px;
@@ -54,3 +56,30 @@ button:hover {
 }
 
 
+video::-webkit-media-controls-play-button {
+  display: none;
+}
+video::-webkit-media-controls-fullscreen-button {
+  display: none;
+}
+video::-webkit-media-controls-timeline {
+  display: none;
+}
+
+video::-webkit-media-controls-current-time-display{
+  display: none;
+}
+
+video::-webkit-media-controls-time-remaining-display{
+  display: none;
+}
+
+video::-webkit-media-controls-mute-button {
+  display: none;
+}
+video::-webkit-media-controls-volume-slider {
+  display: none;
+}
+video::-webkit-media-controls-download-button {
+  display: none;
+}

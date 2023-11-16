@@ -55,7 +55,7 @@ public class MyPageServiceImpl implements MyPageService{
 	public Map<String, Object> selectCommunity(int memberNo, int cp) {
 		
 		
-		RowBounds rowBounds = new RowBounds(0, 9);
+		RowBounds rowBounds = new RowBounds(0, 12);
 				
 		//게시글 조회
 		List<Board> boardList = mapper.selectCommunity(memberNo, rowBounds);
@@ -70,7 +70,7 @@ public class MyPageServiceImpl implements MyPageService{
 	public Map<String, Object> selectJisikin(int memberNo, int cp) {
 		
 		
-		RowBounds rowBounds2 = new RowBounds(0, 9);
+		RowBounds rowBounds2 = new RowBounds(0, 12);
 				
 		//게시글 조회
 		List<Board> boardList2 = mapper.selectJisikin(memberNo, rowBounds2);

@@ -32,13 +32,17 @@
                         <div class="vdvd" >
                     </th:block>
 
-                <a th:href="@{/shorts/detail/{boardVideoNo}(boardVideoNo=${videoList[i].boardVideoNo})}" class="video-a">
+                <a th:href="@{/shorts/detail/{boardVideoNo}(boardVideoNo=${videoList[i].boardVideoNo})}" class="video-a" th:object="${videoBoard}">
                     <video th:src="|${videoList[i].videoPath}${videoList[i].videoRename}|" muted onmouseover="this.play()"
                         onmouseout="this.pause()"
                         width="300px"
                         height="320px"
                         controls></video>
-                    <div id="video-kdb" th:text="${videoList[i].videoTitle}">게시글 제목 </div>
+                    <div id="video-kdb" th:text="${videoList[i].videoTitle}" style="font-size: 18px;">게시글 제목 </div>
+                    <span class="video-count" style="font-size: 16px; color:rgb(190, 190, 190); margin-top: 10px;" th:text="|조회수 : *{videoReadCount}|"></span>
+                    <i class="fa-heart fa-solid" style="color : red;  margin-left:160px; font-size: 15px;" id="boardLike"></i>
+                    <span class="video-likeCount" style="font-size: 16px; color:rgb(190, 190, 190);" th:text="*{likeCount}">[[${videoBoard.likeCount}]]</span>
+
                 </a>
             </th:block>
 
@@ -47,53 +51,47 @@
         </div>
 
         <div>
-          <input type="button" value="더보기" style="width:100%; height:30px; background-color: #282828;  cursor:pointer; border:none;" onclick= "viewText(this)">
+          <input type="button" class="moreViews" style="width:100%; height:30px; background-color: #282828;  cursor:pointer; border:none;" onclick= "viewText(this)">
         
         </div>
 
 
             <div class="mid">
             <div class="myCommunity">
-                <label>커뮤니티</label> 
+                 <label>커뮤니티</label> 
                 <a href="/board/1" id="more">더보기</a>
                 <br>
 
                 <div id="myCommunityList">
-                  <table class="list-table" border="0" th:with="boardList=${map.boardList}">
-                    <thead>
-                        <tr>
-                            <th>카테고리</th>
-                            <th>상세 카테고리</th>
-                            <th>제목</th>
-                            <th>작성일</th>
-                            <th>조회수</th>
-                            <th>좋아요</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-                        <tr th:if="${#lists.size(boardList) == 0}" >
+                  <div class="list-table" border="0" th:with="boardList=${map.boardList}" th:object="${Board}">
+                    
+                   
+                        <div th:if="${#lists.size(boardList) == 0}" >
                             <th colspan="6">게시글이 존재하지 않습니다.</th>
-                        </tr>
+                        </div>
 
                         <th:block th:unless="${#lists.size(boardList) == 0}">
-                             <tr th:each="board: ${boardList}" th:object="${board}">
-                                <td th:if="*{categoryName} == 구인" th:text="*{categoryName}" style="color:rgb(33, 155, 255);  border-left: 3px solid rgb(33, 155, 255); ">카테고리 종류</td>
-                                <td th:unless="*{categoryName} == 구인" th:text="*{categoryName}" style="color:rgb(255, 0, 128); border-left: 3px solid rgb(255, 0, 128); ">카테고리 종류</td>
-                                <td th:text="*{categoryNameTwo}" style="font-style:italic">상세 카테고리 종류</td>
-                                <td>
-                                    <a th:href="@{/board/1/{boardNo}(boardNo=*{boardNo})}"
-                                      th:text="*{boardTitle}" style="text-decoration: underline;">게시글 제목</a>
-                                </td>
-                                <td th:text="*{writeDate}" style="font-size:13px;">작성일</td>
-                                <td th:text="*{boardCount}">조회수</td>
-                                <td th:text="*{likeCount}">좋아요</td>
-                            </tr>
+                             <div th:each="board: ${boardList}" th:object="${board}" class="communityBoard" style=" border-bottom: 1px dotted white; padding: 17px 21px;">
+                                <span> <a th:href="@{/board/1/{boardNo}(boardNo=*{boardNo})}"
+                                  th:text="*{boardTitle}" class="communityBoardTitle" style="font-size: 16px;">게시글 제목</a></span> <span th:text="|(*{likeCount})|" style="color:red; font-size: 13px;">좋아요></span>
+                                <br>
+                                  <span th:text="*{boardContent}" style="font-size: 14px; margin-top: 20px; font-size: 14px; color:rgb(190, 190, 190);" ></span>
+                                <br>
+                                <span style="margin-top: 3px;">
+                                    <span th:if="*{categoryName} == 구인" th:text="|*{categoryName} > *{categoryNameTwo} |" style=" font-size:13px; color:rgb(33, 155, 255);  border-left: 2px solid rgb(33, 155, 255);  padding-left: 7px; margin-top: 10px; ">카테고리 종류 ｜</span>
+                                    <span th:unless="*{categoryName} == 구인" th:text="|*{categoryName} > *{categoryNameTwo} |" style="font-size:13px;  color:rgb(255, 0, 128); border-left: 2px solid rgb(255, 0, 128); padding-left: 7px; ">카테고리 종류 </span>
+                                    ｜  <span th:text="*{memberNickname}" style="margin: 0 7px; font-size:13px; color:rgb(190, 190, 190);">닉네임</span> 
+                                    ｜ <span th:text="*{writeDate}" style="font-size:12px; margin: 0 7px; color:rgb(190, 190, 190); font-style: italic;">작성일</span> 
+                                    </span>
+                                <span style="margin-top: 2px; float:inline-end;">
+                                    <span th:text="|조회수 : *{boardCount}|" style="margin: 0 7px; font-size:13px; ; color:rgb(190, 190, 190);" >조회수</span>
+                                    <i class="fa-heart fa-solid" style="color : red;  margin-left:7px; font-size: 14px;" id="boardLike"></i>
+                                    <span class="video-likeCount" style="font-size: 13px; color:rgb(190, 190, 190);" th:text="*{likeCount}"></span>
+                                </span>
+                            </div>
                         </th:block> 
                     </tbody>
-                </table>
+                </div>
                    
                 </div>
             </div>
@@ -109,11 +107,11 @@
                     <thead>
                         <tr>
                             <th>카테고리</th>
-                            <th>상세 카테고리</th>
                             <th>제목</th>
+                            <th>닉네임</th>
                             <th>작성일</th>
                             <th>조회수</th>
-                            <th>좋아요</th>
+                            <th><i class="fa-heart fa-solid" style="color : red;" id="boardLike"></i></th>
 
                         </tr>
 
@@ -126,13 +124,13 @@
 
                         <th:block th:unless="${#lists.size(boardList2) == 0}">
                              <tr th:each="board: ${boardList2}" th:object="${board}">
-                                <td th:if="*{categoryName} == 정보" th:text="*{categoryName}" style="color:rgb(253, 122, 70);  border-left: 3px solid rgb(253, 122, 70);">카테고리 종류</td>
-                                <td th:unless="*{categoryName} == 정보" th:text="*{categoryName}" style="color:rgb(255, 217, 48);  border-left: 3px solid rgb(255, 217, 48);">카테고리 종류</td>
-                                <td th:text="*{categoryNameTwo}" style="font-style:italic">상세 카테고리 종류</td>
+                                <td th:if="*{categoryName} == 정보" th:text="|*{categoryName} > *{categoryNameTwo}|" style="color:rgb(253, 122, 70);  border-left: 3px solid rgb(253, 122, 70);">카테고리 종류</td>
+                                <td th:unless="*{categoryName} == 정보" th:text="|*{categoryName} > *{categoryNameTwo}|" style="color:rgb(255, 217, 48);  border-left: 3px solid rgb(255, 217, 48);">카테고리 종류</td>
                                 <td>
                                     <a th:href="@{/jisik/jisikDetail/{boardNo}(boardNo=*{boardNo})}"
                                       th:text="*{boardTitle}" style="text-decoration: underline;">게시글 제목</a>
                                 </td>
+                                <td th:text="*{memberNickname}"></td>
                                 <td th:text="*{writeDate}" style="font-size:13px;">작성일</td>
                                 <td th:text="*{boardCount}">조회수</td>
                                 <td th:text="*{likeCount}">좋아요</td>

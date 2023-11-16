@@ -17,7 +17,15 @@
       <th:block th:replace="~{common/header2}"></th:block>
 
       <div class="myPage-wallpaper" >
-        <img th:src="#{mainPage.default.image}" class="backgroundImg">
+        <video
+        th:src="#{mainPage.default.video}"
+        muted
+        onmouseover="this.play()"
+        width="100%"
+        height="100%"
+
+        controls
+      ></video>
 
         <button><a href="/homePage/homePage">입장하기</a></button>
       </div>
@@ -38,7 +46,7 @@
     <script th:inline="javascript">
       
       const defaultMainPageImage = /*[[#{mainPage.default.image}]]*/ "기본 이미지";
-
+      const defaultMainPageVideo = /*[[#{mainPage.default.video}]]*/ "기본 이미지";
     
     </script>
 
