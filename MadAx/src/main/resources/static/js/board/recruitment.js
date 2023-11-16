@@ -13,23 +13,17 @@ for(let i=0; i<short.length; i++){
   
 
 
-/* ==================게시글 삭제 버튼 클릭======================= */
-
-const deleteBtn = document.getElementById("deleteBtn");
-
-deleteBtn.addEventListener("click", ()=>{
-  location.href = `/editBoard/${boardCode}/${boardNo}/delete`;
-});
-
 
 
 /* ==================게시글 수정 버튼 클릭======================= */
 
-const updateBtn = document.getElementById("updateBtn");
 
-updateBtn.addEventListener("click", ()=>{
-  location.href = `/editBoard/${boardCode}/${boardNo}/update`;
-});
+
+
+/* ==================게시글 삭제 버튼 클릭======================= */
+
+
+
 
 
 
@@ -39,4 +33,11 @@ const goToListBtn = document.getElementById("goToListBtn");
 
 goToListBtn.addEventListener("click", ()=>{
   location.href = `/Board/${boardCode}/${categoryCode}/${categoryCodeTwo}`;
+});
+
+/* ====================글쓰기 버튼========================== */
+const writeBtn2 = document.getElementById("writeBtn2");
+
+writeBtn2.addEventListener("click", ()=>{
+  location.href = `/editBoard/${boardCode}/insert2`;
 });
