@@ -3,18 +3,6 @@
 <!-- 연결할 인터페이스의 패키지명.인터페이스명으로 작성 -->
 <mapper namespace="com.javaman.madax.shorts.model.mapper.ShortsCommentMapper">
   
-  <resultMap id="comment_rm" type="VideoBoard">
-	  
-	  <id property="commentNo" column="COMMENT_NO" />
-	  
-	  <collection property="commentList" 
-			select="selectComment" 
-			column="COMMENT_NO"
-			javaType="java.util.ArrayList"
-			ofType="VideoComment" />
-  </resultMap>
-  	
-  
   
   	<select id="selectComment" resultType="VideoComment">
 		  SELECT LEVEL, C.* 
@@ -34,6 +22,7 @@
 		      CONNECT BY PRIOR COMMENT_NO = PARENT_NO
 		      ORDER SIBLINGS BY COMMENT_NO
 	  </select>
+	  
 	
 	<insert id="insertComment">
 		INSERT INTO "VIDEO_COMMENT" (COMMENT_NO, COMMENT_CONTENT, MEMBER_NO, BOARD_VIDEO_NO, PARENT_NO)
