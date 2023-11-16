@@ -61,19 +61,20 @@ public class EditBoardController {
 		
 				board.setMemberNo(loginMember.getMemberNo());
 				board.setBoardCode(boardCode);
+
 				
 			
 				int boardNo = service.insertBoard(board,images);
 				
-				if(boardNo > 0 ) {
-					ra.addFlashAttribute("message","게시글 작성 성공");
-					return String.format("redirect:/board/%d/%d",boardCode,boardNo);
-				}
 				
+					if(boardNo > 0 ) {
+						ra.addFlashAttribute("message","게시글 작성 성공");
+						return String.format("redirect:/board/%d/%d",boardCode,boardNo);
+					
+				}
 				ra.addFlashAttribute("message", "게시글 작성 실패");
 				return "redirect:insert"; 
 			}
-	
 	
 	
 	
@@ -148,8 +149,6 @@ public class EditBoardController {
 		map.put("boardNo", boardNo);
 		
 		Board board = boardService.detail(map);
-		model.addAttribute("board",board);
-		
 		return "board/boardUpdate";
 	}
 	
@@ -159,7 +158,7 @@ public class EditBoardController {
 	 * @param boardNo
 	 * @param board
 	 * @param querystring
-	 * @param deleteOrder
+	 * @param deleteOrder	
 	 * @param images
 	 * @param ra
 	 * @return
