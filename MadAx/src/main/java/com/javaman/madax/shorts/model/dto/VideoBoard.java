@@ -30,5 +30,4 @@ public class VideoBoard {
 	
 	private List<Video> videoList;
 	private List<VideoComment> videoCommentList;
-	private List<VideoComment> commentList;
 }
