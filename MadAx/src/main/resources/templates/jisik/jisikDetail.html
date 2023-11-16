@@ -17,11 +17,17 @@
     <th:block th:replace = "~{common/common}"></th:block>
 
 <body>
+
     <main>
+
         <th:block th:replace="~{jisik/jisikHeader}"></th:block>
 
         
         <section class="jisik-detail" th:object="${board}">  
+
+
+
+            
             <!-- 제목 -->
             <div class="detail-title">
 
@@ -29,32 +35,19 @@
                 
             </div>
 
+            <div class="detail-info">
 
-                <!-- 프로필 + 닉네임 + 작성일 + 조회수 -->
-                <div class="detail-info">
-                   
-                        <!-- 프로필 이미지 -->
-                        <!-- 프로필 이미지가 없을 경우 기본 이미지 출력 -->
-                        
-                        <!-- 타임리프 if문에서 객체가 null이 아니면 true
-                            null 이면 false
-                        --> 
-                    <div class="writer">
-                        <div class="writer-img">
-                            <img th:unless="*{profileImg}" th:src="#{user.default.image}">
-                        
-                        <!-- 프로필 이미지가 있을 경우 출력 -->
-                             <img th:if="*{profileImg}" th:src="*{profileImg}" width="100%">
-                         </div>
+                <div class="writer-img">
+                    <img th:unless="*{profileImg}" th:src="#{user.default.image}">
+                
+                <!-- 프로필 이미지가 있을 경우 출력 -->
+                     <img th:if="*{profileImg}" th:src="*{profileImg}" width="100%">
+                 </div>
 
-                        <span th:text="${memberNickname}">작성자</span>
-                       
-                    </div>
-                        <!-- 좋아요 하트 -->
-                        <div class="sympa">
-
+                 <span th:text="${memberNickname}">작성자</span>
+            </div>               
                         
-                         <span class="like-area">
+                        <span class="like-area">
 
                         <!-- 좋아요 누른적이 있으면 fa-solid, 없으면 fa-regular 클래스 추가 -->
                         
@@ -65,10 +58,10 @@
                         <i class="fa-heart" th:classappend="${likeCheck} ? fa-solid : fa-regular" id="boardLike"></i>
 
                         <!-- 좋아요 개수 -->
-                        <span th:text="*{likeCount}">0</span>
+                            <span th:text="*{likeCount}" class="heart-count">0</span>
                             
-                        </div>
-                    </div>
+                        </span>
+                    
                         
                     
 
@@ -94,14 +87,9 @@
                     <span th:text="*{writeDate}">작성일</div>   -->
 
                 
-                
-                
-                
-    <!-- ====================== 이미지가 있을 경우 출력하는 구문 (예정) ====================== -->
-                
-      <th:block th:if="${#lists.size(board.imageList) > 0}" >
+      <!-- <th:block th:if="${#lists.size(board.imageList) > 0}" > --> 
         
-        <!-- 썸네일  -->
+<!--         
         <th:bloack th:if="${thumbnail}">
 
           <div class="img-box">
@@ -111,29 +99,36 @@
                   th:download="${thumbnail.imgOriginalName}">다운로드</a>                      
               </div>
           </div>
-        </th:bloack>
+        </th:bloack> -->
 
-    <div class="jisik-content">
+     <div class="jisik-content">
+
+        <th:block th:if="${#lists.size(board.imageList) > 0}" >   
 
         <!-- 일반 이미지 -->
         <th:block th:if="${#lists.size(board.imageList) > start}" >
         
-        <!--  -->
-          <div class="img-box">
-
             <div th:each="i : ${#numbers.sequence(start, #lists.size(board.imageList)-1, 1)}" 
                 th:with="path=|${board.imageList[i].imgPath}${board.imageList[i].imgRename}|"
                 class="boardImg">
 
-                <img th:src="${path}"> 
+                <img th:src="${path}" style="width: fit-content"> 
                 <!-- <a href="${path}" 
                 th:download="${board.imageList[i].imgOriginalName}">다운로드</a>    -->
             </div>
-
-          </div>
-        </th:block>
      
       </th:block>
+
+ 
+
+<section name="image-1">
+
+    </section>
+
+    <br>
+
+    <section class="content1">
+         
 
        <!-- 이미지가 있을 경우 -->
        <th:block th:if="${#lists.size(board.imageList) > 0}" >
@@ -177,6 +172,38 @@
                </div>
 
            </div>
+
+        </section>
+
+           <div class="img-box">
+
+            <div th:each="i : ${#numbers.sequence(start, #lists.size(board.imageList)-1, 1)}" 
+                th:with="path=|${board.imageList[i].imgPath}${board.imageList[i].imgRename}|"
+                class="boardImg">
+
+                <img th:src="${path}">   
+<!-- 
+                <a href="${path}" 
+                    th:download="${board.imageList[i].imgOriginalName}">다운로드</a>                 -->
+            </div>
+
+        </div>
+
+        <div class="img-box">
+
+            <div th:each="i : ${#numbers.sequence(start, #lists.size(board.imageList)-1, 1)}" 
+                th:with="path=|${board.imageList[i].imgPath}${board.imageList[i].imgRename}|"
+                class="boardImg">
+
+                <img th:src="${path}">   
+<!-- 
+                <a href="${path}" 
+                    th:download="${board.imageList[i].imgOriginalName}">다운로드</a>                 -->
+            </div>
+
+        </div>
+
+
        </th:block>
    
    </th:block>
