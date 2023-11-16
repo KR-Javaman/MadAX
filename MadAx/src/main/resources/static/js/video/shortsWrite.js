@@ -145,6 +145,7 @@ const writeForm = document.querySelector("#writeForm");
 writeForm.addEventListener("submit", (e) => {
   const title = document.querySelector("[name=videoTitle]");
   const content = document.querySelector("[name=videoContent]");
+  const videoFile = document.querySelector("[name=shortsVideo]");
 
   if (title.value.trim().length == 0) {
     alert("제목을 입력해주세요");
@@ -158,6 +159,11 @@ writeForm.addEventListener("submit", (e) => {
     e.preventDefault();
     content.value = "";
     content.focus();
+    return;
+  }
+  if (videoFile.size == 0) {
+    alert("파일을 선택해주세요.");
+    e.preventDefault();
     return;
   }
 });

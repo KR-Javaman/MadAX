@@ -117,11 +117,11 @@
 	<insert id="writeInsert" useGeneratedKeys="true">
 		<selectKey order="BEFORE" resultType="_int" keyProperty="boardVideoNo" >
         	SELECT SEQ_BOARD_VIDEO_NO.NEXTVAL FROM DUAL
-      	</selectKey>
-      INSERT INTO "VIDEO_BOARD"
-      VALUES( #{boardVideoNo} , #{videoTitle},  #{videoContent},
-         DEFAULT,  DEFAULT, #{memberNo}, DEFAULT, NULL)
-	</insert>
+	     </selectKey>
+		      INSERT INTO "VIDEO_BOARD"
+		      VALUES( #{boardVideoNo} , #{videoTitle},  #{videoContent},
+		         DEFAULT,  DEFAULT, #{memberNo}, DEFAULT, NULL)
+			</insert>
 	
 	<insert id="uploadVideoFile" parameterType="list">
 		INSERT INTO "VIDEO"

@@ -170,15 +170,9 @@ public class ShortsController {
 					c.setMaxAge((int)diff);
 					
 					resp.addCookie(c);
-				}
-				
+				}		
 			}
-			
-		}else { // 게시글이 없을 경우
-			Path = "redirect:/shorts/main";
-			ra.addFlashAttribute("message", "해당 게시글이 존재하지 않습니다");
-		}
-		
+		}	
 		return Path;
 	}
 	

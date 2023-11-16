@@ -82,38 +82,36 @@ public class ShortsServiceImpl implements ShortsService{
 		int result = mapper.writeInsert(videoBoard);
 		
 		if(result == 0) return 0;
+		int boardVideoNo = videoBoard.getBoardVideoNo();
 	
 		List<Video> uploadVideo = new ArrayList<>();
 		for(int i= 0; i<video.size(); i++) {
-			if(video.get(i).getSize()>10485760) {
-
-				result = 0;
+			if(!video.isEmpty()) {
+				if(video.get(i).getSize()>0) {
+					Video vd = new Video();
+					
+					vd.setBoardVideoNo(videoBoard.getBoardVideoNo());
+					vd.setVideoOrder(i);
+					vd.setVideoPath(webPath);
+					vd.setVideoRename(Util.fileRename(video.get(i).getOriginalFilename()));
+					vd.setUploadFile(video.get(i));
+					uploadVideo.add(vd);
+					
+					mapper.videoInsert(vd);
+				}
 			}
-
-			if(video.get(i).getSize()>0) {
-				Video vd = new Video();
-				
-				vd.setBoardVideoNo(videoBoard.getBoardVideoNo());
-				vd.setVideoOrder(i);
-				vd.setVideoPath(webPath);
-				vd.setVideoRename(Util.fileRename(video.get(i).getOriginalFilename()));
-				vd.setUploadFile(video.get(i));
-				uploadVideo.add(vd);
-				
-				mapper.videoInsert(vd);
+			if(!uploadVideo.isEmpty()) {
+				for(Video vd : uploadVideo) {
+					vd.getUploadFile().transferTo(new File(folderPath + vd.getVideoRename()));
+				}
+				result = 1;
+			}else {
+				return 0;
 			}
-		}
-		if(!uploadVideo.isEmpty()) {
-			result = 1;
-			for(Video vd : uploadVideo) {
-				vd.getUploadFile().transferTo(new File(folderPath + vd.getVideoRename()));
-			}
-		}else {
-			result = 0;
+		
 		}
 		return result;
 	}
-	
 	
 	// 글 상세 조회
 	@Override

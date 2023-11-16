@@ -48,7 +48,6 @@
   display: flex;
   justify-content: center;
   padding: 1rem;
-  border-top: 0.1rem solid gray;
 }
 .comment-write-area > textarea {
   flex-basis: 85%;
@@ -74,7 +73,7 @@
   height: 5rem;
   resize: none;
   margin-top: 1.5rem;
-  border: none;
+  border-color: black;
   border-radius: 0.5rem;
 }
 .child-comment {
