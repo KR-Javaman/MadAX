@@ -53,6 +53,11 @@ updateForm.addEventListener("submit", (e) => {
     content.focus();
     return;
   }
+  var fileCheck = videoFile.value;
+  if (!fileCheck) {
+    alert("파일을 확인 해주세요");
+    return;
+  }
 });
 
 for (let i = 0; i > shortsVideo.length(); i++) {
