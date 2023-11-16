@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html  lang="ko" xmlns:th="http://www.thymeleaf.org">
-
-  <head>
+<html lang="en">
+  
+<head>
     <meta charset="UTF-8">
 
     <title>게시판 글쓰기</title>
@@ -21,10 +21,10 @@
   
       <div class="container">
         
-        <h2>게시판 글쓰기</h2>
+        <h2>글수정</h2>
   
-        <form action="jisikWrite" method="post" id="jisikWrite" enctype="multipart/form-data">
-  
+        <form action="jisikUpdate" method="post" id="jisikUpdate" enctype="multipart/form-data">
+            
           <div class="form-group">
             <label for="title">제목</label>
             <input type="text" class="form-control" id="title" placeholder="제목 입력(4-100)" name="boardTitle"
@@ -65,16 +65,16 @@
       <th:block th:replace = "~{common/common}"></th:block>
   
     </body>
-  
+
     <script th:inline ="javascript">
-      const boardCode = /*[[${boardCode}]]*/"게시판코드";
-      const category = /*[[(c1=${param.c1}, c2=${param.c2})*/ "카테고리";
-      const message = /*[[${message}]]*/ "message";
-   
-      if(message != null) alert(message);
-    </script>
+        const boardCode = /*[[${boardCode}]]*/"게시판코드";
+        const category = /*[[(c1=${param.c1}, c2=${param.c2})*/ "카테고리";
+        const message = /*[[${message}]]*/ "message";
+     
+        if(message != null) alert(message);
+      </script>
+      
     
-  
-    <script src="/js/jisik/jisikWrite.js"></script>
-  
-  </html> 
+      <script src="/js/jisik/jisikWrite.js"></script>
+    
+    </html> 

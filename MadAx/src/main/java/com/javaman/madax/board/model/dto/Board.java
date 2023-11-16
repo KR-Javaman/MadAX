@@ -1,6 +1,6 @@
 package com.javaman.madax.board.model.dto;
 
-import java.util.List;
+import java.util.List; 
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,12 +23,16 @@ public class Board {
     private int memberNo;
     private int boardCode;
     private int categoryCode;
+
+
+//    private int categoryName;
     private int categoryCodeTwo;
+
     private String boardName;
     private String categoryName;
     private String categoryNameTwo;
 
-    
+
     
     // 목록 조회, 상세 조회 시 매핑되는 필드
     private int commentCount; // 댓글 수

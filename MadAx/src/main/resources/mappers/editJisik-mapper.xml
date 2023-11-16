@@ -3,7 +3,22 @@
 <!-- 연결할 인터페이스의 패키지명.인터페이스명으로 작성 -->
 <mapper namespace="com.javaman.madax.jisik.mapper.EditJisikMapper">
   
+	
+	<insert id="insertUploadList" parameterType="list">
+		 INSERT INTO "BOARD_IMG"
+		 
+		  <foreach collection="list" item="img" separator=" UNION ">
+		 SELECT NEXT_IMG_NO(),
+		 		#{img.imgPath},
+		 		#{img.imgRename},
+		 		#{img.imgOriginalName},
+		 		#{img.imgOrder},
+		 		#{img.boardNo}
+		 FROM DUAL
+	 </foreach>
 
+	</insert>
+	
 	<!--게시글 작성-->
 	 <insert id="jisikWrite" parameterType="Board" useGeneratedKeys="true">
 		 
@@ -12,15 +27,58 @@
 		 </selectKey>
 		 
 		 INSERT INTO "BOARD"
-		 						
+		 	 						
 		 VALUES(#{boardNo}, #{memberNo}, #{boardTitle}, #{boardContent}, NULL,
-		 		DEFAULT, DEFAULT, DEFAULT,#{boardCode},#{categoryCode}, #{category2Code})
-		
+		 		DEFAULT, DEFAULT, DEFAULT, #{boardCode}, #{categoryCode}, #{categoryCodeTwo})
+		 		
 	 </insert>
 	 
 	
+	 <insert id="boardImgInsert">
+		 INSERT INTO "BOARD_IMG"
+      	VALUES(SEQ_IMG_NO.NEXTVAL, #{imgPath}, #{imgRename}, #{imgOriginalName}, #{imgOrder}, #{boardNo}
+      )
+	 </insert>
 	 
-   
-
+	 
+	  <update id="jisikDelete">
+		UPDATE "BOARD" SET
+	  	BOARD_DEL_FL = 'Y'
+	    WHERE BOARD_CODE = '2'
+	  	AND BOARD_NO = #{boardNo}
+	  	AND MEMBER_NO = #{memberNo}
+	 </update>	
+	 
+	
+	<!--게시글 부분 수정-->
+	 <update id="jisikUpdate">
+		 UPDATE "BOARD" SET
+		 BOARD_TITLE = #{boardTitle},
+		 BOARD_CONTENT = #{boardContent}
+		 WHERE BOARD_CODE = #{boardCode}
+		 AND BOARD_NO = #{boardNo}
+	 </update>
+	 
+	  <!--이미지 삭제-->
+	 <delete id="imageDelete">
+		 DELETE FROM "BOARD_IMG"
+		WHERE BOARD_NO = #{boardNo}
+		AND IMG_ORDER IN( ${deleteOrder} )
+	 </delete>
+	 
+	
+	  <update id="updateBoardImg">
+		 UPDATE "BOARD_IMG" SET
+      	IMG_PATH = #{imgPath},
+      	IMG_RENAME = #{imgRename},
+      	IMG_ORIGINAL_NAME = #{imgOriginalName}
+      	WHERE BOARD_NO = #{boardNo}
+      	AND IMG_ORDER = #{imgOrder}
+	 </update>
+	 
+	 
+	
+	
+		
 
 </mapper>
