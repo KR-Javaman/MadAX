@@ -14,6 +14,10 @@ public interface EditJisikService {
 
 	int jisikDelete(Map<String, Integer> paramMap);
 
+	Board jisikDetail(int boardNo);
+
+	int jisikUpdate(Board board, List<MultipartFile> images, String deleteOrder) throws IllegalStateException, IOException;
+
 	
 
 //	int jisikWrite(Board board, List<MultipartFile> images);

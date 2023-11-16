@@ -26,4 +26,10 @@ public interface EditJisikMapper {
 
 	int jisikDelete(Map<String, Integer> paramMap);
 
+	int jisikUpdate(Board board);
+
+	int updateBoardImg(BoardImg img);
+
+	void boardImgInsert(BoardImg img);
+
 }

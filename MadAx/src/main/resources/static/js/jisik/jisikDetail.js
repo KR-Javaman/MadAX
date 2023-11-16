@@ -150,7 +150,11 @@ const updateBtn = document.getElementById("updateBtn");
 
 if(updateBtn != null){ 
 updateBtn.addEventListener("click", ()=>{
-  location.href = `/jisik/jisikUpdate`;
+  
+  location.href = location.pathname.replace ("jisikDetail", "jisikUpdate");
+  // location.href = location.pathname.replace ("jisikDetail", "jisikUpdate");
+
+  
 
 });
 }

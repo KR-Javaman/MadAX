@@ -23,24 +23,18 @@ public class Board {
     private int memberNo;
     private int boardCode;
     private int categoryCode;
-<<<<<<< HEAD
+
 
 //    private int categoryName;
     private int categoryCodeTwo;
-//
-=======
-    private int categoryCodeTwo;
 
->>>>>>> d7a76b2637b15782a2bb969aeef5f0f4c5a501c3
+
+
     private String boardName;
     private String categoryName;
     private String categoryNameTwo;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> d7a76b2637b15782a2bb969aeef5f0f4c5a501c3
-    
     
     // 목록 조회, 상세 조회 시 매핑되는 필드
     private int commentCount; // 댓글 수

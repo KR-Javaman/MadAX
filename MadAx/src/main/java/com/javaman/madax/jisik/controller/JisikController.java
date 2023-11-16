@@ -206,12 +206,7 @@ public class JisikController {
 			model.addAttribute("thumbnail", thumbnail);
 			model.addAttribute("start", thumbnail != null ? 1 : 0);
 			
-		}  else {
-			
-			return "redirect:/jisik/jisikList";
-					
 		}  
-		
 			return path;
 			
 		}

@@ -1,6 +1,6 @@
 package com.javaman.madax.jisik.model;
 
-import java.io.File;
+import java.io.File; 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -101,10 +101,67 @@ public class EditJisikServiceImpl implements EditJisikService{
 	}
 	
 	
+	@Override
+	public int jisikUpdate(Board board, List<MultipartFile> images, String deleteOrder) throws IllegalStateException, IOException {
+		int result = mapper.jisikUpdate(board);
+		
+		
+		
+		
+		
+		if(result == 0) return 0;
+		
+		{
+			
+		}
+		
 	
+	List<BoardImg> uploadList = new ArrayList<>();
 	
+	for(int i=0; i<images.size(); i++) {
+		
+		if(images.get(i).getSize() > 0) {
+			
+			BoardImg img = new BoardImg();
+
+			img.setBoardNo(board.getBoardNo()); 
+			img.setImgOrder(i); 	
+			img.setImgOriginalName(images.get(i).getOriginalFilename()); 
+			img.setImgPath(webPath);
+			img.setImgRename(Util.fileRename(images.get(i).getOriginalFilename())); 
+			img.setUploadFile(images.get(i));
+			uploadList.add(img);
+			
+			result = mapper.updateBoardImg(img);
+			
+			if(result == 0) {
+				mapper.boardImgInsert(img);
+			}
+		}
+	}
+	
+	if(!uploadList.isEmpty()) {
+		result = 1;
+		
+		for(BoardImg img : uploadList) {
+			img.getUploadFile().transferTo(new File(folderPath + img.getImgRename() ) );
+		}
+	}
+	
+	return result;
+	
+	}
+	
+	@Override
+	public Board jisikDetail(int boardNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
+
+
+
 
 
 // ----------------------------------------------------------------------------------------------------------------------------------------

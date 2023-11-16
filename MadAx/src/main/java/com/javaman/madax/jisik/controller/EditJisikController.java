@@ -37,7 +37,7 @@ public class EditJisikController {
 	
 	private final EditJisikService service;
 	
-	private final JisikService jisikservice;
+	private final JisikService jisikService;
 	
 	
 	@GetMapping("jisikDelete/{boardNo:[0-9]+}")
@@ -57,12 +57,13 @@ public class EditJisikController {
 		
 		int result = service.jisikDelete(paramMap);
 		
+		// 
 		String path = null;
 		String message = null;
 		
 		if(result > 0) {
 			message = "삭제 되었습니다";
-			path = "jisik/jisikDelete";
+			path = "redirect:/jisik/jisikList";
 		} else {
 			
 			message = "삭제 실패";
@@ -120,4 +121,58 @@ public class EditJisikController {
 			return "redirect:/jisik/jisikWrite";
 	}
 	
+	
+	@GetMapping("jisikUpdate/{boardNo:[0-9]+}")
+	public String jisikUpdate(
+			@PathVariable("boardNo") int boardNo,
+			Model model) {
+		
+		Board board = jisikService.jisikDetail(boardNo);
+		
+		model.addAttribute("board", board);
+		
+		return "jisik/jisikUpdate";
+		
+	}
+	
+	@PostMapping("jisikUpdate/{boardNo:[0-9]+}")
+	public String jisikUpdate(Model model,
+			@PathVariable("boardNo") int boardNo,
+			Board board,
+			String querystring,
+			String deleteOrder,		
+			@RequestParam("images") List<MultipartFile> images,
+			RedirectAttributes ra) throws IllegalStateException, IOException {
+		
+		board.setBoardNo(boardNo);
+		
+		int result = service.jisikUpdate(board, images, deleteOrder);
+		
+		model.addAttribute(boardNo);
+		
+		String message = null;
+		String path = null;
+		
+		if(result > 0) {
+			message = "게시글 수정 완료";
+			path = "jisik/jisikDetail/ + boardNo"; 
+			
+//			path = String.format("redirect:/jisik/jisikDetail/%d%s" , boardNo, querystring);
+			
+			
+		} else {
+			message = "수정 실패";
+			path = "jisik/jisikList";
+		}
+		ra.addFlashAttribute("message", message);
+		return path;
+		
+	}
+	
 }
+
+		
+		
+		
+	
+		
