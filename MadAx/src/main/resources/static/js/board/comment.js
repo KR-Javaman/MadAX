@@ -11,25 +11,18 @@ const selectCommentList = () => {
       commentList.innerHTML = "";
 
       for(let comment of cList){
-
-          
           const commentRow = document.createElement("li");
           commentRow.classList.add("comment-row");
+        
+          if(comment.parentNo != 0)  {
+            commentRow.classList.add("child-comment");
+          }
 
-         
-          if(comment.parentNo != 0)  commentRow.classList.add("child-comment");
-
-
-          
-          if(comment.commentDelFl == 'Y') commentRow.innerText = "삭제된 댓글 입니다";
-
-          // 삭제되지 않은 댓글인 경우 (댓글, 버튼 생성)
-          else{
-              // 작성자
+          if(comment.commentDelFl == 'Y') {
+            commentRow.innerText = "삭제된 댓글 입니다";
+          }else{
               const commentWriter = document.createElement("p");
               commentWriter.classList.add("comment-writer");
-
-              // 프로필 이미지
               const profileImg = document.createElement("img");
 
               if( comment.profileImg != null ){ // 프로필 이미지가 있을 경우
@@ -167,8 +160,7 @@ addComment.addEventListener("click", e => {
 });
 
 
-// -----------------------------------------------------------------------------------
-// 댓글 삭제
+/*============================ 댓글 삭제=========================== */
 function deleteComment(commentNo){
 
   if( confirm("정말로 삭제 하시겠습니까?") ){
@@ -194,29 +186,21 @@ function deleteComment(commentNo){
 
 
 
-
-// ------------------------------------------------------------------------------------------
-// 댓글 수정 화면 전환 
+/*========================== 댓글 수정 화면 전환 ===============================*/ 
 
 let beforeCommentRow; // 수정 전 원래 행의 상태를 저장할 변수
 
 
 function showUpdateComment(commentNo, btn){
-                   // 댓글번호, 이벤트발생요소(수정버튼)
-
-  // ** 댓글 수정이 한 개만 열릴 수 있도록 만들기 **
-  // 댓글 수정을 위한 textarea를 모두 얻어옴 -> 수정이 활성화 되어 있을 경우 1개, 없으면 0개
+    
   const temp = document.getElementsByClassName("update-textarea");  
 
-  if(temp.length > 0){ // 수정이 한 개 이상 열려 있는 경우
+  if(temp.length > 0){ 
 
-      if(confirm("다른 댓글이 수정 중입니다. 현재 댓글을 수정 하시겠습니까?")){ // 확인
+      if(confirm("다른 댓글이 수정 중입니다. 현재 댓글을 수정 하시겠습니까?")){ 
 
           temp[0].parentElement.innerHTML = beforeCommentRow;
-          // comment-row                       // 백업한 댓글
-          // 백업 내용으로 덮어 씌워 지면서 textarea 사라짐
-          
-      }else{ // 취소
+      }else{ 
           return;
       }
   }

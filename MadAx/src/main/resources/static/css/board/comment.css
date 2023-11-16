@@ -107,5 +107,6 @@
 /* 댓글 내용 */
 .comment-content{
 	white-space: pre-wrap; /* 작성된 문자열 모양 그대로(공백 유지) */
- 
+    font-size: 20px;
+    color: white;
 }
