@@ -23,12 +23,12 @@ public class BoardServiceImpl implements BoardService{
 	
 	
 	@Override
-	public Map<String, Object> selectBoard(int boardCode, int cp) {
+	public Map<String, Object> selectBoard(Map<String, Integer> codeMap, int cp) {
 		
 		
 		
 		//게시글 수 조회
-		int listCount = mapper.ListCount(boardCode);
+		int listCount = mapper.ListCount(codeMap);
 		
 		Pagination pagination = new Pagination(cp, listCount);
 		
@@ -43,7 +43,7 @@ public class BoardServiceImpl implements BoardService{
 		
 		
 		//게시글 조회
-		List<Board> boardList = mapper.selectBoard(boardCode, rowBounds);
+		List<Board> boardList = mapper.selectBoard(codeMap, rowBounds);
 		
 		Map<String , Object> map =  new HashMap<>();
 		map.put("boardList", boardList);
@@ -56,8 +56,6 @@ public class BoardServiceImpl implements BoardService{
 	//게시글 상세 조회
 	@Override
 	public Board detail(Map<String, Object> map) {
-		
-		
 		return mapper.detail(map);
 	}
 	
@@ -65,7 +63,6 @@ public class BoardServiceImpl implements BoardService{
 	//게시글 좋아요 여부 확인
 	@Override
 	public int likeCheck(Map<String, Object> map) {
-		
 		return mapper.likeCheck(map);
 	}
 	
@@ -84,21 +81,15 @@ public class BoardServiceImpl implements BoardService{
 		
 			result = mapper.insertBoardLike(map);
 		}
-		
-		 
 		//SQL 수행 결과가 0 == 파라미터에 문제 있음
 		if(result == 0) {
 			return -1;
 		}
-		
 		//SQL 성공 시 
 		//-> 현재 게시글의 좋아요 수를 조회해서 반환
 		return mapper.countBoardLike((Integer) map.get("boardNo") );
-		
-		
 	}
-	
-	
+		
 	@Override
 	public int updateBoardCount(int boardNo) {
 	
@@ -107,42 +98,7 @@ public class BoardServiceImpl implements BoardService{
 	
 	
 	
-	//카테고리별 게시글 조회
-	@Override
-	public Map<String, Object> CategoryBoard(int boardCode, int categoryCode, int categoryCodeTwo, int cp) {
-		
-		//게시글 수 조회
-				int listCount = mapper.ListCount(boardCode);
-				
-				Pagination pagination = new Pagination(cp, listCount);
-				
-				
-				int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
-								//현재 페이지에서 1을 빼고 한 페이지 목록에 보여지는 게시글 수를 곱함(결과 만큼을 건너뛰고 조회)
-				int limit = pagination.getLimit(); 
-				
-				
-				RowBounds rowBounds = new RowBounds(offset,limit);
-				
-				
-				
-				//게시글 조회
-				
-				Map<String, Integer> boardMap = new HashMap<>();
-				boardMap.put("boardCode", boardCode);
-				boardMap.put("categoryCode", categoryCode);
-				boardMap.put("categoryCodeTwo", categoryCodeTwo);
-				
-				List<Board> boardList = mapper.CategoryBoard(boardMap, rowBounds);
-				
-				Map<String , Object> map =  new HashMap<>();
-				map.put("boardList", boardList);
-				map.put("pagination", pagination);
-				
-				return map;
-	}
-	
-	
+	//게시글 검색
 	@Override
 	public Map<String, Object> searchBoardList(Map<String, Object> paramMap, int cp) {
 		
@@ -165,6 +121,15 @@ public class BoardServiceImpl implements BoardService{
 
 		return map;
 	}
+	
+
+
+	
+	
+	
+
+	
+	
 	
 
 	

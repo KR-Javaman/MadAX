@@ -1,0 +1,54 @@
+
+/* .com-center{
+  border: 1px solid wheat;
+} */
+
+.short{
+  
+  background-color: rgb(204, 204, 204);
+  margin-top: 30px;
+  display: flex;
+}
+
+.board-main{
+  margin-left: 20px;
+  height: 130px;
+  
+  
+}
+
+
+.profileImg{
+  width: 130px;
+  height: 130px;
+  display: flex;
+  margin: auto 0;
+
+}
+
+.board-main>h1,span{
+  margin-top: 5px;
+  font-size: 15px;
+  color: rgb(0, 0, 0);
+}
+
+
+.myDIV{
+  background-color: rgb(255, 255, 255);
+  border: 3px solid black;
+  margin-top: 10px;
+  width: 80%;
+  height: 150px;
+  display: flex;
+  margin: 10px auto;
+}
+  
+
+.board-content{
+  font-size: 25px;
+  /* border: 1px solid black; */
+  margin-top: 30px;
+  margin-left: 100px;
+  font-weight: bolder;
+  
+}

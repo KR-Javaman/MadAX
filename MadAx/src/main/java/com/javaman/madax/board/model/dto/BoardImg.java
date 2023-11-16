@@ -20,5 +20,6 @@ public class BoardImg {
 	   private int boardNo;
 	   
 	   private MultipartFile uploadFile;
+
 }
 

@@ -20,7 +20,7 @@ public interface ShortsMapper {
 
 	int uploadVideoFile(List<Video> uploadVideo);
 
-	void videoInsert(Video vd);
+	int videoInsert(Video vd);
 
 	int selectVideo(List<Video> uploadVideo);
 

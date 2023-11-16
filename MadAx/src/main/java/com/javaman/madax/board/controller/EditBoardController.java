@@ -41,7 +41,6 @@ public class EditBoardController {
 	 */
 	@GetMapping("{boardCode:[0-9]+}/insert")
 	public String insertBoard(@PathVariable("boardCode")int boardCode) {
-		
 		return "board/boardWrite";
 	}
 	
@@ -71,11 +70,13 @@ public class EditBoardController {
 					return String.format("redirect:/board/%d/%d",boardCode,boardNo);
 				}
 				
-				
 				ra.addFlashAttribute("message", "게시글 작성 실패");
-				
 				return "redirect:insert"; 
 			}
+	
+	
+	
+	
 	
 	
 	/**게시글 삭제
@@ -88,6 +89,7 @@ public class EditBoardController {
 	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete")
 	public String deleteBoard( @PathVariable("boardCode") int boardCode,
 								@PathVariable("boardNo")int boardNo, 
+								Board board,
 								@SessionAttribute(value ="loginMember", required = false) Member loginMember,
 								RedirectAttributes ra) {
 		
@@ -106,12 +108,16 @@ public class EditBoardController {
 		
 		int result = service.delete(map);
 		
+		int categoryCode = board.getCategoryCode();
+		
 		String path = null;
 		String message = null;
 		
 		if(result > 0) {
-			message = "삭제되었습니다";
-			path = "redirect:/board/"+ boardCode;  
+			
+				message = "삭제되었습니다";
+				path = "redirect:/board/1/1/1";
+			
 		}else {
 			message = "삭제 실패";
 			path = "redirect:/";
@@ -122,7 +128,6 @@ public class EditBoardController {
 		
 		return path;
 			
-		
 	}
 	
 	
