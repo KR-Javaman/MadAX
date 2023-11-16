@@ -64,13 +64,6 @@
 // const uploadFile = document.querySelector("#upload-file");
 // const button = document.querySelector("button");
 
-// const upload = () => {
-//   var fileCheck = uploadFile.value;
-//   if (!fileCheck) {
-//     alert("파일을 확인 해주세요");
-//     return false;
-//   }
-
 //   var checkSize = "N";
 //   if (uploadFile.files[0].size > 10485760) {
 //     if (confirm("파일의 용량이 너무 큽니다. 최적하 하시겠습니까?")) {
@@ -109,12 +102,6 @@ const upload = (videoInput, order) => {
   const uploadFile = videoInput.files[0];
   const inputVideo = document.querySelector("[name=shortsVideo]");
 
-  // var fileCheck = shortsVideo.value;
-  // if (!fileCheck) {
-  //   alert("파일을 확인 해주세요");
-  //   return;
-  // }
-
   if (uploadFile.size > maxSize) {
     alert("파일의 용량이 너무 큽니다.");
     if (backupList[order] == undefined) {
@@ -133,6 +120,11 @@ const upload = (videoInput, order) => {
     inputVideo.value = "";
     return;
   }
+  // var fileCheck = uploadFile.value;
+  // if (!fileCheck) {
+  //   alert("파일을 확인 해주세요");
+  //   return false;
+  // }
   // if (uploadFile.size > maxSize) {
   //   alert("파일의 용량이 너무 큽니다.");
   //   inputVideo.value = "";
@@ -161,9 +153,15 @@ writeForm.addEventListener("submit", (e) => {
     content.focus();
     return;
   }
-  if (videoFile.size == 0) {
-    alert("파일을 선택해주세요.");
-    e.preventDefault();
+  var fileCheck = videoFile.value;
+  if (!fileCheck) {
+    alert("파일을 확인 해주세요");
     return;
   }
 });
+
+function handleOnInput(el, maxlength) {
+  if (el.value.length > maxlength) {
+    el.value = el.value.substr(0, maxlength);
+  }
+}
