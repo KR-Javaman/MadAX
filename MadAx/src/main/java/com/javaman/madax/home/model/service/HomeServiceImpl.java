@@ -26,7 +26,7 @@ public class HomeServiceImpl implements HomeService {
 	@Override
 	public Map<String, Object> selectCommunity(Board board, int cp) {
 		
-		RowBounds rowBounds = new RowBounds(0, 5);
+		RowBounds rowBounds = new RowBounds(0, 6);
 		
 		//게시글 조회
 		List<Board> boardList = mapper.selectCommunity(board, rowBounds);
@@ -43,7 +43,7 @@ public class HomeServiceImpl implements HomeService {
 	public Map<String, Object> selectJisikin(Board board, int cp) {
 		
 
-		RowBounds rowBounds2 = new RowBounds(0, 9);
+		RowBounds rowBounds2 = new RowBounds(0, 12);
 				
 		//게시글 조회
 		List<Board> boardList2 = mapper.selectJisikin(board, rowBounds2);

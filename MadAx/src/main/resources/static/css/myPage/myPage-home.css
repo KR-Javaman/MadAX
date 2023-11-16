@@ -19,14 +19,13 @@ a {
 
 .mid{
   display: flex;
-  margin-top : 5rem;
   width: 100%;
   height: 50rem;
 }
 
 .myCommunity{
   width: 50%;
-  height: 40rem;
+  height: 500px;
   padding-right: 20px;
 }
 
@@ -62,7 +61,7 @@ a {
 }
 
 .list-table thead tr th {
-  font-size: 15px;
+  font-size: 14px;
 }
 
 
@@ -72,19 +71,19 @@ a {
   color: rgba(255, 255, 255, 0.705);
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 245px;
   line-height: 25px;
-  padding: 15px 24px;
+  padding: 0 5px;
 }
 
 .list-table tr td a{
 
-  font-size: 15px;
-  color: white;
+  font-size: 13px;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 245px;
-  line-height: 25px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  max-width: 180px;
 }
 
 .list-table tr > *{ text-align: center;
@@ -118,7 +117,7 @@ font-size: 15px; }
   width: 15%;
 }
 .list-table tr > td:nth-child(4) {
-  width: 15%;
+  width: 12.5%;
 }
 
 #more {
@@ -144,7 +143,7 @@ font-size: 15px; }
 }
 
 .myShorts {
-  margin-top: 25rem;
+  margin-top: 16rem;
 }
 
 #shorts {
@@ -157,13 +156,13 @@ font-size: 15px; }
 }
 
 .noBoard {
-  margin-left : 470px;
-  margin-top : 70px;
+  margin-left : 375px;
+  margin-top : 180px;
 }
 
 video {
-  width: 240px;
-  height: 405px;
+  width: 180px;
+  height: 335px;
   object-fit: cover;
   border-radius: 1rem;
 }
@@ -173,7 +172,7 @@ video {
   
 }
 .video-a {
-  width: 20rem;
+  width: 17.5rem;
   border-radius: 1rem;
   text-decoration: none;
   margin-right: 2rem;
@@ -188,16 +187,14 @@ video {
 
 #video-kdb {
   height: 3rem; 
-  /* font-size: 1.4rem; */
-  /* display: block; */
   padding-top: 1rem;
-  /* white-space: nowrap; */
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: horizontal;
   max-width: 230px;
   line-height: 28px;
+  overflow: hidden;
 }
 video:hover {
   border-radius: 0%;
@@ -209,4 +206,34 @@ video:hover {
   display: flex;
   justify-content: end;
   align-items: center;
+}
+
+
+
+video::-webkit-media-controls-play-button {
+  display: none;
+}
+video::-webkit-media-controls-fullscreen-button {
+  display: none;
+}
+video::-webkit-media-controls-timeline {
+  display: none;
+}
+
+video::-webkit-media-controls-current-time-display{
+  display: none;
+}
+
+video::-webkit-media-controls-time-remaining-display{
+  display: none;
+}
+
+video::-webkit-media-controls-mute-button {
+  display: none;
+}
+video::-webkit-media-controls-volume-slider {
+  display: none;
+}
+video::-webkit-media-controls-download-button {
+  display: none;
 }

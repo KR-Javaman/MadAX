@@ -28,7 +28,7 @@
 
 video {
   width: 100%;
-  height: 390px;
+  height: 300px;
   object-fit: cover;
   border-radius: 1rem;
 }
@@ -38,8 +38,8 @@ video {
   
 }
 .video-a {
-  width: 24.4rem;
-  height: 42rem;
+  width: 18.4rem;
+  height: 38rem;
   border-radius: 1rem;
   text-decoration: none;
   color: white;
@@ -50,9 +50,9 @@ video {
   font-size: 1.4rem;
   display: block;
   padding-top: 1rem;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 300px;
 }
 video:hover {
   border-radius: 0%;
@@ -65,9 +65,6 @@ video:hover {
   justify-content: end;
   align-items: center;
 }
-
-
-
 
 
 
@@ -108,4 +105,33 @@ video:hover {
   border-radius: 50%;
   color: rgb(0, 0, 0) !important;
   letter-spacing: 0 !important;
+}
+
+
+video::-webkit-media-controls-play-button {
+  display: none;
+}
+video::-webkit-media-controls-fullscreen-button {
+  display: none;
+}
+video::-webkit-media-controls-timeline {
+  display: none;
+}
+
+video::-webkit-media-controls-current-time-display{
+  display: none;
+}
+
+video::-webkit-media-controls-time-remaining-display{
+  display: none;
+}
+
+video::-webkit-media-controls-mute-button {
+  display: none;
+}
+video::-webkit-media-controls-volume-slider {
+  display: none;
+}
+video::-webkit-media-controls-download-button {
+  display: none;
 }

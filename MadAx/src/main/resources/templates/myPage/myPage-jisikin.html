@@ -28,8 +28,6 @@
                 <section class="myPage-community-main">
                     <label id="myshorts">내가 작성한 지식in글</label>
                     
-                      <button id="writeBtn">글쓰기</button>                     
-                    
                         <section class="myPage-community-total">
 
                           <div class="community">
@@ -39,43 +37,31 @@
                                           
                                 <thead>
                                   <tr>
-                                      <th>게시판 종류</th>
-                                      <th>카테고리</th>
-                                      <th>상세 카테고리</th>
-                                      <th>글번호</th>
-                                      <th>제목</th>
-                                      <th colspan="6">내용</th>
-                                      <th>작성자</th>
-                                      <th>작성일</th>
-                                      <th>조회수</th>
-                                      <th>좋아요</th>
+                                    <th>카테고리</th>
+                                    <th>제목</th>
+                                    <th>내용</th>
+                                    <th>작성일</th>
+                                    <th>조회수</th>
+                                    <th><i class="fa-heart fa-solid" style="color : red;" id="boardLike"></i></th>
                                   </tr>
                                 </thead>
                                 
                                 <tbody>
 
                                   <tr th:if="${#lists.size(boardList) == 0}">
-                                    <th colspan="6">게시글이 존재하지 않습니다.</th>
+                                    <th colspan="10">게시글이 존재하지 않습니다.</th>
                                   </tr>
         
                                  <!-- 게시글이 존재할 때 -->
                                 <th:block th:unless="${#lists.size(boardList) == 0}">
                                   <tr th:each="board: ${boardList}" th:object="${board}">
-                                    <td th:text="*{boardName}" style="color:rgb(147, 251, 1);  border-left: 3px solid rgb(147, 251, 1);">게시판 종류</td>
-                                    <td th:if="*{categoryName} == 정보" th:text="*{categoryName}" style="color:rgb(253, 122, 70);  border-left: 3px solid rgb(253, 122, 70);">카테고리 종류</td>
-                                    <td th:unless="*{categoryName} == 정보" th:text="*{categoryName}" style="color:rgb(255, 217, 48);  border-left: 3px solid rgb(255, 217, 48);">카테고리 종류</td>
-                                    <td th:text="*{categoryNameTwo}" style="font-style:italic">상세 카테고리 종류</td>
+                                    <td th:if="*{categoryName} == 정보" th:text="|*{categoryName} > *{categoryNameTwo}|" style="color:rgb(253, 122, 70);  border-left: 3px solid rgb(253, 122, 70);">카테고리 종류</td>
+                                    <td th:unless="*{categoryName} == 정보" th:text="|*{categoryName} > *{categoryNameTwo}|" style="color:rgb(255, 217, 48);  border-left: 3px solid rgb(255, 217, 48);">카테고리 종류</td>
 
-
-                                    <td th:text="*{boardNo}">게시글 번호</td>
-                                    <td>
-                                      <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode},boardNo=*{boardNo})}"
-                                        th:text="*{boardTitle}" style="text-decoration: underline;">게시글 제목</a>
-                                    </td>
-                                    <td colspan="6"> 
-                                      <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode},boardNo=*{boardNo})}" th:text="*{boardContent}" style="text-decoration: underline;">게시글 내용 </a>
+                                    <td th:text="|[*{boardTitle}]|" style="color: white;" > 게시글 제목</td>
+                                    <td> 
+                                      <a th:href="@{/board/1/{boardNo}(boardNo=*{boardNo})}" th:text="*{boardContent}" style="text-decoration: underline;">게시글 내용 </a>
                                     </td> 
-                                    <td th:text="*{memberNickname}">작성자</td>
                                     <td th:text="*{writeDate}">작성일</td>
                                     <td th:text="*{boardCount}">조회수</td>
                                     <td th:text="*{likeCount}">좋아요</td>
