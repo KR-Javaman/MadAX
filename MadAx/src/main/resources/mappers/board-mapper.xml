@@ -3,28 +3,6 @@
 <mapper namespace="com.javaman.madax.board.model.mapper.BoardMapper">
   
   
-  
-  	<resultMap id="board_rm" type="Board">
-
-		<id property="boardNo" column="BOARD_NO" />
-
-		<collection property="imageList" 
-               select="selectImageList" 
-               column="BOARD_NO"
-               javaType="java.util.ArrayList"
-               ofType="BoardImg" />	
-               
-               
-       <collection property="commentList"
-			select="selectCommentList"
-			column="BOARD_NO"
-			javaType="java.util.ArrayList"
-			ofType="Comment"
-			/>
-           
-	</resultMap>
-	
-	
 	
 	<!-- ===========================일반 게시글 조회==================================-->
   
@@ -239,6 +217,32 @@
 		CONNECT BY PRIOR COMMENT_NO = PARENT_NO
 		ORDER SIBLINGS BY COMMENT_NO
 	</select>
+	
+	
+	
+	
+  
+  	<resultMap id="board_rm" type="Board">
+
+		<id property="boardNo" column="BOARD_NO" />
+
+		<collection property="imageList" 
+               select="selectImageList" 
+               column="BOARD_NO"
+               javaType="java.util.ArrayList"
+               ofType="BoardImg" />	
+               
+               
+       <collection property="commentList"
+			select="selectCommentList"
+			column="BOARD_NO"
+			javaType="java.util.ArrayList"
+			ofType="Comment"
+			/>
+           
+	</resultMap>
+	
+	
 	
 	
 	
