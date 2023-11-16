@@ -52,3 +52,28 @@
   font-weight: bolder;
   
 }
+
+
+/* 버튼 영역 */
+.board-btn-area{
+  text-align: right;
+}
+
+/* 버튼 */
+.board-btn-area button{
+  width: 80px;
+  height: 30px;
+
+  font-weight: bold;
+  border: 0;
+  background-color: #ffffff;
+  color : rgb(0, 0, 0);
+
+  cursor: pointer;
+}
+
+.board-btn-area button:hover{
+  background-color: rgb(147, 251, 1);
+  color : #000000;
+  border: 2px solid #ffffff;
+}
