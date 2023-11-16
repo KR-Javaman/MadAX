@@ -48,12 +48,12 @@ video {
 .vdvd {
   display: flex;
   justify-content: space-around;
-  margin-top: 4rem;
+  margin-top: 2rem;
   padding: 1rem;
 }
 .video-a {
   width: 24.4rem;
-  height: 38rem;
+  height: 36rem;
   padding: 1rem;
   margin: 0 1.5rem;
   border-radius: 1rem;

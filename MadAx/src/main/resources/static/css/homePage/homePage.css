@@ -1,0 +1,212 @@
+
+body {
+  background-color: #282828;
+  color: white;
+}
+
+
+.myPage-main{
+  width: 100%;
+}
+
+
+.myPage-content {
+  width: 128rem;
+  min-height: 130rem;
+  margin: 50px auto;
+  display: flex;
+  font-size: 2rem;
+}
+
+
+a {
+  font-size: 1.6rem;
+
+}
+
+.mid{
+  display: flex;
+  margin-top : 5rem;
+  width: 100%;
+  height: 50rem;
+}
+
+.myCommunity{
+  width: 50%;
+  height: 40rem;
+  padding-right: 20px;
+}
+
+.myKin{
+  width: 80rem;
+  height: 40rem;
+  padding-left : 5rem;
+
+}
+
+#myCommunityList{
+  border: 0.1rem solid white;
+  border-radius: 18px;
+  background-color: #0a0a0a8c;
+  width: 100%;
+  height: 50rem;
+  margin-top: 1.5rem;
+}
+
+.myCommunityList {
+  margin: 1.5rem 2rem;
+  font-size: 1.6rem;
+  /* border: 0.1rem solid black; */
+}
+.list-table {
+  width: 100%;
+  padding: 2rem;
+  border-collapse: collapse;
+  
+}
+.list-table tr {
+  height: 5rem;
+}
+
+.list-table thead tr th {
+  font-size: 17px;
+}
+
+
+.list-table tr td{
+
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.705);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 245px;
+  line-height: 25px;
+  padding: 15px 24px;
+}
+
+.list-table tr td a{
+
+  font-size: 16px;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 245px;
+  line-height: 25px;
+  padding: 15px 24px;
+}
+
+.list-table tr > *{ text-align: center;
+font-size: 15px; }
+
+.list-table > thead > tr {
+  border-bottom: 0.3rem solid gray;
+}
+
+.list-table > tbody > tr {
+  border-bottom: 0.1rem solid gray;
+}
+
+.list-table > tbody > tr:nth-child(9) {
+  border: none;
+}
+.list-table > tbody > tr:nth-child(9) > td {
+  border: 3px;
+  border-bottom-left-radius: 10px;
+}
+
+.list-table tr > td:nth-child(1) {
+  width: 20%;
+}
+.list-table tr > td:nth-child(2) {
+  width: 20%;
+}
+.list-table tr > td:nth-child(3) {
+
+  width: 40%;
+}
+.list-table tr > td:nth-child(4) {
+  width: 20%;
+}
+
+#more {
+  float: inline-end;
+  color : rgb(147, 251, 1);
+  font-size: 16px;
+  padding-top: 10px;
+}
+
+.myJisikin {
+  width: 50%;
+  height: 40rem;
+  padding-left: 20px;
+}
+
+#myKinList{
+  border: 0.1rem solid white;
+  border-radius: 18px;
+  background-color: #0a0a0a8c;
+  width: 100%;
+  height: 50rem;
+  margin-top: 1.5rem;
+}
+
+.myShorts {
+  margin-top: 3rem;
+}
+
+#shorts {
+
+  width: 100%;
+  height: 40rem;
+  margin-top: 1.5rem;
+}
+
+
+
+
+video {
+  width: 225px;
+  height: 405px;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+.vdvd {
+  display: flex;
+  padding: 25px;
+  
+}
+.video-a {
+  width: 25rem;
+  border-radius: 1rem;
+  text-decoration: none;
+  margin-right: 2rem;
+}
+
+.vdvd > a:last-child {
+  width: 24.4rem;
+  border-radius: 1rem;
+  text-decoration: none;
+}
+
+
+#video-kdb {
+  height: 3rem;
+  font-size: 1.4rem;
+  display: block;
+  padding-top: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+video:hover {
+  border-radius: 0%;
+  transition-duration: 0.5s;
+}
+.write-btn-area {
+  height: 4rem;
+  /* background-color: antiquewhite; */
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+

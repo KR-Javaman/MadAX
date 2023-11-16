@@ -27,6 +27,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.javaman.madax.member.model.dto.Member;
 import com.javaman.madax.shorts.model.dto.Video;
 import com.javaman.madax.shorts.model.dto.VideoBoard;
+import com.javaman.madax.shorts.model.dto.VideoComment;
+import com.javaman.madax.shorts.model.service.ShortsCommentService;
 import com.javaman.madax.shorts.model.service.ShortsService;
 
 import jakarta.servlet.http.Cookie;
@@ -41,6 +43,7 @@ import lombok.RequiredArgsConstructor;
 public class ShortsController {
 
 	private final ShortsService service;
+	private final ShortsCommentService commentService;
 	
 	@GetMapping("main")
 	public String main(VideoBoard video ,Model model,
@@ -95,6 +98,21 @@ public class ShortsController {
 		map.put("boardVideoNo", boardVideoNo);
 		
 		VideoBoard videoBoard = service.videoBoardDetail(boardVideoNo);
+		
+		if(!videoBoard.getVideoCommentList().isEmpty()) {
+			model.addAttribute("videoComment", videoBoard.getVideoCommentList());
+			if(loginMember != null) {
+				map.put("memberNo", loginMember.getMemberNo());
+				
+				for(VideoComment vc : videoBoard.getVideoCommentList()) {
+					map.put("commentNo", vc.getCommentNo());
+					vc.setLikeClickComment(commentService.likeClick(map));
+					
+				}
+			}
+			
+		}
+		
 		
 		String Path = null;
 		

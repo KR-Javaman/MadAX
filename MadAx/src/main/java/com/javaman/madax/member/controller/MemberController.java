@@ -72,14 +72,14 @@ public class MemberController {
 		
 		model.addAttribute("loginMember", loginMember);
 		
-		return "redirect:/";
+		return "redirect:/homePage/homePage";
 	}
 	
 	
 	@GetMapping("logout")
 	public String logout(SessionStatus status) {
 		status.setComplete(); //
-		return "redirect:/";
+		return "redirect:/homePage/homePage";
 	}
 	
 	/** 로그인 전용 페이지 forward
@@ -113,7 +113,7 @@ public class MemberController {
 		
 		if(result > 0) {
 			ra.addFlashAttribute("message", "회원 가입 성공");
-			return "redirect:/"; // 메인 페이지
+			return "redirect:/homePage/homePage"; // 메인 페이지
 		}
 		
 		ra.addFlashAttribute("message","가입 실패...");

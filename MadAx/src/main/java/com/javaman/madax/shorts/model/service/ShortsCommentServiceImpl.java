@@ -24,6 +24,11 @@ public class ShortsCommentServiceImpl implements ShortsCommentService{
 	}
 	
 	@Override
+	public int[] selectCommentNo(int boardVideoNo) {
+		return mapper.selectCommentNo(boardVideoNo);
+	}
+	
+	@Override
 	public int insertComment(VideoComment videoComment) {
 		return mapper.insertComment(videoComment);
 	}
@@ -60,6 +65,6 @@ public class ShortsCommentServiceImpl implements ShortsCommentService{
 		}
 		if(result == 0) return -1;
 		
-		return mapper.countCommentLike((Integer)(paramMap.get("commentNo")));
+		return mapper.countCommentLike(String.valueOf(paramMap.get("commentNo")));
 	}
 }

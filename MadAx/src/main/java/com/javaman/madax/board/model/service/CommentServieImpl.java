@@ -10,10 +10,17 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 @Transactional
+<<<<<<< HEAD
 
 public class CommentServieImpl implements CommentService{
 	
 	private final CommentMapper mapper;
+=======
+public class CommentServieImpl implements CommentService{
+	
+	private final CommentMapper mapper;
+
+>>>>>>> d7a76b2637b15782a2bb969aeef5f0f4c5a501c3
 	
 	//댓글 목록 조회
 	@Override

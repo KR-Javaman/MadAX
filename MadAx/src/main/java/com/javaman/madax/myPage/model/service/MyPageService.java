@@ -1,6 +1,7 @@
 package com.javaman.madax.myPage.model.service;
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,6 +41,14 @@ public interface MyPageService {
 	int background(MultipartFile backgroundImg, Member loginMember) throws IllegalStateException, IOException;
 
 	int deleteBackground(Member backgroundImg, Member loginMember) throws IllegalStateException, IOException;
+
+	
+	Map<String, Object> selectCommunity(int memberNo, int cp);
+
+	Map<String, Object> selectJisikin(int memberNo, int cp);
+
+	Map<String, Object> selectVideo(int memberNo, int cp);
+
 
 
 }

@@ -23,5 +23,5 @@ public class VideoComment {
 	    private String profileImg;
 	    
 	    private int likeCountComment;
-	    
+	    private int likeClickComment;
 }
