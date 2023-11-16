@@ -1,0 +1,47 @@
+<header>
+  <div class="header">
+    <section class="cls-section">
+      <div class="nav">
+          <img src="/images/logo_header.png" style="width:195px;">
+      </div>
+    </section>
+    <section class="cls-section">
+      
+    </section>
+    <section class="cls-section">
+      <div class="cls-login">
+
+        
+      </th:block>
+
+        <th:block th:if="${session.loginMember == null}"> <a href="/member/login">로그인</a> <a href="/member/signup">회원가입</a> </th:block>
+       
+
+        <div class="success-login">
+          <th:block th:unless="${session.loginMember == null}">
+            <a href="#" class="login-area">
+                <!-- 프로필 이미지가 없을 경우 -->
+                <img th:if="${session.loginMember.profileImg == null}" th:src="#{user.default.image}" id="memberHeaderProfile">
+                                  
+                <!-- 프로필 이미지가 있을 경우 -->
+                <img th:unless="${session.loginMember.profileImg == null}" th:src="${session.loginMember.profileImg}" id="memberHeaderProfile">
+            </a>    
+              <!-- <input type="checkbox" id="memberHeaderProfile"> -->
+              <div class="header-menu">
+                <a href="/myPage/myPage-home">마이페이지</a>
+                <a href="/member/logout" id="logoutBtn">로그아웃</a>
+              </div>
+
+            </div>
+          </th:block>
+        </div>  
+
+
+      </div>
+    </section>
+  </div>
+</header>
+
+<script src="/js/header.js">
+
+</script>

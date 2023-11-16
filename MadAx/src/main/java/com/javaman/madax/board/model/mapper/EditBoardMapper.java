@@ -7,11 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-
 import java.util.List;
 
 import java.util.Map;
-
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -26,17 +24,12 @@ public interface EditBoardMapper {
 	 * @return
 	 */
 	int insertBoard(Board board);
-	
-	
 
 	/**게시글 삭제
 	 * @param map
 	 * @return
 	 */
 	int delete(Map<String, Integer> map);
-
-
-
 
 	/** 이미지 일괄 삽입
 	 * @param uploadList

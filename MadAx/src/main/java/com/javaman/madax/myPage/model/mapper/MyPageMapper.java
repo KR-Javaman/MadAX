@@ -1,10 +1,13 @@
 package com.javaman.madax.myPage.model.mapper;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.javaman.madax.board.model.dto.Board;
 import com.javaman.madax.member.model.dto.Member;
 
 @Mapper
@@ -45,6 +48,14 @@ public interface MyPageMapper {
 
 
 	int deleteBackground(Member backgroundImg);
+
+
+
+	List<Board> selectCommunity(int memberNo, RowBounds rowBounds);
+	
+	List<Board> selectJisikin(int memberNo, RowBounds rowbounds2);
+
+	List<Board> selectVideo(int memberNo, RowBounds rowBounds3);
 	
 	
 

@@ -106,12 +106,8 @@
 
 
   <div th:if="${session.loginMember != null}" class="btn-area">
-    <!-- 로그인 상태일 때만 글쓰기 버튼 노출 -->
+    <!-- 로그인 상태일 때만 글쓰기 버튼 노출 -->  
 
-    <!-- 
-        /board/{boardCode}
-        -> /editBoard/{boardCode}/insert (GET)
-    -->
     <button id="insertBtn">글쓰기</button>                     
 </div>
 
@@ -254,16 +250,21 @@
 
   </main>
 
-  <th:block th:replace="~{common/common}"></th:block>
+
+
+  
+  <script th:inline="javascript">
+    const boardCode = /*[[${boardCode}]]*/ "게시판코드";
+    const category =  /*[[${categoryCode}]]*/ "카테고리코드";
+    const categoryCodeTwo = /*[$[categoryCodeTwo}]]*/ "종목";
+  </script>
+
+  <script src="/js/jisik/jisikList.js"></script>
 
 </body>
 
 
 
-
-<script th:inline="javascript">
-  const boardCode = /*[[${boardCode}]]*/ "게시판코드";
-</script>
 
 
 </html>

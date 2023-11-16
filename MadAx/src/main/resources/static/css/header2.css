@@ -1,0 +1,137 @@
+:root {
+  font-size: 62.5%;
+}
+@font-face {
+  font-family: "SUITE-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "SUITE-Regular";
+}
+header {
+  position: sticky;
+  top: 0;
+  background-color: #1e1e20;
+  z-index: 500;
+}
+.header {
+  width: 128rem;
+  height: 8.45rem;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+nav img {
+  height: 100px;
+  width: 100px;
+}
+.cls-section:nth-child(1),
+.cls-section:nth-child(3) {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  font-size: 1.6rem;
+}
+.cls-section:nth-child(2) {
+  /* display: flex; */
+  /* align-items: center; */
+  margin-left: 1rem;
+}
+
+.cls-section:nth-child(1) {
+  width: 15%;
+}
+.cls-section:nth-child(2) {
+  width: 50%;
+}
+.cls-section:nth-child(3) {
+  width: 35%;
+}
+
+.section-form {
+  width: 30rem;
+}
+
+.search-login {
+  display: flex;
+}
+.cls-login {
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.cls-login > a {
+  padding: 10px;
+}
+.nav-li-ul li {
+  list-style-type: none;
+}
+
+.nav-li-ul li > a {
+  text-decoration: none;
+}
+
+#memberHeaderProfile {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.header-menu {
+  position: absolute;
+  width: 120px;
+  height: 0;
+  overflow: hidden;
+  z-index: 1000;
+  background-color: white;
+  border-radius: 10px;
+  margin: 50px -27px;
+
+  
+}
+
+.success-login:hover .header-menu{
+  height: 100px;
+  transition-duration: 0.4s;
+}
+
+
+
+
+.header-menu > a {
+  display: flex;
+  height: 50%;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}
+
+.header-menu > a:hover {
+  background-color: rgb(147, 251, 1);
+  border-radius: 10px;
+  color: black;
+  display: absolute;
+}
+
+
+.success-login{
+  display: flex;
+}
+
+
+

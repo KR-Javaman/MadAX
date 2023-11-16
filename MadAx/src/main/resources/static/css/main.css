@@ -1,5 +1,6 @@
 :root {
   font-size: 62.5%;
+  max-height: 90vh;
 }
 * {
   box-sizing: border-box;
@@ -8,119 +9,48 @@
 }
 body {
   background-color: #282828;
+  height: 100vh;
 
 }
 /* --------------------------------------------------------------------------------------- */
 
-
-
-/* 
-tr { border-top: 1px solid rgb(6, 255, 172); border-bottom: 1px solid rgb(6, 255, 172); }
-td { padding: 5px; } */    
-/* --------------------------------------------------------------------------------------- */
-
-main > section {
-  padding: 3rem 0;
-  width: 128rem;
-  margin: auto;
+.myPage-wallpaper {
+  width: 100%;
+  max-height:95vh;
+}
+.myPage-wallpaper img {
+  width: 100%;
+  height: 90vh;
+  background-size: cover;
+  position: relative;
 }
 
-main > section:nth-child(2) {
-  display: flex;
-}
-section > section:nth-child(1) {
-  width: 50%;
-  padding: 1rem;
-  border: 0.1rem solid black;
-}
-section > section:nth-child(2) {
-  width: 50%;
-}
-
-.mainTag {
-  font-size: 2.4rem;
-  width: 10rem;
-  height: 4.4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem;
-  font-weight: bold;
-  color: white;
-}
-.add {
-  display: flex;
-  justify-content: right;
-  font-size: 1.3rem;
-  margin: 1rem 2rem;
+button {
+  position: absolute;
+  top:85%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  z-index : 100;
+  width: 300px;
+  height: 80px;
+  border-radius: 50px;
+  background-color: rgb(147, 251, 1);
+  font-size: 35px;
   cursor: pointer;
-  color: white;
-}
-.mainVideo {
-  margin: 3rem 0;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-around;
-}
-video {
-  object-fit: cover;
-  border-radius: 1rem;
-}
-.video-a {
-  width: 24.4rem;
-  height: 38rem;
-  padding: 1rem;
-  margin: 0 1.5rem;
-  border-radius: 1rem;
-  text-decoration: none;
-  color: black;
-  background-color: white;
-}
-#video-kdb {
-  height: 3rem;
-  font-size: 1.5rem;
-  display: block;
-  padding-top: 1rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-video:hover {
-  border-radius: 0%;
-  transition-duration: 0.3s;
-}
-.list {
-  margin: 1.5rem 2rem;
-  font-size: 1.6rem;
-  /* border: 0.1rem solid black; */
-}
-.list-table {
-  width: 100%;
-  /* height: 60rem; */
-  padding: 2rem;
-  border-collapse: collapse;
-}
-.list-table tr {
-  height: 5rem;
+
 }
 
-.list-table > tbody > tr {
-  border-bottom: 0.1rem solid gray;
+
+button a {
+  text-align: center;
+  color: black;
+  width: 300px;
+  height: 80px;
 }
-.list-table tr > td:nth-child(1) {
-  width: 15%;
+
+button:hover {
+  background-color: white;
+  transition-duration: 0.5s;
 }
-.list-table tr > td:nth-child(2) {
-  width: 60%;
-}
-.list-table tr > td:nth-child(3) {
-  width: 25%;
-}
-.list-information {
-  width: 100%;
-  padding: 2rem;
-}
-.list-information td {
-  height: 12.5rem;
-  border: 0.1rem solid black;
-}
+
+
