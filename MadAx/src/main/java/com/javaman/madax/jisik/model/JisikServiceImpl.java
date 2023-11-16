@@ -16,6 +16,7 @@ import com.javaman.madax.board.model.dto.Board;
 
 import com.javaman.madax.jisik.mapper.JisikMapper;
 import com.javaman.madax.jisik.model.dto.JisikPagination;
+import com.javaman.madax.member.model.dto.Member;
 
 
 @Service
@@ -62,4 +63,33 @@ public class JisikServiceImpl implements JisikService {
 		// TODO Auto-generated method stub
 		return mapper.jisikDetail(boardNo);
 	}
+	
+	@Override
+	public int likeCheck(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return mapper.likeCheck(map);
+	}
+	
+	@Override
+	public int like(Map<String, Object> paramMap) {
+		int result = 0;
+		
+		if( (Integer) (paramMap.get("check")) == 1) {
+			result = mapper.deleteBoardLike(paramMap);
+		} else {
+			result = mapper.insertBoarLike(paramMap);
+		}
+		
+		if(result == 0) return -1;
+		
+		return mapper.countBoardLike( (Integer)(paramMap.get("boardNo")));
+	}
+	
+	@Override
+	public int updateBoardCount(int boardNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
 }

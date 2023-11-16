@@ -69,56 +69,59 @@ boardLike.addEventListener("click", e => {
 // ----------------------------------------------------------------
 /* 목록으로 버튼 */
 
-const goToListBtn = document.getElementById("goToListBtn");
+// const goToListBtn = document.getElementById("goToListBtn");
 
-if(goToListBtn != null){ // 화면에 목록으로 버튼이 있을 때만 수행
+// if(goToListBtn != null){ // 화면에 목록으로 버튼이 있을 때만 수행
   
-  // 함수 선언(변수 대입 형식)
-  const goToListFn = () => {
+//   // 함수 선언(변수 대입 형식)
+//   const goToListFn = () => {
 
-    // location.href : 현재 주소 반환
-    // URL 객체 : JS에서 주소를 다루고 관리할 수 있는 객체
-    // URL객체.searchParams : 주소에 담긴 쿼리스트링을 map 형식으로 반환
+//     // location.href : 현재 주소 반환
+//     // URL 객체 : JS에서 주소를 다루고 관리할 수 있는 객체
+//     // URL객체.searchParams : 주소에 담긴 쿼리스트링을 map 형식으로 반환
 
-    const paramMap = new URL(location.href).searchParams;
+//     const paramMap = new URL(location.href).searchParams;
 
-    const obj = {}; // 주소에 담겨있는 파라미터를 담은 객체
+//     const obj = {}; // 주소에 담겨있는 파라미터를 담은 객체
 
-    // paramMap 데이터를 obj 객체에 대입
-    obj.cp = paramMap.get("cp");
-    obj.key = paramMap.get("key");
-    obj.query = paramMap.get("query");
-
-
-    // 상세 페이지 주소 
-    // -> /board/{boardCode}/{boardNo}?cp=3&key=t&query=test
-
-    // 목록 페이지 주소
-    // -> /board/{boardCode}?cp=3&key=t&query=test
+//     // paramMap 데이터를 obj 객체에 대입
+//     obj.cp = paramMap.get("cp");
+//     obj.key = paramMap.get("key");
+//     obj.query = paramMap.get("query");
 
 
+//     // 상세 페이지 주소 
+//     // -> /board/{boardCode}/{boardNo}?cp=3&key=t&query=test
 
-    // URLSearchParams 객체 : 주소에서 쿼리스트링만 다루는 객체
-    //                    쿼리스트링 추가, 수정, 제거, 생성 가능
+//     // jisik/jisikDetail/
 
-    // 1) 쿼리스트링 조합하기
-    const tempParams = new URLSearchParams();
+//     // 목록 페이지 주소
+   
+//   //  /jisik/jisikList
 
-    for(let key in obj){ // 객체 전용 향상된 for문
-      if(obj[key] != null) tempParams.append(key, obj[key]);
-    }
 
-    // console.log(tempParams.toString());
+
+//     // URLSearchParams 객체 : 주소에서 쿼리스트링만 다루는 객체
+//     //                    쿼리스트링 추가, 수정, 제거, 생성 가능
+
+//     // 1) 쿼리스트링 조합하기
+//     const tempParams = new URLSearchParams();
+
+//     for(let key in obj){ // 객체 전용 향상된 for문
+//       if(obj[key] != null) tempParams.append(key, obj[key]);
+//     }
+
+//     // console.log(tempParams.toString());
 
     
-    // 2) 목록으로 돌아가기
-    location.href = `/board/${boardCode}?${tempParams.toString()}`;
-  }
+//     // 2) 목록으로 돌아가기
+//     location.href = `/board/${boardCode}?${tempParams.toString()}`;
+//   }
 
 
-  // 이벤트 리스너 추가
-  goToListBtn.addEventListener("click", goToListFn);
-}
+//   // 이벤트 리스너 추가
+//   goToListBtn.addEventListener("click", goToListFn);
+// }
 
 
 // --------------------------------------------------------------
@@ -132,30 +135,22 @@ if(deleteBtn != null){ // 삭제 버튼이 존재하는 경우
   deleteBtn.addEventListener("click", () => {
 
     // confirm : 확인 클릭 -> true / 취소 클릭 -> false 반환
-    if( confirm("삭제 하시겠습니까?") ){
+    if(confirm("삭제 하시겠습니까?") ){
 
-      // 상세 조회 페이지 주소 : /board/{boardCode}/{boardNo}
-      // 삭제 요청 주소 : /editBoard/{boardCode}/{boardNo}/delete (GET)
-
-      location.href 
-        = location.pathname.replace("board","editBoard") + "/delete"; 
-
+        location.href = location.pathname.replace ("jisikDetail", "jisikDelete");
     }
   });
 }
 
 // ---------------------------------------------------------
 
-/* 수정 버튼 클릭 시 수정 화면 요청 */
+/* 수정 버튼 클릭 시 수정 화면 */
+
 const updateBtn = document.getElementById("updateBtn");
 
-if(updateBtn != null){ // 수정 버튼 존재 시
-  updateBtn.addEventListener('click', ()=>{
+if(updateBtn != null){ 
+updateBtn.addEventListener("click", ()=>{
+  location.href = `/jisik/jisikUpdate`;
 
-    //    /board/{boardCode}/{booardNo}?cp=1
-    //    /editBoard/{boardCode}/{booardNo}/update?cp=1
-
-    let url = `/editBoard/${boardCode}/${boardNo}/update${location.search}`;
-    location.href = url;
-  });
+});
 }
