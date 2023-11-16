@@ -19,4 +19,6 @@ public interface ShortsCommentService {
 
 	int likeComment(Map<String, Object> paramMap);
 
+	int[] selectCommentNo(int boardVideoNo);
+
 }

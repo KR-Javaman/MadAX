@@ -24,6 +24,8 @@ public interface ShortsCommentMapper {
 
 	int insertCommentLike(Map<String, Object> paramMap);
 
-	int countCommentLike(Integer commentNo);
+	int countCommentLike(String commentNo);
+
+	int[] selectCommentNo(int boardVideoNo);
 
 }

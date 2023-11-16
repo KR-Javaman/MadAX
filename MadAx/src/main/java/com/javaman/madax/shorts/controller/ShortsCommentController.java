@@ -31,30 +31,28 @@ public class ShortsCommentController {
 	private final ShortsCommentService service;
 	
 	@GetMapping(value="videoComment", produces="application/json")
-	public String selectComment(int boardVideoNo, Model model,
+	public List<VideoComment> selectComment(int boardVideoNo, Model model,
 						@SessionAttribute(value="loginMeber", required = false) Member loginMember){
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("boardVideoNo", boardVideoNo);
 		
 		List<VideoComment> videoComment = service.selectComment(boardVideoNo);
+
 		
-		String path = null;
-		
-		if(videoComment != null) {
+		if(!videoComment.isEmpty()) {
 			model.addAttribute("videoComment", videoComment);
-			path = "shorts/shortsComment";
-			
 			if(loginMember != null) {
 				map.put("memberNo", loginMember.getMemberNo());
-				int likeClick = service.likeClick(map);
 				
-				if(likeClick == 1) {
-					model.addAttribute("likeClick", "on");
+				for(VideoComment vc : videoComment) {
+					map.put("commentNo", vc.getCommentNo());
+					vc.setLikeClickComment(service.likeClick(map));
+					
 				}
 			}
+			
 		}
-		return path;
+		return videoComment;
 	}
 	
 	

@@ -3,13 +3,13 @@
 const selectCommentList = () => {
   fetch("/videoComment?boardVideoNo=" + boardVideoNo)
     .then((resp) => resp.json())
-    .then((vcList) => {
-      console.log(vcList);
+    .then((cList) => {
+      console.log(cList);
 
       const videoCommentList = document.getElementById("commentList");
       videoCommentList.innerHTML = "";
 
-      for (let videoComment of vcList) {
+      for (let videoComment of cList) {
         const commentRow = document.createElement("li");
         commentRow.classList.add("comment-row");
 
@@ -47,60 +47,21 @@ const selectCommentList = () => {
 
           const likeArea = document.createElement("span");
           likeArea.classList.add("like-area");
+          //-------------------------------------------------------
+          const heartComment = document.createElement("i");
+          heartComment.classList.add("fa-heart");
+          heartComment.classList.add("comment-heart");
+          if (videoComment.likeClickComment == 0)
+            heartComment.classList.add("fa-regular");
+          else heartComment.classList.add("fa-solid");
+          //-------------------------------------------------------------------
+          heartComment.setAttribute("comment-no", videoComment.commentNo);
 
-          const heartImg = document.createElement("i");
-          heartImg.classList.add("fa-heart");
-          // heartImg.setAttribute(
-          //   "classappend",
-          //   "${likeClickComment} ? fa-solid : fa-regular"
-          // );
+          const likeCountComment = document.createElement("span");
+          likeCountComment.classList.add("count-heart");
+          likeCountComment.innerHTML = videoComment.likeCountComment;
 
-          if (videoComment.likeClick.equals("on")) {
-            heartImg.classList.add("fa-solid");
-          } else {
-            heartImg.classList.add("fa-regular");
-          }
-          //---------------------------------------댓글 좋아요
-          // heartImg.addEventListener("click", (e) => {
-          //   if (!loginCheck) {
-          //     alert("로그인을 먼저 해주세요");
-          //     return;
-          //   }
-          //   let check;
-
-          //   if (e.target.classList.contains("fa-regular")) {
-          //     check = 0;
-          //   } else {
-          //     check = 1;
-          //   }
-
-          //   const data = { check: check, commentNo: commentNo };
-
-          //   fetch("/videoComment/like", {
-          //     method: "POST",
-          //     headers: { "Content-Type": "application/json" },
-          //     body: JSON.stringify(data),
-          //   })
-          //     .then((resp) => resp.text())
-          //     .then((count) => {
-          //       if (count == -1) {
-          //         console.log("좋아요 실패");
-          //         return;
-          //       }
-          //       e.target.classList.toggle("fa-regular");
-          //       e.target.classList.toggle("fa-solid");
-
-          //       e.target.nextElementSibling.innerText = count;
-          //     })
-          //     .catch((e) => {
-          //       console.log(e);
-          //     });
-          // });
-          const likeCount = document.createElement("span");
-          likeCount.classList.add("count-heart");
-          likeCount.innerText = videoComment.likeCountComment;
-
-          likeArea.append(heartImg, likeCount);
+          likeArea.append(heartComment, likeCountComment);
 
           commentWriter2.append(commentContent, likeArea);
           //-----------------------------------------------------------------------
@@ -135,7 +96,7 @@ const selectCommentList = () => {
 
               deleteBtn.setAttribute(
                 "onclick",
-                "deleteVideoComment(" + videoComment + ")"
+                "deleteVideoComment(" + videoComment.commentNo + ")"
               );
 
               commentBtnArea.append(updateBtn, deleteBtn);
@@ -215,11 +176,13 @@ function deleteVideoComment(commentNo) {
 let beforeCommentRow;
 
 function showUpdateComment(commentNo, btn) {
-  const temp = document.querySelector(".update-textarea");
+  const temp = document.getElementsByName("update-textarea");
 
   if (temp.length > 0) {
     if (confirm("다른 댓글이 수정 중 입니다. 현재 댓글을 수정 하시겠습니까?")) {
-      temp[0].parentElement.innerHTML = beforeCommentRow;
+      temp[0].parentElement.getElementsByClassName(
+        "comment-content"
+      ).innerHTML = beforeCommentRow;
     } else {
       return;
     }
@@ -228,7 +191,7 @@ function showUpdateComment(commentNo, btn) {
   const commentRow = btn.parentElement.parentElement;
   beforeCommentRow = commentRow.innerHTML;
 
-  let beforeContent = commentRow.children[1].innerHTML;
+  let beforeContent = commentRow.children[1].children[0].innerText;
 
   commentRow.innerHTML = "";
 
@@ -260,7 +223,7 @@ function showUpdateComment(commentNo, btn) {
 }
 //------------------------------------------
 function updateCancel(btn) {
-  if (confirm("댓글을 수정 하시겠습니까?")) {
+  if (confirm("댓글 수정을 취소 하시겠습니까?")) {
     btn.parentElement.parentElement.innerHTML = beforeCommentRow;
   }
 }
@@ -367,40 +330,45 @@ function insertChildComment(parentNo, btn) {
 }
 
 // -----------------------------------------------------
-const likeImgComment = document.querySelector("#imgComment");
+const likeComments = document.querySelectorAll(".comment-heart");
 
-likeImgComment.addEventListener("click", (e) => {
-  if (!loginCheck) {
-    alert("로그인을 먼저 해주세요");
-    return;
-  }
-  let check;
+for (let likeComment of likeComments) {
+  likeComment.addEventListener("click", (e) => {
+    if (!loginCheck) {
+      alert("로그인을 먼저 해주세요");
+      return;
+    }
+    let check;
 
-  if (e.target.classList.contains("fa-regular")) {
-    check = 0;
-  } else {
-    check = 1;
-  }
+    if (e.target.classList.contains("fa-regular")) {
+      check = 0;
+    } else {
+      check = 1;
+    }
 
-  const data = { check: check, commentNo: commentNo };
+    const commentNo = e.target.getAttribute("comment-no");
 
-  fetch("/videoComment/like", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  })
-    .then((resp) => resp.text())
-    .then((count) => {
-      if (count == -1) {
-        console.log("좋아요 실패");
-        return;
-      }
-      e.target.classList.toggle("fa-regular");
-      e.target.classList.toggle("fa-solid");
+    const data = { check: check, commentNo: commentNo };
 
-      e.target.nextElementSibling.innerText = count;
+    fetch("/videoComment/like", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     })
-    .catch((e) => {
-      console.log(e);
-    });
-});
+      .then((resp) => resp.text())
+      .then((count) => {
+        if (count == -1) {
+          console.log("좋아요 실패");
+          return;
+        }
+        e.target.classList.toggle("fa-regular");
+        e.target.classList.toggle("fa-solid");
+
+        e.target.nextElementSibling.innerText = count;
+        // selectCommentList();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  });
+}
