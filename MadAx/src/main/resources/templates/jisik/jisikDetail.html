@@ -73,13 +73,14 @@
                     
 
                     <div class="category"> 
-                         <p> <span>카테고리</span> [[*{categoryCode}]] </p>
-                         <p> <span>종목</span> [[*{categoryCodeTwo}]] </p>
+                        
+                  <p>  <span>카테고리</span> [[*{categoryCode}]] </p>
+                         <p> <span>종목</span>    [[*{categoryCodeTwo}]] </p>
                     </div>  
 
                     <div> 
                             <p> <span>작성일</span> [[*{writeDate}]]  </p>
-                            <p> <span>조회수</span> [[*{boardCount}]] </p> 
+                            <!-- <p> <span>조회수</span> [[*{boardCount}]] </p>  -->
                     </div> 
                             
                     <!-- <span th:text="*{memberNickname}">작성자</span> <span th:text="*{categoryCode}">카테고리</span> -->
@@ -147,7 +148,7 @@
                조회 되었을 때 IMG_ORDER가 0인 이미지가
                imageList [0]에 저장 되었을 것이다
        -->
-       <th:block th:if="${thumbnail}">
+       <!-- <th:block th:if="${thumbnail}">
            <h5>썸네일</h5>
            <div class="img-box">
                <div class="boardImg thumbnail">
@@ -156,7 +157,7 @@
                         th:download="${thumbnail.imgOriginalName}">다운로드</a>         
                </div>
            </div>
-       </th:block>
+       </th:block> -->
 
        <!-- 일반 이미지가 있을 경우 -->
        <th:block th:if="${#lists.size(board.imageList) > start}" >
@@ -188,10 +189,7 @@
                 </div> 
                 
                 <div class="jisik-text" th:text="*{boardContent}">내용</div>
-
-
-
-                
+  
      </div>             
             
                 

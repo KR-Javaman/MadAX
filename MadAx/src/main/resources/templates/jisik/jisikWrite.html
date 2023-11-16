@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8">
 
-    <title>게시판 글쓰기</title>
+    <title>지식인 글쓰기</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -21,10 +21,10 @@
   
       <div class="container">
         
-        <h2>게시판 글쓰기</h2>
+        <h2>지식인 글쓰기</h2>
   
         <form action="jisikWrite" method="post" id="jisikWrite" enctype="multipart/form-data">
-  
+            
           <div class="form-group">
             <label for="title">제목</label>
             <input type="text" class="form-control" id="title" placeholder="제목 입력(4-100)" name="boardTitle"
@@ -55,6 +55,13 @@
           </div>
   
           <input type="file" name="images">
+          <br>
+
+          <input type="file" name="images">
+          <br>
+          <input type="file" name="images">
+          <br>
+          
           <button type="submit" class="writeBtn">등록</button>
           
           <input type="hidden" name="boardCode" value="2">

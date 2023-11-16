@@ -257,6 +257,20 @@
     const boardCode = /*[[${boardCode}]]*/ "게시판코드";
     const category =  /*[[${categoryCode}]]*/ "카테고리코드";
     const categoryCodeTwo = /*[$[categoryCodeTwo}]]*/ "종목";
+
+    const c1 = /*[[${param.c1}]]*/ "c1";
+    let topTitle;
+    if(c1 == null) topTitle = "지식인";
+    else{
+      switch(c1[0]){
+        case "3" : topTitle = "정보"; break;
+        case "4" : topTitle = "꿀팁"; break;
+      }
+
+    }
+
+    document.querySelector(".door > h1").innerText = topTitle;
+    
   </script>
 
   <script src="/js/jisik/jisikList.js"></script>
