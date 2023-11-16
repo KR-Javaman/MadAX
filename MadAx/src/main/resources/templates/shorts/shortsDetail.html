@@ -11,6 +11,24 @@
   <body>
     <th:block th:replace="~{common/header}"></th:block>
     <div class="vid-index3">
+      <th:block th:if="${session.loginMember == null}">
+        <div class="backBtn">
+          <i
+            class="fa-solid fa-chevron-left"
+            style="color: #ffffff"
+            onclick="history.back()"
+          ></i>
+        </div>
+      </th:block>
+      <th:block th:unless="${session.loginMember == null}">
+        <div class="listBtn">
+          <i
+            class="fa-solid fa-list"
+            id="goToListBtn"
+            style="color: #ffffff"
+          ></i>
+        </div>
+      </th:block>
       <section>
         <video
           th:each="i : ${#numbers.sequence(0, #lists.size(videoBoard.videoList)-1, 1)}"
@@ -39,15 +57,20 @@
             >
               <button id="updateBtn">수정</button>
               <button id="deleteBtn">삭제</button>
-              <button>신고</button>
             </th:block>
           </div>
         </div>
         <div class="video-title-content">
           <div class="video-content2">
             <div class="video-writer">
-              <img th:if="*{profileImg}" th:src="${videoBoard.profileImg}" />
-              <img th:unless="*{profileImg}" th:src="#{user.default.image}" />
+              <img
+                th:if="${videoBoard.profileImg}"
+                th:src="${videoBoard.profileImg}"
+              />
+              <img
+                th:unless="${videoBoard.profileImg}"
+                th:src="#{user.default.image}"
+              />
               <span class="nickname-area" th:text="${videoBoard.memberNickname}"
                 >닉네임</span
               >
@@ -72,12 +95,9 @@
         </div>
         <!--  ------------------------->
         <th:block th:replace="~{shorts/shortsComment}"></th:block>
-        <div class="video-title-content" id="listBtn">
-          <button id="goToListBtn">목록으로</button>
-          <button onclick="history.back()">뒤로가기</button>
-        </div>
       </section>
     </div>
+
     <script th:inline="javascript">
       const boardVideoNo = /*[[${boardVideoNo}]]*/ "영상 게시글 번호";
       const loginCheck =
