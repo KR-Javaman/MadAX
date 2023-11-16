@@ -26,6 +26,12 @@ writeSubmit.addEventListener("submit", e => {
     return;
   }
 
+});
 
+const so = document.querySelector("select[name=category] option:so").value;
+
+
+so.addEventListener("change", e => {
+  
 
 });

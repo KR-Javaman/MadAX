@@ -72,4 +72,13 @@ updateBtn.addEventListener("click", ()=>{
 
 
 
+/* ==================목록으로 버튼 클릭======================= */
+
+const goToListBtn = document.getElementById("goToListBtn");
+
+goToListBtn.addEventListener("click", ()=>{
+  location.href = `/Board/${boardCode}/${categoryCode}/${categoryCodeTwo}`;
+});
+
+
 

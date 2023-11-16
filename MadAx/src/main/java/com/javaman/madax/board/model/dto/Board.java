@@ -28,8 +28,6 @@ public class Board {
 //    private int categoryName;
     private int categoryCodeTwo;
 
-
-
     private String boardName;
     private String categoryName;
     private String categoryNameTwo;

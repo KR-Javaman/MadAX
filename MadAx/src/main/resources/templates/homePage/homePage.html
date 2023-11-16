@@ -18,7 +18,7 @@
 
         <section class="myPage-main">
 
-          <div class="myShorts">
+          <div class="myShorts" id="divText">
             <label>쇼츠 영상</label>
             <a href="/shorts/main" id="more">더보기</a>
             <div id="shorts">
@@ -46,6 +46,12 @@
 
         </div>
 
+        <div>
+          <input type="button" value="더보기" style="width:100%; height:30px; background-color: #282828;  cursor:pointer; border:none;" onclick= "viewText(this)">
+        
+        </div>
+
+
             <div class="mid">
             <div class="myCommunity">
                 <label>커뮤니티</label> 
@@ -60,6 +66,8 @@
                             <th>상세 카테고리</th>
                             <th>제목</th>
                             <th>작성일</th>
+                            <th>조회수</th>
+                            <th>좋아요</th>
 
                         </tr>
 
@@ -80,6 +88,8 @@
                                       th:text="*{boardTitle}" style="text-decoration: underline;">게시글 제목</a>
                                 </td>
                                 <td th:text="*{writeDate}" style="font-size:13px;">작성일</td>
+                                <td th:text="*{boardCount}">조회수</td>
+                                <td th:text="*{likeCount}">좋아요</td>
                             </tr>
                         </th:block> 
                     </tbody>
@@ -102,6 +112,8 @@
                             <th>상세 카테고리</th>
                             <th>제목</th>
                             <th>작성일</th>
+                            <th>조회수</th>
+                            <th>좋아요</th>
 
                         </tr>
 
@@ -122,6 +134,8 @@
                                       th:text="*{boardTitle}" style="text-decoration: underline;">게시글 제목</a>
                                 </td>
                                 <td th:text="*{writeDate}" style="font-size:13px;">작성일</td>
+                                <td th:text="*{boardCount}">조회수</td>
+                                <td th:text="*{likeCount}">좋아요</td>
                             </tr>
                         </th:block> 
                     </tbody>
@@ -132,6 +146,7 @@
           </div>
       
     
+
       
       
       
@@ -140,13 +155,20 @@
 
     <th:block th:replace="~{common/common}"></th:block>
 
+    <th:block th:replace = "~{common/footer}"></th:block>  
 
-
-    <script th:inline="javascript">
-      
-
-    
-    </script>
+    <script> 
+      function viewText(bObj) { 
+        var tObj = document.getElementById("divText"); 
+        if(tObj.offsetHeight < 10000) { 
+          document.getElementById("divText").style.height = "300px"; 
+          bObj.value = "내용 닫기"; 
+          } else { 
+          document.getElementById("divText").style.height = "300px"; 
+          bObj.value = "내용 더보기"; 
+       } 
+      } 
+      </script> 
 
   
   </body>
