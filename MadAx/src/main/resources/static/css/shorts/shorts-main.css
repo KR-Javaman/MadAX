@@ -3,8 +3,7 @@
 }
 @font-face {
   font-family: "SUITE-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2")
-    format("woff2");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
 }
@@ -52,8 +51,8 @@ video {
   padding: 1rem;
 }
 .video-a {
-  width: 24.4rem;
-  height: 36rem;
+  width: 22rem;
+  height: 40rem;
   padding: 1rem;
   margin: 0 1.5rem;
   border-radius: 1rem;

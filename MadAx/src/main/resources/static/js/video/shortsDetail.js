@@ -66,8 +66,7 @@ const deleteBtn = document.querySelector("#deleteBtn");
 if (deleteBtn != null) {
   deleteBtn.addEventListener("click", () => {
     if (confirm("삭제 하시겠습니까?")) {
-      location.href =
-        location.pathname.replace("shorts/detail", "shorts/edit") + "/delete";
+      location.href = location.pathname.replace("shorts/detail", "shorts/edit") + "/delete";
     }
   });
 }

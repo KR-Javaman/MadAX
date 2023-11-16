@@ -60,3 +60,9 @@ for (let i = 0; i > shortsVideo.length(); i++) {
     update(e.target, i);
   });
 }
+
+function handleOnInput(el, maxlength) {
+  if (el.value.length > maxlength) {
+    el.value = el.value.substr(0, maxlength);
+  }
+}
