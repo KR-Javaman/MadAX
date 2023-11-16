@@ -28,14 +28,6 @@ writeSubmit.addEventListener("submit", e => {
 
 });
 
-const so = document.querySelector("select[name=category] option:so").value;
-
-
-so.addEventListener("change", e => {
-  
-
-});
-
 
 
 function handleOnInput(el, maxlength) {

@@ -16,7 +16,7 @@
       <th:block th:replace="~{common/header}"></th:block>
     </header>
 
-   
+
   </head> 
 
   <body>
@@ -28,8 +28,6 @@
       </div>
 
 
-      
- 
       <th:block th:replace="~{board/headerList2}"></th:block>
 
       <div class="sortation">
@@ -38,10 +36,6 @@
       <div class="search">
         
       </div>
-
-
-    
-
 
     <div class="community">
       <div class="com-left"></div>
@@ -71,8 +65,6 @@
           </div>
         </div>
         
-      
-
         <div id="short" style="display: none;">
           내용
         </div>
@@ -96,7 +88,7 @@
     </div>
 
     <div th:if="${session.loginMember != null}" class="writeBtn2">
-      <button id="writeBtn2">글쓰기</button>                     
+      <button id="writeBtn">글쓰기</button>                     
     </div>
 
 
@@ -131,7 +123,7 @@
           <li>
               <a th:href="@{/board/{boardCode}/{categoryCode}/{categoryCodeTwo}(boardCode=${boardCode},categoryCode=${categoryCode}, categoryCodeTwo=${categoryCodeTwo}, cp=${pagination.maxPage})}">&gt;&gt;</a>
           </li>
-  </ul>
+      </ul>
 
       
 
@@ -166,6 +158,8 @@
 
   <script th:inline ="javascript">
     const boardCode = /*[[${boardCode}]]*/ "게시판코드";
+    const categoryCode = /*[[${categoryCode}]]*/ "게시판코드";
+    const boardNo = /*[[${boardNo}]]*/ "게시판코드";
     const loginCheck = /*[[${session.loginMember != null ? true : false}]]*/ "로그인여부";
   </script>
 

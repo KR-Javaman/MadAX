@@ -59,25 +59,34 @@ public class EditBoardController {
 								@RequestParam("images") List<MultipartFile> images)throws IllegalStateException, IOException {
 		
 		
-				board.setMemberNo(loginMember.getMemberNo());
-				board.setBoardCode(boardCode);
-
-				
-			
-				int boardNo = service.insertBoard(board,images);
-				
-				
-					if(boardNo > 0 ) {
-						ra.addFlashAttribute("message","게시글 작성 성공");
-						return String.format("redirect:/board/%d/%d",boardCode,boardNo);
-					
-				}
+		board.setMemberNo(loginMember.getMemberNo());
+		board.setBoardCode(boardCode);
+	
+		int categoryCode = board.getCategoryCode();
+		
+	
+		int boardNo = service.insertBoard(board,images);
+		
+		if(categoryCode == 1) {
+			if(boardNo > 0 ) {
+				ra.addFlashAttribute("message","게시글 작성 성공");
+				return String.format("redirect:/board/%d/%d",boardCode,boardNo);
+			}else {
 				ra.addFlashAttribute("message", "게시글 작성 실패");
 				return "redirect:insert"; 
 			}
+		}else{
+			if(boardNo > 0 ) {
+				ra.addFlashAttribute("message","게시글 작성 성공");
+				return "redirect:/board/1/2/1";
+			}else {
+				ra.addFlashAttribute("message", "게시글 작성 실패");
+				return "redirect:insert"; 
+			}
+		}
 	
 	
-	
+	}
 	
 	
 	/**게시글 삭제
@@ -92,7 +101,7 @@ public class EditBoardController {
 								@PathVariable("boardNo")int boardNo, 
 								Board board,
 								@SessionAttribute(value ="loginMember", required = false) Member loginMember,
-								RedirectAttributes ra) {
+								RedirectAttributes ra) {	
 		
 		
 		if(loginMember == null) {
@@ -165,7 +174,7 @@ public class EditBoardController {
 	 * @throws IllegalStateException
 	 * @throws IOException
 	 */
-	@RequestMapping("/{boardCode:[0-9]+}/{boardNo:[0-9]+}/update")
+	@RequestMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/update")
 	public String updateBoard(@PathVariable("boardCode")int boardCode,
 							@PathVariable("boardNo")int boardNo,
 							Board board,
