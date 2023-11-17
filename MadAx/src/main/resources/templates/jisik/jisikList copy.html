@@ -25,7 +25,12 @@
 <th:block th:replace="~{jisik/jisikHeader}"></th:block>
 
 <div class="door">
-  <h1>지식인</h1>
+  <h1>지식인</h1> 
+
+  <h1 th:if="${param.c1} == 3">정보</div>
+  <h1 th:if="${param.c1} == 4">꿀팁</div>
+ 
+
 </div>
 
 <!-- <div th:switch="${c1}"> 

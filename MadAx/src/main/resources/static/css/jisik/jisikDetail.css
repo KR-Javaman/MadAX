@@ -1,4 +1,18 @@
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+   
+  }
+
+/* .image {
+    margin-top: 20px;
+    max-width: 700px;
+    max-height: 800px;
+} */
+
 /* 상세조회 전체 영역 */
+
 .jisik-detail{
     width: 1000px;
     min-height: 700px;
@@ -13,22 +27,38 @@
 /* 게시글 제목 */
 .jisik-title {
     margin : 0;
-    padding: 30px 0;
-    font-size: 1.5em;
-    border-bottom : 4px solid #000000;
+    padding: 20px 0;
+    font-size: 2.4em;
+    border-bottom : 2px solid #7a7a7a;
 }
 
-/* 게시글 헤더 */
-.detail-info{
-    padding: 20px 0;
+/* 
+.detail-info {
+    padding: 18px ;
     justify-content: space-between;
-    text-align: right;
-    border-bottom: #000000;
+    text-align: left;
+} */
+.jisik-content {
+
+    margin-top: 10px;
+}
+
+.image > .boardImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    height: auto;
+    overflow: hidden;
+    width: max-content;
+    max-width: 900px;
+    font-size: 20px;
+    min-width: 500px;
 }
 
 .writer-img > img{
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: 100px;
 }
 
 /* 작성자 영역 */
@@ -48,7 +78,7 @@
 /* 게시글 정보 */
 .jisik-info{
     width: 100px;
-    font-size: 0.8em;
+    font-size: 4px;
 }
 
 .jisik-info > p{
@@ -66,26 +96,17 @@
     margin: 10px 0;
 }
 
-
+/* 
 /* 이미지를 감싸는 div */
-.boardImg{
+/* .boardImg{
     width: 25%;
     height: 300px;
     float: left;
     text-align: center;
-}
+} */ 
 
 /* 이미지 */
-.boardImg img{
-    max-width: 10%;
-    max-height: 10
-}
 
-/* 썸네일만 이미지 크게 */
-.thumbnail{
-    width: 300px;   
-    height: 300px;
-}
 
 /* 다운로드 a태그 */
 .boardImg a{
@@ -99,49 +120,66 @@
 
 /* 내용 */
 .jisik-content{
+    height: auto;
+    overflow: hidden;
+    padding: 30px;
+    margin : 10px 0px 50px 0px;
     clear: both;
-    padding: 30px 0;
-    margin: 30px 0;
-    border-top : 3px solid #000000;
-    border-bottom : 3px solid #000000;
-
+    border-top : 3px solid #ffe3e3;
     font-size: 18px;
 
-    white-space: pre-wrap;
+    /* white-space: pre-wrap; */
 }
 
+.jisik-text {
+    height: auto;
+    overflow: hidden;
+    width: max-content;
+    max-width: 800px;
+    font-size: 20px;
+    border-bottom: #7a7a7a;
+    margin-bottom: 100px;
+
+}
 /* 버튼 영역 */
-.jisik-btn-area{
-    text-align: right;
-}
+/* .jisik-btn-area{
 
-/* 버튼 */
+    text-align: right;
+} */
+
+/* 
 .jisik-btn-area button{
     width: 80px;
     height: 30px;
-
     font-weight: bold;
     border: 0;
     background-color: #c4cef2;
     color : white;
 
     cursor: pointer;
-}
+} */
 
-.jisik-btn-area button:hover{
+/* .jisik-btn-area button:hover{
     background-color: white;
     color : #00e72e;
     border: 2px solid #0037ff;
-}
+} */
+
 
 
 /* 좋아요 */
-.like-area{
-    margin-left: 30px;
-}
 
 #boardLike{
-    font-size: 1.5em;
+    font-size: 3.5em;
     color: red;
     cursor: pointer;
 }
+
+.category {
+    font-size: 14px;
+}
+
+/* .boardImg {
+    max-width: 600px;
+    max-height: 400px;
+} */

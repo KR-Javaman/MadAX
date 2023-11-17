@@ -47,6 +47,7 @@
 
   <div class="list-wrapper">
 
+    </div>
 
     <table class="jisik-table" border="1">
 
@@ -209,7 +210,7 @@
 
           </div>
 
-          <!-- 검색창 -->
+<!--           
           <form th:action="@{/jisik/jisikList(c1=${param.c1}, c2=${param.c2})}" method="get" id="boardSearch">
 
             <select name="key" id="searchKey">
@@ -222,7 +223,7 @@
             <input type="text" name="query"  id="searchQuery" placeholder="검색어를 입력해주세요.">
 
             <button>검색</button>
-        </form>
+        </form> -->
 
     </section>
 
@@ -257,6 +258,20 @@
     const boardCode = /*[[${boardCode}]]*/ "게시판코드";
     const category =  /*[[${categoryCode}]]*/ "카테고리코드";
     const categoryCodeTwo = /*[$[categoryCodeTwo}]]*/ "종목";
+
+    const c1 = /*[[${param.c1}]]*/ "c1";
+    let topTitle;
+    if(c1 == null) topTitle = "지식인";
+    else{
+      switch(c1[0]){
+        case "3" : topTitle = "정보"; break;
+        case "4" : topTitle = "꿀팁"; break;
+      }
+
+    }
+
+    document.querySelector(".door > h1").innerText = topTitle;
+    
   </script>
 
   <script src="/js/jisik/jisikList.js"></script>

@@ -111,8 +111,6 @@ public class JisikController {
 						
 					}
 					
-/*				------------------------------------------------------------------------------
-					
 					
 					if (loginMember == null || 
 							loginMember.getMemberNo() != board.getMemberNo()) {
@@ -191,7 +189,6 @@ public class JisikController {
 					            
 								}
 					
-		*/
 	
 		//--------------------------------------------------------------------
 		
