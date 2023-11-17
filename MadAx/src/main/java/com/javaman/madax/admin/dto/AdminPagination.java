@@ -1,10 +1,10 @@
-package com.javaman.madax.shorts.model.dto;
+package com.javaman.madax.admin.dto;
 
-public class VideoPagination {
-	   private int currentPage;      // 현재 페이지 번호
+public class AdminPagination {
+	private int currentPage;      // 현재 페이지 번호
 	   private int listCount;         // 전체 게시글 수
 	   
-	   private int limit = 15;         // 한 페이지 목록에 보여지는 게시글 수
+	   private int limit = 10;         // 한 페이지 목록에 보여지는 게시글 수
 	   private int pageSize = 10;      // 보여질 페이지 번호 개수
 	   
 	   private int maxPage;         // 마지막 페이지 번호
@@ -15,14 +15,14 @@ public class VideoPagination {
 	   private int nextPage;         // 다음 페이지 모음의 시작 번호 
 	   
 	   
-	   public VideoPagination(int currentPage, int listCount) {
+	   public AdminPagination(int currentPage, int listCount) {
 		   this.currentPage = currentPage;
 		   this.listCount = listCount;
 		   
 		   calcPagination(); // 객체 생성 시 계산 수행해서 모든 필드 초기화
 	   }
 	   
-	   public VideoPagination(int currentPage, int listCount, int limit, int pageSize) {
+	   public AdminPagination(int currentPage, int listCount, int limit, int pageSize) {
 		   this.currentPage = currentPage;
 		   this.listCount = listCount;
 		   this.limit = limit;
@@ -145,4 +145,3 @@ public class VideoPagination {
 		   
 	   }
 }
-

@@ -76,9 +76,9 @@ public class ShortsController {
 		
 		videoBoard.setMemberNo(loginMember.getMemberNo());
 		
-		int result = service.writeInsert(videoBoard,video);
+		int boardVideoNo = service.writeInsert(videoBoard,video);
 		
-		if(result>0) {
+		if(boardVideoNo>0) {
 			ra.addFlashAttribute("message", "글 작성 완료");
 			return "redirect:/shorts/main";
 		}else {

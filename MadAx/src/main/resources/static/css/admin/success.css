@@ -1,32 +1,59 @@
-
 /* --------------------------------------------------------------------------------------- */
+:root {
+  font-size: 62.5%;
+}
+@font-face {
+  font-family: "SUITE-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
 
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: #282828;
+  font-family: "SUITE-Regular";
+}
 
-table { 
-    border-collapse: collapse;
-    width: 800px;
-    height: 300px;
-    font-size: large;
-  }
-  
-  .table-head {
-    color: rgb(255, 255, 255);
-    background-color: rgb(18, 18, 18);
-  }
-  
-  .admin-table{
-    margin-top: 100px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-  
-  }
-  
-  .table-elements{
-    color: black;
-    background-color: rgb(69, 131, 255);
-  }
-  
-  td {
-    text-align: center;
-  }
+table {
+  border-collapse: collapse;
+  width: 800px;
+  height: 300px;
+  font-size: large;
+  background-color: white;
+}
+.admin-table {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.table-elements {
+  color: black;
+  background-color: rgb(69, 131, 255);
+}
+
+td {
+  text-align: center;
+}
+.admin-btn {
+  display: flex;
+  justify-content: center;
+}
+.admin-btn button {
+  margin: 10px;
+  font-size: 20px;
+}
+tr td button {
+  font-size: 16px;
+  margin-left: 3px;
+}
+tr td button:hover {
+  background-color: rgb(147, 251, 1);
+}

@@ -1,12 +1,14 @@
 package com.javaman.madax.admin.controller;
 
-import java.util.List;  
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaman.madax.admin.model.MadAdminService;
 import com.javaman.madax.member.model.dto.Member;
@@ -19,10 +21,17 @@ public class MadAdminController {
 	private MadAdminService service;
 	
 	@GetMapping("main")
-	public String adminMain() {
-		
-		
-		
+	public String adminMain(Model model,Member member,
+					@RequestParam(value="cp",required = false, defaultValue = "1") int cp,
+					@RequestParam Map<String, Object> paramMap) {
+		if(paramMap.get("key") == null && paramMap.get("query") == null) {
+			Map<String, Object> map = service.selectAll(member,cp);
+			model.addAttribute("map", map);
+		}else {
+			Map<String, Object> map = service.searchMember(paramMap,cp);
+			model.addAttribute("map",map);
+			
+		}
 		return "admin/main";
 	}
 	
@@ -31,32 +40,15 @@ public class MadAdminController {
 		
 		Member searchMember = service.selectMember(inputEmail);
 			
-		// 이메일이 일치하는 회원이 존재하는 경우
-		// model.addAttribute("searchMember", value);
-		// return "admin/success"; // forward
 		if(searchMember != null) {
 			model.addAttribute("searchMember", searchMember);
 			return "admin/success"; 
 		}
 		
-		// 이메일이 일치하는 회원이 존재하지 않는 경우
-		// return "admin/fail"; // forward
-		return "admin/fail";
+		return "redirect:/admin/main";
 	}
 	
-	
-	
-	@GetMapping("selectAll")
-	public String selectAll(Model model) {
-		
-		List<Member> memberList = service.selectAll();
-		
-		model.addAttribute("memberList", memberList);
-		
-		return "admin/selectAll";
-	}
-	
-	// boardCode가 2인 게시글들만 불러오겠다.
+
 	
 			
 	
