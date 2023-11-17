@@ -173,6 +173,7 @@ body{
   background-color: black;
   border-radius: 15px;
   position: fixed;
+  
 } 
 
 
@@ -189,6 +190,7 @@ body{
   align-items: center;
   margin: 0 auto;
   
+  
 }
 
 
@@ -203,6 +205,7 @@ body{
   border: 2px solid rgb(147, 251, 1);
   border-radius: 5px;
   cursor: pointer;
+  
 
  }
 

@@ -6,8 +6,34 @@
     margin: 0;
   }
 
-.form-group{
-    border: 2px solid black;
-    width: 200px;
-    height: 100px;
+
+
+
+.container{
+  border: 1px solid black;
+  width: 1200px;
+  margin: 0 auto;
 }
+
+.form-group{
+  border: 1px solid black;
+  width: 100%;
+  height: 60px;
+  padding-top: 5px;
+}
+
+.form-group label{
+  font-size: 13px;
+}
+
+
+
+.form-control{
+  width: 100%;
+  height: 25px;
+}
+
+#content{
+  height: 100px;
+}
+
