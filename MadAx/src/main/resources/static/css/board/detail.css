@@ -28,7 +28,7 @@
 .detail{
   width: 128.2rem;
   min-height: 700px;
-  margin: 50px auto;
+  margin: 20px auto;
   padding: 20px;
 }
 
@@ -179,18 +179,4 @@
   cursor: pointer;
 }
 
-
-/* 이미지를 감싸는 div */
-.boardImg{
-  width: 25%;
-  height: 240px;
-  float: left;
-  text-align: center;
-}
-
-/* 이미지 */
-.boardImg img{
-  max-width: 90%;
-  max-height: 90%;
-}
 
