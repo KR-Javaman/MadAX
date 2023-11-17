@@ -4,17 +4,70 @@
 <mapper namespace="com.javaman.madax.admin.mapper.MadAdminMapper">
   
   	<select id="selectMember" resultType="Member">
-      SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_DEL_Fl, AUTHORITY
+      SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_DEL_Fl, AUTHORITY, MEMBER_NICKNAME, 
+      TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') AS ENROLL_DATE 
       FROM "MEMBER"
       WHERE MEMBER_EMAIL = #{inputEmail}
+      AND MEMBER_DEL_FL = 'N'
    </select>
   
   	
-	<select id="selectAll" resultType="Member">	
-			SELECT MEMBER_NO, MEMBER_DEL_Fl, MEMBER_EMAIL
-			FROM "MEMBER" 
-			ORDER BY MEMBER_NO DESC
+
+	
+	<select id="listCount" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE MEMBER_DEL_FL = 'N'
 	</select>
+	
+	<select id="memberList" resultType="Member">
+		SELECT MEMBER_NO,  MEMBER_EMAIL, MEMBER_NICKNAME
+		FROM "MEMBER" 
+		WHERE MEMBER_DEL_FL = 'N'
+		ORDER BY MEMBER_NO DESC
+	</select>
+	
+	<select id="memberCount" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE MEMBER_DEL_FL = 'N'
+		<choose>
+			<when test='key == "n"'>
+				AND MEMBER_NO LIKE '%${query}%'
+			</when>
+			<when test='key == "e"'>
+				AND MEMBER_EMAIL LIKE '%${query}%'
+			</when>
+			<when test='key == "nn"'>
+				AND MEMBER_NICKNAME LIKE '%${query}%'
+			</when>
+		</choose>
+	</select>
+	
+	
+	<select id="searchMember" resultType="Member">
+		SELECT MEMBER_NO,  MEMBER_EMAIL, MEMBER_NICKNAME FROM MEMBER
+		WHERE MEMBER_DEL_FL = 'N'
+		<choose>
+			<when test='key == "n"'>
+				AND MEMBER_NO LIKE '%${query}%'
+			</when>
+			<when test='key == "e"'>
+				AND MEMBER_EMAIL LIKE '%${query}%'
+			</when>
+			<when test='key == "nn"'>
+				AND MEMBER_NICKNAME LIKE '%${query}%'
+			</when>
+		</choose>
+		ORDER BY MEMBER_NO DESC
+	</select>
+	
+	
+	<update id="changeAuthority">
+		UPDATE "MEMBER" SET
+		AUTHORITY = DECODE(AUTHORITY,1,2,2,1)
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	
 
  
 

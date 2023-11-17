@@ -35,6 +35,9 @@
       <div class="sortation">
         <h1>커뮤니티</h1>
       </div>
+      <div class="search">
+        
+      </div>
 
 
     
@@ -60,6 +63,12 @@
           </div>
           <div class="myDIV" style="display: none;">
               <th:block th:replace = "~{board/comment}"></th:block>
+          </div>
+          <div class="board-btn-area">
+            <th:block th:if="${session.loginMember != null and session.loginMember.memberNo == board.memberNo}"> 
+                <button id="updateBtn">수정</button>
+                <button id="deleteBtn">삭제</button>
+            </th:block>
           </div>
         </div>
         
@@ -149,15 +158,16 @@
     <th:block th:replace = "~{common/common}"></th:block>
 
   </body>
-  
 
-  <script src="/js/board/boardList.js"></script>
+  <script src="/js/board/boardList.js"></script> 
   <script src="/js/board/recruitment.js"></script>
   <script src="/js/board/comment.js"></script>
+
  
 
   <script th:inline ="javascript">
     const boardCode = /*[[${boardCode}]]*/ "게시판코드";
+    const loginCheck = /*[[${session.loginMember != null ? true : false}]]*/ "로그인여부";
   </script>
 
 

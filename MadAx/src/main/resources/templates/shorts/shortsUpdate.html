@@ -3,11 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>게시판 글쓰기</title>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    />
+    <title>쇼츠 게시판 수정</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <th:block th:replace="~{common/common}"></th:block>
@@ -16,14 +13,8 @@
     <th:block th:replace="~{common/header}"></th:block>
     <main>
       <div class="container">
-        <h2>게시판 글쓰기</h2>
-        <form
-          action="update"
-          method="post"
-          id="updateForm"
-          enctype="multipart/form-data"
-          th:object="${videoBoard}"
-        >
+        <h2>쇼츠 게시판 수정하기</h2>
+        <form action="update" method="post" id="updateForm" enctype="multipart/form-data" th:object="${videoBoard}">
           <div class="form-group">
             <label for="title" th:text="${boardName}">제목</label>
 
@@ -37,30 +28,18 @@
               required="required"
               pattern=".{4,100}"
               th:value="*{videoTitle}"
+              oninput="handleOnInput(this, 10)"
             />
           </div>
 
           <div class="form-group">
             <label for="content" th:text="*{videoContent}">내용</label>
 
-            <textarea
-              class="form-control"
-              rows="5"
-              id="content"
-              name="videoContent"
-              placeholder="내용 작성"
-            ></textarea>
+            <textarea class="form-control" rows="5" id="content" name="videoContent" placeholder="내용 작성"></textarea>
           </div>
-          <input
-            type="file"
-            name="shortsVideo"
-            id="upload-file"
-            accept=".mp4"
-          />
+          <input type="file" name="shortsVideo" id="upload-file" accept=".mp4" />
           <!-- <button onclick="upload()" type="button">업로드</button> -->
-          <button type="submit" class="btn btn-default" id="writeBtn">
-            등록
-          </button>
+          <button type="submit" class="btn btn-default" id="writeBtn">등록</button>
           <input type="hidden" name="querystring" />
         </form>
       </div>

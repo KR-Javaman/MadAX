@@ -1,37 +1,103 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>관리자 페이지</title>
-    <link rel="stylesheet" href="/css/main.css">
-
-
-    <th:block th:replace = "~{common/common}"></th:block>
-
+    <link rel="stylesheet" href="/css/admin/main.css" />
+    <th:block th:replace="~{common/common}"></th:block>
   </head>
-  
+
   <body>
-    
-    <th:block th:replace="~{common/header}"></th:block>
+    <main th:with="memberList=${map.memberList}, pagination=${map.pagination}">
+      <th:block th:replace="~{common/header}"></th:block>
+      <div class="admin-table">
+        <table border="1">
+          <thead>
+            <tr class="table-head">
+              <th>회원번호</th>
+              <th>이메일</th>
+              <th>닉네임</th>
+            </tr>
+          </thead>
+          <tbody id="memberList">
+            <!-- 타임리프 향상된 for문
+            반복되는 횟수만큼 th:each가 지정된 태그가 출력된다. -->
+            <tr th:each="member : ${memberList}" th:object="${member}">
+              <td class="table-elements" th:text="*{memberNo}"></td>
 
-   <hr>
+              <td class="table-elements">
+                <a th:href="@{/admin/selectMember(inputEmail=*{memberEmail})}" th:text="*{memberEmail}"></a>
+              </td>
 
-   <h3>이메일이 일치하는 회원 정보 조회</h3>
-   <form action="selectMember">
+              <td class="table-elements" th:text="*{memberNickname}"></td>
 
-      이메일 : <input type="text" name="inputEmail">
-   <button>검색</button>
+              <!-- td th:text="*{ }" -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="video-pagination" th:if="${#lists.size(memberList) > 0}">
+        <ul class="pagination" th:if="${param.key == null}">
+          <li>
+            <a th:href="@{/admin/main(cp=1)}">&lt;&lt;</a>
+          </li>
+          <li>
+            <a th:href="@{/admin/main(cp=${pagination.prevPage})}">&lt;</a>
+          </li>
+          <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+            <li th:if="${i == pagination.currentPage}">
+              <a class="current-pagination" th:text="${i}">1</a>
+            </li>
+            <li th:unless="${i == pagination.currentPage}">
+              <a th:href="@{/admin/main(cp=${i})}" th:text="${i}">2</a>
+            </li>
+          </th:block>
+          <li>
+            <a th:href="@{/admin/main(cp=${pagination.nextPage})}">&gt;</a>
+          </li>
+          <li>
+            <a th:href="@{/admin/main(cp=${pagination.maxPage})}">&gt;&gt;</a>
+          </li>
+        </ul>
+        <!--  검색  -->
+        <ul class="pagination" th:unless="${param.key == null}">
+          <li>
+            <a th:href="@{/admin/main(cp=1, key=${param.key}, query=${param.query})}">&lt;&lt;</a>
+          </li>
+          <li>
+            <a th:href="@{/admin/main(cp=${pagination.prevPage}, key=${param.key}, query=${param.query})}">&lt;</a>
+          </li>
+          <th:block th:each="i : ${#numbers.sequence(pagination.startPage, pagination.endPage, 1)}">
+            <li th:if="${i == pagination.currentPage}">
+              <a class="current-pagination" th:text="${i}">1</a>
+            </li>
+            <li th:unless="${i == pagination.currentPage}">
+              <a th:href="@{/admin/main(cp=${i}, key=${param.key}, query=${param.query})}" th:text="${i}">2</a>
+            </li>
+          </th:block>
 
-   </form>
-
-   <hr>
-
-
-    <h2 style="color: black;"><a href="selectAll">전체 회원 조회</a></h2>
-
-    <th:block th:replace = "~{common/common}"></th:block>
-
+          <li>
+            <a th:href="@{/admin/main(cp=${pagination.nextPage}, key=${param.key}, query=${param.query})}">&gt;</a>
+          </li>
+          <li>
+            <a th:href="@{/admin/main(cp=${pagination.maxPage}, key=${param.key}, query=${param.query})}">&gt;&gt;</a>
+          </li>
+        </ul>
+      </div>
+      <form th:action="@{main}" method="get" id="search-area">
+        <select name="key" id="searchKey">
+          <option value="n">회원 번호</option>
+          <option value="e">이메일</option>
+          <option value="nn">닉네임</option>
+        </select>
+        <div class="searchMain">
+          <img src="/images/search_icon.png" />
+          <input type="text" id="search" name="query" placeholder="검색어를 입력해주세요" />
+        </div>
+        <button>검색</button>
+      </form>
+    </main>
+    <th:block th:replace="~{common/common}"></th:block>
   </body>
 </html>

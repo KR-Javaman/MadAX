@@ -32,17 +32,20 @@
                   class="fa-heart comment-heart"
                   th:classappend="*{likeClickComment} != 0 ? fa-solid : fa-regular"
                   th:comment-no="*{commentNo}"
+                  th:onclick="|likeComment(this, *{commentNo})|"
                 ></i>
                 <span id="count-heart" th:text="*{likeCountComment}" class="count-heart">좋아요 수</span>
             </span>
           </p>
+          <th:block th:if="${session.loginMember != null}">
           <div class="comment-btn-area">
-            <th:block th:if="${session.loginMember != null and session.loginMember.memberNo == videoComment.memberNo}">
               <button th:onclick="|showInsertComment(*{commentNo}, this)|">답글 달기</button>
-              <button th:onclick="|showUpdateComment(*{commentNo}, this)|">수정</button>
-              <button th:onclick="|deleteVideoComment(*{commentNo})|">삭제</button>
-            </th:block>
+              <th:block th:if="${session.loginMember.memberNo == videoComment.memberNo}">
+                <button th:onclick="|showUpdateComment(*{commentNo}, this)|">수정</button>
+                <button th:onclick="|deleteVideoComment(*{commentNo})|">삭제</button>
+              </th:block>
           </div>
+          </th:block>
         </th:block>
       </li>
     </ul>

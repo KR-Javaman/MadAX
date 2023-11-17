@@ -13,10 +13,8 @@ const selectCommentList = () => {
         const commentRow = document.createElement("li");
         commentRow.classList.add("comment-row");
 
-        if (videoComment.parentNo != 0)
-          commentRow.classList.add("child-comment");
-        if (videoComment.commentDelFl == "Y")
-          commentRow.innerText = "삭제된 댓글 입니다.";
+        if (videoComment.parentNo != 0) commentRow.classList.add("child-comment");
+        if (videoComment.commentDelFl == "Y") commentRow.innerText = "삭제된 댓글 입니다.";
         else {
           const commentWriter = document.createElement("p");
           commentWriter.classList.add("video-comment-writer");
@@ -51,9 +49,10 @@ const selectCommentList = () => {
           const heartComment = document.createElement("i");
           heartComment.classList.add("fa-heart");
           heartComment.classList.add("comment-heart");
-          if (videoComment.likeClickComment == 0)
-            heartComment.classList.add("fa-regular");
+          if (videoComment.likeClickComment == 0) heartComment.classList.add("fa-regular");
           else heartComment.classList.add("fa-solid");
+
+          heartComment.setAttribute("onclick", "likeComment(this, " + videoComment.commentNo + ")");
           //-------------------------------------------------------------------
           heartComment.setAttribute("comment-no", videoComment.commentNo);
 
@@ -73,10 +72,7 @@ const selectCommentList = () => {
             commentBtnArea.classList.add("comment-btn-area");
 
             const childCommentBtn = document.createElement("button");
-            childCommentBtn.setAttribute(
-              "onclick",
-              "showInsertComment(" + videoComment.commentNo + ", this)"
-            );
+            childCommentBtn.setAttribute("onclick", "showInsertComment(" + videoComment.commentNo + ", this)");
 
             childCommentBtn.innerText = "답글 달기";
 
@@ -86,18 +82,12 @@ const selectCommentList = () => {
               const updateBtn = document.createElement("button");
               updateBtn.innerText = "수정";
 
-              updateBtn.setAttribute(
-                "onclick",
-                "showUpdateComment(" + videoComment.commentNo + ", this)"
-              );
+              updateBtn.setAttribute("onclick", "showUpdateComment(" + videoComment.commentNo + ", this)");
 
               const deleteBtn = document.createElement("button");
               deleteBtn.innerText = "삭제";
 
-              deleteBtn.setAttribute(
-                "onclick",
-                "deleteVideoComment(" + videoComment.commentNo + ")"
-              );
+              deleteBtn.setAttribute("onclick", "deleteVideoComment(" + videoComment.commentNo + ")");
 
               commentBtnArea.append(updateBtn, deleteBtn);
             }
@@ -180,9 +170,7 @@ function showUpdateComment(commentNo, btn) {
 
   if (temp.length > 0) {
     if (confirm("다른 댓글이 수정 중 입니다. 현재 댓글을 수정 하시겠습니까?")) {
-      temp[0].parentElement.getElementsByClassName(
-        "comment-content"
-      ).innerHTML = beforeCommentRow;
+      temp[0].parentElement.getElementsByClassName("comment-content").innerHTML = beforeCommentRow;
     } else {
       return;
     }
@@ -254,11 +242,7 @@ function showInsertComment(parentNo, btn) {
   const temp = document.getElementsByClassName("commentInsertContent");
 
   if (temp.length > 0) {
-    if (
-      confirm(
-        "다른 답글을 작성 중입니다. 현재 댓글에 답글을 작성 하시겠습니까?"
-      )
-    ) {
+    if (confirm("다른 답글을 작성 중입니다. 현재 댓글에 답글을 작성 하시겠습니까?")) {
       temp[0].nextElementSibling.remove();
       temp[0].remove();
     } else {
@@ -276,10 +260,7 @@ function showInsertComment(parentNo, btn) {
 
   const insertBtn = document.createElement("button");
   insertBtn.innerText = "등록";
-  insertBtn.setAttribute(
-    "onclick",
-    "insertChildComment(" + parentNo + ", this)"
-  );
+  insertBtn.setAttribute("onclick", "insertChildComment(" + parentNo + ", this)");
 
   const cancelBtn = document.createElement("button");
   cancelBtn.innerText = "취소";
@@ -330,45 +311,38 @@ function insertChildComment(parentNo, btn) {
 }
 
 // -----------------------------------------------------
-const likeComments = document.querySelectorAll(".comment-heart");
+function likeComment(btn, commentNo) {
+  if (!loginCheck) {
+    alert("로그인을 먼저 해주세요");
+    return;
+  }
+  let check;
 
-for (let likeComment of likeComments) {
-  likeComment.addEventListener("click", (e) => {
-    if (!loginCheck) {
-      alert("로그인을 먼저 해주세요");
-      return;
-    }
-    let check;
+  if (btn.classList.contains("fa-regular")) {
+    check = 0;
+  } else {
+    check = 1;
+  }
 
-    if (e.target.classList.contains("fa-regular")) {
-      check = 0;
-    } else {
-      check = 1;
-    }
+  const data = { check: check, commentNo: commentNo };
 
-    const commentNo = e.target.getAttribute("comment-no");
+  fetch("/videoComment/like", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  })
+    .then((resp) => resp.text())
+    .then((count) => {
+      if (count == -1) {
+        console.log("좋아요 실패");
+        return;
+      }
+      btn.classList.toggle("fa-regular");
+      btn.classList.toggle("fa-solid");
 
-    const data = { check: check, commentNo: commentNo };
-
-    fetch("/videoComment/like", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      btn.nextElementSibling.innerText = count;
     })
-      .then((resp) => resp.text())
-      .then((count) => {
-        if (count == -1) {
-          console.log("좋아요 실패");
-          return;
-        }
-        e.target.classList.toggle("fa-regular");
-        e.target.classList.toggle("fa-solid");
-
-        e.target.nextElementSibling.innerText = count;
-        // selectCommentList();
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  });
+    .catch((e) => {
+      console.log(e);
+    });
 }

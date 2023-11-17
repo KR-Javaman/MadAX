@@ -37,9 +37,6 @@ public class BoardController{
 	
 private final BoardService service;
 	
-	
-	
-	
 
 	/**게시글 전제 조회
 	 * @param boardCode
@@ -53,7 +50,8 @@ private final BoardService service;
 								@PathVariable("categoryCode")int categoryCode,
 								@PathVariable("categoryCodeTwo")int categoryCodeTwo,
 								@RequestParam(value = "cp", required = false, defaultValue = "1") int cp,
-								@RequestParam Map<String, Object> paramMap, Model model) {
+								@RequestParam Map<String, Object> paramMap, Model model,
+								@SessionAttribute(value = "loginMember", required = false) Member loginMember) {
 		
 		
 		if(paramMap.get("key")==null && paramMap.get("query") == null) { //검색이 아닐 때 일반 조회
@@ -119,9 +117,7 @@ private final BoardService service;
 		                  }
 	            	}
 	            }
-
 	            int result = 0;
-
 	            if (c == null) {
 	            	c = new Cookie("readBoardNo", "|" + boardNo + "|");
 	            	result = service.updateBoardCount(boardNo);
@@ -132,50 +128,33 @@ private final BoardService service;
 	            	   result = service.updateBoardCount(boardNo);
 	               }
 	            }
-	         
-	               if (result > 0) {
+	            if (result > 0) {
 	               board.setBoardCount(board.getBoardCount() + 1);
 	               c.setPath("/"); 
 
-	               // 수명 지정
 	               Calendar cal = Calendar.getInstance();
 	               cal.add(cal.DATE, 1);  
 
-	            
 	               SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-	               // java.util.Date
-	               Date a = new Date(); // 현재 시간
-	               //2023-10-31 2:30:14
-
-	               Date temp = new Date(cal.getTimeInMillis()); // 다음날 (24시간 후)
-	               // 2023-11-01 2:30:14
-
-	               Date b = sdf.parse(sdf.format(temp)); // 다음날 0시 0분 0초
-
-	               // 다음날 0시 0분 0초 - 현재 시간
+	               Date a = new Date(); 
+	               Date temp = new Date(cal.getTimeInMillis()); 
+	               Date b = sdf.parse(sdf.format(temp)); 
 	               long diff = (b.getTime() - a.getTime()) / 1000;
-	               // -> 다음날 0시 0분 0초까지 남은 시간을 초단위로 반환
-
-	               c.setMaxAge((int) diff); // 수명 설정
-
-	               resp.addCookie(c); // 응답 객체를 이용해서
-	                              // 클라이언트에게 전달
+	               c.setMaxAge((int) diff); 
+	               resp.addCookie(c); 
+	                             
 	            }
 	         }
 	        
 	        	if (board.getImageList().size() > 0) {
-	        	 
 	        	 BoardImg thumbnail = null;
-	             
-	             //썸네일이 존재하면
 	             if (board.getImageList().get(0).getImgOrder() == 0) {
 	                thumbnail = board.getImageList().get(0);
 	             }
 	             model.addAttribute("thumbnail", thumbnail);
 	             model.addAttribute("start", thumbnail != null ? 1 : 0);
-	          }
-	    }else { //게시글 없을 경우
+	        	}
+	    }else { 
 			path = "redirect:/board/" + boardCode;
 		}
 		return path;
@@ -188,12 +167,9 @@ private final BoardService service;
 	@ResponseBody
 	public int like(@RequestBody Map<String, Object> map , @SessionAttribute("loginMember") Member loginMember) {
 		
-		//paramMap에 로그인 회원 번호만 추가
+		
 		map.put("memberNo", loginMember.getMemberNo());
-		
-		
-		//paramMap : {boardNo,memberNo, check}
-		return service.like(map);  //-1(실패) / 0이상 (성공)
+		return service.like(map);  
 	}
 	
 	

@@ -32,7 +32,7 @@ public class ShortsCommentController {
 	
 	@GetMapping(value="videoComment", produces="application/json")
 	public List<VideoComment> selectComment(int boardVideoNo, Model model,
-						@SessionAttribute(value="loginMeber", required = false) Member loginMember){
+						@SessionAttribute(value="loginMember", required = false) Member loginMember){
 		
 		Map<String, Object> map = new HashMap<>();
 		

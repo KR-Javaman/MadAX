@@ -75,19 +75,25 @@ public class ShortsServiceImpl implements ShortsService{
 	}
 	
 	
-	//	글 작성
+		//글 작성
 	@Override
 	public int writeInsert(VideoBoard videoBoard, List<MultipartFile> video) throws IllegalStateException, IOException {
 
+		
+		
 		int result = mapper.writeInsert(videoBoard);
 		
 		if(result == 0) return 0;
 		int boardVideoNo = videoBoard.getBoardVideoNo();
-	
+		
+		
+		if(video.isEmpty() && video == null) {
+			return 0;
+		}
 		List<Video> uploadVideo = new ArrayList<>();
-		for(int i= 0; i<video.size(); i++) {
-			if(!video.isEmpty()) {
-				if(video.get(i).getSize()>0) {
+		for(int i = 0; i<video.size(); i++) {
+			
+			if(!video.isEmpty() ) {
 					Video vd = new Video();
 					
 					vd.setBoardVideoNo(videoBoard.getBoardVideoNo());
@@ -98,20 +104,66 @@ public class ShortsServiceImpl implements ShortsService{
 					uploadVideo.add(vd);
 					
 					mapper.videoInsert(vd);
-				}
-			}
-			if(!uploadVideo.isEmpty()) {
-				for(Video vd : uploadVideo) {
 					vd.getUploadFile().transferTo(new File(folderPath + vd.getVideoRename()));
-				}
-				result = 1;
-			}else {
-				return 0;
 			}
-		
+			
 		}
 		return result;
 	}
+	
+//	@Override
+//	public int writeInsert(VideoBoard videoBoard, List<MultipartFile> video) throws IllegalStateException, IOException {
+//	    int result = mapper.writeInsert(videoBoard);
+//
+//	    if (result == 0) {
+//	        return 0;
+//	    }
+//
+//	    int boardVideoNo = videoBoard.getBoardVideoNo();
+//
+//	    if (video == null || video.isEmpty()) {
+//	        return 0; // No file selected, return 0.
+//	    }
+//
+//	    List<Video> uploadVideo = new ArrayList<>();
+//
+//	    for (int i = 0; i < video.size(); i++) {
+//	        try {
+//	            MultipartFile file = video.get(i);
+//	            if (file != null && !file.isEmpty()) {
+//	                Video vd = new Video();
+//	                vd.setBoardVideoNo(videoBoard.getBoardVideoNo());
+//	                vd.setVideoOrder(i);
+//	                vd.setVideoPath(webPath);
+//
+//	                // Assuming Util.fileRename is a method that safely renames the file
+//	                String originalFilename = file.getOriginalFilename();
+//	                String renamedFilename = Util.fileRename(originalFilename);
+//	                vd.setVideoRename(renamedFilename);
+//
+//	                vd.setUploadFile(file);
+//	                uploadVideo.add(vd);
+//
+//	                mapper.videoInsert(vd);
+//
+//	                // Transfer the file to the specified folder
+//	                file.transferTo(new File(folderPath + renamedFilename));
+//	            }
+//	        } catch (IllegalStateException | IOException e) {
+//	            // Handle the exception, log it, or take appropriate action.
+//	            e.printStackTrace(); // or log.error("File upload failed", e);
+//	            // You might want to remove the Video object from uploadVideo if the upload fails.
+//	        }
+//	    }
+//
+//	    return boardVideoNo;
+//	}
+
+
+
+	
+	
+	
 	
 	// 글 상세 조회
 	@Override

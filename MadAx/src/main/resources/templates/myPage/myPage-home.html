@@ -28,12 +28,6 @@
     
             <section class="myPage-main">
 
-                <div class="myCalender">
-                    <label>나의 운동 일지</label>
-                      <a href="/myPage/myPage-calender" id="more">더보기</a>  
-                    <div id="calender"></div>  
-                </div>
-
                 <div class="mid">
                 <div class="myCommunity">
                     <label>내가 작성한 커뮤니티 글</label> 
@@ -143,8 +137,7 @@
                                     width="300px"
                                     height="320px"
                                     controls></video>
-                                    <div id="video-kdb" th:text="${videoList[i].videoTitle}" style="font-size: 17px;">게시글 제목 </div>
-                                    <i class="fa-heart fa-solid" style="color : red;  margin-left:160px; font-size: 15px;" id="boardLike"></i>
+                                    <div id="video-kdb" th:text="${videoList[i].videoTitle}" style="font-size: 15px;">게시글 제목 </div>
                                 </a>
                         </th:block>
 
