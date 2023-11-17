@@ -68,6 +68,8 @@ public class MemberController {
 		if(loginMember == null) {
 			ra.addFlashAttribute("message", 
 								"아이디 또는 비밀번호가 일치하지 않습니다");
+			
+			return "redirect:/member/login";
 		}
 		
 		model.addAttribute("loginMember", loginMember);
