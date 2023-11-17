@@ -111,7 +111,6 @@ const selectCommentList = () => {
 
 //-------------------------------------------------------------------------------------------------
 
-
 // 댓글 등록
 const addComment = document.getElementById("addComment");
 const commentContent = document.getElementById("commentContent");
@@ -131,28 +130,26 @@ addComment.addEventListener("click", e => {
       commentContent.focus();
       return;
   }
-
-  // 3) AJAX를 이용해서 댓글 내용 DB에 저장(INSERT)
-  const data = {"commentContent" : commentContent.value,
+    const data = {"commentContent" : commentContent.value,
                   "memberNo" : loginMemberNo,
-                  "boardNo" : boardNo}; // JS객체
+                  "boardNo" : boardNo}; 
 
   fetch("/comment",{
       method : "POST",
       headers : {"Content-Type" : "application/json"},
-      body : JSON.stringify(data) // JS객체 -> JSON 파싱
+      body : JSON.stringify(data) 
   })
   .then(resp => resp.text())
   .then(result => {
-      if(result > 0){ // 등록 성공
+      if(result > 0){ 
           alert("댓글이 등록되었습니다.");
 
-          commentContent.value = ""; // 작성했던 댓글 삭제
+          commentContent.value = ""; 
 
-          selectCommentList(); // 비동기 댓글 목록 조회 함수 호출
-          // -> 새로운 댓글이 추가되어짐
+          selectCommentList(); 
+ 
 
-      } else { // 실패
+      } else { 
           alert("댓글 등록에 실패했습니다...");
       }
   })
