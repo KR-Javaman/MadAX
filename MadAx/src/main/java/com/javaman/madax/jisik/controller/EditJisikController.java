@@ -155,14 +155,14 @@ public class EditJisikController {
 		
 		if(result > 0) {
 			message = "게시글 수정 완료";
-			path = "jisik/jisikDetail/ + boardNo"; 
+			path = "redirect:/jisik/jisikDetail/" + boardNo; 
 			
 //			path = String.format("redirect:/jisik/jisikDetail/%d%s" , boardNo, querystring);
 			
 			
 		} else {
 			message = "수정 실패";
-			path = "jisik/jisikList";
+			path = "redirect:/jisik/jisikDetail/" + boardNo; 
 		}
 		ra.addFlashAttribute("message", message);
 		return path;

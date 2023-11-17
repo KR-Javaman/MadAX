@@ -24,8 +24,8 @@ table {
   width: 800px;
   height: 300px;
   font-size: large;
-  background-color: rgb(69, 131, 255);
-  color: white;
+  background-color: white;
+  color: black;
   border-color: black;
 }
 .admin-table {

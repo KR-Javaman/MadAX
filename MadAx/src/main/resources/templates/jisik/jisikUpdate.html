@@ -23,12 +23,12 @@
         
         <h2>내용 수정</h2>
   
-        <form action="jisikUpdate" method="post" id="jisikUpdate" enctype="multipart/form-data">
+        <form th:action="@{{boardNo}(boardNo=${boardNo})}" method="post" id="jisikUpdate" enctype="multipart/form-data">
             
           <div class="form-group">
             <label for="title">제목</label>
             <input type="text" class="form-control" id="title" placeholder="제목 입력(4-100)" name="boardTitle"
-                    maxlength="100" required="required" pattern=".{4,100}">
+                    maxlength="100" required="required" pattern=".{4,100}" th:value="${board.boardTitle}">
           </div>
   
             <div class="category">
