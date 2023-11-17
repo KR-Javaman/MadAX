@@ -43,6 +43,18 @@ public class HomeController {
 	}
 	
 	
+	@GetMapping("terms")
+	public String terms() {
+		
+		return "homePage/terms";
+	}
+	
+	@GetMapping("terms2")
+	public String terms2() {
+		
+		return "homePage/terms2";
+	}
+	
 	
 
 }

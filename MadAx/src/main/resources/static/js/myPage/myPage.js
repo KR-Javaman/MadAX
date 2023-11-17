@@ -14,7 +14,7 @@ memberNickname.addEventListener("input", () => {
 
 
     // 정규식 검사
-    const regEx = /^[가-힣\w\d]{1,8}$/;
+    const regEx = /^[ㄱ-ㅎㅏ-ㅣ가-힣\!\@\#\-\_0-9\w\d]{0,8}$/;
 
     if( regEx.test(memberNickname.value) ){
 
@@ -43,7 +43,7 @@ document.getElementById("changeNicknameFrm").addEventListener("submit", e => {
 
     if(memberNickname.value.trim().length == 0){
         memberNickname.value = '';
-        alert("유효하지 않은 닉네임입니다.");
+        alert("닉네임은 1~8글자/영문/한글만 작성 가능합니다.");
         checkObj.memberNickname = false;
         e.preventDefault();
         memberNickname.focus();

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.javaman.madax.board.model.dto.Board;
-import com.javaman.madax.board.model.dto.Pagination;
+import com.javaman.madax.board.model.dto.MyPagePagination;
 import com.javaman.madax.myPage.model.mapper.MyCommunityMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class MyCommunityServiceImpl implements MyCommunityService {
 		//게시글 수 조회
 				int listCount = mapper.ListCount(memberNo);
 				
-				Pagination pagination = new Pagination(cp, listCount);
+				MyPagePagination pagination = new MyPagePagination(cp, listCount);
 				
 				
 				int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();

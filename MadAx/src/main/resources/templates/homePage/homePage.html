@@ -79,11 +79,11 @@
                                 <br>
                                   <span class="communityBoardContent" th:text="*{boardContent}" style="font-size: 14px; margin-top: 12px; font-size: 14px; color:rgb(190, 190, 190);" >게시글 내용</span>
                                 <br>
-                                <span style="margin-top: 1px;">
-                                    <img th:unless="*{profileImg}" th:src="#{user.default.image}"  id="memberProfile2" style="width:20px; border-radius: 100%;  margin-top:5px;">
-                                    <img th:if="*{profileImg}" th:src="*{profileImg}"  id="memberProfile2" style="width:20px; border-radius: 100%;  margin-top:5px;"> 
-                                    <span th:text="*{memberNickname}" style="font-size:13px; margin: 0 7px; color:rgb(190, 190, 190);"></span>
-                                    ｜ <span th:text="*{writeDate}" style="font-size:13px; margin: 0 7px; color:rgb(190, 190, 190);">작성일</span> 
+                                <span style="margin-top: 0px;justify-content: center;align-items: center; display: inline-flex;">
+                                    <img th:unless="*{profileImg}" th:src="#{user.default.image}"  id="memberProfile2" style="width:20px; height:20px; border-radius: 100%;  margin-top:5px;">
+                                    <img th:if="*{profileImg}" th:src="*{profileImg}"  id="memberProfile2" style="width:20px; height:20px; border-radius: 100%;  margin-top:5px;"> 
+                                    <span th:text="*{memberNickname}" style="font-size:13px; margin: 10px 7px 6px; color:rgb(190, 190, 190);"></span>
+                                    ｜ <span th:text="*{writeDate}" style="font-size:13px; margin: 10px 7px 6px; color:rgb(190, 190, 190);">작성일</span> 
                                     </span>
                                 <span style="margin-top: 10px; float:inline-end;">
                                     <span th:text="|조회수 : *{boardCount}|" style="margin: 0 7px; font-size:13px; ; color:rgb(190, 190, 190);" >조회수</span>

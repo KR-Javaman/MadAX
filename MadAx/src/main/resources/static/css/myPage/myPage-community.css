@@ -84,7 +84,8 @@ tbody > td{
   text-overflow: ellipsis;
   max-width: 170px;
   line-height: 25px;
-  padding: 0px 20px;
+  padding: 0px 15px;
+  
 }
 
 
@@ -96,11 +97,11 @@ tbody > td{
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  max-width: 400px;
+  max-width: 500px;
 }
 
 .list-table tr td a:hover {
-  color: rgb(147, 251, 1);
+  color: rgb(217, 255, 163);
 
 }
 
@@ -113,7 +114,7 @@ tbody > td{
 }
 .list-table tr > td:nth-child(3) {
 
-  width: 30%;
+  width: 35%;
 }
 .list-table tr > td:nth-child(4) {
   width: 15%;

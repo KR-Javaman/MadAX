@@ -41,7 +41,6 @@
                                     <th>제목</th>
                                     <th>내용</th>
                                     <th>작성일</th>
-                                    <th>조회수</th>
                                     <th><i class="fa-heart fa-solid" style="color : red;" id="boardLike"></i></th>
                                   </tr>
                                 </thead>
@@ -63,7 +62,6 @@
                                       <a th:href="@{/board/1/{boardNo}(boardNo=*{boardNo})}" th:text="*{boardContent}" style="text-decoration: underline;">게시글 내용 </a>
                                     </td> 
                                     <td th:text="*{writeDate}">작성일</td>
-                                    <td th:text="*{boardCount}">조회수</td>
                                     <td th:text="*{likeCount}">좋아요</td>
                                   </tr>
                                 </tbody>

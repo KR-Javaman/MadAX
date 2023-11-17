@@ -83,7 +83,7 @@ a {
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  max-width: 180px;
+  max-width: 200px;
 }
 
 .list-table tr > *{ text-align: center;

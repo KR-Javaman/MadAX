@@ -86,7 +86,6 @@
                                   <th>카테고리</th>
                                   <th>제목</th>
                                   <th>작성일</th>
-                                  <th>조회수</th>
                                   <th><i class="fa-heart fa-solid" style="color : red;" id="boardLike"></i></th>
       
                               </tr>
@@ -107,7 +106,6 @@
                                          th:text="*{boardTitle}" style="text-decoration: underline;">게시글 제목</a>
                                    </td>
                                    <td th:text="*{writeDate}" style="font-size:13px;">작성일</td>
-                                   <td th:text="*{boardCount}">조회수</td>
                                    <td th:text="*{likeCount}">좋아요</td>
                                   </tr>
                               </th:block> 
