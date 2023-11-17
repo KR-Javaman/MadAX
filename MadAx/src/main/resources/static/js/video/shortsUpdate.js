@@ -56,6 +56,7 @@ updateForm.addEventListener("submit", (e) => {
   var fileCheck = videoFile.value;
   if (!fileCheck) {
     alert("파일을 확인 해주세요");
+    e.preventDefault();
     return;
   }
 });

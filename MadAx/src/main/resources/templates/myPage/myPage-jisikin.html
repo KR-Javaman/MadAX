@@ -59,7 +59,7 @@
 
                                     <td th:text="|[*{boardTitle}]|" style="color: white;" > 게시글 제목</td>
                                     <td> 
-                                      <a th:href="@{/board/1/{boardNo}(boardNo=*{boardNo})}" th:text="*{boardContent}" style="text-decoration: underline;">게시글 내용 </a>
+                                      <a th:href="@{/jisik/jisikDetail/{boardNo}(boardNo=*{boardNo})}" th:text="*{boardContent}" style="text-decoration: underline;">게시글 내용 </a>
                                     </td> 
                                     <td th:text="*{writeDate}">작성일</td>
                                     <td th:text="*{likeCount}">좋아요</td>
