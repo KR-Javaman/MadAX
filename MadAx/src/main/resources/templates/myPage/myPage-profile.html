@@ -31,7 +31,7 @@
                    
                         <div class="myPage-profile-upper">
                             <div class="profile-content" th:object="${loginMember}">
-                                <form action="changeNickname" method="POST" >
+                                <form action="changeNickname" method="POST" id="changeNicknameFrm">
                                     <span class="profile-row">
                                      닉네임 <input type="text" name="memberNickname" id="memberNickname" class="editProfile2" th:value="*{memberNickname}"> <button class="editButton" >수정하기</button>
                                     </span>

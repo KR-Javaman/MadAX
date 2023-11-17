@@ -1,8 +1,63 @@
 const checkObj = {
 
     "newPw" : false,
-    "newPwConfirm" : false
+    "newPwConfirm" : false,
+    "memberNickname" : false
 };
+
+
+/* 닉네임 유효성 검사 */
+const memberNickname = document.getElementById("memberNickname");
+
+
+memberNickname.addEventListener("input", () => {
+
+
+    // 정규식 검사
+    const regEx = /^[가-힣\w\d]{1,8}$/;
+
+    if( regEx.test(memberNickname.value) ){
+
+        /* ========== 닉네임 중복 검사(비동기) ========== */ 
+            fetch("/member/checkNickname?nickname=" + memberNickname.value)
+            .then( response => response.text() )
+            .then( result => {
+                if(result == 0) { // 중복 X
+                    checkObj.memberNickname = true; 
+                } else { // 중복 O
+                    alert("이미 사용중인 닉네임입니다.");
+                    checkObj.memberNickname = false; // 유효한 상태임을 기록
+
+                }
+            })
+            .catch(e => console.log(e));
+    } 
+    
+    else{
+        alert("닉네임은 1~8글자/영문/한글만 작성 가능합니다.");
+        checkObj.memberNickname = false; 
+    }
+});
+
+document.getElementById("changeNicknameFrm").addEventListener("submit", e => {
+
+    if(memberNickname.value.trim().length == 0){
+        memberNickname.value = '';
+        alert("유효하지 않은 닉네임입니다.");
+        checkObj.memberNickname = false;
+        e.preventDefault();
+        memberNickname.focus();
+        return;
+    }
+
+});
+
+
+
+
+
+
+
 
 
 // ============================================================================================

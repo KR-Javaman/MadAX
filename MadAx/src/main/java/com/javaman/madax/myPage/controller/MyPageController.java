@@ -154,7 +154,7 @@ public class MyPageController {
 		
 		else {
 			message = "비밀번호가 일치하지 않습니다.";
-			path = "redirect:secession2";
+			path = "redirect:/myPage/myPage-secession2";
 		}
 		
 		ra.addFlashAttribute("message", message);

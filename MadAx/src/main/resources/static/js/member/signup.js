@@ -295,14 +295,14 @@ memberNickname.addEventListener("input", () => {
 
     if(memberNickname.value.trim().length == 0){
         memberNickname.value = '';
-        nickMessage.innerText = "한글,영어,숫자로만 2~10글자";
+        nickMessage.innerText = "한글,영어,숫자로만 2~8글자";
         nickMessage.classList.remove("confirm", "error");
         checkObj.memberNickname = false;
         return;
     }
 
     // 정규식 검사
-    const regEx = /^[가-힣\w\d]{2,10}$/;
+    const regEx = /^[가-힣\w\d]{2,8}$/;
 
     if( regEx.test(memberNickname.value) ){
 

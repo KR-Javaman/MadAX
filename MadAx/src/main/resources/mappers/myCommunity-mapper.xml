@@ -79,7 +79,7 @@
 		WHERE MEMBER_NO = #{memberNo}
 		AND BOARD_DEL_FL = 'N'
 		AND B.BOARD_CODE = 1
-		ORDER BY WRITE_DATE DESC
+		ORDER BY BOARD_NO DESC
 	</select>
 	
 </mapper>

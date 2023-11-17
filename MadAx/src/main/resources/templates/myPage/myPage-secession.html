@@ -254,8 +254,7 @@
                         <label for="agree">위 약관에 동의합니다.</label>
                     </div>
 
-                    <div class="myPage-submit"> <a id="secessionBtn" href="/myPage/myPage-secession2"> 탈퇴하기 </a></div>
-                    
+                    <div class="myPage-submit"> <button type="button" id="secessionBtn" onclick="if($('#agree').prop('checked') == true) {location.href='/myPage/myPage-secession2';} else{alert('약관 동의를 체크하세요.');}"> 탈퇴하기 </button></div>
 
             </section>
 
