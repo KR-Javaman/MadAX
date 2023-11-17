@@ -76,7 +76,7 @@ updateBtn.addEventListener("click", ()=>{
 const goToListBtn = document.getElementById("goToListBtn");
 
 goToListBtn.addEventListener("click", ()=>{
-  location.href = `/board/${boardCode}/${categoryCode}/${categoryCodeTwo}`;
+  location.href = `/board/${boardCode}/1/1`;
 });
 
 

@@ -54,16 +54,16 @@
             </div>
             <div class="board-content" th:text="*{boardContent}"></div>
           </div>
-          <div class="myDIV" style="display: none;">
+          <!-- <div class="myDIV" style="display: none;">
               <th:block th:replace = "~{board/comment}"></th:block>
-          </div>
+          </div> -->
           <div class="board-btn-area">
             <th:block th:if="${session.loginMember != null and session.loginMember.memberNo == board.memberNo}"> 
-                <button class="updateBtn">수정</button>
-                <button class="deleteBtn">삭제</button>
+                <button class="updateBtn" th:data-no="*{boardNo}">수정</button>
+              <button class="deleteBtn" th:data-no="*{boardNo}" >삭제</button>
             </th:block>
           </div>
-        </div>
+        </div>  
         
         <div id="short" style="display: none;">
           내용
@@ -87,7 +87,7 @@
       </div>
     </div>
 
-    <div th:if="${session.loginMember != null}" class="writeBtn2">
+    <div th:if="${session.loginMember != null}" class="writeBtn">
       <button id="writeBtn">글쓰기</button>                     
     </div>
 
@@ -159,7 +159,6 @@
   <script th:inline ="javascript">
     const boardCode = /*[[${boardCode}]]*/ "게시판코드";
     const categoryCode = /*[[${categoryCode}]]*/ "게시판코드";
-    const boardNo = /*[[${boardNo}]]*/ "게시판코드";
     const loginCheck = /*[[${session.loginMember != null ? true : false}]]*/ "로그인여부";
   </script>
 

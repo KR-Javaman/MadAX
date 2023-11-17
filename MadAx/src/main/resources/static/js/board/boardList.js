@@ -33,19 +33,19 @@ const searchQuery = document.getElementById("searchQuery");
 
 
 
-const asdf = document.getElementById("asdf");
-asdf.addEventListener("click", ()=>{
-  fetch("board/{boardCode}/{categoryCode}/{categoryCodeTwo}")
-  .then(response => response.json())
-  .then(data => {
+// const asdf = document.getElementById("asdf");
+// asdf.addEventListener("click", ()=>{
+//   fetch("board/{boardCode}/{categoryCode}/{categoryCodeTwo}")
+//   .then(response => response.json())
+//   .then(data => {
     
-  })
-  .catch(error => console.log(error))
+//   })
+//   .catch(error => console.log(error))
 
 
 
 
-});
+// });
 
 
 

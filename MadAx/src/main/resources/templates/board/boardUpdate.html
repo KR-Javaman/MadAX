@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <link rel="stylesheet" th:href="@{/css/header.css}">
-    <!-- <link rel="stylesheet" href="../../static/css/board/write.css"> -->
 
     <header>
       <th:block th:replace="~{common/header}"></th:block>
@@ -27,24 +26,8 @@
 
         <div class="form-group" >
           <label for="title">제목</label>
-          <input type="text" class="form-control" id="title"  name="boardTitle"  maxlength="100" required="required" pattern=".{4,100}"  
-                  placeholder="내용 작성" th:value="*{boardTitle}"  oninput='handleOnInput(this, 10)'>
-        </div>
-
-        <div class="category">
-          <label for="wirte-category">게시판 카테고리</label>  
-          <select name="categoryCode">
-            <option value="1">일반</option>
-            <option value="2">구인</option>
-          </select>
-          <select name="categoryCodeTwo">
-            <option value="1">전체</option>
-            <option value="2">축구</option>
-            <option value="3">야구</option>
-            <option value="4">농구</option>
-            <option value="5">헬스</option>
-            <option value="6">기타</option>
-          </select>
+          <input type="text" class="form-control" id="title"  name="boardTitle"  required="required" pattern=".{4,100}"  
+                  placeholder="내용 작성" th:value="*{boardTitle}" oninput='handleOnInput(this, 10)'>
         </div>
 
         <div class="form-group">
@@ -67,11 +50,11 @@
     const boardCode = /*[[${boardCode}]]*/"게시판코드";
 
     const message = /*[[${message}]]*/ "message";
- 
     if(message != null) alert(message);
+    
   </script>
   
 
-  <script src="/js/board/boardUpdate.js"></script>
+  <script src="js/board/boardUpdate.js"></script>
 
 </html>
