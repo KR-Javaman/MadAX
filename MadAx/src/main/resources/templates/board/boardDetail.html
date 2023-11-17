@@ -98,7 +98,7 @@
     const categoryCodeTwo = /*[[${categoryCodeTwo}]]*/ "게시판 코드";
     const boardNo = /*[[${boardNo}]]*/ "게시글 번호";
     const loginCheck = /*[[${session.loginMember != null ? true : false}]]*/ "로그인여부";
-    const loginMemberNo = /*[[${loginMemberNo}]]*/ "게시판 코드";
+    const loginMemberNo = /*[[${session.loginMember.memberNo}]]*/ "게시판 코드";
     
     const message = /*[[${message}]]*/ "메세지";
     if(message != null) alert(message);
