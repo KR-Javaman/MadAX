@@ -69,18 +69,19 @@
 
                         <th:block th:unless="${#lists.size(boardList) == 0}">
                              <div th:each="board: ${boardList}" th:object="${board}" class="communityBoard" style=" border-bottom: 1px dotted white; padding: 18px 16px 15px 20px;">
-                                <span> <a th:href="@{/board/1/{boardNo}(boardNo=*{boardNo})}"
-                                  th:text="*{boardTitle}" class="communityBoardTitle" style="font-size: 16px;">게시글 제목</a></span> <span th:text="|(*{likeCount})|" style="color:red; font-size: 13px;">좋아요></span>
+                                <span> <span th:if="*{categoryName} == 구인" th:text="|*{categoryName} > *{categoryNameTwo}  |" style=" font-size:13px; color:rgb(33, 155, 255);  border-left: 2px solid rgb(33, 155, 255);  padding-left: 7px; margin-top: 10px; ">카테고리 종류 ｜</span>
+                                <span th:unless="*{categoryName} == 구인" th:text="| *{categoryName} > *{categoryNameTwo} |" style="font-size:13px;  color:rgb(255, 0, 128); border-left: 2px solid rgb(255, 0, 128); padding-left: 7px; ">카테고리 종류 </span> <a th:href="@{/board/1/{boardNo}(boardNo=*{boardNo})}"
+                                  th:text="|[*{boardTitle}]|" class="communityBoardTitle" style="font-size: 16px; margin-left: 7px;">게시글 제목</a></span> <span th:text="|(*{commentCount})|" style="color:red; font-size: 14px; margin-left: 2px;">좋아요</span>
                                 <br>
                                   <span class="communityBoardContent" th:text="*{boardContent}" style="font-size: 14px; margin-top: 12px; font-size: 14px; color:rgb(190, 190, 190);" >게시글 내용</span>
                                 <br>
                                 <span style="margin-top: 1px;">
-                                    <span th:if="*{categoryName} == 구인" th:text="|*{categoryName} > *{categoryNameTwo} |" style=" font-size:13px; color:rgb(33, 155, 255);  border-left: 2px solid rgb(33, 155, 255);  padding-left: 7px; margin-top: 10px; ">카테고리 종류 ｜</span>
-                                    <span th:unless="*{categoryName} == 구인" th:text="|*{categoryName} > *{categoryNameTwo} |" style="font-size:13px;  color:rgb(255, 0, 128); border-left: 2px solid rgb(255, 0, 128); padding-left: 7px; ">카테고리 종류 </span>
-                                    ｜  <span th:text="*{memberNickname}" style="margin: 0 7px; font-size:13px; color:rgb(190, 190, 190);">닉네임</span> 
-                                    ｜ <span th:text="*{writeDate}" style="font-size:12px; margin: 0 7px; color:rgb(190, 190, 190); font-style: italic;">작성일</span> 
+                                    <img th:unless="*{profileImg}" th:src="#{user.default.image}"  id="memberProfile2" style="width:20px; border-radius: 100%;  margin-top:5px;">
+                                    <img th:if="*{profileImg}" th:src="*{profileImg}"  id="memberProfile2" style="width:20px; border-radius: 100%;  margin-top:5px;"> 
+                                    <span th:text="*{memberNickname}" style="font-size:13px; margin: 0 7px; color:rgb(190, 190, 190);"></span>
+                                    ｜ <span th:text="*{writeDate}" style="font-size:13px; margin: 0 7px; color:rgb(190, 190, 190);">작성일</span> 
                                     </span>
-                                <span style="margin-top: 2px; float:inline-end;">
+                                <span style="margin-top: 10px; float:inline-end;">
                                     <span th:text="|조회수 : *{boardCount}|" style="margin: 0 7px; font-size:13px; ; color:rgb(190, 190, 190);" >조회수</span>
                                     <i class="fa-heart fa-solid" style="color : red;  margin-left:7px; font-size: 13px;" id="boardLike"></i>
                                     <span class="video-likeCount" style="font-size: 13px; color:rgb(190, 190, 190);" th:text="*{likeCount}"></span>
@@ -107,7 +108,6 @@
                             <th>제목</th>
                             <th>닉네임</th>
                             <th>작성일</th>
-                            <th>조회수</th>
                             <th><i class="fa-heart fa-solid" style="color : red;" id="boardLike"></i></th>
 
                         </tr>
@@ -129,7 +129,6 @@
                                 </td>
                                 <td th:text="*{memberNickname}"></td>
                                 <td th:text="*{writeDate}" style="font-size:13px;">작성일</td>
-                                <td th:text="*{boardCount}">조회수</td>
                                 <td th:text="*{likeCount}">좋아요</td>
                             </tr>
                         </th:block> 
@@ -152,18 +151,15 @@
 
     <th:block th:replace = "~{common/footer}"></th:block>  
 
-    <script> 
-      function viewText(bObj) { 
-        var tObj = document.getElementById("divText"); 
-        if(tObj.offsetHeight < 10000) { 
-          document.getElementById("divText").style.height = "300px"; 
-          bObj.value = "내용 닫기"; 
-          } else { 
-          document.getElementById("divText").style.height = "300px"; 
-          bObj.value = "내용 더보기"; 
-       } 
-      } 
-      </script> 
+    
+<script th:inline="javascript">
+
+
+  // messages.properties의 값을 얻어와 전역 변수로 선언
+  const defaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
+
+</script>
+
 
   
   </body>
