@@ -181,8 +181,6 @@ function deleteComment(commentNo){
   }
 }
 
-
-
 /*========================== 댓글 수정 화면 전환 ===============================*/ 
 
 let beforeCommentRow; // 수정 전 원래 행의 상태를 저장할 변수
