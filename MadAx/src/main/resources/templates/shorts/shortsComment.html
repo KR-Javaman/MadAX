@@ -12,8 +12,8 @@
         </th:block>
         <th:block th:unless="*{commentDelFl == 'Y'}">
           <p class="video-comment-writer">
-            <img th:unless="*{profileImg}" th:src="#{user.default.image}"/>
-            <img th:if="*{profileImg}" th:src="*{profileImg}">
+            <img th:unless="*{profileImg}" th:src="#{user.default.image}" id="memberCommentProfile"/>
+            <img th:if="*{profileImg}" th:src="*{profileImg}" id="memberCommentProfile">
             <span
               class="comment-writer-nickname"
               th:text="*{memberNickname}"

@@ -137,3 +137,9 @@ section:last-child {
   font-size: 4rem;
   cursor: pointer;
 }
+#memberDetailProfile {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
