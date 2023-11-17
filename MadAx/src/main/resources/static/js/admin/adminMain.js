@@ -45,3 +45,45 @@
 //     })
 //     .catch((e) => console.log(e));
 // };
+
+const options = document.querySelectorAll("#searchKey > option");
+const searchQuery = document.querySelector("#search");
+
+() => {
+  const params = new URL(location.href).searchParams;
+  const key = params.get("key");
+  const query = params.get("query");
+
+  // 검색을 했을 경우
+  if (key != null && query != null) {
+    searchQuery.value = query;
+
+    for (let op of options) {
+      if (op.value == key) {
+        op.selected == true;
+        break;
+      }
+    }
+  }
+};
+
+const goListBtn = document.querySelector("#goToListBtn");
+
+if (goListBtn != null) {
+  const goListfn = () => {
+    const paramMap = new URL(location.href).searchParams;
+
+    const obj = {};
+
+    obj.key = paramMap.get("inputEmail");
+
+    const tempParams = new URLSearchParams();
+
+    for (let key in obj) {
+      if (obj[key] != null) tempParams.append(key, obj[key]);
+    }
+    location.href = `/admin/main?${tempParams.toString()}`;
+  };
+
+  goListBtn.addEventListener("click", goListfn);
+}
