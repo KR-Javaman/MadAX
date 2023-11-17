@@ -23,6 +23,8 @@ public interface MadAdminMapper {
 
 	List<Member> searchMember(RowBounds rowBounds, Map<String, Object> paramMap);
 
+	int changeAuthority(int memberNo);
+
 
 }
 

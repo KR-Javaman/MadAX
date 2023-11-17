@@ -51,6 +51,8 @@ const selectCommentList = () => {
           heartComment.classList.add("comment-heart");
           if (videoComment.likeClickComment == 0) heartComment.classList.add("fa-regular");
           else heartComment.classList.add("fa-solid");
+
+          heartComment.setAttribute("onclick", "likeComment(this, " + videoComment.commentNo + ")");
           //-------------------------------------------------------------------
           heartComment.setAttribute("comment-no", videoComment.commentNo);
 
@@ -309,45 +311,38 @@ function insertChildComment(parentNo, btn) {
 }
 
 // -----------------------------------------------------
-const likeComments = document.querySelectorAll(".comment-heart");
+function likeComment(btn, commentNo) {
+  if (!loginCheck) {
+    alert("로그인을 먼저 해주세요");
+    return;
+  }
+  let check;
 
-for (let likeComment of likeComments) {
-  likeComment.addEventListener("click", (e) => {
-    if (!loginCheck) {
-      alert("로그인을 먼저 해주세요");
-      return;
-    }
-    let check;
+  if (btn.classList.contains("fa-regular")) {
+    check = 0;
+  } else {
+    check = 1;
+  }
 
-    if (e.target.classList.contains("fa-regular")) {
-      check = 0;
-    } else {
-      check = 1;
-    }
+  const data = { check: check, commentNo: commentNo };
 
-    const commentNo = e.target.getAttribute("comment-no");
+  fetch("/videoComment/like", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  })
+    .then((resp) => resp.text())
+    .then((count) => {
+      if (count == -1) {
+        console.log("좋아요 실패");
+        return;
+      }
+      btn.classList.toggle("fa-regular");
+      btn.classList.toggle("fa-solid");
 
-    const data = { check: check, commentNo: commentNo };
-
-    fetch("/videoComment/like", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      btn.nextElementSibling.innerText = count;
     })
-      .then((resp) => resp.text())
-      .then((count) => {
-        if (count == -1) {
-          console.log("좋아요 실패");
-          return;
-        }
-        e.target.classList.toggle("fa-regular");
-        e.target.classList.toggle("fa-solid");
-
-        e.target.nextElementSibling.innerText = count;
-        // selectCommentList();
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  });
+    .catch((e) => {
+      console.log(e);
+    });
 }

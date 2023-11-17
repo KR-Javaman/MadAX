@@ -4,8 +4,7 @@
 }
 @font-face {
   font-family: "SUITE-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2")
-    format("woff2");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
 }
@@ -25,7 +24,9 @@ table {
   width: 800px;
   height: 300px;
   font-size: large;
-  background-color: white;
+  background-color: rgb(69, 131, 255);
+  color: white;
+  border-color: black;
 }
 .admin-table {
   margin-top: 100px;
@@ -34,10 +35,10 @@ table {
   align-content: center;
 }
 
-.table-elements {
+/* .table-elements {
   color: black;
   background-color: rgb(69, 131, 255);
-}
+} */
 
 td {
   text-align: center;
@@ -56,4 +57,14 @@ tr td button {
 }
 tr td button:hover {
   background-color: rgb(147, 251, 1);
+  border-radius: 0.5rem;
+}
+.backBtn {
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+}
+.fa-chevron-left {
+  font-size: 4rem;
+  cursor: pointer;
 }

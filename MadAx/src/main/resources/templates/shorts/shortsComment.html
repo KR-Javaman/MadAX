@@ -32,6 +32,7 @@
                   class="fa-heart comment-heart"
                   th:classappend="*{likeClickComment} != 0 ? fa-solid : fa-regular"
                   th:comment-no="*{commentNo}"
+                  th:onclick="|likeComment(this, *{commentNo})|"
                 ></i>
                 <span id="count-heart" th:text="*{likeCountComment}" class="count-heart">좋아요 수</span>
             </span>

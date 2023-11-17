@@ -11,10 +11,15 @@
 
 <body>
     <th:block th:replace="~{common/header}"></th:block>
-   
-    <h3 th:text="|${param.inputEmail} 회원정보|"></h3>
+    
     <div class="admin-table"> 
-
+        <div class="backBtn">
+            <i
+              class="fa-solid fa-chevron-left"
+              style="color: #ffffff"  
+              id="goToListBtn"
+            ></i>
+        </div>
         <table border="1" th:object="${searchMember}">
            
             <tr>
@@ -67,16 +72,15 @@
             </tr>
         </table>
     </div>
-    <div class="admin-btn">
+    <!-- <div class="admin-btn">
         <button onclick="history.back()">뒤로 가기</button>
         <form action="initPw" method="post" th:object="${searchMember}">
 
             <input type="hidden" th:value="*{memberNo}" name="memberNo">
             <input type="hidden" th:value="*{memberEmail}" name="memberEmail">
-
-        <button style="color: red; background-color: white;">비밀번호 초기화</button>
-    </form>
-    </div>
+        </form>
+    </div> -->
+    <script src="/js/admin/adminMain.js"></script>
     <th:block th:replae="~{common/common}"></th:block>
 </body>
 </html>

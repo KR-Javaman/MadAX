@@ -8,6 +8,7 @@
       TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') AS ENROLL_DATE 
       FROM "MEMBER"
       WHERE MEMBER_EMAIL = #{inputEmail}
+      AND MEMBER_DEL_FL = 'N'
    </select>
   
   	
@@ -15,47 +16,56 @@
 	
 	<select id="listCount" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER
+		WHERE MEMBER_DEL_FL = 'N'
 	</select>
 	
 	<select id="memberList" resultType="Member">
 		SELECT MEMBER_NO,  MEMBER_EMAIL, MEMBER_NICKNAME
 		FROM "MEMBER" 
+		WHERE MEMBER_DEL_FL = 'N'
 		ORDER BY MEMBER_NO DESC
 	</select>
 	
 	<select id="memberCount" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER
+		WHERE MEMBER_DEL_FL = 'N'
 		<choose>
 			<when test='key == "n"'>
-				WHERE MEMBER_NO LIKE '%${query}%'
+				AND MEMBER_NO LIKE '%${query}%'
 			</when>
 			<when test='key == "e"'>
-				WHERE MEMBER_EMAIL LIKE '%${query}%'
+				AND MEMBER_EMAIL LIKE '%${query}%'
 			</when>
 			<when test='key == "nn"'>
-				WHERE MEMBER_NICKNAME LIKE '%${query}%'
+				AND MEMBER_NICKNAME LIKE '%${query}%'
 			</when>
 		</choose>
 	</select>
 	
 	
 	<select id="searchMember" resultType="Member">
-		SELECT MEMBER_NO,  MEMBER_EMAIL, MEMBER_NICKNAME
+		SELECT MEMBER_NO,  MEMBER_EMAIL, MEMBER_NICKNAME FROM MEMBER
+		WHERE MEMBER_DEL_FL = 'N'
 		<choose>
 			<when test='key == "n"'>
-				WHERE MEMBER_NO LIKE '%${query}%'
+				AND MEMBER_NO LIKE '%${query}%'
 			</when>
 			<when test='key == "e"'>
-				WHERE MEMBER_EMAIL LIKE '%${query}%'
+				AND MEMBER_EMAIL LIKE '%${query}%'
 			</when>
 			<when test='key == "nn"'>
-				WHERE MEMBER_NICKNAME LIKE '%${query}%'
+				AND MEMBER_NICKNAME LIKE '%${query}%'
 			</when>
 		</choose>
 		ORDER BY MEMBER_NO DESC
 	</select>
 	
 	
+	<update id="changeAuthority">
+		UPDATE "MEMBER" SET
+		AUTHORITY = DECODE(AUTHORITY,1,2,2,1)
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
 	
 	
 
