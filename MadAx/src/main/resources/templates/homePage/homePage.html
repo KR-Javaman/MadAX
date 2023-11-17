@@ -38,13 +38,19 @@
                         width="300px"
                         height="320px"
                         controls></video>
-                    <div id="video-kdb" th:text="${videoList[i].videoTitle}" style="font-size: 17px;">게시글 제목 </div>
-                    
-                    <span class="video-count" style="font-size: 14px; color:rgb(190, 190, 190); margin-top: 10px;" th:text="|조회수 : *{videoReadCount}|"></span>
-                    <div style="display: inline;">  
-                      <i class="fa-heart fa-solid" style="color : red; margin-top: 12px; font-size:14px; margin-left: 140px; " id="boardLike"></i>
+                        
+                        
+                    <span id="video-kdb" th:text="${videoList[i].videoTitle}" style="font-size: 17px;">게시글 제목 </span>
+                    <img th:unless="*{profileImg}" th:src="#{user.default.image}"  id="memberProfile2" style="width:20px; height:20px; border-radius: 100%;  margin-top:5px;">
+                    <img th:if="*{profileImg}" th:src="*{profileImg}"  id="memberProfile2" style="width:30px; height:30px; border-radius: 100%;  margin-top:10px;"> 
+
+                    <span class="video-count" style="font-size: 14px; color:rgb(190, 190, 190); margin-top: 5px; margin-left:3px" th:text="|조회수 : *{videoReadCount}|"></span>
+                    <span style="display: inline;">  
+                      <i class="fa-heart fa-solid" style="color : red; margin-top: 12px; font-size:14px; margin-left: 120px;  " id="boardLike"></i>
                       <span class="video-likeCount" style="font-size: 14px; color:rgb(190, 190, 190); " th:text="*{likeCount}">[[${videoBoard.likeCount}]]</span>
-                    </div>
+                      
+                
+                  </span>
                 </a>
             </th:block>
 

@@ -31,8 +31,8 @@
 
         <div class="form-group">
           <label for="title">제목</label>
-          <input type="text" class="form-control" id="title" placeholder="제목 입력(4-14)" name="boardTitle"
-                  maxlength="100" required="required" pattern=".{4,100}"   oninput='handleOnInput(this, 14)'>
+          <input type="text" class="form-control" id="title" placeholder="제목 입력(4~30글자까지)" name="boardTitle"
+                  maxlength="100" required="required" pattern=".{4,100}"   oninput='handleOnInput(this, 30)'>
         </div>
 
         <div class="category">

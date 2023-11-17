@@ -22,13 +22,13 @@
               type="text"
               class="form-control"
               id="title"
-              placeholder="제목 입력(4-100)"
+              placeholder="제목 입력(4-30글자까지 작성해주세요)"
               name="videoTitle"
               maxlength="100"
               required="required"
               pattern=".{4,100}"
               th:value="*{videoTitle}"
-              oninput="handleOnInput(this, 10)"
+              oninput="handleOnInput(this, 30)"
             />
           </div>
 
