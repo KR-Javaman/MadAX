@@ -105,17 +105,11 @@ public class EditJisikServiceImpl implements EditJisikService{
 	public int jisikUpdate(Board board, List<MultipartFile> images, String deleteOrder) throws IllegalStateException, IOException {
 		int result = mapper.jisikUpdate(board);
 		
-		
-		
-		
-		
-		if(result == 0) return 0;
-		
-		{
+		if(result == 0) {
+			return 0;
 			
-		}
-		
-	
+		} 
+			
 	List<BoardImg> uploadList = new ArrayList<>();
 	
 	for(int i=0; i<images.size(); i++) {
@@ -157,8 +151,10 @@ public class EditJisikServiceImpl implements EditJisikService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 }
+	
+	
+	
 
 
 
