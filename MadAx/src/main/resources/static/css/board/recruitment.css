@@ -12,8 +12,13 @@
 
 .board-main{
   margin-left: 20px;
+  border-right: 2px solid black;
   height: 130px;
-  
+  width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
   
 }
 
@@ -27,9 +32,10 @@
 }
 
 .board-main>h1,span{
-  margin-top: 5px;
+  margin-top: 10px;
   font-size: 15px;
   color: rgb(0, 0, 0);
+ 
 }
 
 
@@ -45,12 +51,17 @@
   
 
 .board-content{
-  font-size: 25px;
+  font-size: 20px;
   /* border: 1px solid black; */
-  margin-top: 30px;
-  margin-left: 100px;
+  margin-left: 20px;
   font-weight: bolder;
-  
+  width: 900px;
+  height: 130px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 50px;
+ 
 }
 
 

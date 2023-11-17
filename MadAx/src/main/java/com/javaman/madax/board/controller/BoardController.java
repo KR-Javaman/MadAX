@@ -106,12 +106,9 @@ private final BoardService service;
 	        if (loginMember == null || loginMember.getMemberNo() != board.getMemberNo()) {
 	        	Cookie c = null;
 	            Cookie[] cookies = req.getCookies();
-	            
 	            if (cookies != null) { 
-
 	            	for (Cookie cookie : cookies) {
-	            		
-		                  if (cookie.getName().equals("readBoardNo")) {
+	            		if (cookie.getName().equals("readBoardNo")) {
 		                     c = cookie;
 		                     break;
 		                  }
@@ -171,18 +168,6 @@ private final BoardService service;
 		map.put("memberNo", loginMember.getMemberNo());
 		return service.like(map);  
 	}
-	
-	
-	
-		
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
