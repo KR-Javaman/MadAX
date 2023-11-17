@@ -56,6 +56,9 @@
 		 AND BOARD_NO = #{boardNo}
 	 </update>
 	 
+	 
+	 
+	 
 	  <!--이미지 삭제-->
 	 <delete id="imageDelete">
 		 DELETE FROM "BOARD_IMG"
