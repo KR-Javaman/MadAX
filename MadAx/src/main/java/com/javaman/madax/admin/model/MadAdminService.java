@@ -18,6 +18,8 @@ public interface MadAdminService {
 	Map<String, Object> selectAll(Member member, int cp);
 
 	Member selectMember(String inputEmail);
+
+	int changeAuthority(int memberNo);
 	
 	
 

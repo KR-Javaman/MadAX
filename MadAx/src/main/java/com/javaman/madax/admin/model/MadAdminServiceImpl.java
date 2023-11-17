@@ -66,6 +66,11 @@ public class MadAdminServiceImpl implements MadAdminService {
 		return map;
 	}
 	
+	
+	@Override
+	public int changeAuthority(int memberNo) {
+		return mapper.changeAuthority(memberNo);
+	}
 
 	
 }
