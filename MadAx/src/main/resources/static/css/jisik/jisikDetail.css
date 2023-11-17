@@ -5,6 +5,11 @@
    
   }
 
+  body{
+    background-color: #282828;
+  }
+
+
 /* .image {
     margin-top: 20px;
     max-width: 700px;
@@ -33,9 +38,10 @@
 }
 
 .category {
+    font-weight: bold;
     margin-top: 20px;
     text-align: right;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .board-title {
@@ -161,28 +167,27 @@
 
 }
 /* 버튼 영역 */
-/* .jisik-btn-area{
+.jisik-btn-area{
 
     text-align: right;
-} */
-
-/* 
+}
+ 
 .jisik-btn-area button{
-    width: 80px;
-    height: 30px;
+    width: 84px;
+    height: 34px;
     font-weight: bold;
     border: 0;
-    background-color: #c4cef2;
+    background-color: #030303;
     color : white;
-
+    border-radius: 14px;
     cursor: pointer;
-} */
+} 
 
-/* .jisik-btn-area button:hover{
-    background-color: white;
-    color : #00e72e;
-    border: 2px solid #0037ff;
-} */
+.jisik-btn-area button:hover{
+    background-color: rgb(255, 255, 255);
+    color : #007d99;
+    border: 2px solid #000000;
+} 
 
 
 .writer-info {
@@ -190,25 +195,14 @@
 }
 
 
-
 .jisik-btn-area{
-    width: 500px;
+    width: 900px;
     height: 100px;
     margin: auto;
-}
+} 
 
 
 
-.jisik-btn-area > button {
-    width: 80px;
-    height: 30px;
-    font-weight: bold;
-    border: 0;
-    background-color: #2e2f34;
-    text-align: right;
-    
-    cursor: pointer;
-}
 
 .like {
     border-top: 3px solid #2e2f34;
@@ -238,11 +232,15 @@
     justify-content: center;
     display: flex;
 }
-
+/* 
 .jisik-btn-area > span {
     font-weight: bold;
     font-size: 50px;
-}
+} */
+
+
+  
+
 
 .jisik-detail > like
 

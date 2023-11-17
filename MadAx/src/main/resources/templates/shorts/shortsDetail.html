@@ -13,20 +13,12 @@
     <div class="vid-index3">
       <th:block th:if="${session.loginMember == null}">
         <div class="backBtn">
-          <i
-            class="fa-solid fa-chevron-left"
-            style="color: #ffffff"
-            onclick="history.back()"
-          ></i>
+          <i class="fa-solid fa-chevron-left" style="color: #ffffff" onclick="history.back()"></i>
         </div>
       </th:block>
       <th:block th:unless="${session.loginMember == null}">
         <div class="listBtn">
-          <i
-            class="fa-solid fa-list"
-            id="goToListBtn"
-            style="color: #ffffff"
-          ></i>
+          <i class="fa-solid fa-list" id="goToListBtn" style="color: #ffffff"></i>
         </div>
       </th:block>
       <section>
@@ -47,14 +39,10 @@
             <th:block th:text="${videoBoard.videoContent}">
               <span>내용</span>
             </th:block>
-            <span class="video-write-date"
-              >[[${videoBoard.videoWriteDate}]]</span
-            >
+            <span class="video-write-date">[[${videoBoard.videoWriteDate}]]</span>
           </div>
           <div class="video-button">
-            <th:block
-              th:if="${session.loginMember != null and session.loginMember.memberNo == videoBoard.memberNo}"
-            >
+            <th:block th:if="${session.loginMember != null and session.loginMember.memberNo == videoBoard.memberNo}">
               <button id="updateBtn">수정</button>
               <button id="deleteBtn">삭제</button>
             </th:block>
@@ -63,33 +51,17 @@
         <div class="video-title-content">
           <div class="video-content2">
             <div class="video-writer">
-              <img
-                th:if="${videoBoard.profileImg}"
-                th:src="${videoBoard.profileImg}"
-              />
-              <img
-                th:unless="${videoBoard.profileImg}"
-                th:src="#{user.default.image}"
-              />
-              <span class="nickname-area" th:text="${videoBoard.memberNickname}"
-                >닉네임</span
-              >
+              <img th:if="${videoBoard.profileImg}" th:src="${videoBoard.profileImg}" id="memberDetailProfile" />
+              <img th:unless="${videoBoard.profileImg}" th:src="#{user.default.image}" id="memberDetailProfile" />
+              <span class="nickname-area" th:text="${videoBoard.memberNickname}">닉네임</span>
               <span class="like-area">
-                <i
-                  class="fa-heart"
-                  th:classappend="${likeClick} ? fa-solid : fa-regular"
-                  id="img"
-                ></i>
+                <i class="fa-heart" th:classappend="${likeClick} ? fa-solid : fa-regular" id="img"></i>
 
-                <span id="count-heart" th:text="${videoBoard.likeCount}"
-                  >0</span
-                >
+                <span id="count-heart" th:text="${videoBoard.likeCount}">0</span>
               </span>
             </div>
             <div class="write-info">
-              <span class="video-count"
-                >조회수 : [[${videoBoard.videoReadCount}]]</span
-              >
+              <span class="video-count">조회수 : [[${videoBoard.videoReadCount}]]</span>
             </div>
           </div>
         </div>
@@ -100,8 +72,7 @@
 
     <script th:inline="javascript">
       const boardVideoNo = /*[[${boardVideoNo}]]*/ "영상 게시글 번호";
-      const loginCheck =
-        /*[[${session.loginMember != null ? true : false}]]*/ "로그인 여부";
+      const loginCheck = /*[[${session.loginMember != null ? true : false}]]*/ "로그인 여부";
     </script>
     <script src="/js/video/shortsDetail.js"></script>
     <script src="/js/video/shortsComment.js"></script>
