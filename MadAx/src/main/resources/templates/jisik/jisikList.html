@@ -58,10 +58,6 @@
           <th>내용</th>
           <th>작성자</th>
           <th>작성일</th>
-          <!-- <th>게시판</th>
-          <th>카테고리</th> -->
-          <th>조회수</th>
-          <th>좋아요</th>
         </tr>
       </thead>
 
@@ -88,13 +84,8 @@
 
             <td th:text="*{writeDate}" class="table-elements">작성일</td>
 
-            <td class="table-elements"></td>
-            <td class="table-elements"></td>
-
             <!-- <td th:text="*{categoryCode}"><td>
             <td th:text="*{category2Code}"><td> -->
-
-
 
           </tr>
 
@@ -259,16 +250,18 @@
     const category =  /*[[${categoryCode}]]*/ "카테고리코드";
     const categoryCodeTwo = /*[$[categoryCodeTwo}]]*/ "종목";
 
-    const c1 = /*[[${param.c1}]]*/ "c1";
+    const c1 = /*[[${param.c1}]]*/ "c1"; 
+    const c2 = /*[[${param.c2}]]*/ "c2";
     let topTitle;
-    if(c1 == null) topTitle = "지식인";
+    if(c1 == null && c2 != null) topTitle = "지식인";
     else{
       switch(c1[0]){
         case "3" : topTitle = "정보"; break;
         case "4" : topTitle = "꿀팁"; break;
       }
 
-    }
+     }
+
 
     document.querySelector(".door > h1").innerText = topTitle;
     

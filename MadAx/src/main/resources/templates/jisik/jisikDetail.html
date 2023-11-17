@@ -35,34 +35,49 @@
 
             <div class="detail-info">
 
+                <div class="category"> 
+                    <h1>게시판 : <span th:text="*{categoryName}"></span></h1>
+                    <h1>분류 : <span th:text="*{categoryNameTwo}"></span></h1>
+                 </div>
+
                 <div class="writer-img">
                     <img th:unless="*{profileImg}" th:src="#{user.default.image}">
 
                      <img th:if="*{profileImg}" th:src="*{profileImg}">
-                 </div>
+                    
 
-                 <div class="writer-info"></div>
-                
-                <h1 class="board-title"> 작성자 : <span th:text="${memberNickname}"></span> </h1>
-                 
-                <h1 class="board-title"> 작성일 : <span th:text="${writeDate}"></span> </h1>
+                     <div class="writer-text">
+<!-- 
+                     <div class="category"> 
+                        <h1>카테고리 : <span th:text="*{categoryCode}"></span></h1>
+                        <h1>종목 : <span th:text="*{categoryCodeTwo}"></span></h1>
+                     </div> -->
 
+                     <div class="writer-info">
+                        <h1 class="board-title"> 작성자 : <span th:text="*{memberNickname}"></span> </h1>
+                           
+                        <h1 class="board-title"> 작성일 : <span th:text="*{writeDate}"></span> </h1>
+                        
+                    </div>
 
-                <span class="like-area">
-
-                    <i class="fa-heart" th:classappend="${likeCheck} ? fa-solid : fa-regular" id="boardLike"></i>
-
-                   <span th:text="*{likeCount}" class="heart-count">0</span>
-                   
-                </span>
-
+                </div>
+                       
+                       <!-- <div class="writer-info">
+                           
+                           <h1 class="board-title"> 작성자 : <span th:text="${memberNickname}"></span> </h1>
+                           
+                           <h1 class="board-title"> 작성일 : <span th:text="${writeDate}"></span> </h1>
+                           
+                        </div> -->
+              
+         
             </div>               
-                
+<!--                 
                     <div class="category"> 
                      <h1>카테고리 : <span th:text="*{categoryCode}"></span></h1>
                      <h1>종목 : <span th:text="*{categoryCodeTwo}"></span></h1>
                     </div>
-                        
+                         -->
                     <!-- <p><span>카테고리</span>[[*{categoryCode}]]</p>
                     <p><span>종목</span>[[*{categoryCodeTwo}]]</p> -->
 
@@ -99,19 +114,42 @@
 
         </div>
         
-        
-            
         <div class="jisik-text" th:text="*{boardContent}">내용</div>
+        
+<!--             
              
+        <span class="like-area">
 
-            
-                
+            <i class="fa-heart" th:classappend="${likeCheck} ? fa-solid : fa-regular" id="boardLike"></i>
 
-            
+           <span th:text="*{likeCount}" class="heart-count">0</span>
 
+        </span> -->
 
             <!-- 버튼 영역-->
+
+            <div class="like">
+
+                
+                <span class="like-area">
+                    
+                    <i class="fa-heart" th:classappend="${likeCheck} ? fa-solid : fa-regular" id="boardLike"></i>
+                    
+            
+                    <div th:text="*{likeCount}" class="heart-count">0</div>
+                    
+                </div>
+                    
+
             <div class="jisik-btn-area">
+
+                <!-- <span class="like-area">
+
+                    <i class="fa-heart" th:classappend="${likeCheck} ? fa-solid : fa-regular" id="boardLike"></i>
+        
+                   <span th:text="*{likeCount}" class="heart-count">0</span> -->
+        
+                </span>
 
                 <!-- 로그인한 회원과 게시글 작성자 번호가 같은 경우-->
                 <th:block th:if="${session.loginMember != null 
@@ -123,7 +161,7 @@
                 </th:block>
 
                 <!-- <button id="goToListBtn">목록으로</button>  -->
-                <button onclick="history.back()">목록으로</button>
+                <!-- <button onclick="history.back()">목록으로</button> -->
             </div>
 
         </section>

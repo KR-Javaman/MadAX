@@ -74,19 +74,22 @@ a:hover {
 
 
 .list-table tr > *{ text-align: center; }
-.list-table tr > *:nth-of-type(1){ width: 5%; }
-
+.list-table tr > *:nth-of-type(1){ width: 10%; }
 .list-table tr > td:nth-of-type(2){
-     width: 20%; 
+     width: 60%; 
      text-align: left;
      padding-left: 50px;
      text-decoration: none;
 }
 
-.list-table tr > *:nth-of-type(3){ width: 45%; }
-.list-table tr > *:nth-of-type(4){ width: 20%; }
-.list-table tr > *:nth-of-type(5){ width: 5%; }
-.list-table tr > *:nth-of-type(6){ width: 5%; }
+.list-table tr > *:nth-of-type(3){ 
+    
+    width: 45%; 
+    max-width: 200px;
+}
+.list-table tr > *:nth-of-type(4){ width: 10%; }
+.list-table tr > *:nth-of-type(5){ width: 10%; }
+.list-table tr > *:nth-of-type(6){ width: 10%; }
 
 
 .btn-area{
@@ -97,7 +100,7 @@ a:hover {
 }
 
 
-.btn-area > button{
+     .btn-area > button{
     margin-right: 50px;
     
     width: 80px;
@@ -110,21 +113,20 @@ a:hover {
     border-radius: 5px;
 
     cursor: pointer;
-
-}
-
+     }
 
 
 .pagination {
-    list-style: none;
-    display: block;
     justify-content: center;
+    display: flex;
+    text-align: center;
+    list-style: none;
     padding: 0;
 }
 
 .pagination li{
     width: 20px;
-    margin: 0 5px;
+    margin: 0 10px;
     text-align: center;
 }
 
@@ -136,13 +138,13 @@ a:hover {
 
 .current{
     font-weight: bold;
-    background-color: #00ae71;
-    border-radius: 50%;
-    color: white !important;
+    background-color: #a6ff00;
+    border-radius: 5%;
+    color: rgb(0, 0, 0) !important;
     letter-spacing: 0 !important;
 }
 
-#boardSearch{
+/* #boardSearch{
     text-align: center;
     width: 500px;
     height: 30px;
@@ -181,4 +183,4 @@ a:hover {
     cursor: pointer;
     
 
-}
+} */
