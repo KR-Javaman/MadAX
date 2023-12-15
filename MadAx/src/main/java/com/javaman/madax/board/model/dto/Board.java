@@ -25,7 +25,7 @@ public class Board {
     private int categoryCode;
 
 
-//    private int categoryName;
+//  private int categoryName;
     private int categoryCodeTwo;
 
     private String boardName;
