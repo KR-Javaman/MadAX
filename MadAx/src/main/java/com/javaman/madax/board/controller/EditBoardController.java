@@ -194,8 +194,6 @@ public class EditBoardController {
 	   @RequestMapping("/{boardCode:[0-9]+}/{boardNo:[0-9]+}/update")
 	   public String updateBoard(@PathVariable("boardCode")int boardCode,
 	                     @PathVariable("boardNo")int boardNo,
-	                   
-
 	                     Board board,
 	                     @RequestParam("images") List<MultipartFile> images,
 	                     RedirectAttributes ra) throws IllegalStateException, IOException {
